@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { MatFormFieldModule, MatInputModule, MatIconModule} from '@angular/material'
+import { MatFormFieldModule, MatInputModule, MatIconModule } from '@angular/material'
 import {MatButtonModule} from '@angular/material/button';
 
 import { FormsModule } from '@angular/forms';
@@ -26,14 +26,15 @@ import { FormsModule } from '@angular/forms';
     MatFormFieldModule,MatIconModule,
     BrowserAnimationsModule,FlexLayoutModule,MatButtonModule,
     MatFormFieldModule,MatButtonModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule,MatIconModule,
     MatInputModule,
     FormsModule
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    {
+     provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]
 })
