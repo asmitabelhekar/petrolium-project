@@ -455,7 +455,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-header>\n        <ion-toolbar >\n          <img src=\"../assets/logoapp.png\" class=\"cl-sidemenu-logo\" />\n\n          <div align=\"center\" style=\"margin-top:10px; margin-bottom:20px\">\n            <ion-title style=\"color:white\">Khamkar Petrolium</ion-title>\n          </div>\n\n        </ion-toolbar>\n      </ion-header>\n      <ion-content style=\"margin-top: 5%;\">\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\" style=\"color:white\"></ion-icon>\n              <ion-label style=\"color:white; font-size: 13px;\">\n                {{p.title}}\n              </ion-label>\n              <ion-icon name=\"arrow-dropright\" style=\"color:white\"></ion-icon>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n"
+module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-header>\n        <ion-toolbar >\n          <img src=\"../assets/logoapp.png\" class=\"cl-sidemenu-logo\" />\n\n          <div align=\"center\" style=\"margin-top:10px; margin-bottom:20px\">\n            <ion-title style=\"color:white\">Khamkar Petrolium</ion-title>\n          </div>\n\n        </ion-toolbar>\n      </ion-header>\n      <ion-content style=\"margin-top: 5%;\">\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\" style=\"color:white\"></ion-icon>\n              <ion-label style=\"color:white; font-size: 15px;\">\n                {{p.title}}\n              </ion-label>\n              <ion-icon name=\"arrow-dropright\" style=\"color:white\"></ion-icon>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n"
 
 /***/ }),
 
@@ -496,6 +496,10 @@ var routes = [
     {
         path: 'updatebalance',
         loadChildren: function () { return __webpack_require__.e(/*! import() | pages-updatebalance-updatebalance-module */ "pages-updatebalance-updatebalance-module").then(__webpack_require__.bind(null, /*! ./pages/updatebalance/updatebalance.module */ "./src/app/pages/updatebalance/updatebalance.module.ts")).then(function (m) { return m.UpdatebalancePageModule; }); }
+    },
+    {
+        path: 'showbalancerecord',
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-showbalancerecord-showbalancerecord-module */ "pages-showbalancerecord-showbalancerecord-module").then(__webpack_require__.bind(null, /*! ./pages/showbalancerecord/showbalancerecord.module */ "./src/app/pages/showbalancerecord/showbalancerecord.module.ts")).then(function (m) { return m.ShowbalancerecordPageModule; }); }
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -556,7 +560,7 @@ var AppComponent = /** @class */ (function () {
             {
                 title: 'Customer Records',
                 url: '/home',
-                icon: 'home'
+                icon: 'document'
             },
             {
                 title: 'Add Customer',
@@ -564,7 +568,7 @@ var AppComponent = /** @class */ (function () {
                 icon: 'person'
             },
             {
-                title: 'Customer Record',
+                title: 'Update Balance',
                 url: '/updatebalance',
                 icon: 'document'
             },
@@ -658,14 +662,16 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatFormFieldModule"], _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatIconModule"],
                 _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"], _angular_flex_layout__WEBPACK_IMPORTED_MODULE_9__["FlexLayoutModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_12__["MatButtonModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatFormFieldModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_12__["MatButtonModule"],
-                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatIconModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatInputModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_13__["FormsModule"]
             ],
             providers: [
                 _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
                 _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
-                { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] }
+                {
+                    provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
+                },
             ],
             bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
         })

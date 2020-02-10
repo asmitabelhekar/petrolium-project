@@ -1,0 +1,34 @@
+<ion-header>
+  <ion-toolbar class="new-background-color">
+    <ion-row>
+      <ion-col size="2">
+        <button ion-button class="BackButton" (click)="goBackword()" style="margin:5px" style="color:white"></button>
+      </ion-col>
+      <ion-col size="10"  class="TitleHeader TitleText">
+        <ion-label style="color:white">Payment Details</ion-label>
+      </ion-col>
+    </ion-row>
+   
+
+  </ion-toolbar>
+</ion-header>
+
+<ion-content >
+  <table class="tableback" align="center">
+    <tr class="tablebackground">
+      <th class="tablebackground">Date</th>
+      <th class="tablebackground">Credited</th>
+      <th class="tablebackground">Debited</th>
+      
+    </tr>
+    <tr *ngFor="let lg of getBalanceDetail">
+      <td class="tablebackground" align="center">{{lg.date}}</td>
+      <td tooltip="lg.credited" class="tablebackground" align="center">{{lg.credited}}</td>
+      <td class="tablebackground" align="center">
+          <span  style="color: black;" >{{lg.debited}}</span> 
+      </td>
+     
+    </tr>
+    </table>
+  <button mat-raised-button class="FixedButton" (click)="updateBalance()"> Print </button>
+</ion-content>
