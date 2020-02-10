@@ -14,7 +14,7 @@ export class AppComponent {
     {
       title: 'Customer Records',
       url: '/home',
-      icon: 'home'
+      icon: 'document'
     },
     {
       title: 'Add Customer',
@@ -22,7 +22,7 @@ export class AppComponent {
       icon: 'person'
     },
     {
-      title: 'Customer Record',
+      title: 'Update Balance',
       url: '/updatebalance',
       icon: 'document'
     }
