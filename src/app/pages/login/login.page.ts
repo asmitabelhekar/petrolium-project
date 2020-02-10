@@ -11,6 +11,7 @@ export class LoginPage implements OnInit {
 
   constructor(public router: Router,
     public menuController : MenuController) { }
+  loginModel:any={}
 
   ngOnInit() {
   }
