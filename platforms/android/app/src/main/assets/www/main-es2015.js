@@ -449,7 +449,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-header style=\"height:150px\">\n        <ion-toolbar >\n          <img src=\"../assets/logoapp.png\" class=\"cl-sidemenu-logo\" />\n\n          <div fxLayout=\"row\" fxLayoutAlign=\"end end\">\n            <ion-title >Khamkar Petrolium</ion-title>\n          </div>\n\n        </ion-toolbar>\n      </ion-header>\n      <ion-content>\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\"></ion-icon>\n              <ion-label>\n                {{p.title}}\n              </ion-label>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n"
+module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-header>\n        <ion-toolbar >\n          <img src=\"../assets/logoapp.png\" class=\"cl-sidemenu-logo\" />\n\n          <div align=\"center\" style=\"margin-top:10px; margin-bottom:20px\">\n            <ion-title style=\"color:white\">Khamkar Petrolium</ion-title>\n          </div>\n\n        </ion-toolbar>\n      </ion-header>\n      <ion-content style=\"margin-top: 5%;\">\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\" style=\"color:white\"></ion-icon>\n              <ion-label style=\"color:white; font-size: 13px;\">\n                {{p.title}}\n              </ion-label>\n              <ion-icon name=\"arrow-dropright\" style=\"color:white\"></ion-icon>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n"
 
 /***/ }),
 
@@ -514,7 +514,7 @@ AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".cl-logo-css {\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n}\n\n.cl-sidemenu-logo {\n  height: 80px;\n  width: 80px;\n  border-radius: 50%;\n  margin-top: 20px;\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2RoYW5hbmpheXJhdXQvcGV0cm9saXVtLXByb2plY3Qvc3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFdBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7QUNDSjs7QURFQTtFQUNJLFlBQUE7RUFDQyxXQUFBO0VBQ0Msa0JBQUE7RUFDQyxnQkFBQTtFQUNELGNBQUE7RUFDQSxpQkFBQTtFQUNBLGtCQUFBO0FDQ04iLCJmaWxlIjoic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2wtbG9nby1jc3N7XG4gICAgd2lkdGg6IDgwcHg7XG4gICAgaGVpZ2h0IDogODBweDtcbiAgICBib3JkZXItcmFkaXVzOiA1MCU7XG59XG5cbi5jbC1zaWRlbWVudS1sb2dve1xuICAgIGhlaWdodDogODBweDtcbiAgICAgd2lkdGggOiA4MHB4O1xuICAgICAgYm9yZGVyLXJhZGl1czogNTAlO1xuICAgICAgIG1hcmdpbi10b3A6IDIwcHg7IFxuICAgICAgZGlzcGxheTogYmxvY2s7XG4gICAgICBtYXJnaW4tbGVmdDogYXV0bztcbiAgICAgIG1hcmdpbi1yaWdodDogYXV0bztcbiAgfSIsIi5jbC1sb2dvLWNzcyB7XG4gIHdpZHRoOiA4MHB4O1xuICBoZWlnaHQ6IDgwcHg7XG4gIGJvcmRlci1yYWRpdXM6IDUwJTtcbn1cblxuLmNsLXNpZGVtZW51LWxvZ28ge1xuICBoZWlnaHQ6IDgwcHg7XG4gIHdpZHRoOiA4MHB4O1xuICBib3JkZXItcmFkaXVzOiA1MCU7XG4gIG1hcmdpbi10b3A6IDIwcHg7XG4gIGRpc3BsYXk6IGJsb2NrO1xuICBtYXJnaW4tbGVmdDogYXV0bztcbiAgbWFyZ2luLXJpZ2h0OiBhdXRvO1xufSJdfQ== */"
+module.exports = ".cl-logo-css {\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n}\n\n.cl-sidemenu-logo {\n  height: 80px;\n  width: 80px;\n  border-radius: 50%;\n  margin-top: 20px;\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  margin-top: 12%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2RoYW5hbmpheXJhdXQvcGV0cm9saXVtLXByb2plY3Qvc3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFdBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7QUNDSjs7QURFQTtFQUNJLFlBQUE7RUFDQyxXQUFBO0VBQ0Msa0JBQUE7RUFDQyxnQkFBQTtFQUNELGNBQUE7RUFDQSxpQkFBQTtFQUNBLGtCQUFBO0VBQ0EsZUFBQTtBQ0NOIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNsLWxvZ28tY3Nze1xuICAgIHdpZHRoOiA4MHB4O1xuICAgIGhlaWdodCA6IDgwcHg7XG4gICAgYm9yZGVyLXJhZGl1czogNTAlO1xufVxuXG4uY2wtc2lkZW1lbnUtbG9nb3tcbiAgICBoZWlnaHQ6IDgwcHg7XG4gICAgIHdpZHRoIDogODBweDtcbiAgICAgIGJvcmRlci1yYWRpdXM6IDUwJTtcbiAgICAgICBtYXJnaW4tdG9wOiAyMHB4OyBcbiAgICAgIGRpc3BsYXk6IGJsb2NrO1xuICAgICAgbWFyZ2luLWxlZnQ6IGF1dG87XG4gICAgICBtYXJnaW4tcmlnaHQ6IGF1dG87XG4gICAgICBtYXJnaW4tdG9wOiAxMiU7XG4gIH0iLCIuY2wtbG9nby1jc3Mge1xuICB3aWR0aDogODBweDtcbiAgaGVpZ2h0OiA4MHB4O1xuICBib3JkZXItcmFkaXVzOiA1MCU7XG59XG5cbi5jbC1zaWRlbWVudS1sb2dvIHtcbiAgaGVpZ2h0OiA4MHB4O1xuICB3aWR0aDogODBweDtcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xuICBtYXJnaW4tdG9wOiAyMHB4O1xuICBkaXNwbGF5OiBibG9jaztcbiAgbWFyZ2luLWxlZnQ6IGF1dG87XG4gIG1hcmdpbi1yaWdodDogYXV0bztcbiAgbWFyZ2luLXRvcDogMTIlO1xufSJdfQ== */"
 
 /***/ }),
 
@@ -545,24 +545,24 @@ let AppComponent = class AppComponent {
         this.statusBar = statusBar;
         this.appPages = [
             {
-                title: 'Dashboard',
+                title: 'Customer Records',
                 url: '/home',
                 icon: 'home'
             },
             {
                 title: 'Add Customer',
                 url: '/addcustomer',
-                icon: 'list'
+                icon: 'person'
             },
             {
                 title: 'Customer Record',
                 url: '/updatebalance',
-                icon: 'list'
+                icon: 'document'
             },
             {
                 title: 'Log Out',
                 url: '/login',
-                icon: 'list'
+                icon: 'log-out'
             }
         ];
         this.initializeApp();
@@ -616,7 +616,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_flex_layout__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @angular/flex-layout */ "./node_modules/@angular/flex-layout/esm2015/flex-layout.js");
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm2015/animations.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/esm2015/button.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+
 
 
 
@@ -641,10 +643,12 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(),
             _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"],
             _angular_flex_layout__WEBPACK_IMPORTED_MODULE_9__["FlexLayoutModule"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatFormFieldModule"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatFormFieldModule"], _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatIconModule"],
+            _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"], _angular_flex_layout__WEBPACK_IMPORTED_MODULE_9__["FlexLayoutModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_12__["MatButtonModule"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatFormFieldModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_12__["MatButtonModule"],
             _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"],
             _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatInputModule"],
-            _angular_forms__WEBPACK_IMPORTED_MODULE_12__["FormsModule"]
+            _angular_forms__WEBPACK_IMPORTED_MODULE_13__["FormsModule"]
         ],
         providers: [
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
