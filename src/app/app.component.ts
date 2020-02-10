@@ -19,18 +19,18 @@ export class AppComponent {
     {
       title: 'Add Customer',
       url: '/addcustomer',
-      icon: 'list'
+      icon: 'person'
     },
     {
       title: 'Customer Record',
       url: '/updatebalance',
-      icon: 'list'
+      icon: 'document'
     }
     ,
     {
       title: 'Log Out',
       url: '/login',
-      icon: 'list'
+      icon: 'log-out'
     }
   ];
 
