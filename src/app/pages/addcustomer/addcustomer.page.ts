@@ -14,6 +14,9 @@ userModel: any ={}
   ngOnInit() {
   }
 
+  addCustomer(){
+    this.router.navigate(["home"]);
+  }
   goBackword(){
     this.router.navigate(['home']);
   }

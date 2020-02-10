@@ -14,9 +14,14 @@
     <h1>Add Customer</h1>
   </div>
   <div class="ac-l-container" fxLayout="column" fxLayoutAlign="space-between center">
+
     <mat-form-field appearance="outline">
-       
-      <mat-label>Name</mat-label>
+      
+
+      <mat-label>
+        <mat-icon>person</mat-icon>
+        
+        Name</mat-label>
         <input matInput required class="form-control" name="fname" [(ngModel)]="userModel.fname"  #fname="ngModel" pattern="[a-zA-z]+$" >
        <mat-error>
          <div *ngIf="fname.invalid && (fname.dirty  || fname.touched)">
@@ -31,8 +36,10 @@
       
    
        <mat-label>
-        Phone Number
+        <mat-icon>call</mat-icon>  Phone Number      
+
        </mat-label>
+
       <input matInput required class="form-control" name="phone" [(ngModel)]="userModel.phone" #phone="ngModel" minlength="10" maxlength=10 pattern="[0-9]+" placeholder="949">
       <mat-error>
         <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
@@ -42,23 +49,28 @@
     </mat-form-field>
 
     <mat-form-field appearance="outline">
+
       <mat-label>
+        <mat-icon>home</mat-icon>
         Address
       </mat-label>
-      <input matInput required class="form-control" name="address" [(ngModel)]="userModel.address" #address="ngModel">
+      <textarea matInput required class="form-control" name="address" [(ngModel)]="userModel.address" #address="ngModel"></textarea>
       <mat-error>
         <div *ngIf="address.invalid && (address.dirty || address.touched)">Enter Address
         </div>
       </mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
+
       <mat-label>
+        <mat-icon>email</mat-icon>
+
         Email
       </mat-label>
       <input matInput>
     </mat-form-field>
    <div class="ac-l-button" fxLayoutAlign="space-between center">
-        <button mat-raised-button>Submit</button>
+        <button mat-raised-button (click)="addCustomer()">Submit</button>
      </div>
 
   </div>
@@ -67,20 +79,3 @@
 
 
 
-
-
-<!-- 
-
-
-<mat-form-field style="width:90%; margin-right:10%">
-  <input matInput class="form-control " name="fname" required [(ngModel)]="userModel.fname" #fname="ngModel"
-  pattern="[a-zA-z]+$" placeholder="First Name" />
-  <mat-error>
-  <div class="form-group">
-  <div *ngIf="fname.invalid && (fname.dirty || fname.touched)">
-  First Name Is Requird
-  </div>
-  </div>
-  </mat-error>
-  
-  </mat-form-field> -->
