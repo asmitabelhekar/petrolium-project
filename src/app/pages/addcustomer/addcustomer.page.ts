@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddcustomerPage implements OnInit {
 
+userModel: any ={}
   constructor() { }
 
   ngOnInit() {
