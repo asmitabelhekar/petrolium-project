@@ -1,4 +1,55 @@
 
-<ion-content>
+<div class="login-container" fxLayout="column" fxLayout.xs="column" fxLayoutAlign=" center center">
+   
+<div class="login-container-filds" fxLayout="column" fxLayout.xs="column" fxLayoutAlign=" center">
+  
+ <div class="login-container-title" fxLayout="column" fxLayout.xs="column" fxLayoutAlign=" center" >
+  
+    <p>Login</p>
+  
+ </div>
+   <mat-form-field floatLabel="auto" appearance="outline" >
+       <mat-label >Phone Number</mat-label>
+       <input matInput required name="phone" [(ngModel)]="loginModel.phone" #phone="ngModel" minlength="10" maxlength="10" pattern="[0-9]+" placeholder="949">
+    <mat-error>
+        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+            Enter Valid Phone Number
+        </div>
+    </mat-error>
+
+
+
+   </mat-form-field>
+
+   <mat-form-field floatLabel="auto" appearance="outline" >
+    <mat-label>Password</mat-label>
+    <input matInput required name="password" [(ngModel)]="loginModel.password" #phone="ngModel" minlength="8" type="password" >
+    <mat-error>
+        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+            Enter Valid password
+        </div>
+    </mat-error>
+</mat-form-field>
+<button mat-raised-button>Click me!</button>
+    
+</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <ion-content>
 <ion-button (click)="nextPage()" align="center">Login</ion-button>
-</ion-content>
+</ion-content> -->

@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
+  loginModel:any={}
   constructor(public router : Router) { }
 
   ngOnInit() {
