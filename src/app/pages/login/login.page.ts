@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -8,13 +9,18 @@ import { Router } from '@angular/router';
 })
 export class LoginPage implements OnInit {
 
+  constructor(public router: Router,
+    public menuController : MenuController) { }
   loginModel:any={}
-  constructor(public router : Router) { }
 
   ngOnInit() {
   }
 
-  nextPage(){
-this.router.navigate(['/home']);
+  ionViewWillEnter(){
+    this.menuController.enable(false);
+  }
+
+  nextPage() {
+    this.router.navigate(['/home']);
   }
 }

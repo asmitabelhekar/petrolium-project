@@ -11,7 +11,9 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule } from '@angular/material'
+import { MatFormFieldModule, MatInputModule, MatIconModule } from '@angular/material'
+import {MatButtonModule} from '@angular/material/button';
+
 import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [AppComponent],
@@ -21,6 +23,8 @@ import { FormsModule } from '@angular/forms';
     IonicModule.forRoot(),
     AppRoutingModule,
     FlexLayoutModule,
+    MatFormFieldModule,MatIconModule,
+    BrowserAnimationsModule,FlexLayoutModule,MatButtonModule,
     MatFormFieldModule,MatButtonModule,
     BrowserAnimationsModule,MatIconModule,
     MatInputModule,

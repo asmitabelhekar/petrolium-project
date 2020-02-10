@@ -1,23 +1,29 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-buttons slot="start">
+<ion-header class="new-background-color">
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start" style="color:white">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
-    <ion-title>
+    <ion-title style="color:white">
       Home
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-<div fxLayout="row" fxLayoutAlign="center center">
-  <label>display</label>
-</div>
+  <div class="cl-center-title" fxLayout="row" fxLayoutAlign="center center" (click)="addCustomer()">
+    <ion-icon name="person-add" style="color:rgb(18, 118, 199);width:20px; height: 20px"></ion-icon>
+    <ion-label style="color:rgb(18, 118, 199); " >Add Customer</ion-label>
+  </div>
+ 
 
-
-<mat-form-field >
-  <mat-label>Input</mat-label>
-  <input matInput>
-</mat-form-field>
+  <div *ngFor="let daata of getCusstomers; index as i"class="cl-center-title">
+    <ion-item (click)="getCustomerDetailInfo(daata , i)" style="margin-left:-20px">
+      <div style="margin-left:30px">
+       
+    <button style="width:35px; height: 35px; border-radius: 50%;margin-right: 15px ; color: #ffffff" [ngClass]="(i % 2 == 0) ? 'odd' : 'even' ">{{daata.name.charAt(0) | uppercase}}</button>
+      </div>
+      {{daata.name | titlecase}}
+    </ion-item>
+  </div>
 
 </ion-content>

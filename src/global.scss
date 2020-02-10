@@ -24,3 +24,22 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+ion-menu {
+    --ion-background-color: #2e2d2d;
+    --ion-text-color: #2e2d2d;
+  
+    ion-toolbar {
+      --background: #2e2d2d;
+    }
+  
+    ion-list {/* optional, but it needs when you use gradient as a background color.*/
+      background: transparent;
+    }
+  }
+
+  .new-background-color{
+    --background: #2e2d2d;
+}
+
+
