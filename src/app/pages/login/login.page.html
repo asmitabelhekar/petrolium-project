@@ -3,47 +3,31 @@
 
 <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One&display=swap" rel="stylesheet">
 
-<div class="login-container" fxLayout="column" fxLayout.xs="column" fxLayoutAlign=" center center">
+<div class="login-container" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="center center"> 
+    <div class="login-container-filds" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="center center">
 
-    
-   
-<div class="login-container-filds" fxLayout="column" fxLayout.xs="column" fxLayoutAlign=" center">
-  
- <div class="login-container-title" fxLayout="column" fxLayout.xs="column" fxLayoutAlign=" center" >
-  
-    <p>Login</p>
-  
- </div>
-   <mat-form-field floatLabel="auto" appearance="outline"  >
-
-       <mat-label  class=" login-container-number-password">
-    <mat-icon >call</mat-icon>
-           
-        Phone Number</mat-label>
-       <input matInput required name="phone" [(ngModel)]="loginModel.phone" #phone="ngModel" minlength="10" maxlength="10" pattern="[0-9]+" placeholder="949" class=" login-container-number-password">
-    <mat-error>
-        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
-            Enter Valid Phone Number
+        <div class="login-container-filds-signin-logo" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
+            
         </div>
-    </mat-error>
+        <div class="login-container-filds-number-password" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="center center">
+            <div class="login-container-filds-signin"> 
+                <p>Sign In</p>
+            </div>
+            <div class="login-container-filds-logo"> 
+          <img src="../../../assets/icons8-user-male-64.png" alt="">
+            </div>
+            <mat-form-field>
+                <input matInput placeholder=Number>
+            </mat-form-field>
 
+            <mat-form-field>
+                <input matInput placeholder="password">
+            </mat-form-field>
+ 
+            <div class="login-container-filds-number-password-lebals"  fxLayout="column" fxLayout.xs=""></div>
 
-
-   </mat-form-field>
-
-   <mat-form-field floatLabel="auto" appearance="outline" color="warm" >
-    <mat-label class=" login-container-number-password" >
-        <mat-icon>lock</mat-icon>
-        Password</mat-label>
-    <input matInput required name="password" [(ngModel)]="loginModel.password" #phone="ngModel" minlength="8" type="password" class=" login-container-number-password" >
-    <mat-error>
-        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
-            Enter Valid password
-        </div>
-    </mat-error>
-</mat-form-field>
-<button mat-raised-button class="button_submit" (click)="nextPage()" class="button_submit" >Submit</button>
-</div>
+            <button mat-raised-button (click)="nextPage()" id="login-button" >Login</button>
+            
 
 </div>
 
@@ -51,10 +35,47 @@
 
 
 
+<!-- 
+<div class=""> 
+            
+    <mat-form-field floatLabel="auto"  >
+        <mat-label >Phone Number</mat-label>
+        <input matInput required name="phone" [(ngModel)]="loginModel.phone" #phone="ngModel" minlength="10" maxlength="10" pattern="[0-9]+" placeholder="949">
+     <mat-error>
+         <div *ngIf="fname.invalid && (fname.dirty  || fname.touched)">
+         
+             Email Requird
+      </div>
+     </mat-error>
+
+
+     
+    </mat-form-field>
+ 
+</div>
+</div>
+</div>
 
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ -->
 
 
 
