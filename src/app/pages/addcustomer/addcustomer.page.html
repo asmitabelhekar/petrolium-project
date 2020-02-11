@@ -9,77 +9,52 @@
   </ion-toolbar>
 </ion-header>
 
-<div class="ac-container">
-  <!-- <div class="ac-conatiner-title" fxLayout="row">
-    <button slot="start" style="color: white; background-color: #2e2d2d;">
-      <ion-menu-button></ion-menu-button>
+<div fxLayout="row" fxLayoutAlign="center center" class="registration-main">
+<mat-card>
+  <mat-card-header>
+    <mat-card-title>
+      Add customer
+    </mat-card-title>
 
-    </button>
-    <h1>Add Customer</h1>
-  </div> -->
-  <div class="ac-l-container" fxLayout="column"  fxFlex="initial">
+  </mat-card-header>
 
-    <mat-form-field class="ac-form-field" appearance="outline">
-      
+  <mat-card-content fxLayout="column" fxLayoutGap="20px">
+    <mat-form-field>
+      <input matInput required placeholder="Name" class="form-control" name="fname" [(ngModel)]="userModel.fname"  #fname="ngModel" pattern="[a-zA-z]+$" >
+      <mat-error>
+        <div *ngIf="fname.invalid && (fname.dirty  || fname.touched)">
+         Name is Required
+        </div>
+      </mat-error>
 
-      <mat-label>
-        <mat-icon>person</mat-icon>
-        
-        Name</mat-label>
-        <input matInput required class="form-control" name="fname" [(ngModel)]="userModel.fname"  #fname="ngModel" pattern="[a-zA-z]+$" >
-       <mat-error>
-         <div *ngIf="fname.invalid && (fname.dirty  || fname.touched)">
-          Name is Required
-         </div>
-       </mat-error>
-      
-    </mat-form-field>
- 
-  
-    <mat-form-field class="ac-form-field" appearance="outline">
-      
-   
-       <mat-label>
-        <mat-icon>call</mat-icon>  Phone Number      
+    </mat-form-field>      
+    
 
-       </mat-label>
+    <mat-form-field>
 
-      <input matInput required class="form-control" name="phone" [(ngModel)]="userModel.phone" #phone="ngModel" minlength="10" maxlength=10 pattern="[0-9]+" placeholder="949">
+      <input matInput required placeholder="Phone Number" class="form-control" name="phone" [(ngModel)]="userModel.phone" #phone="ngModel" minlength="10" maxlength=10 pattern="[0-9]+">
       <mat-error>
         <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
           Phone Number Required
         </div>
       </mat-error>  
     </mat-form-field>
-
-    <mat-form-field class="ac-form-field" appearance="outline">
-
-      <mat-label>
-        <mat-icon>home</mat-icon>
-        Address
-      </mat-label>
-      <textarea matInput required class="form-control" name="address" [(ngModel)]="userModel.address" #address="ngModel"></textarea>
+    <mat-form-field>
+      
+      <textarea matInput required placeholder="Address" class="form-control" name="address" [(ngModel)]="userModel.address" #address="ngModel"></textarea>
       <mat-error>
         <div *ngIf="address.invalid && (address.dirty || address.touched)">Enter Address
         </div>
       </mat-error>
     </mat-form-field>
-    <mat-form-field class="ac-form-field" appearance="outline">
-
-      <mat-label>
-        <mat-icon>email</mat-icon>
-
-        Email
-      </mat-label>
-      <input matInput>
+    <mat-form-field>
+     
+      <input type="text" placeholder="Email" matInput>
     </mat-form-field>
-   <div class="ac-l-button" fxLayoutAlign="center center">
-        <button mat-raised-button (click)="addCustomer()">Submit</button>
-     </div>
+  </mat-card-content>
+  <mat-card-actions align="center">
+      <button mat-raised-button color="warn">Submit</button>
+    </mat-card-actions>
+</mat-card>
 
-  </div>
 </div>
-
-
-
-
