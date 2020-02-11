@@ -22,6 +22,6 @@ export class LoginPage implements OnInit {
   ionViewWillEnter(){
     this.menuController.enable(false);
   }
-
+userModel:any={}
   
 }

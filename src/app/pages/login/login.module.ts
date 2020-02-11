@@ -7,7 +7,7 @@ import { LoginPageRoutingModule } from './login-routing.module';
 import { LoginPage } from './login.page';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import {  MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule } from '@angular/material';
+import {  MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, MatCardModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
@@ -16,7 +16,7 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     FormsModule,
     IonicModule,
     LoginPageRoutingModule,
-    MatFormFieldModule,
+    MatFormFieldModule,MatCardModule,
    
     MatInputModule,MatButtonModule,MatIconModule,
     FlexLayoutModule

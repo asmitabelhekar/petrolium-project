@@ -1,151 +1,42 @@
-
-
-
-<link href="https://fonts.googleapis.com/css?family=Julius+Sans+One&display=swap" rel="stylesheet">
-
-<div class="login-container" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="center center"> 
-    <div class="login-container-filds" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="center center">
-
-        <div class="login-container-filds-signin-logo" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="center center">
-            
-        </div>
-        <div class="login-container-filds-number-password" fxLayout="column" fxLayout.xs="column" fxLayoutAlign="center center">
-            <div class="login-container-filds-signin"> 
-                <p>Sign In</p>
-            </div>
-            <div class="login-container-filds-logo"> 
-          <img src="../../../assets/icons8-user-male-64.png" alt="">
-            </div>
-            <mat-form-field>
-                <input matInput placeholder=Number>
-            </mat-form-field>
-
-            <mat-form-field>
-                <input matInput placeholder="password">
-            </mat-form-field>
- 
-            <div class="login-container-filds-number-password-lebals"  fxLayout="column" fxLayout.xs=""></div>
-
-            <button mat-raised-button (click)="nextPage()" id="login-button" >Login</button>
-            
-
-</div>
-
-
-
-
-
-<!-- 
-<div class=""> 
-            
-    <mat-form-field floatLabel="auto"  >
-        <mat-label >Phone Number</mat-label>
-        <input matInput required name="phone" [(ngModel)]="loginModel.phone" #phone="ngModel" minlength="10" maxlength="10" pattern="[0-9]+" placeholder="949">
-     <mat-error>
-         <div *ngIf="fname.invalid && (fname.dirty  || fname.touched)">
-         
-             Email Requird
-      </div>
-     </mat-error>
-
-
-     
-    </mat-form-field>
- 
-</div>
-</div>
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- -->
-
-
-
-
-
-<!-- 
-<ion-content>
-<ion-button (click)="nextPage()" align="center">Login</ion-button>
-</ion-content> -->
-
-
-
-
-
-
-
-<!-- 
-<div class="login-container" fxLayout="column" fxLayout.xs="column" fxLayoutAlign=" center center">
+<div fxLayout="row" fxLayoutAlign="center center" class="registration-main">
+  
+   <mat-card>
+     <mat-card-header>
+       <mat-card-title>
+         LOGIN
+       </mat-card-title>
    
-<div class="login-container-filds" fxLayout="column" fxLayout.xs="column" fxLayoutAlign=" center">
-  
- <div class="login-container-title" fxLayout="column" fxLayout.xs="column" fxLayoutAlign=" center" >
-  
-    <p>Login</p>
-  
- </div>
-   <mat-form-field floatLabel="auto" appearance="outline" >
-       <mat-label >Phone Number</mat-label>
-       <input matInput required name="phone" [(ngModel)]="loginModel.phone" #phone="ngModel" minlength="10" maxlength="10" pattern="[0-9]+" placeholder="949">
-    <mat-error>
-        <div *ngIf="fname.invalid && (fname.dirty  || fname.touched)">
-        
-            Email Requird
-     </div>
-    </mat-error>
-
-
-
-   </mat-form-field>
-
-   <mat-form-field floatLabel="auto" appearance="outline" >
-    <mat-label>Password</mat-label>
-    <input matInput required name="password" [(ngModel)]="loginModel.password" #phone="ngModel" minlength="8" type="password" >
-    <mat-error>
-        <div *ngIf="fname.invalid && (fname.dirty  || fname.touched)">
-
-            Email Requird
-     </div>
-    </mat-error>
-</mat-form-field>
-<button mat-raised-button (click)="nextPage()">Login</button>
-    
-</div>
-
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!-- <ion-content>
-<ion-button (click)="nextPage()" align="center">Login</ion-button>
-</ion-content> -->
+     </mat-card-header>
+   
+     <mat-card-content fxLayout="column" fxLayoutGap="20px" class="registration-form">
+             
+       
+   
+       <mat-form-field>
+   
+         <input matInput required placeholder="Phone Number" class="form-control" name="phone" [(ngModel)]="userModel.phone" #phone="ngModel" minlength="10" maxlength=10 pattern="[0-9]+">
+         <mat-error>
+           <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
+             Phone Number Required
+           </div>
+         </mat-error>  
+       </mat-form-field>
+       <mat-form-field>
+   
+         <input type="password" matInput required placeholder="password" class="form-control" name="password" [(ngModel)]="userModel.password"  #password="ngModel" pattern="[a-zA-z]+$" >
+         <mat-error>
+           <div *ngIf="password.invalid && (password.dirty  || password.touched)">
+           Password is Required
+           </div>
+         </mat-error>
+   
+       </mat-form-field>
+      
+     </mat-card-content>
+     <mat-card-actions align="center">
+         <button mat-raised-button color="warn">Submit</button>
+       </mat-card-actions>
+   </mat-card>
+   
+   </div>
+   
