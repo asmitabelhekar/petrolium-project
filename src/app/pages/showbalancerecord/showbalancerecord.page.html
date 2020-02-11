@@ -64,20 +64,48 @@
      
     </tr>
     </table> -->
-  <ion-row class="cl-credit-debit-button" fxLayout="row" fxLayoutAlign="center center">
 
-    <ion-col size="5">
-      <ion-icon name="arrow-round-down"></ion-icon>
-      <label>Accept Payment</label>
-      <!-- <button mat-raised-button (click)="updateBalance()"> Accept Payment </button> -->
-    </ion-col>
-    <ion-col size="5">
-      <ion-icon name="arrow-round-up"></ion-icon>
-      <label>
-        Give Credit 
-      </label>
-      <!-- <button mat-raised-button (click)="updateBalance()"> Give Credit </button> -->
-    </ion-col>
+    <ion-row class="cl-credit-debit-button" fxLayout="row" fxLayoutAlign="center" style="padding: 15px;">
+      <ion-col size="" style="border-right: 1px solid white">
+        <label style="font-size: 16px;padding: 10px;">Credit</label>
+      </ion-col>
+      <ion-col size="5">
+        <label style="font-size: 16px;">Debit</label>
+      </ion-col>
+     </ion-row>
 
-  </ion-row>
+  <div fxLayout="row" fxLayoutAlign="center">
+    <ion-row class="cl-credit-debit-button" >
+      <ion-col size="6" style="border-right: 1px solid white;">
+        <label style="font-size: 16px;margin:10px">Credit</label>
+
+        <!-- <ion-row>
+          <ion-col size="7">
+            <label style="font-size: 16px;padding:20px">Credit</label>
+          </ion-col>
+          <ion-col size="2">
+            <ion-icon name="arrow-round-down" style="width:25px; height: 25px;border: 1px solid white; border-radius: 50%;margin-top:10px "></ion-icon>
+          </ion-col>
+        </ion-row> -->
+
+      </ion-col>
+
+      <ion-col size="6" style="padding:5px">
+        <label style="font-size: 16px;">Debit</label>
+
+        <!-- <ion-row>
+          <ion-col size="7">
+        <label style="font-size: 16px;padding:20px">Debit</label>
+          </ion-col>
+          <ion-col size="2">
+            <ion-icon name="arrow-round-up" style="width:25px; height: 25px;border: 1px solid white; border-radius: 50%; margin-top:10px"></ion-icon>
+          </ion-col>
+        </ion-row> -->
+
+      </ion-col>
+
+    </ion-row>
+</div>
+   
+
 </ion-content>

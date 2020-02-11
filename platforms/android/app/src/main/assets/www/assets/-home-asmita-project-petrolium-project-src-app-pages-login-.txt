@@ -1,0 +1,1 @@
+/home/asmita/project/petrolium-project/src/app/pages/login/login.page.scss
