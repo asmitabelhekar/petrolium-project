@@ -16,11 +16,12 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
+  login(){
+    this.router.navigate(['/home'])
+  }
   ionViewWillEnter(){
     this.menuController.enable(false);
   }
 
-  nextPage() {
-    this.router.navigate(['/home']);
-  }
+  
 }

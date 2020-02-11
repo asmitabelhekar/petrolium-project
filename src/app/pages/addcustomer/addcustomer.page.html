@@ -1,16 +1,25 @@
-
+<ion-header class="new-background-color">
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start" style="color:white">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="color:white">
+      Add Customer
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
 
 <div class="ac-container">
-  <div class="ac-conatiner-title" fxLayout="row">
+  <!-- <div class="ac-conatiner-title" fxLayout="row">
     <button slot="start" style="color: white; background-color: #2e2d2d;">
       <ion-menu-button></ion-menu-button>
 
     </button>
     <h1>Add Customer</h1>
-  </div>
-  <div class="ac-l-container" fxLayout="column" fxLayoutAlign="space-between center">
+  </div> -->
+  <div class="ac-l-container" fxLayout="column"  fxFlex="initial">
 
-    <mat-form-field appearance="outline">
+    <mat-form-field class="ac-form-field" appearance="outline">
       
 
       <mat-label>
@@ -27,7 +36,7 @@
     </mat-form-field>
  
   
-    <mat-form-field appearance="outline">
+    <mat-form-field class="ac-form-field" appearance="outline">
       
    
        <mat-label>
@@ -43,7 +52,7 @@
       </mat-error>  
     </mat-form-field>
 
-    <mat-form-field appearance="outline">
+    <mat-form-field class="ac-form-field" appearance="outline">
 
       <mat-label>
         <mat-icon>home</mat-icon>
@@ -55,7 +64,7 @@
         </div>
       </mat-error>
     </mat-form-field>
-    <mat-form-field appearance="outline">
+    <mat-form-field class="ac-form-field" appearance="outline">
 
       <mat-label>
         <mat-icon>email</mat-icon>
@@ -64,7 +73,7 @@
       </mat-label>
       <input matInput>
     </mat-form-field>
-   <div class="ac-l-button" fxLayoutAlign="space-between center">
+   <div class="ac-l-button" fxLayoutAlign="center center">
         <button mat-raised-button (click)="addCustomer()">Submit</button>
      </div>
 
