@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'showbalancerecord',
     loadChildren: () => import('./pages/showbalancerecord/showbalancerecord.module').then( m => m.ShowbalancerecordPageModule)
+  },
+  {
+    path: 'sliderimages',
+    loadChildren: () => import('./pages/sliderimages/sliderimages.module').then( m => m.SliderimagesPageModule)
   }
 ];
 

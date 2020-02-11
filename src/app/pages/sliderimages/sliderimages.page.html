@@ -1,0 +1,13 @@
+
+
+<ion-slides [options]="slideOptsOne">
+  <ion-slide *ngFor="let item of getCusstomers">
+    <ion-card>
+      <ion-card-content>
+        <ion-img [src]="item.image"></ion-img>
+        <h2> <b>{{item.title}} </b></h2>
+        <h4>{{item.summary}}</h4>
+      </ion-card-content>
+    </ion-card>
+  </ion-slide>
+ </ion-slides>
