@@ -1,3 +1,4 @@
+
 <ion-header class="new-background-color">
   <ion-toolbar class="new-background-color">
     <ion-buttons slot="start" style="color:white">
@@ -8,8 +9,9 @@
     </ion-title>
   </ion-toolbar>
 </ion-header>
-
-<div fxLayout="row" fxLayoutAlign="center center" class="registration-main">
+<ion-content>
+<div fxLayout="row" fxLayoutAlign="space-around center" class="registration-main">
+  
 <mat-card>
   <mat-card-header>
     <mat-card-title>
@@ -18,7 +20,7 @@
 
   </mat-card-header>
 
-  <mat-card-content fxLayout="column" fxLayoutGap="20px">
+  <mat-card-content fxLayout="column" fxLayoutGap="20px" class="registration-form">
     <mat-form-field>
       <input matInput required placeholder="Name" class="form-control" name="fname" [(ngModel)]="userModel.fname"  #fname="ngModel" pattern="[a-zA-z]+$" >
       <mat-error>
@@ -58,3 +60,5 @@
 </mat-card>
 
 </div>
+
+</ion-content>
