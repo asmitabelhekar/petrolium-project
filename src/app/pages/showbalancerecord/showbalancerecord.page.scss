@@ -1,4 +1,20 @@
-
+.TitleHeader{
+    width: 100%;
+    // padding: 0 10px 0 10px;
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    // background-color: blue;
+}
+.TitleText{
+    display: inline-flex;
+    text-align:left;
+    font-size: 19px;
+    width: 81%;
+    color: #ffffff;
+    // font-weight: 700;
+    align-items: center;
+}
 
 .tablebackground{
     margin-top: 20%;
@@ -37,4 +53,26 @@
     outline: 0;
     box-shadow: 0 0 0 0;
     margin-right: 15px;
+}
+
+.cl-date-label{
+    margin-top:20px;
+    background-color: rgb(161, 156, 156);
+     border-radius: 15px;
+     font-size:10px;
+      width:70px;
+       padding:8px; 
+    margin:auto;
+}
+
+.cl-credit-debit-button{
+    // width:65px;
+    // height: 65px;
+   position: fixed;
+   bottom: 20px;
+   right: 20px;
+   border-radius:30%;
+   color:white;
+   z-index: 10;
+   background-color: #2e2d2d;
 }

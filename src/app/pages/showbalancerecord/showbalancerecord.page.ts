@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-showbalancerecord',
@@ -8,6 +8,47 @@ import { Router } from '@angular/router';
 })
 export class ShowbalancerecordPage implements OnInit {
 
+
+  // balaceRecord = [
+
+  //   {
+  //     "date": "01/02/2020",
+  //     "credited": ["2500","2500","2500"],
+  //     "debited": ["2500","2500","2500"]
+     
+  //   }, {
+  //     "date": "01/02/2020",
+  //     "credited": ["2500","2500","2500"],
+  //     "debited": ["2500","2500","2500"]
+     
+  //   },
+  //   {
+  //     "date": "01/02/2020",
+  //     "credited": ["2500","2500","2500"],
+  //     "debited": ["2500","2500","2500"]
+     
+  //   },
+  //   {
+  //     "date": "01/02/2020",
+  //     "credited": ["2500","2500","2500"],
+  //     "debited": ["2500","2500","2500"]
+     
+  //   },
+  //   {
+  //     "date": "01/02/2020",
+  //     "credited": ["2500","2500","2500"],
+  //     "debited": ["2500","2500","2500"]
+     
+  //   },
+  //   {
+  //     "date": "01/02/2020",
+  //     "credited": ["2500","2500","2500"],
+  //     "debited": ["2500","2500","2500"]
+     
+  //   },
+    
+  // ]
+  customerName: any;
   balaceRecord = [
 
     {
@@ -30,7 +71,7 @@ export class ShowbalancerecordPage implements OnInit {
     {
       "date": "01/02/2020",
       "credited": "2000",
-      "debited": "",
+      "debited": "2500",
      
     },
     {
@@ -47,12 +88,15 @@ export class ShowbalancerecordPage implements OnInit {
     },
     
   ]
-  constructor(public router : Router) { }
+  constructor(public router : Router,
+    public activatedRoute : ActivatedRoute) { }
 
   ngOnInit() {
+
+     this.customerName = this.activatedRoute.snapshot.params['customerName'];
   }
 
   goBackword() {
-    this.router.navigate(['sites']);
+    this.router.navigate(['home']);
   }
 }

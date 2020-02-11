@@ -653,9 +653,10 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_flex_layout__WEBPACK_IMPORTED_MODULE_9__["FlexLayoutModule"],
             _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatFormFieldModule"], _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatIconModule"],
             _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"], _angular_flex_layout__WEBPACK_IMPORTED_MODULE_9__["FlexLayoutModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_12__["MatButtonModule"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatFormFieldModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_12__["MatButtonModule"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatFormFieldModule"], _angular_material_button__WEBPACK_IMPORTED_MODULE_12__["MatButtonModule"], _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatCardModule"],
             _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"], _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatIconModule"],
             _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatInputModule"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatCardModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_13__["FormsModule"]
         ],
         providers: [
