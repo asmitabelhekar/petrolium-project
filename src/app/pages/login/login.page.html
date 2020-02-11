@@ -2,6 +2,8 @@
 <link href="https://fonts.googleapis.com/css?family=Julius+Sans+One&display=swap" rel="stylesheet">
 
 <div class="login-container" fxLayout="column" fxLayout.xs="column" fxLayoutAlign=" center center">
+
+    
    
 <div class="login-container-filds" fxLayout="column" fxLayout.xs="column" fxLayoutAlign=" center">
   
@@ -10,13 +12,13 @@
     <p>Login</p>
   
  </div>
-   <mat-form-field floatLabel="auto" appearance="outline" class="" >
+   <mat-form-field floatLabel="auto" appearance="outline"  >
 
-       <mat-label>
-    <mat-icon>call</mat-icon>
+       <mat-label  class=" login-container-number-password">
+    <mat-icon >call</mat-icon>
            
         Phone Number</mat-label>
-       <input matInput required name="phone" [(ngModel)]="loginModel.phone" #phone="ngModel" minlength="10" maxlength="10" pattern="[0-9]+" placeholder="949">
+       <input matInput required name="phone" [(ngModel)]="loginModel.phone" #phone="ngModel" minlength="10" maxlength="10" pattern="[0-9]+" placeholder="949" class=" login-container-number-password">
     <mat-error>
         <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
             Enter Valid Phone Number
@@ -28,22 +30,17 @@
    </mat-form-field>
 
    <mat-form-field floatLabel="auto" appearance="outline" >
-    <mat-label>
+    <mat-label class=" login-container-number-password" >
         <mat-icon>lock</mat-icon>
         Password</mat-label>
-    <input matInput required name="password" [(ngModel)]="loginModel.password" #phone="ngModel" minlength="8" type="password" >
+    <input matInput required name="password" [(ngModel)]="loginModel.password" #phone="ngModel" minlength="8" type="password" class=" login-container-number-password" >
     <mat-error>
         <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
             Enter Valid password
         </div>
     </mat-error>
 </mat-form-field>
-<<<<<<< HEAD
-<button mat-raised-button class="button_submit">Submit</button>
-=======
-<button mat-raised-button (click)="nextPage()">Click me!</button>
->>>>>>> b121b4a22a2a4a63f745b6e8e49fa9af1cf89b48
-    
+<button mat-raised-button class="button_submit" (click)="nextPage()" class="button_submit" >Submit</button>
 </div>
 
 </div>
@@ -61,7 +58,7 @@
 
 
 
-
-<!-- <ion-content>
+<!-- 
+<ion-content>
 <ion-button (click)="nextPage()" align="center">Login</ion-button>
 </ion-content> -->
