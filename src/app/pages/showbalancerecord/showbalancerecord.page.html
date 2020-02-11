@@ -2,10 +2,10 @@
   <ion-toolbar class="new-background-color">
     <ion-row>
       <ion-col size="2">
-        <button ion-button class="BackButton" (click)="goBackword()" style="margin:5px" style="color:white"></button>
+        <button ion-button class="cl-back-button" (click)="goBackword()" style="color:white;margin:7px"></button>
       </ion-col>
       <ion-col size="10" class="TitleHeader TitleText">
-        <ion-label style="color:white">Payment Details</ion-label>
+        <ion-label style="color:white">{{customerName}}</ion-label>
       </ion-col>
     </ion-row>
 
@@ -14,30 +14,39 @@
 </ion-header>
 
 <ion-content>
-  <div *ngFor="let item of balaceRecord">
-    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="item.credited != '' " style="margin-top:20px; margin-left:20px;">
-    <mat-card style="width:50%; " >
-      <mat-card-content>
-      <label style="color:red"><b>₹{{item.credited}}</b></label>
-      <label>
-        12:35 AM
-      </label>
-    </mat-card-content>
-    </mat-card>
-    <!-- ₹400 Due -->
-  </div>
-
-  <div fxLayout="row" fxLayoutAlign="end end" *ngIf="item.debited != '' " style="margin-top:20px; margin-right:20px;">
-    <mat-card style="width:50%; " >
-      <mat-card-content>
-      <label style="color:#20571b"><b>₹{{item.debited}}</b></label>
-      <label>
-        12:35 AM
-      </label>
-      </mat-card-content>
-    </mat-card>
-    <!-- ₹4,600 Advance -->
+  <div *ngFor="let item of balaceRecord" style="margin-top:5%">
+    <label fxLayout="row" fxLayoutAlign="center center" class="cl-date-label">{{item.date}}</label>
+    <!-- <div *ngFor="let creditedItem of credited"> -->
+    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="item.credited != '' || item.credited != null"
+      style="margin-top:10px; margin-left:20px;">
+      <mat-card>
+        <mat-card-content>
+          <label style="color:red; font-size:20px;"
+            *ngIf="item.credited != '' || item.credited != null"><b>₹{{item.credited}}</b></label>
+          <label>
+            12:35 AM
+          </label>
+        </mat-card-content>
+      </mat-card>
+      <!-- ₹400 Due -->
     </div>
+    <!-- </div> -->
+
+    <!-- <div *ngFor="let debitedItem of debited"> -->
+    <div fxLayout="row" fxLayoutAlign="end end" *ngIf="item.debited != '' || item.debited != null"
+      style="margin-top:10px; margin-right:20px;">
+      <mat-card>
+        <mat-card-content>
+          <label style="color:#20571b; font-size:20px"
+            *ngIf="item.debited != '' || item.debited != null"><b>₹{{item.debited}}</b></label>
+          <label>
+            12:35 AM
+          </label>
+        </mat-card-content>
+      </mat-card>
+      <!-- ₹4,600 Advance -->
+    </div>
+    <!-- </div> -->
   </div>
   <!-- <table class="tableback" align="center">
     <tr class="tablebackground">
@@ -55,5 +64,20 @@
      
     </tr>
     </table> -->
-  <button mat-raised-button class="FixedButton" (click)="updateBalance()"> Print </button>
+  <ion-row class="cl-credit-debit-button" fxLayout="row" fxLayoutAlign="center center">
+
+    <ion-col size="5">
+      <ion-icon name="arrow-round-down"></ion-icon>
+      <label>Accept Payment</label>
+      <!-- <button mat-raised-button (click)="updateBalance()"> Accept Payment </button> -->
+    </ion-col>
+    <ion-col size="5">
+      <ion-icon name="arrow-round-up"></ion-icon>
+      <label>
+        Give Credit 
+      </label>
+      <!-- <button mat-raised-button (click)="updateBalance()"> Give Credit </button> -->
+    </ion-col>
+
+  </ion-row>
 </ion-content>

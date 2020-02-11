@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .registration-main{
     margin-top: 5%;
     height: 80%;
@@ -8,3 +9,69 @@
     min-width: 40%;
     }
     
+=======
+
+.login-container{
+    width: 100%;
+    height: 100%;
+    background-image:   -gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+}
+.login-container-filds{
+    height: 60%;
+    width: 70%;
+    // border: 1px solid black;
+    background-image: linear-gradient(to top, #37ecba 0%, #72afd3 100%);
+}
+// .login-container-filds-signin-logo{
+//     width: 100%;
+//     height: 35%;
+//     // border: 1px solid black;
+// }
+.login-container-filds-signin{
+padding-left: 50px;
+    background-image: linear-gradient(to top, #37ecba 0%, #72afd3 100%);
+    padding-right:50px ;    
+    // border: 1px solid black;
+    position: relative;
+    bottom: 25px;
+    background-image: linear-gradient(to top, #209cff 0%, #68e0cf 100%);
+    
+
+}
+.login-container-filds-logo{
+    width: 130px;
+    height: 150px;
+    padding: 30px;
+    // border: 1px solid black;
+    border-radius: 70px;
+    // position: relative;
+    // top: 40px;
+    background-color: white;
+
+}
+// .login-container-filds-logo img{
+
+// }
+.login-container-filds-number-password-lebals{
+    width: 100%;
+   
+}
+
+
+
+
+
+
+
+
+.login-container-filds-number-password{
+    width: 100%;
+    height: 65%;
+    // border: 1px solid black;
+}
+
+#login-button{
+    margin-top: 20  px;
+    width: 50%;
+}
+>>>>>>> c917c714a6fa08e07d3cde9b047a2d382a91c65f

@@ -26,7 +26,7 @@
  
 
   <div *ngFor="let daata of getCusstomers; index as i"class="cl-center-title">
-    <ion-item  style="margin-left:-20px" (click)="getBalanceDetail()">
+    <ion-item  style="margin-left:-20px" (click)="getBalanceDetail(daata.name)">
       <div style="margin-left:30px">
        
     <button style="width:35px; height: 35px; border-radius: 50%;margin-right: 15px ; color: #ffffff" [ngClass]="(i % 2 == 0) ? 'odd' : 'even' ">{{daata.name.charAt(0) | uppercase}}</button>

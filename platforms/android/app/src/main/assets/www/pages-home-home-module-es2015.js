@@ -69603,7 +69603,7 @@ this.pdfMake = this.pdfMake || {}; this.pdfMake.vfs = {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header class=\"new-background-color\">\n  <ion-toolbar class=\"new-background-color\">\n    <ion-buttons slot=\"start\" style=\"color:white\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title style=\"color:white\">\n      Home\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div class=\"cl-center-title\" fxLayout=\"row\" fxLayoutAlign=\"center center\" (click)=\"addCustomer()\">\n    <ion-icon name=\"person-add\" style=\"color:rgb(18, 118, 199);width:20px; height: 20px\"></ion-icon>\n    <ion-label style=\"color:rgb(18, 118, 199); \" >Add Customer</ion-label>\n  </div>\n \n\n  <div *ngFor=\"let daata of getCusstomers; index as i\"class=\"cl-center-title\">\n    <ion-item  style=\"margin-left:-20px\" (click)=\"getBalanceDetail()\">\n      <div style=\"margin-left:30px\">\n       \n    <button style=\"width:35px; height: 35px; border-radius: 50%;margin-right: 15px ; color: #ffffff\" [ngClass]=\"(i % 2 == 0) ? 'odd' : 'even' \">{{daata.name.charAt(0) | uppercase}}</button>\n      </div>\n      {{daata.name | titlecase}}\n    </ion-item>\n  </div>\n\n</ion-content>\n"
+module.exports = "<ion-header class=\"new-background-color\">\n  <ion-toolbar class=\"new-background-color\">\n    <ion-buttons slot=\"start\" style=\"color:white\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title style=\"color:white\">\n      Home\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <div align=\"left\" style=\"margin: 10px\">\n    <ion-searchbar type=\"text\" debounce=\"500\" (ionInput)=\"getItems($event)\"></ion-searchbar>\n    <ion-list >\n        <ion-item *ngFor=\"let item of items\">{{ item }}</ion-item>\n    </ion-list>\n  \n  </div>\n\n  <div class=\"cl-center-title\" fxLayout=\"row\" fxLayoutAlign=\"center center\" (click)=\"addCustomer()\">\n    <ion-icon name=\"person-add\" style=\"color:rgb(18, 118, 199);width:20px; height: 20px\"></ion-icon>\n    <ion-label style=\"color:rgb(18, 118, 199); \" >Add Customer</ion-label>\n  </div>\n \n\n  <div *ngFor=\"let daata of getCusstomers; index as i\"class=\"cl-center-title\">\n    <ion-item  style=\"margin-left:-20px\" (click)=\"getBalanceDetail(daata.name)\">\n      <div style=\"margin-left:30px\">\n       \n    <button style=\"width:35px; height: 35px; border-radius: 50%;margin-right: 15px ; color: #ffffff\" [ngClass]=\"(i % 2 == 0) ? 'odd' : 'even' \">{{daata.name.charAt(0) | uppercase}}</button>\n      </div>\n      {{daata.name | titlecase}}\n    </ion-item>\n  </div>\n\n</ion-content>\n"
 
 /***/ }),
 
@@ -69855,8 +69855,8 @@ let HomePage = class HomePage {
     addCustomer() {
         this.router.navigate(['addcustomer']);
     }
-    getBalanceDetail() {
-        this.router.navigate(['showbalancerecord']);
+    getBalanceDetail(name) {
+        this.router.navigate(['showbalancerecord', { customerName: name }]);
     }
     makePdf() {
         pdfmake_build_pdfmake__WEBPACK_IMPORTED_MODULE_4__["vfs"] = pdfmake_build_vfs_fonts__WEBPACK_IMPORTED_MODULE_5__["pdfMake"].vfs;

@@ -189,8 +189,8 @@ export class HomePage {
     this.router.navigate(['addcustomer']);
   }
 
-  getBalanceDetail() {
-    this.router.navigate(['showbalancerecord']);
+  getBalanceDetail(name) {
+    this.router.navigate(['showbalancerecord' , { customerName : name}]);
   }
 
   makePdf() {
