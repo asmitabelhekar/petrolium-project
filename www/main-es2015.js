@@ -472,7 +472,7 @@ __webpack_require__.r(__webpack_exports__);
 const routes = [
     {
         path: '',
-        redirectTo: 'login',
+        redirectTo: 'sliderimages',
         pathMatch: 'full'
     },
     {
@@ -494,6 +494,10 @@ const routes = [
     {
         path: 'showbalancerecord',
         loadChildren: () => __webpack_require__.e(/*! import() | pages-showbalancerecord-showbalancerecord-module */ "pages-showbalancerecord-showbalancerecord-module").then(__webpack_require__.bind(null, /*! ./pages/showbalancerecord/showbalancerecord.module */ "./src/app/pages/showbalancerecord/showbalancerecord.module.ts")).then(m => m.ShowbalancerecordPageModule)
+    },
+    {
+        path: 'sliderimages',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-sliderimages-sliderimages-module */ "pages-sliderimages-sliderimages-module").then(__webpack_require__.bind(null, /*! ./pages/sliderimages/sliderimages.module */ "./src/app/pages/sliderimages/sliderimages.module.ts")).then(m => m.SliderimagesPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
