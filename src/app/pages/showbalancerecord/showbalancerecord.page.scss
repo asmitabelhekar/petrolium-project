@@ -1,0 +1,40 @@
+
+
+.tablebackground{
+    margin-top: 20%;
+    border: 1px solid #000000; 
+    padding: 10px; 
+    width: 90%;
+}
+
+.tableback{
+    margin-top: 5%;
+    border: 1px solid #000000; 
+    padding: 10px; 
+    width: 90%;
+}
+
+
+.FixedButton{
+    width:65px;
+    height: 65px;
+   position: fixed;
+   bottom: 20px;
+   right: 20px;
+   border-radius:50%;
+   color:white;
+   z-index: 10;
+   background-color: #d2691e;
+}
+
+.cl-back-button{
+    background: url('../../../assets/back_white.png') center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    outline: 0;
+    box-shadow: 0 0 0 0;
+    margin-right: 15px;
+}

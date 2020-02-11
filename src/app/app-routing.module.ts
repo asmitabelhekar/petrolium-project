@@ -22,6 +22,10 @@ const routes: Routes = [
   {
     path: 'updatebalance',
     loadChildren: () => import('./pages/updatebalance/updatebalance.module').then( m => m.UpdatebalancePageModule)
+  },
+  {
+    path: 'showbalancerecord',
+    loadChildren: () => import('./pages/showbalancerecord/showbalancerecord.module').then( m => m.ShowbalancerecordPageModule)
   }
 ];
 

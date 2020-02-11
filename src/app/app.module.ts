@@ -14,6 +14,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
 import { MatFormFieldModule, MatInputModule, MatIconModule } from '@angular/material'
 import {MatButtonModule} from '@angular/material/button';
 
+import { File } from '@ionic-native/file';
+import { FileOpener } from '@ionic-native/file-opener';
+
 import { FormsModule } from '@angular/forms';
 @NgModule({
   declarations: [AppComponent],
@@ -34,7 +37,8 @@ import { FormsModule } from '@angular/forms';
     StatusBar,
     SplashScreen,
     {
-     provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+     provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    
   ],
   bootstrap: [AppComponent]
 })
