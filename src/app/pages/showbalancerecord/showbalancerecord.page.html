@@ -4,17 +4,42 @@
       <ion-col size="2">
         <button ion-button class="BackButton" (click)="goBackword()" style="margin:5px" style="color:white"></button>
       </ion-col>
-      <ion-col size="10"  class="TitleHeader TitleText">
+      <ion-col size="10" class="TitleHeader TitleText">
         <ion-label style="color:white">Payment Details</ion-label>
       </ion-col>
     </ion-row>
-   
+
 
   </ion-toolbar>
 </ion-header>
 
-<ion-content >
-  <table class="tableback" align="center">
+<ion-content>
+  <div *ngFor="let item of balaceRecord">
+    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="item.credited != '' " style="margin-top:20px; margin-left:20px;">
+    <mat-card style="width:50%; " >
+      <mat-card-content>
+      <label style="color:red"><b>₹{{item.credited}}</b></label>
+      <label>
+        12:35 AM
+      </label>
+    </mat-card-content>
+    </mat-card>
+    <!-- ₹400 Due -->
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="end end" *ngIf="item.debited != '' " style="margin-top:20px; margin-right:20px;">
+    <mat-card style="width:50%; " >
+      <mat-card-content>
+      <label style="color:#20571b"><b>₹{{item.debited}}</b></label>
+      <label>
+        12:35 AM
+      </label>
+      </mat-card-content>
+    </mat-card>
+    <!-- ₹4,600 Advance -->
+    </div>
+  </div>
+  <!-- <table class="tableback" align="center">
     <tr class="tablebackground">
       <th class="tablebackground">Date</th>
       <th class="tablebackground">Credited</th>
@@ -29,6 +54,6 @@
       </td>
      
     </tr>
-    </table>
+    </table> -->
   <button mat-raised-button class="FixedButton" (click)="updateBalance()"> Print </button>
 </ion-content>

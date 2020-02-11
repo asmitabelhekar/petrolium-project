@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-sliderimages',
@@ -10,13 +11,13 @@ export class SliderimagesPage implements OnInit {
 
 getImageArray = [
   {
-    "image" : "../../../assets/logoapp.png"
+    "image" : "../../assets/logoapp.jpg"
   },
   {
-    "image" : "../../../assets/logoapp.png"
+    "image" : "../../../assets/logoapp.jpg"
   },
   {
-    "image" : "../../../assets/logoapp.png"
+    "image" : "../assets/logoapp.jpg"
   }
 ]
   getCusstomers = [
@@ -24,19 +25,19 @@ getImageArray = [
     {
       "title": "llllllllll jjjjjjjjjjj",
       "summery": "",
-      "image": "../../../assets/sliseone.png"
+      "image": "../../assets/sliseone.jpg"
     
     },
     {
       "title": "smitaaa belhekar",
       "summery": "1234567890",
-      "image": "../../../assets/slidetwo.png"
+      "image": "../../assets/slidetwo.jpg"
    
     },
     {
       "title": "asmita belhekar",
       "summery": "9527902622",
-      "image": "../../../assets/slidethree.png"
+      "image": "../../assets/slidethree.jpg"
      
     },
     
@@ -47,9 +48,11 @@ getImageArray = [
     slidesPerView: 1,
     autoplay:true
    };
-  constructor(public router : Router) { }
+  constructor(public router : Router,
+    public menuCntrl : MenuController) { }
 
   ngOnInit() {
+    this.menuCntrl.enable(false);
   }
 
   loginPage(){

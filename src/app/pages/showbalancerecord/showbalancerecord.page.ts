@@ -8,11 +8,11 @@ import { Router } from '@angular/router';
 })
 export class ShowbalancerecordPage implements OnInit {
 
-  getBalanceDetail = [
+  balaceRecord = [
 
     {
       "date": "01/02/2020",
-      "credited": "2000",
+      "credited": "",
       "debited": "2500",
      
     }, {
@@ -30,7 +30,7 @@ export class ShowbalancerecordPage implements OnInit {
     {
       "date": "01/02/2020",
       "credited": "2000",
-      "debited": "2500",
+      "debited": "",
      
     },
     {
@@ -45,162 +45,7 @@ export class ShowbalancerecordPage implements OnInit {
       "debited": "2500",
      
     },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    },
-    {
-      "date": "01/02/2020",
-      "credited": "2000",
-      "debited": "2500",
-     
-    }
+    
   ]
   constructor(public router : Router) { }
 

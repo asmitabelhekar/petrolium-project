@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ion-content style=\"width:100%; height: 100%\">\n  <div style=\"width:100%; height: 100%\">\n    <ion-slides [options]=\"slideOptsOne\" style=\"width:100%; height: 100%\">\n      <ion-slide *ngFor=\"let item of getCusstomers\" style=\"width:100%; height: 100%\">\n        <!-- <ion-card style=\"width:100%; height: 100%\">\n          <ion-card-content style=\"width:100%; height: 100%\"> -->\n            <ion-img [src]=\"item.image\" style=\"width:100%; height: 100%\"></ion-img>\n            <!-- <h2> <b>{{item.title}} </b></h2>\n            <h4>{{item.summary}}</h4> -->\n          <!-- </ion-card-content>\n        </ion-card> -->\n      </ion-slide>\n     </ion-slides>\n  </div>\n \n\n   <ion-button class=\"cl-fixed-bottom-position\" (click)=\"loginPage()\">LOGIN</ion-button>\n</ion-content>\n"
+module.exports = "\n<ion-content style=\"width:100%; height: 100%\">\n    <ion-slides [options]=\"slideOptsOne\" style=\"width:100%; height: 100%\">\n      <ion-slide *ngFor=\"let item of getCusstomers\" style=\"width:100%; height: 100%\">\n            <ion-img [src]=\"item.image\" style=\"width:100%; height: 100%; margin-left:5%\"></ion-img>\n      </ion-slide>\n     </ion-slides>\n \n\n   <button class=\"cl-fixed-bottom-position\" (click)=\"loginPage()\"><b>LOGIN</b></button>\n</ion-content>\n"
 
 /***/ }),
 
@@ -103,7 +103,7 @@ var SliderimagesPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".cl-fixed-bottom-position {\n  width: 65px;\n  height: 65px;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  border-radius: 50%;\n  color: white;\n  z-index: 10;\n  background-color: #d2691e;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2RoYW5hbmpheXJhdXQvcGV0cm9saXVtLXByb2plY3Qvc3JjL2FwcC9wYWdlcy9zbGlkZXJpbWFnZXMvc2xpZGVyaW1hZ2VzLnBhZ2Uuc2NzcyIsInNyYy9hcHAvcGFnZXMvc2xpZGVyaW1hZ2VzL3NsaWRlcmltYWdlcy5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxXQUFBO0VBQ0EsWUFBQTtFQUNELGVBQUE7RUFDQSxZQUFBO0VBQ0EsV0FBQTtFQUNBLGtCQUFBO0VBQ0EsWUFBQTtFQUNBLFdBQUE7RUFDQSx5QkFBQTtBQ0NIIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvc2xpZGVyaW1hZ2VzL3NsaWRlcmltYWdlcy5wYWdlLnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2wtZml4ZWQtYm90dG9tLXBvc2l0aW9ue1xuICAgIHdpZHRoOjY1cHg7XG4gICAgaGVpZ2h0OiA2NXB4O1xuICAgcG9zaXRpb246IGZpeGVkO1xuICAgYm90dG9tOiAyMHB4O1xuICAgcmlnaHQ6IDIwcHg7XG4gICBib3JkZXItcmFkaXVzOjUwJTtcbiAgIGNvbG9yOndoaXRlO1xuICAgei1pbmRleDogMTA7XG4gICBiYWNrZ3JvdW5kLWNvbG9yOiAjZDI2OTFlO1xufSIsIi5jbC1maXhlZC1ib3R0b20tcG9zaXRpb24ge1xuICB3aWR0aDogNjVweDtcbiAgaGVpZ2h0OiA2NXB4O1xuICBwb3NpdGlvbjogZml4ZWQ7XG4gIGJvdHRvbTogMjBweDtcbiAgcmlnaHQ6IDIwcHg7XG4gIGJvcmRlci1yYWRpdXM6IDUwJTtcbiAgY29sb3I6IHdoaXRlO1xuICB6LWluZGV4OiAxMDtcbiAgYmFja2dyb3VuZC1jb2xvcjogI2QyNjkxZTtcbn0iXX0= */"
+module.exports = ".cl-fixed-bottom-position {\n  width: 75px;\n  height: 75px;\n  position: fixed;\n  bottom: 20px;\n  right: 20px;\n  border-radius: 50%;\n  color: white;\n  z-index: 10;\n  padding: 10px;\n  background-color: #2e2d2d;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2RoYW5hbmpheXJhdXQvcGV0cm9saXVtLXByb2plY3Qvc3JjL2FwcC9wYWdlcy9zbGlkZXJpbWFnZXMvc2xpZGVyaW1hZ2VzLnBhZ2Uuc2NzcyIsInNyYy9hcHAvcGFnZXMvc2xpZGVyaW1hZ2VzL3NsaWRlcmltYWdlcy5wYWdlLnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxXQUFBO0VBQ0EsWUFBQTtFQUNELGVBQUE7RUFDQSxZQUFBO0VBQ0EsV0FBQTtFQUNBLGtCQUFBO0VBQ0EsWUFBQTtFQUNBLFdBQUE7RUFDQSxhQUFBO0VBQ0EseUJBQUE7QUNDSCIsImZpbGUiOiJzcmMvYXBwL3BhZ2VzL3NsaWRlcmltYWdlcy9zbGlkZXJpbWFnZXMucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNsLWZpeGVkLWJvdHRvbS1wb3NpdGlvbntcbiAgICB3aWR0aDo3NXB4O1xuICAgIGhlaWdodDogNzVweDtcbiAgIHBvc2l0aW9uOiBmaXhlZDtcbiAgIGJvdHRvbTogMjBweDtcbiAgIHJpZ2h0OiAyMHB4O1xuICAgYm9yZGVyLXJhZGl1czo1MCU7XG4gICBjb2xvcjp3aGl0ZTtcbiAgIHotaW5kZXg6IDEwO1xuICAgcGFkZGluZzogMTBweDtcbiAgIGJhY2tncm91bmQtY29sb3I6ICMyZTJkMmQ7XG59IiwiLmNsLWZpeGVkLWJvdHRvbS1wb3NpdGlvbiB7XG4gIHdpZHRoOiA3NXB4O1xuICBoZWlnaHQ6IDc1cHg7XG4gIHBvc2l0aW9uOiBmaXhlZDtcbiAgYm90dG9tOiAyMHB4O1xuICByaWdodDogMjBweDtcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xuICBjb2xvcjogd2hpdGU7XG4gIHotaW5kZXg6IDEwO1xuICBwYWRkaW5nOiAxMHB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMmUyZDJkO1xufSJdfQ== */"
 
 /***/ }),
 
@@ -128,30 +128,30 @@ var SliderimagesPage = /** @class */ (function () {
         this.router = router;
         this.getImageArray = [
             {
-                "image": "../../../assets/logoapp.png"
+                "image": "../../assets/logoapp.jpg"
             },
             {
-                "image": "../../../assets/logoapp.png"
+                "image": "../../../assets/logoapp.jpg"
             },
             {
-                "image": "../../../assets/logoapp.png"
+                "image": "../assets/logoapp.jpg"
             }
         ];
         this.getCusstomers = [
             {
                 "title": "llllllllll jjjjjjjjjjj",
                 "summery": "",
-                "image": "../../../assets/sliseone.png"
+                "image": "../../assets/sliseone.jpg"
             },
             {
                 "title": "smitaaa belhekar",
                 "summery": "1234567890",
-                "image": "../../../assets/slidetwo.png"
+                "image": "../../assets/slidetwo.jpg"
             },
             {
                 "title": "asmita belhekar",
                 "summery": "9527902622",
-                "image": "../../../assets/slidethree.png"
+                "image": "../../assets/slidethree.jpg"
             },
         ];
         this.slideOptsOne = {
