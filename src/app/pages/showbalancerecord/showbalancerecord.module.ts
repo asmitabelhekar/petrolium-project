@@ -7,12 +7,16 @@ import { IonicModule } from '@ionic/angular';
 import { ShowbalancerecordPageRoutingModule } from './showbalancerecord-routing.module';
 
 import { ShowbalancerecordPage } from './showbalancerecord.page';
+import { MatCardMdImage, MatCardModule } from '@angular/material';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    MatCardModule,
+    FlexLayoutModule,
     ShowbalancerecordPageRoutingModule
   ],
   declarations: [ShowbalancerecordPage]

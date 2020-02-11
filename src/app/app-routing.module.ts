@@ -4,7 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'login',
+    redirectTo: 'sliderimages',
     pathMatch: 'full'
   },
   {
@@ -26,6 +26,10 @@ const routes: Routes = [
   {
     path: 'showbalancerecord',
     loadChildren: () => import('./pages/showbalancerecord/showbalancerecord.module').then( m => m.ShowbalancerecordPageModule)
+  },
+  {
+    path: 'sliderimages',
+    loadChildren: () => import('./pages/sliderimages/sliderimages.module').then( m => m.SliderimagesPageModule)
   }
 ];
 

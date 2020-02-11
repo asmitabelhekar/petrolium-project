@@ -10,6 +10,15 @@
 </ion-header>
 
 <ion-content>
+
+  <div align="left" style="margin: 10px">
+    <ion-searchbar type="text" debounce="500" (ionInput)="getItems($event)"></ion-searchbar>
+    <ion-list >
+        <ion-item *ngFor="let item of items">{{ item }}</ion-item>
+    </ion-list>
+  
+  </div>
+
   <div class="cl-center-title" fxLayout="row" fxLayoutAlign="center center" (click)="addCustomer()">
     <ion-icon name="person-add" style="color:rgb(18, 118, 199);width:20px; height: 20px"></ion-icon>
     <ion-label style="color:rgb(18, 118, 199); " >Add Customer</ion-label>

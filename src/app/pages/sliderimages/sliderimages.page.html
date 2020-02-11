@@ -1,0 +1,11 @@
+
+<ion-content style="width:100%; height: 100%">
+    <ion-slides [options]="slideOptsOne" style="width:100%; height: 100%">
+      <ion-slide *ngFor="let item of getCusstomers" style="width:100%; height: 100%">
+            <ion-img [src]="item.image" style="width:100%; height: 100%; margin-left:5%"></ion-img>
+      </ion-slide>
+     </ion-slides>
+ 
+
+   <button class="cl-fixed-bottom-position" (click)="loginPage()"><b>LOGIN</b></button>
+</ion-content>

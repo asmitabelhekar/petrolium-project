@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { MatFormFieldModule, MatInputModule, MatIconModule } from '@angular/material'
+import { MatFormFieldModule, MatInputModule, MatIconModule, MatCardModule } from '@angular/material'
 import {MatButtonModule} from '@angular/material/button';
 
 import { File } from '@ionic-native/file';
@@ -28,9 +28,10 @@ import { FormsModule } from '@angular/forms';
     FlexLayoutModule,
     MatFormFieldModule,MatIconModule,
     BrowserAnimationsModule,FlexLayoutModule,MatButtonModule,
-    MatFormFieldModule,MatButtonModule,
+    MatFormFieldModule,MatButtonModule,MatCardModule,
     BrowserAnimationsModule,MatIconModule,
     MatInputModule,
+    MatCardModule,
     FormsModule
   ],
   providers: [
