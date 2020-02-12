@@ -32,6 +32,12 @@
     },
     "cordova-plugin-file": {
       "PACKAGE_NAME": "io.ionic.petroliumapp"
+    },
+    "mx.ferreyra.callnumber": {
+      "PACKAGE_NAME": "io.ionic.petroliumapp"
+    },
+    "cordova-sms-plugin": {
+      "PACKAGE_NAME": "io.ionic.petroliumapp"
     }
   },
   "dependent_plugins": {}

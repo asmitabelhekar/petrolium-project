@@ -16,7 +16,7 @@ export class LoginPage implements OnInit {
   ngOnInit() {
   }
 
-  nextPage(){
+  login(){
     this.router.navigate(['/home'])
   }
   ionViewWillEnter(){

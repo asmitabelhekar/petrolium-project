@@ -7,105 +7,155 @@
       <ion-col size="10" class="TitleHeader TitleText">
         <ion-label style="color:white">{{customerName}}</ion-label>
       </ion-col>
+      <!-- <ion-col size="2">
+        <ion-icon name="more" [matMenuTriggerFor]="menu" style="color:white;width: 25px;height: 25px;margin: 10px;">
+        </ion-icon>
+        <mat-menu #menu="matMenu">
+
+          <div (click)="clickMenuItem(1)">
+            <ion-row style="padding:5px">
+              <ion-col size="2">
+                <ion-icon name="arrow-round-down"
+                  style="width:20px; height: 20px;border: 1px solid white; border-radius: 50%;margin-top:1px ">
+                </ion-icon>
+              </ion-col>
+              <ion-col size="10">
+                <label style="font-size: 18px;padding:9px">Debit</label>
+              </ion-col>
+            </ion-row>
+          </div>
+
+          <div (click)="clickMenuItem(2)">
+            <ion-row style="padding:5px">
+              <ion-col size="2">
+                <ion-icon name="arrow-round-up"
+                  style="width:20px; height: 20px;border: 1px solid white; border-radius: 50%;margin-top:1px ">
+                </ion-icon>
+              </ion-col>
+              <ion-col size="10">
+                <label style="font-size: 18px;padding:9px">Credit</label>
+              </ion-col>
+            </ion-row>
+          </div>
+
+
+          <div (click)="clickMenuItem(3)">
+            <ion-row style="padding:5px">
+              <ion-col size="2">
+                <ion-icon name="mail"
+                  style="width:20px; height: 20px;border: 1px solid white; border-radius: 50%;margin-top:1px ">
+                </ion-icon>
+              </ion-col>
+              <ion-col size="10">
+                <label style="font-size: 18px;padding:9px">Message</label>
+              </ion-col>
+            </ion-row>
+
+          </div>
+
+          <div (click)="clickMenuItem(4)">
+            <ion-row style="padding:5px">
+              <ion-col size="2">
+                <ion-icon name="call"
+                  style="width:20px; height: 20px;border: 1px solid white; border-radius: 50%;margin-top:1px ">
+                </ion-icon>
+              </ion-col>
+              <ion-col size="10">
+                <label style="font-size: 18px;padding:9px">Call</label>
+              </ion-col>
+            </ion-row>
+
+          </div>
+        </mat-menu>
+      </ion-col> -->
     </ion-row>
 
 
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
-  <div *ngFor="let item of balaceRecord" style="margin-top:5%">
-    <label fxLayout="row" fxLayoutAlign="center center" class="cl-date-label">{{item.date}}</label>
-    <!-- <div *ngFor="let creditedItem of credited"> -->
-    <div fxLayout="row" fxLayoutAlign="start start" *ngIf="item.credited != '' || item.credited != null"
-      style="margin-top:10px; margin-left:20px;">
-      <mat-card>
-        <mat-card-content>
-          <label style="color:red; font-size:20px;"
-            *ngIf="item.credited != '' || item.credited != null"><b>₹{{item.credited}}</b></label>
-          <label>
-            12:35 AM
-          </label>
-        </mat-card-content>
-      </mat-card>
-      <!-- ₹400 Due -->
-    </div>
-    <!-- </div> -->
+<ion-content style="width:100%">
+   <div style="background-color: rgb(73, 99, 146);position: fixed; width:100%;">
 
-    <!-- <div *ngFor="let debitedItem of debited"> -->
-    <div fxLayout="row" fxLayoutAlign="end end" *ngIf="item.debited != '' || item.debited != null"
-      style="margin-top:10px; margin-right:20px;">
-      <mat-card>
-        <mat-card-content>
-          <label style="color:#20571b; font-size:20px"
-            *ngIf="item.debited != '' || item.debited != null"><b>₹{{item.debited}}</b></label>
-          <label>
-            12:35 AM
-          </label>
-        </mat-card-content>
-      </mat-card>
-      <!-- ₹4,600 Advance -->
-    </div>
-    <!-- </div> -->
-  </div>
-  <!-- <table class="tableback" align="center">
-    <tr class="tablebackground">
-      <th class="tablebackground">Date</th>
-      <th class="tablebackground">Credited</th>
-      <th class="tablebackground">Debited</th>
-      
-    </tr>
-    <tr *ngFor="let lg of getBalanceDetail">
-      <td class="tablebackground" align="center">{{lg.date}}</td>
-      <td tooltip="lg.credited" class="tablebackground" align="center">{{lg.credited}}</td>
-      <td class="tablebackground" align="center">
-          <span  style="color: black;" >{{lg.debited}}</span> 
-      </td>
-     
-    </tr>
-    </table> -->
-
-    <ion-row class="cl-credit-debit-button" fxLayout="row" fxLayoutAlign="center" style="padding: 15px;">
-      <ion-col size="" style="border-right: 1px solid white">
-        <label style="font-size: 16px;padding: 10px;">Credit</label>
-      </ion-col>
-      <ion-col size="5">
-        <label style="font-size: 16px;">Debit</label>
-      </ion-col>
-     </ion-row>
-
-  <div fxLayout="row" fxLayoutAlign="center">
-    <ion-row class="cl-credit-debit-button" >
-      <ion-col size="6" style="border-right: 1px solid white;">
-        <label style="font-size: 16px;margin:10px">Credit</label>
-
-        <!-- <ion-row>
-          <ion-col size="7">
-            <label style="font-size: 16px;padding:20px">Credit</label>
-          </ion-col>
-          <ion-col size="2">
-            <ion-icon name="arrow-round-down" style="width:25px; height: 25px;border: 1px solid white; border-radius: 50%;margin-top:10px "></ion-icon>
-          </ion-col>
-        </ion-row> -->
-
-      </ion-col>
-
-      <ion-col size="6" style="padding:5px">
-        <label style="font-size: 16px;">Debit</label>
-
-        <!-- <ion-row>
-          <ion-col size="7">
-        <label style="font-size: 16px;padding:20px">Debit</label>
-          </ion-col>
-          <ion-col size="2">
-            <ion-icon name="arrow-round-up" style="width:25px; height: 25px;border: 1px solid white; border-radius: 50%; margin-top:10px"></ion-icon>
-          </ion-col>
-        </ion-row> -->
-
-      </ion-col>
-
+    <ion-row fxLayout="row" fxLayoutAlign="space-around center" style="color:white">
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <ion-icon name="arrow-round-up" style="width:25px;height:25px; margin-bottom:10px; margin-top:20px"></ion-icon>
+        <label style="font-size: 14px; margin-bottom:15px;">Debited</label>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <ion-icon name="arrow-round-down" style="width:25px;height:25px; margin-bottom:10px; margin-top:20px">
+        </ion-icon>
+        <label style="font-size: 14px;margin-bottom:15px;">Credited</label>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <ion-icon name="mail" style="width:25px;height:25px; margin-bottom:10px; margin-top:20px"></ion-icon>
+        <label style="font-size: 14px;margin-bottom:15px;">Message</label>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <ion-icon name="call" style="width:25px;height:25px; margin-bottom:10px; margin-top:20px"></ion-icon>
+        <label style="font-size: 14px;margin-bottom:15px;">Call</label>
+      </div>
     </ion-row>
+    <h5 fxLayout="row" fxLayoutAlign="center center" style="color:white; margin-bottom:20px">Balance :
+      ₹{{totalAmount}} {{totalAmountStatus}}</h5>
+  </div>
+
+  <div style="height:100%; width:100%;margin-top:28%">
+ 
+  <label style="font-size: 20px;color: black">Transactions</label>
+  <div *ngFor="let item of getHistoryArray" style="width:100%;">
+    <label fxLayout="row" fxLayoutAlign="center center" style="font-size: 10px;color: white; background-color: tomato; border: 15px;">{{item.date}}</label>
+    <div *ngFor="let listArray of item.list" style="width:100%">
+      <div fxLayout="column" fxLayoutAlign="start start" *ngIf="listArray.type == '1' ">
+        <ion-card 
+          style="border: 1px solid grey; width:200px; margin-left:20px; margin-top:10px;padding:4px">
+          <ion-row>
+            <ion-col size="7">
+              <label style="font-size: 17px;color:red">₹{{listArray.amount}}</label>
+            </ion-col>
+            <ion-col size="5">
+              <label style="font-size: 10px;color:grey">{{listArray.time}}</label>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="8">
+              <label style="font-size: 13px;color:rgb(17, 17, 17)">{{listArray.comment}}</label>
+            </ion-col>
+          </ion-row>
+
+        </ion-card>
+        <ion-row style="margin-left:20px">
+          <ion-col size="12">
+            <label style="font-size: 13px;color:grey">₹{{listArray.balance}} Advance</label>
+          </ion-col>
+        </ion-row>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="end end" *ngIf="listArray.type == '2' ">
+        <ion-card 
+          style="border: 1px solid grey;width:200px;margin-right:20px; margin-top:10px;padding:4px">
+          <ion-row>
+            <ion-col size="7">
+              <label style="font-size: 17px;color:green">₹{{listArray.amount}}</label>
+            </ion-col>
+            <ion-col size="5">
+              <label style="font-size: 10px;color:grey">{{listArray.time}}</label>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="8">
+              <label style="font-size: 13px;color:rgb(7, 7, 7)">{{listArray.comment}}</label>
+            </ion-col>
+          </ion-row>
+
+        </ion-card>
+        <ion-row style="margin-right:20px">
+          <ion-col size="12">
+            <label style="font-size: 13px;color:grey">₹{{listArray.balance}} Due</label>
+          </ion-col>
+        </ion-row>
+      </div>
+    </div>
+  </div>
 </div>
-   
 
 </ion-content>

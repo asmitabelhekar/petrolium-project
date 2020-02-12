@@ -12,4 +12,6 @@ export class UpdatebalancePage implements OnInit {
   ngOnInit() {
   }
 
+  
+
 }

@@ -11,15 +11,16 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { MatFormFieldModule, MatInputModule, MatIconModule, MatCardModule } from '@angular/material'
+import { MatFormFieldModule, MatInputModule, MatIconModule, MatCardModule, MatMenuModule, MatDialogModule } from '@angular/material'
 import {MatButtonModule} from '@angular/material/button';
 
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
 
 import { FormsModule } from '@angular/forms';
+import { UpdatebalancePage } from './pages/updatebalance/updatebalance.page';
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [AppComponent, ],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -32,7 +33,9 @@ import { FormsModule } from '@angular/forms';
     BrowserAnimationsModule,MatIconModule,
     MatInputModule,
     MatCardModule,
-    FormsModule
+    MatMenuModule,
+    FormsModule,
+    MatDialogModule
   ],
   providers: [
     StatusBar,

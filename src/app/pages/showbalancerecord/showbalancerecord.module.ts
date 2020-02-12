@@ -7,8 +7,10 @@ import { IonicModule } from '@ionic/angular';
 import { ShowbalancerecordPageRoutingModule } from './showbalancerecord-routing.module';
 
 import { ShowbalancerecordPage } from './showbalancerecord.page';
-import { MatCardMdImage, MatCardModule } from '@angular/material';
+import { MatCardMdImage, MatCardModule, MatMenuModule } from '@angular/material';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { CallNumber } from '@ionic-native/call-number/ngx';
+import { SMS } from '@ionic-native/sms/ngx';
 
 @NgModule({
   imports: [
@@ -17,8 +19,10 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     IonicModule,
     MatCardModule,
     FlexLayoutModule,
+    MatMenuModule,
     ShowbalancerecordPageRoutingModule
   ],
+  providers:[SMS,CallNumber],
   declarations: [ShowbalancerecordPage]
 })
 export class ShowbalancerecordPageModule {}

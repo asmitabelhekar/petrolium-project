@@ -43,6 +43,14 @@
    background-color: #d2691e;
 }
 
+.cl-fixed-position-total-amount-bottom{
+    position: fixed;
+    border-radius:20px;
+    background-color: #2e2d2d;
+    bottom: 20px;
+    padding:10px;
+}
+
 .cl-back-button{
     background: url('../../../assets/back_white.png') center;
     background-size: cover;
@@ -65,12 +73,23 @@
     margin:auto;
 }
 
-.cl-credit-debit-button{
+.cl-debit-button{
     // width:65px;
     // height: 65px;
    position: fixed;
    bottom: 20px;
-//    right: 20px;
+   right: 20px;
+   border-radius:30px;
+   color:white;
+   z-index: 10;
+   background-color: #2e2d2d;
+}
+.cl-credit-button{
+    // width:65px;
+    // height: 65px;
+   position: fixed;
+   bottom: 20px;
+   left: 20px;
    border-radius:30px;
    color:white;
    z-index: 10;
