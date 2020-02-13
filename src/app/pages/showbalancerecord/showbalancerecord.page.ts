@@ -5,6 +5,7 @@ import { CallNumber } from '@ionic-native/call-number/ngx';
 import { SMS } from '@ionic-native/sms/ngx';
 import { UpdatebalancePageModule } from '../updatebalance/updatebalance.module';
 import { MatDialog } from '@angular/material';
+import { UpdatebalancePage } from '../updatebalance/updatebalance.page';
 
 @Component({
   selector: 'app-showbalancerecord',
@@ -186,11 +187,11 @@ balanceRecord = {
 
   clickMenuItem(getStatus) {
     if (getStatus == "1") {
-      this.presentToast("Amount Debited Successfully");
-      this.creditDebitAmount();
+      // this.presentToast("Amount Debited Successfully");
+      this.creditDebitAmount(1);
     } else if (getStatus == "2") {
-       this.presentToast("Amount Debited Successfully");
-      this.creditDebitAmount();
+      //  this.presentToast("Amount Debited Successfully");
+      this.creditDebitAmount(2);
 
     } else if (getStatus == "3") {
       this.sentMessage();
@@ -202,13 +203,19 @@ balanceRecord = {
     }
   }
 
-  creditDebitAmount() {
+  creditDebitAmount(value) {
+    let balanceObject = {
+      customerName : this.customerName,
+      amountState : value
+
+    }
+    this.router.navigate(['/updatebalance', {balanceObject :JSON.stringify(balanceObject)}]);
     // let send_data = {};
     // send_data['text'] = "Are you sure you want to discard the changes?";
     // send_data['button2'] = "No";
     // send_data['button1'] = "Yes";
 
-    // const dialogRef = this.dialog.open(UpdatebalancePageModule, {
+    // const dialogRef = this.dialog.open(UpdatebalancePage, {
     //   width: '450px',
     //   data: send_data
     // });

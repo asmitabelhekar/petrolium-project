@@ -11,7 +11,7 @@ import { AppRoutingModule } from './app-routing.module';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { MatFormFieldModule, MatInputModule, MatIconModule, MatCardModule, MatMenuModule, MatDialogModule } from '@angular/material'
+import { MatFormFieldModule, MatInputModule, MatIconModule, MatCardModule, MatMenuModule, MatDialogModule, MatDatepickerModule, MatNativeDateModule } from '@angular/material'
 import {MatButtonModule} from '@angular/material/button';
 
 import { File } from '@ionic-native/file';
@@ -27,10 +27,18 @@ import { UpdatebalancePage } from './pages/updatebalance/updatebalance.page';
     IonicModule.forRoot(),
     AppRoutingModule,
     FlexLayoutModule,
-    MatFormFieldModule,MatIconModule,
-    BrowserAnimationsModule,FlexLayoutModule,MatButtonModule,
-    MatFormFieldModule,MatButtonModule,MatCardModule,
-    BrowserAnimationsModule,MatIconModule,
+    MatFormFieldModule,
+    MatIconModule,
+    MatNativeDateModule,
+    BrowserAnimationsModule,
+    FlexLayoutModule,
+    MatButtonModule,
+    MatFormFieldModule,
+    MatButtonModule,
+    MatCardModule,
+    MatDatepickerModule,
+    BrowserAnimationsModule,
+    MatIconModule,
     MatInputModule,
     MatCardModule,
     MatMenuModule,
@@ -42,7 +50,7 @@ import { UpdatebalancePage } from './pages/updatebalance/updatebalance.page';
     SplashScreen,
     {
      provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
-    
+    MatDatepickerModule
   ],
   bootstrap: [AppComponent]
 })
