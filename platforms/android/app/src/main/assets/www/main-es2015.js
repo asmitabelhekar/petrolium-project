@@ -563,11 +563,6 @@ let AppComponent = class AppComponent {
                 icon: 'person'
             },
             {
-                title: 'Update Balance',
-                url: '/updatebalance',
-                icon: 'document'
-            },
-            {
                 title: 'Log Out',
                 url: '/login',
                 icon: 'log-out'
@@ -626,6 +621,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm2015/material.js");
 /* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/esm2015/button.js");
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm2015/forms.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm2015/http.js");
+
 
 
 
@@ -667,14 +664,14 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatCardModule"],
             _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatMenuModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_13__["FormsModule"],
-            _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatDialogModule"]
+            _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatDialogModule"],
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_14__["HttpClientModule"]
         ],
         providers: [
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_5__["SplashScreen"],
-            {
-                provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"]
-            },
+            { provide: _angular_router__WEBPACK_IMPORTED_MODULE_3__["RouteReuseStrategy"], useClass: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicRouteStrategy"] },
+            { provide: _angular_material__WEBPACK_IMPORTED_MODULE_11__["MAT_DATE_LOCALE"], useValue: 'en-GB' },
             _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatDatepickerModule"]
         ],
         bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_7__["AppComponent"]]
@@ -699,7 +696,9 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 const environment = {
-    production: false
+    production: false,
+    version: 'v1.0.0/',
+    base_url: "http://3.6.135.154:19000/api/"
 };
 /*
  * For easier debugging in development mode, you can import the following file

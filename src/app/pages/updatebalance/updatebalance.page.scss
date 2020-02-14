@@ -35,8 +35,30 @@
 
 
 .odd{
-    color:red;
+   color: red;
   }
   .even{
-    color: green;
+   color : green;
   }
+
+
+
+.oddBackground{
+    border: 1px solid rgb(63, 62, 62);
+  }
+  .evenBackground{
+    border: 1px solid rgb(213, 219, 213);
+  }
+  .submitButton{
+   
+    height: 48px;	
+    width: 30%; 
+     margin-left: 15%; 
+    margin-right: 15%;
+    border-radius: 25px;	
+    background-color: #2e2d2d;
+    color: #FFFFFF;	
+    font-family: 'Roboto',sans-serif;	
+    font-size: 15px;	
+    
+}

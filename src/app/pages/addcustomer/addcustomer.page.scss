@@ -7,3 +7,40 @@
     min-width: 80%;
     }
     
+    .submitButton{
+   
+        height: 48px;	
+        width: 30%; 
+         margin-left: 15%; 
+        margin-right: 15%;
+        border-radius: 25px;	
+        background-color: #2e2d2d;
+        color: #FFFFFF;	
+        font-family: 'Roboto',sans-serif;	
+        font-size: 15px;	
+        // position: fixed;
+        // bottom: 10px;
+        // right: 10px;
+    }
+    .TitleHeader{
+        width: 100%;
+        // padding: 0 10px 0 10px;
+        height: 50px;
+        display: inline-flex;
+        align-items: center;
+        // background-color: blue;
+    }
+    .TitleText{
+        display: inline-flex;
+        text-align:left;
+        font-size: 19px;
+        width: 81%;
+        color: #ffffff;
+        // font-weight: 700;
+        align-items: center;
+    }
+    
+
+.new-background-color{
+    --background: #494747;
+  }

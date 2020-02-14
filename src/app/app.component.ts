@@ -22,12 +22,6 @@ export class AppComponent {
       icon: 'person'
     },
     {
-      title: 'Update Balance',
-      url: '/updatebalance',
-      icon: 'document'
-    }
-    ,
-    {
       title: 'Log Out',
       url: '/login',
       icon: 'log-out'

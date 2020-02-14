@@ -236,6 +236,14 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
       "clobbers": [
         "window.sms"
       ]
+    },
+    {
+      "id": "cordova-sqlite-storage.SQLitePlugin",
+      "file": "plugins/cordova-sqlite-storage/www/SQLitePlugin.js",
+      "pluginId": "cordova-sqlite-storage",
+      "clobbers": [
+        "SQLitePlugin"
+      ]
     }
   ];
   module.exports.metadata = {
@@ -248,6 +256,7 @@ cordova.define('cordova/plugin_list', function(require, exports, module) {
     "cordova-plugin-file-opener2": "3.0.0",
     "cordova-plugin-file": "6.0.2",
     "mx.ferreyra.callnumber": "0.0.2",
-    "cordova-sms-plugin": "1.0.0"
+    "cordova-sms-plugin": "1.0.0",
+    "cordova-sqlite-storage": "4.0.0"
   };
 });

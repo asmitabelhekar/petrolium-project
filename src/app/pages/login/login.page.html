@@ -1,47 +1,47 @@
 <link href="https://fonts.googleapis.com/css?family=Khula&display=swap" rel="stylesheet">
 
 <div fxLayout="column" fxLayoutAlign="center center" fxLayout.xl="row" class="registration-main">
-  
-   <mat-card  fxLayout="column" fxLayoutAlign="center center" fxLayout.xs="column" class="registration-main-matcard">
-     <mat-card-header>
-       <mat-card-title >
+
+  <mat-card fxLayout="column" fxLayoutAlign="center center" fxLayout.xs="column" class="registration-main-matcard">
+    <mat-card-header>
+      <mat-card-title>
         <P class="login-name-p-tag"> LOGIN</P>
-       </mat-card-title>
-   
-     </mat-card-header>
-   
-     <mat-card-content fxLayout="column" fxLayoutGap="20px" class="registration-form"  fxLayoutAlign="center center" >
-             
-       <div class="registration-form-img"  fxLayout="column" fxLayoutAlign="center center" >
-         <img src="../../../assets/petrol2.svg" alt="">
-       </div>
-   
-       <mat-form-field>
-   
-         <input matInput required placeholder="Phone Number" class="form-control" name="phone" [(ngModel)]="userModel.phone" #phone="ngModel" minlength="10" maxlength=10 pattern="[0-9]+">
-         <mat-error>
-           <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
-             Phone Number Required
-           </div>
-         </mat-error>  
-       </mat-form-field>
-       <mat-form-field>
-   
-         <input type="password" matInput required placeholder="password" class="form-control" name="password" [(ngModel)]="userModel.password"  #password="ngModel" pattern="[a-zA-z]+$" >
-         <mat-error>
-           <div *ngIf="password.invalid && (password.dirty  || password.touched)">
-           Password is Required
-           </div>
-         </mat-error>
-   
-       </mat-form-field>
-     </mat-card-content>
+      </mat-card-title>
+
+    </mat-card-header>
+
+    <mat-card-content fxLayout="column" fxLayoutGap="20px" class="registration-form" fxLayoutAlign="center center" style="width:80%; margin-top:10px">
+
+      <div class="registration-form-img" fxLayout="column" fxLayoutAlign="center center">
+        <img src="../../../assets/petrol2.svg" alt="">
+      </div>
+
+      <mat-form-field style="width:100%">
+
+        <input matInput required placeholder="Phone Number" class="form-control" name="mobile"
+          [(ngModel)]="userModel.mobile" #mobile="ngModel" minlength="10" maxlength=10 pattern="[0-9]+">
+        <mat-error>
+          <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)">
+            Phone Number Required
+          </div>
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field style="width:100%">
+
+        <input type="password" matInput required placeholder="password" class="form-control" name="password"
+          [(ngModel)]="userModel.password" #password="ngModel" pattern="[a-zA-z]+$">
+        <mat-error>
+          <div *ngIf="password.invalid && (password.dirty  || password.touched)">
+            Password is Required
+          </div>
+        </mat-error>
+
+      </mat-form-field>
+    </mat-card-content>
 
 
-     <button  (click)="login()" id="button-of-submit"> Submit</button>
-  
-   
-   
-    </mat-card>
+    <button (click)="login(userModel)" id="button-of-submit"> Submit</button>
 
-   
+
+
+  </mat-card>

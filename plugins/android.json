@@ -38,6 +38,9 @@
     },
     "cordova-sms-plugin": {
       "PACKAGE_NAME": "io.ionic.petroliumapp"
+    },
+    "cordova-sqlite-storage": {
+      "PACKAGE_NAME": "io.ionic.petroliumapp"
     }
   },
   "dependent_plugins": {}

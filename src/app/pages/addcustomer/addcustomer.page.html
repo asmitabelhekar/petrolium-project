@@ -1,64 +1,166 @@
 
 <ion-header class="new-background-color">
   <ion-toolbar class="new-background-color">
-    <ion-buttons slot="start" style="color:white">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-    <ion-title style="color:white">
-      Add Customer
-    </ion-title>
-  </ion-toolbar>  
+
+    <ion-row>
+      <ion-col size="2">
+        <ion-icon name="close" style="width:30px; height:30px; margin:10px ;color : #ffffff" (click)="goBackword()">
+        </ion-icon>
+        <!-- <button ion-button class="BackButton" (click)="goBackword()" style="margin:10px"></button> -->
+      </ion-col>
+      <ion-col size="10">
+        <ion-label class="TitleHeader TitleText" style="font-size: 17px;">
+          Add Customer
+        </ion-label>
+      </ion-col>
+     
+    </ion-row>
+
+  </ion-toolbar>
 </ion-header>
 <ion-content>
-<div fxLayout="row" fxLayoutAlign="space-around center" class="registration-main">
-  
-<mat-card>
-  <mat-card-header>
-    <mat-card-title>
-      Add customer
-    </mat-card-title>
 
-  </mat-card-header>
+  <form #userForm="ngForm">
+    <!-- <button style="width:55px; height: 55px; background-color: #bfc0c9;font-size:20px" class="centerImg">+</button> -->
+    <ion-row style="width:100%;margin-top:10%">
+      <ion-col size="1">
+        <ion-icon name="person" style="width:25px; height:25px; color : #93959e; margin: 20px">
+        </ion-icon>
+      </ion-col>
+      <ion-col size="11">
+        <ion-row style="margin-left:18px">
+          <mat-form-field style="width:95%; margin-right:5%">
+            <input matInput class="form-control " name="fname" required [(ngModel)]="userModel.fname" #fname="ngModel"
+              pattern="[a-zA-z]+$" placeholder="First Name" />
+            <mat-error>
+              <div class="form-group">
+                <div *ngIf="fname.invalid && (fname.dirty || fname.touched)">
+                  First Name Is Requird
+                </div>
+              </div>
+            </mat-error>
 
-  <mat-card-content fxLayout="column" fxLayoutGap="20px" class="registration-form">
-    <mat-form-field>
-
-      <input matInput required placeholder="Name" class="form-control" name="fname" [(ngModel)]="userModel.fname"  #fname="ngModel" pattern="[a-zA-z]+$" >
-      <mat-error>
-        <div *ngIf="fname.invalid && (fname.dirty  || fname.touched)">
-         Name is Required
-        </div>
-      </mat-error>
-
-    </mat-form-field>      
-    
-
-    <mat-form-field>
-
-      <input matInput required placeholder="Phone Number" class="form-control" name="phone" [(ngModel)]="userModel.phone" #phone="ngModel" minlength="10" maxlength=10 pattern="[0-9]+">
-      <mat-error>
-        <div *ngIf="phone.invalid && (phone.dirty || phone.touched)">
-          Phone Number Required
-        </div>
-      </mat-error>  
-    </mat-form-field>
-    <mat-form-field>
+          </mat-form-field>
+        </ion-row>
       
-      <textarea matInput required placeholder="Address" class="form-control" name="address" [(ngModel)]="userModel.address" #address="ngModel"></textarea>
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top:-10px">
+      <ion-col size="1">
+        <ion-icon name="person" style="width:25px; height:25px; color : #93959e; margin: 20px">
+        </ion-icon>
+      </ion-col>
+      <ion-col size="11">
+        <ion-row style="margin-left:18px">
+        <mat-form-field style="width:95%; margin-right:5%">
+          <input matInput class="form-control " name="lname" required [(ngModel)]="userModel.lname" #lname="ngModel"
+            pattern="[a-zA-z]+$" placeholder="Last Name" />
+          <mat-error>
+            <div class="form-group">
+              <div *ngIf="lname.invalid && (lname.dirty || lname.touched)">
+                Last Name Is Requird
+              </div>
+            </div>
+          </mat-error>
+  
+        </mat-form-field>
+        </ion-row>
+      </ion-col>
+      
+    </ion-row>
+
+
+<ion-row style="margin-top:-10px">
+  <ion-col size="1">
+    <ion-icon name="call" style="width:25px; height:25px; color : #93959e; margin: 20px">
+    </ion-icon>
+  </ion-col>
+  <ion-col size="11">
+    <ion-row style="margin-left:18px">
+    <mat-form-field style="width:95%; margin-right:5%">
+      <input matInput class="form-control " name="mobile" minlength="10" maxlength="10" required [(ngModel)]="userModel.mobile" #mobile="ngModel"
+        pattern="[0-9]+$" placeholder="Mobile" />
       <mat-error>
-        <div *ngIf="address.invalid && (address.dirty || address.touched)">Enter Address
+        <div class="form-group">
+          <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)">
+            Mobile Number Is Requird
+          </div>
         </div>
       </mat-error>
-    </mat-form-field>
-    <mat-form-field>
-     
-      <input type="text" placeholder="Email" matInput>
-    </mat-form-field>
-  </mat-card-content>
-  <mat-card-actions align="center">
-      <button mat-raised-button color="warn">Submit</button>
-    </mat-card-actions>
-</mat-card>
 
-</div>
+    </mat-form-field>
+    </ion-row>
+  </ion-col>
+</ion-row>
+    
+<ion-row style="margin-top:-10px">
+  <ion-col size="1">
+    <ion-icon name="mail" style="width:25px; height:25px; color : #93959e; margin: 20px">
+    </ion-icon>
+  </ion-col>
+
+  <ion-col size="11">
+    <ion-row style="margin-left:18px">
+    <mat-form-field style="width:95%; margin-right:5%">
+      <input matInput class="form-control " name="email" [(ngModel)]="userModel.email" #email="ngModel"
+        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Email" />
+      <mat-error>
+        <div class="form-group">
+          <div *ngIf="email.invalid && (email.dirty || email.touched)">
+            Email Is Requird
+          </div>
+        </div>
+      </mat-error>
+
+    </mat-form-field>
+    </ion-row>
+  </ion-col>
+</ion-row>
+
+   
+
+    <ion-row style="margin-top:-10px">
+      <ion-col size="1">
+        <ion-icon name="home" style="width:25px; height:25px; color : #93959e; margin: 20px">
+        </ion-icon>
+      </ion-col>
+      <ion-col size="11">
+        <ion-row style="margin-left:18px">
+        <mat-form-field style="width:95%; margin-right:5%">
+          <textarea matInput class="form-control " name="address"  [(ngModel)]="userModel.address" #address="ngModel"
+            pattern="[a-zA-z]+$" placeholder="Address" ></textarea>
+        </mat-form-field>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top:-10px">
+      <ion-col size="1">
+        <ion-icon name="document" style="width:25px; height:25px; color : #93959e; margin: 20px">
+        </ion-icon>
+      </ion-col>
+    
+      <ion-col size="11">
+        <ion-row style="margin-left:18px">
+        <mat-form-field style="width:95%; margin-right:5%">
+          <textarea matInput class="form-control " name="note" [(ngModel)]="userModel.note" #note="ngModel"
+            pattern="[a-zA-z]+$" placeholder="Note" ></textarea>
+        
+        </mat-form-field>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+   
+    <div fxLayout="row" fxLayoutAlign="center center" style="margin-top:15px">
+      <button mat-raised-button
+        [disabled]="mobile.invalid || address.invalid || fname.invalid || lname.invalid "
+        class="submitButton" (click)="addCustomerData()">Save</button>
+
+    </div>
+  </form>
+
+
 </ion-content>
