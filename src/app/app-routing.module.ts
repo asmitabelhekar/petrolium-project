@@ -30,6 +30,18 @@ const routes: Routes = [
   {
     path: 'sliderimages',
     loadChildren: () => import('./pages/sliderimages/sliderimages.module').then( m => m.SliderimagesPageModule)
+  },
+  {
+    path: 'customerdetil',
+    loadChildren: () => import('./pages/customerdetil/customerdetil.module').then( m => m.CustomerdetilPageModule)
+  },
+  {
+    path: 'dataentryopening',
+    loadChildren: () => import('./pages/dataentryopening/dataentryopening.module').then( m => m.DataentryopeningPageModule)
+  },
+  {
+    path: 'dataentrycredit',
+    loadChildren: () => import('./pages/dataentrycredit/dataentrycredit.module').then( m => m.DataentrycreditPageModule)
   }
 ];
 

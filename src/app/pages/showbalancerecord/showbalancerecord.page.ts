@@ -167,6 +167,7 @@ balanceRecord = {
   totalAmount = "3000";
   totalAmountStatus = "Due";
   displayList: any;
+  detailArray : any;
 
   constructor(public router: Router,
     public activatedRoute: ActivatedRoute,
@@ -176,7 +177,11 @@ balanceRecord = {
     public dialog: MatDialog) { }
 
   ngOnInit() {
-    this.customerName = this.activatedRoute.snapshot.params['customerName'];
+
+    let getdetail = this.activatedRoute.snapshot.params['detailData'];
+    this.detailArray = JSON.parse(getdetail);
+    this.customerName = this.detailArray['name'];
+    // this.customerName = this.activatedRoute.snapshot.params['customerName'];
     this.getHistoryArray = this.balanceRecord.history;
     this.displayList = this.getHistoryArray['list'];
   }
@@ -251,5 +256,24 @@ balanceRecord = {
       duration: 4000
     });
     toast.present();
+  }
+
+  customerDetail(){
+
+    // let detailData =
+    // {
+    //   "name": data.name,
+    //   "mobile": data.mobile,
+    //   "address": data.address,
+    //   "lname": data.lname,
+    //   "amount": data.amount,
+    //   "imagepath": data.imagepath,
+    //   "email": data.email,
+    //   "note": data.note,
+    //   "getIndex": i
+    // }
+
+
+    this.router.navigate(['customerdetil', { detailData: JSON.stringify(this.detailArray) }])
   }
 }

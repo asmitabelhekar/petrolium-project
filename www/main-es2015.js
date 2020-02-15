@@ -449,7 +449,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-header>\n        <ion-toolbar >\n          <img src=\"../assets/logoapp.png\" class=\"cl-sidemenu-logo\" />\n\n          <div align=\"center\" style=\"margin-top:10px; margin-bottom:20px\">\n            <ion-title style=\"color:white\">Khamkar Petrolium</ion-title>\n          </div>\n\n        </ion-toolbar>\n      </ion-header>\n      <ion-content style=\"margin-top: 5%;\">\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\" style=\"color:white\"></ion-icon>\n              <ion-label style=\"color:white; font-size: 15px;\">\n                {{p.title}}\n              </ion-label>\n              <ion-icon name=\"arrow-dropright\" style=\"color:white\"></ion-icon>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n"
+module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-header>\n        <ion-toolbar >\n          <img src=\"../assets/logoapp.png\" class=\"cl-sidemenu-logo\" />\n\n          <div align=\"center\" style=\"margin-top:10px; margin-bottom:20px\">\n            <ion-title style=\"color:white\">Khamkar Petrolium</ion-title>\n          </div>\n\n        </ion-toolbar>\n      </ion-header>\n      <ion-content style=\"margin-top: 5%;\">\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\" (click)=\"sideMenuClicked(p.title)\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\" style=\"color:white\"></ion-icon>\n              <ion-label style=\"color:white; font-size: 15px;\">\n                {{p.title}}\n              </ion-label>\n              <ion-icon name=\"arrow-dropright\" style=\"color:white\"></ion-icon>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n"
 
 /***/ }),
 
@@ -493,11 +493,19 @@ const routes = [
     },
     {
         path: 'showbalancerecord',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-showbalancerecord-showbalancerecord-module */ "pages-showbalancerecord-showbalancerecord-module").then(__webpack_require__.bind(null, /*! ./pages/showbalancerecord/showbalancerecord.module */ "./src/app/pages/showbalancerecord/showbalancerecord.module.ts")).then(m => m.ShowbalancerecordPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-showbalancerecord-showbalancerecord-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-showbalancerecord-showbalancerecord-module")]).then(__webpack_require__.bind(null, /*! ./pages/showbalancerecord/showbalancerecord.module */ "./src/app/pages/showbalancerecord/showbalancerecord.module.ts")).then(m => m.ShowbalancerecordPageModule)
     },
     {
         path: 'sliderimages',
         loadChildren: () => __webpack_require__.e(/*! import() | pages-sliderimages-sliderimages-module */ "pages-sliderimages-sliderimages-module").then(__webpack_require__.bind(null, /*! ./pages/sliderimages/sliderimages.module */ "./src/app/pages/sliderimages/sliderimages.module.ts")).then(m => m.SliderimagesPageModule)
+    },
+    {
+        path: 'customerdetil',
+        loadChildren: () => Promise.all(/*! import() | pages-customerdetil-customerdetil-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-customerdetil-customerdetil-module")]).then(__webpack_require__.bind(null, /*! ./pages/customerdetil/customerdetil.module */ "./src/app/pages/customerdetil/customerdetil.module.ts")).then(m => m.CustomerdetilPageModule)
+    },
+    {
+        path: 'dataentryopening',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-dataentryopening-dataentryopening-module */ "pages-dataentryopening-dataentryopening-module").then(__webpack_require__.bind(null, /*! ./pages/dataentryopening/dataentryopening.module */ "./src/app/pages/dataentryopening/dataentryopening.module.ts")).then(m => m.DataentryopeningPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -541,46 +549,99 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/ngx/index.js");
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm2015/router.js");
+
 
 
 
 
 
 let AppComponent = class AppComponent {
-    constructor(platform, splashScreen, statusBar) {
+    constructor(platform, splashScreen, statusBar, router) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
-        this.appPages = [
-            {
-                title: 'Customer Records',
-                url: '/home',
-                icon: 'document'
-            },
-            {
-                title: 'Add Customer',
-                url: '/addcustomer',
-                icon: 'person'
-            },
-            {
-                title: 'Log Out',
-                url: '/login',
-                icon: 'log-out'
-            }
-        ];
+        this.router = router;
         this.initializeApp();
     }
     initializeApp() {
+        this.loginStatus = localStorage.getItem("loginStatus");
+        this.login();
         this.platform.ready().then(() => {
             this.statusBar.styleDefault();
             this.splashScreen.hide();
         });
     }
+    login() {
+        this.loginStatus = localStorage.getItem("loginStatus");
+        if (this.loginStatus == "dataentry") {
+            this.appPages = [
+                {
+                    title: 'Credit',
+                    url: '/updatebalance',
+                    icon: 'document'
+                },
+                {
+                    title: 'Opening',
+                    url: '/dataentryopening',
+                    icon: 'person'
+                },
+                {
+                    title: 'Log Out',
+                    url: '/login',
+                    icon: 'log-out'
+                }
+            ];
+        }
+        else if (this.loginStatus == "manager") {
+            this.appPages = [
+                {
+                    title: 'Customer Records',
+                    url: '/home',
+                    icon: 'document'
+                },
+                {
+                    title: 'Debit/Credit',
+                    url: '/addcustomer',
+                    icon: 'person'
+                },
+                {
+                    title: 'Opening/Closing',
+                    url: '/showbalancerecord',
+                    icon: 'person'
+                },
+                {
+                    title: 'Log Out',
+                    url: '',
+                    icon: 'log-out'
+                }
+            ];
+        }
+        else {
+            this.appPages = [
+                {
+                    title: 'Log Out',
+                    url: '',
+                    icon: 'log-out'
+                }
+            ];
+        }
+    }
+    sideMenuClicked(page) {
+        if (page === 'Log Out') {
+            localStorage.removeItem("loginStatus");
+            localStorage.clear();
+            this.router.navigate(['/login']);
+        }
+        else {
+        }
+    }
 };
 AppComponent.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
     { type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"] },
-    { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] }
+    { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] },
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }
 ];
 AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -590,7 +651,8 @@ AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"],
         _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"],
-        _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"]])
+        _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"],
+        _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
 ], AppComponent);
 
 
@@ -665,7 +727,10 @@ AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatMenuModule"],
             _angular_forms__WEBPACK_IMPORTED_MODULE_13__["FormsModule"],
             _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatDialogModule"],
-            _angular_common_http__WEBPACK_IMPORTED_MODULE_14__["HttpClientModule"]
+            _angular_common_http__WEBPACK_IMPORTED_MODULE_14__["HttpClientModule"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatSelectModule"],
+            _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatAutocompleteModule"],
+            _angular_forms__WEBPACK_IMPORTED_MODULE_13__["ReactiveFormsModule"],
         ],
         providers: [
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],

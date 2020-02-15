@@ -12,13 +12,13 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { MatFormFieldModule, MatInputModule, MatIconModule, MatCardModule, MatMenuModule, MatDialogModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE } from '@angular/material'
+import { MatFormFieldModule, MatInputModule, MatIconModule, MatCardModule, MatMenuModule, MatDialogModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatSelectModule, MatAutocompleteModule } from '@angular/material'
 import {MatButtonModule} from '@angular/material/button';
 
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
 
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { UpdatebalancePage } from './pages/updatebalance/updatebalance.page';
 import { HttpClientModule } from '@angular/common/http';
 @NgModule({
@@ -46,7 +46,10 @@ import { HttpClientModule } from '@angular/common/http';
     MatMenuModule,
     FormsModule,
     MatDialogModule,
-    HttpClientModule
+    HttpClientModule,
+    MatSelectModule,
+    MatAutocompleteModule,
+    ReactiveFormsModule,
   ],
   providers: [
     StatusBar,

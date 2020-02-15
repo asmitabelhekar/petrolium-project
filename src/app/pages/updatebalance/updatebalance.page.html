@@ -18,9 +18,42 @@
   </div>
 
 
-  <!-- [ngClass]="(paymentType % 2 == 0) ? 'odd' : 'even' " -->
 
   <div fxLayout="column" fxLayoutAlign="center" style="margin-top:5%">
+
+    <div fxLayout="row" fxLayoutAlign="center center">
+      <mat-form-field style="width:80%">
+        <input type="text"
+               placeholder="Pick one"
+               aria-label="Number"
+               matInput
+               [formControl]="myControl"
+               [matAutocomplete]="auto">
+        <mat-autocomplete #auto="matAutocomplete">
+          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+      </mat-form-field>
+
+
+
+
+
+
+      <!-- <mat-form-field style="width:80%">
+        <input type = "text" 
+           placeholder = "Customer List" 
+           aria-label = "Number" 
+           matInput 
+           [matAutocomplete] = "auto">
+        <mat-autocomplete #auto = "matAutocomplete">
+          <mat-option *ngFor="let option of customerList | async" [value]="option">
+            {{option}}
+          </mat-option>
+        </mat-autocomplete>
+     </mat-form-field> -->
+    </div>
 
     <div fxLayout="row" fxLayoutAlign="center center">
       <mat-form-field style="width:80%">

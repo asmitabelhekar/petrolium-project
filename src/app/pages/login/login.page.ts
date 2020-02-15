@@ -14,21 +14,36 @@ import { Storage } from '@ionic/storage';
 export class LoginPage implements OnInit {
 
   loginModel: any = {}
-  userModel : any = {};
+  userModel: any = {};
 
   constructor(public router: Router,
     public menuController: MenuController,
     public preloader: LoaderserviceService,
     public apicall: ApicallService,
     public toastcontroller: ToastController) { }
-  
+
 
   ngOnInit() {
+
   }
 
 
   login(data) {
-    this.router.navigate(['home']);
+alert("data:"+JSON.stringify(data.name));
+
+    if (data.mobile == "1234567890" && data.password == "abc") {
+      this.router.navigate(['dataentrycredit']);
+      localStorage.setItem('loginStatus', 'dataentry');
+    } else if (data.mobile == "1234567891" && data.password == "abc"){
+      localStorage.setItem('loginStatus', 'manager');
+      this.router.navigate(['home']);
+    }else{
+
+    }
+    // localStorage.setItem('loginStatus', 'manager');
+  
+    let statusCheck = localStorage.getItem("loginStatus");
+ 
 
 
     // this.preloader.showBlockingLoaderAuth();

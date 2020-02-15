@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { ToastController, AlertController } from '@ionic/angular';
 
 @Component({
@@ -11,11 +11,39 @@ export class AddcustomerPage implements OnInit {
 
   userModel: any = {}
   savetext: any;
+  recordstatus : any;
+  checkStatus : any;
+
   constructor(public router: Router,
     public toast: ToastController,
-    public alertController: AlertController) { }
+    public alertController: AlertController,
+    public route : ActivatedRoute) { }
 
   ngOnInit() {
+    this.recordstatus = this.route.snapshot.params['detailCustomerdata'];
+    console.log("detailCustomerdata" + this.recordstatus);
+    let displayArrayValues = JSON.parse(this.recordstatus);
+    this.userModel['mobile'] = displayArrayValues.mobile;
+    this.userModel['address'] = displayArrayValues.address;
+    this.userModel['email'] = displayArrayValues.email;
+    this.userModel['note'] = displayArrayValues.note;
+
+    let fullname = displayArrayValues.fname;
+    if(fullname != ""){
+      let names = fullname.split(" ");
+      this.userModel['fname'] = names[0];
+      this.userModel['lname'] = names[(names.length -1)];  
+    }
+    
+    this.checkStatus = displayArrayValues.checkstatus;
+  
+    if (this.checkStatus == "add") {
+      this.savetext = "Add Customer";
+
+    }
+    else if (this.checkStatus == "update") {
+      this.savetext = "Update Customer";
+    }
   }
 
 

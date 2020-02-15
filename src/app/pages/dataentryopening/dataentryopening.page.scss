@@ -1,0 +1,42 @@
+
+.TitleHeader{
+    width: 100%;
+    // padding: 0 10px 0 10px;
+    height: 50px;
+    display: inline-flex;
+    align-items: center;
+    // background-color: blue;
+}
+.TitleText{
+    display: inline-flex;
+    text-align:left;
+    font-size: 19px;
+    width: 81%;
+    color: #ffffff;
+    // font-weight: 700;
+    align-items: center;
+}
+
+.BackButton{
+    background: url('../../../assets/back_white.png') center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 30px;
+    height: 30px;
+    outline: 0;
+    box-shadow: 0 0 0 0;
+    margin-right: 15px;
+}
+.submitButton{
+   
+    height: 48px;	
+    width: 35%; 
+  
+    border-radius: 20px;	
+    background-color: #2e2d2d;
+    color: #FFFFFF;	
+    font-family: 'Roboto',sans-serif;	
+    font-size: 15px;	
+    
+}

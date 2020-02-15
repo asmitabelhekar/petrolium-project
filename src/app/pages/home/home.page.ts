@@ -10,7 +10,7 @@ import * as pdfFonts from 'pdfmake/build/vfs_fonts';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-
+  checkRecordStatus: any;
 
   getCusstomers = [
 
@@ -186,11 +186,36 @@ export class HomePage {
   }
 
   addCustomer() {
-    this.router.navigate(['addcustomer']);
+    this.checkRecordStatus = "add";
+
+    let detailCustomerdata = {
+      "fname": "",
+      "mobile": "",
+      "address": "",
+      "email": "",
+      "checkstatus": this.checkRecordStatus,
+      "note": ""
+    }
+    this.router.navigate(['/addcustomer', { detailCustomerdata: JSON.stringify(detailCustomerdata) }]);
   }
 
-  getBalanceDetail(name) {
-    this.router.navigate(['showbalancerecord' , { customerName : name}]);
+  getBalanceDetail(data) {
+
+    let detailData =
+    {
+      "name": data.name,
+      "mobile": data.mobile,
+      "address": data.address,
+      "lname": data.lname,
+      "amount": data.amount,
+      "imagepath": data.imagepath,
+      "email": data.email,
+      "note": data.note,
+      
+    }
+
+    this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }])
+    // this.router.navigate(['showbalancerecord' ]);
   }
 
   makePdf() {

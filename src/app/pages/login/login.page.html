@@ -19,7 +19,7 @@
       <mat-form-field style="width:100%">
 
         <input matInput required placeholder="Phone Number" class="form-control" name="mobile"
-          [(ngModel)]="userModel.mobile" #mobile="ngModel" minlength="10" maxlength=10 pattern="[0-9]+">
+          [(ngModel)]="loginModel.mobile" #mobile="ngModel" minlength="10" maxlength=10 pattern="[0-9]+">
         <mat-error>
           <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)">
             Phone Number Required
@@ -29,7 +29,7 @@
       <mat-form-field style="width:100%">
 
         <input type="password" matInput required placeholder="password" class="form-control" name="password"
-          [(ngModel)]="userModel.password" #password="ngModel" pattern="[a-zA-z]+$">
+          [(ngModel)]="loginModel.password" #password="ngModel" pattern="[a-zA-z]+$">
         <mat-error>
           <div *ngIf="password.invalid && (password.dirty  || password.touched)">
             Password is Required
@@ -40,7 +40,7 @@
     </mat-card-content>
 
 
-    <button (click)="login(userModel)" id="button-of-submit"> Submit</button>
+    <button (click)="login(loginModel)" id="button-of-submit"> Submit</button>
 
 
 

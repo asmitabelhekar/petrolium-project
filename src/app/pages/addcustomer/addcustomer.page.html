@@ -6,7 +6,7 @@
       <ion-col size="2">
         <ion-icon name="close" style="width:30px; height:30px; margin:10px ;color : #ffffff" (click)="goBackword()">
         </ion-icon>
-        <!-- <button ion-button class="BackButton" (click)="goBackword()" style="margin:10px"></button> -->
+        <!-- <checkRecordStatus ion-button class="BackButton" (click)="goBackword()" style="margin:10px"></button> -->
       </ion-col>
       <ion-col size="10">
         <ion-label class="TitleHeader TitleText" style="font-size: 17px;">
@@ -23,12 +23,12 @@
   <form #userForm="ngForm">
     <!-- <button style="width:55px; height: 55px; background-color: #bfc0c9;font-size:20px" class="centerImg">+</button> -->
     <ion-row style="width:100%;margin-top:10%">
-      <ion-col size="1">
+      <ion-col size="2">
         <ion-icon name="person" style="width:25px; height:25px; color : #93959e; margin: 20px">
         </ion-icon>
       </ion-col>
-      <ion-col size="11">
-        <ion-row style="margin-left:18px">
+      <ion-col size="10">
+        <ion-row >
           <mat-form-field style="width:95%; margin-right:5%">
             <input matInput class="form-control " name="fname" required [(ngModel)]="userModel.fname" #fname="ngModel"
               pattern="[a-zA-z]+$" placeholder="First Name" />
@@ -48,12 +48,12 @@
     </ion-row>
 
     <ion-row style="margin-top:-10px">
-      <ion-col size="1">
-        <ion-icon name="person" style="width:25px; height:25px; color : #93959e; margin: 20px">
-        </ion-icon>
+      <ion-col size="2">
+        <!-- <ion-icon name="person" style="width:25px; height:25px; color : #93959e; margin: 20px">
+        </ion-icon> -->
       </ion-col>
-      <ion-col size="11">
-        <ion-row style="margin-left:18px">
+      <ion-col size="10">
+        <ion-row >
         <mat-form-field style="width:95%; margin-right:5%">
           <input matInput class="form-control " name="lname" required [(ngModel)]="userModel.lname" #lname="ngModel"
             pattern="[a-zA-z]+$" placeholder="Last Name" />
@@ -73,12 +73,12 @@
 
 
 <ion-row style="margin-top:-10px">
-  <ion-col size="1">
+  <ion-col size="2">
     <ion-icon name="call" style="width:25px; height:25px; color : #93959e; margin: 20px">
     </ion-icon>
   </ion-col>
-  <ion-col size="11">
-    <ion-row style="margin-left:18px">
+  <ion-col size="10">
+    <ion-row >
     <mat-form-field style="width:95%; margin-right:5%">
       <input matInput class="form-control " name="mobile" minlength="10" maxlength="10" required [(ngModel)]="userModel.mobile" #mobile="ngModel"
         pattern="[0-9]+$" placeholder="Mobile" />
@@ -96,16 +96,16 @@
 </ion-row>
     
 <ion-row style="margin-top:-10px">
-  <ion-col size="1">
+  <ion-col size="2">
     <ion-icon name="mail" style="width:25px; height:25px; color : #93959e; margin: 20px">
     </ion-icon>
   </ion-col>
 
-  <ion-col size="11">
-    <ion-row style="margin-left:18px">
+  <ion-col size="10">
+    <ion-row >
     <mat-form-field style="width:95%; margin-right:5%">
       <input matInput class="form-control " name="email" [(ngModel)]="userModel.email" #email="ngModel"
-        pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Email" />
+        pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Email" />
       <mat-error>
         <div class="form-group">
           <div *ngIf="email.invalid && (email.dirty || email.touched)">
@@ -122,12 +122,12 @@
    
 
     <ion-row style="margin-top:-10px">
-      <ion-col size="1">
+      <ion-col size="2">
         <ion-icon name="home" style="width:25px; height:25px; color : #93959e; margin: 20px">
         </ion-icon>
       </ion-col>
-      <ion-col size="11">
-        <ion-row style="margin-left:18px">
+      <ion-col size="10">
+        <ion-row >
         <mat-form-field style="width:95%; margin-right:5%">
           <textarea matInput class="form-control " name="address"  [(ngModel)]="userModel.address" #address="ngModel"
             pattern="[a-zA-z]+$" placeholder="Address" ></textarea>
@@ -137,13 +137,13 @@
     </ion-row>
 
     <ion-row style="margin-top:-10px">
-      <ion-col size="1">
+      <ion-col size="2">
         <ion-icon name="document" style="width:25px; height:25px; color : #93959e; margin: 20px">
         </ion-icon>
       </ion-col>
     
-      <ion-col size="11">
-        <ion-row style="margin-left:18px">
+      <ion-col size="10">
+        <ion-row >
         <mat-form-field style="width:95%; margin-right:5%">
           <textarea matInput class="form-control " name="note" [(ngModel)]="userModel.note" #note="ngModel"
             pattern="[a-zA-z]+$" placeholder="Note" ></textarea>
