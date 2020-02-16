@@ -619,6 +619,10 @@ let AppComponent = class AppComponent {
                     url: '/debitamount',
                 },
                 {
+                    title: 'Opening',
+                    url: '/dataentryopening',
+                },
+                {
                     title: 'Reports',
                     url: '/reports',
                 },
@@ -653,11 +657,6 @@ let AppComponent = class AppComponent {
             ];
         }
     }
-    // ,
-    //       {
-    //         title: 'Opening/Closing',
-    //         url: '',
-    //       }
     sideMenuClicked(page) {
         if (page === 'Log Out') {
             localStorage.removeItem("loginStatus");

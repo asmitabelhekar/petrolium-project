@@ -629,6 +629,10 @@ var AppComponent = /** @class */ (function () {
                     url: '/debitamount',
                 },
                 {
+                    title: 'Opening',
+                    url: '/dataentryopening',
+                },
+                {
                     title: 'Reports',
                     url: '/reports',
                 },
@@ -663,11 +667,6 @@ var AppComponent = /** @class */ (function () {
             ];
         }
     };
-    // ,
-    //       {
-    //         title: 'Opening/Closing',
-    //         url: '',
-    //       }
     AppComponent.prototype.sideMenuClicked = function (page) {
         if (page === 'Log Out') {
             localStorage.removeItem("loginStatus");

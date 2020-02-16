@@ -25,6 +25,7 @@ export class DataentryopeningPage implements OnInit {
   }
 
   ngOnInit() {
+    this.openingModel['date'] = new Date().toJSON().split('T')[0];
     this.today = new Date().toJSON().split('T')[0];
   }
 

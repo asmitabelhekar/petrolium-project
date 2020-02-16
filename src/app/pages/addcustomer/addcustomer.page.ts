@@ -53,7 +53,6 @@ export class AddcustomerPage implements OnInit {
   }
 
   addCustomerData() {
-    alert("display customer data:" + JSON.stringify(this.userModel));
     this.presentToast("Customer added successfully");
     this.router.navigate(['/home']);
   }

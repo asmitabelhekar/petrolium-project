@@ -72,6 +72,11 @@ export class AppComponent {
 
         },
         {
+          title: 'Opening',
+          url: '/dataentryopening',
+
+        },
+        {
           title: 'Reports',
           url: '/reports',
 
@@ -113,12 +118,7 @@ export class AppComponent {
     }
   }
 
-  // ,
-  //       {
-  //         title: 'Opening/Closing',
-  //         url: '',
-
-  //       }
+  
   sideMenuClicked(page) {
     if (page === 'Log Out') {
       localStorage.removeItem("loginStatus");
