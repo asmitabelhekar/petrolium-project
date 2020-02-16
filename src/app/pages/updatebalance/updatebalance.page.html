@@ -21,7 +21,7 @@
 
   <div fxLayout="column" fxLayoutAlign="center" style="margin-top:5%">
 
-    <div fxLayout="row" fxLayoutAlign="center center">
+    <!-- <div fxLayout="row" fxLayoutAlign="center center">
       <mat-form-field style="width:80%">
         <input type="text"
                placeholder="Pick one"
@@ -36,24 +36,7 @@
         </mat-autocomplete>
       </mat-form-field>
 
-
-
-
-
-
-      <!-- <mat-form-field style="width:80%">
-        <input type = "text" 
-           placeholder = "Customer List" 
-           aria-label = "Number" 
-           matInput 
-           [matAutocomplete] = "auto">
-        <mat-autocomplete #auto = "matAutocomplete">
-          <mat-option *ngFor="let option of customerList | async" [value]="option">
-            {{option}}
-          </mat-option>
-        </mat-autocomplete>
-     </mat-form-field> -->
-    </div>
+    </div> -->
 
     <div fxLayout="row" fxLayoutAlign="center center">
       <mat-form-field style="width:80%">
@@ -70,13 +53,21 @@
 
     <div *ngIf="paymentMethod == 'Credit' " style="width: 100%;">
 
-      <ion-row style="width:100%">
+      <!-- <ion-row style="width:100%">
         <ion-col fxLayout="row" fxLayoutAlign="space-around center" *ngFor="let item of buttonsArray;let i = index "
           style="width:50%">
           <button mat-button style="width:50%" [ngClass]="(checkFuelType  == i) ? 'oddBackground' : 'evenBackground' "
             (click)="fuelType(item.indexFuel)">{{item.fuelType}}</button>
         </ion-col>
-      </ion-row>
+      </ion-row> -->
+
+      <div fxLayout="row" fxLayoutAlign="space-around center" style="width:80%; margin-left: 10%; margin-right: 10%">
+        <div *ngFor="let item of buttonsArray;let i = index " style="width:48%">
+          <button mat-button style="width:100%" [ngClass]="(checkFuelType  == i) ? 'oddBackground' : 'evenBackground' "
+          (click)="fuelType(item.indexFuel)">{{item.fuelType}}</button>
+        </div>
+        </div>
+        
       <!-- <div *ngFor="let item of buttonsArray;let i = index ">
   <div style="margin-top:10px"  >
     <button style="width:30%" mat-button [ngClass]="(checkFuelType  == i) ? 'odd' : 'even' " (click)="fuelType(item.indexFuel)">{{item.fuelType}}</button>

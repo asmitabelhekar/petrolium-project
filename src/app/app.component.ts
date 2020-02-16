@@ -12,8 +12,8 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   appPages : any;
-  loginStatus : any;
-  
+  loginStatus = "dataentry";
+  data: any;
 
   constructor(
     private platform: Platform,
@@ -25,80 +25,156 @@ export class AppComponent {
   }
 
   initializeApp() {
-    this.loginStatus = localStorage.getItem("loginStatus");
+    this.loginStatus = localStorage.getItem('loginStatus');
     this.login();
+    this.loginSession();
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
-      this.splashScreen.hide();
-
-      
-     
+      this.splashScreen.hide();     
     });
   }
 
-  login(){
-    this.loginStatus = localStorage.getItem("loginStatus");
-    if(this.loginStatus == "dataentry")
-    {
+  login() {
+    this.loginStatus = localStorage.getItem('loginStatus');
+    if (this.loginStatus == "dataentry") {
       this.appPages = [
         {
           title: 'Credit',
-          url: '/updatebalance',
-          icon: 'document'
+          url: '/dataentrycredit',
+
         },
         {
           title: 'Opening',
           url: '/dataentryopening',
-          icon: 'person'
+
         },
         {
           title: 'Log Out',
           url: '/login',
-          icon: 'log-out'
+
         }
       ];
-    }else if(this.loginStatus == "manager") {
+    } else if(this.loginStatus == "manager") {
       this.appPages = [
         {
-          title: 'Customer Records',
+          title: 'Customer',
           url: '/home',
-          icon: 'document'
+
         },
         {
-          title: 'Debit/Credit',
-          url: '/addcustomer',
-          icon: 'person'
+          title: 'Credit',
+          url: '/dataentrycredit',
+
         },
         {
-          title: 'Opening/Closing',
-          url: '/showbalancerecord',
-          icon: 'person'
+          title: 'Debit',
+          url: '/debitamount',
+
+        },
+        {
+          title: 'Reports',
+          url: '/reports',
+
         },
         {
           title: 'Log Out',
           url: '',
-          icon: 'log-out'
+
         }
       ];
-    }else{
+    } else {
       this.appPages = [
-       
+        {
+          title: 'Customer',
+          url: '/home',
+
+        },
+        {
+          title: 'Credit',
+          url: '/dataentrycredit',
+
+        },
+        {
+          title: 'Debit',
+          url: '/debitamount',
+
+        },
+        {
+          title: 'Reports',
+          url: '/reports',
+
+        },
         {
           title: 'Log Out',
           url: '',
-          icon: 'log-out'
+
         }
       ];
     }
   }
 
+  // ,
+  //       {
+  //         title: 'Opening/Closing',
+  //         url: '',
+
+  //       }
   sideMenuClicked(page) {
     if (page === 'Log Out') {
       localStorage.removeItem("loginStatus");
       localStorage.clear();
+      localStorage.setItem('login','no');
       this.router.navigate(['/login']);
+    } else if (page === 'Opening/Closing') {
+      this.checkOpeningClosing(this.data);
     } else {
+
+    }
+  }
+
+  checkOpeningClosing(data) {
+
+    let detailData =
+    {
+      "name": data.name,
+      "mobile": data.mobile,
+      "address": data.address,
+      "lname": data.lname,
+      "amount": data.amount,
+      "imagepath": data.imagepath,
+      "email": data.email,
+      "note": data.note,
+      "navigationFlow" : "sidemenu"
+
+    }
+
+    this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }])
+  }
+
+
+  loginSession() {
+    this.loginStatus = localStorage.getItem('loginStatus');
+    this.login();
+    let loginSession = localStorage.getItem('login');
+    if (loginSession == 'yes') {
+      this.loginStatus = localStorage.getItem('loginStatus');
+      if (this.loginStatus == "dataentry") {
+      
+        this.router.navigate(['/dataentrycredit']);
+        return;
+      }
+      else if (this.loginStatus == "manager") {
+        this.router.navigate(['/home']);
+        return;
+      }
+      else {
+        this.router.navigate(['/home']);
+        return;
       }
     }
+    else {
+      this.router.navigate(['/login']);
+    }
+  }
   
 }

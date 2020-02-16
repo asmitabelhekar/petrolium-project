@@ -17,7 +17,6 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     IonicModule,
     LoginPageRoutingModule,
     MatFormFieldModule,MatCardModule,
-   
     MatInputModule,MatButtonModule,MatIconModule,
     FlexLayoutModule
 

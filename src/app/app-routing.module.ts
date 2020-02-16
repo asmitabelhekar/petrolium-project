@@ -42,6 +42,14 @@ const routes: Routes = [
   {
     path: 'dataentrycredit',
     loadChildren: () => import('./pages/dataentrycredit/dataentrycredit.module').then( m => m.DataentrycreditPageModule)
+  },
+  {
+    path: 'debitamount',
+    loadChildren: () => import('./pages/debitamount/debitamount.module').then( m => m.DebitamountPageModule)
+  },
+  {
+    path: 'reports',
+    loadChildren: () => import('./pages/reports/reports.module').then( m => m.ReportsPageModule)
   }
 ];
 

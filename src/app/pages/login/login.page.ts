@@ -15,6 +15,12 @@ export class LoginPage implements OnInit {
 
   loginModel: any = {}
   userModel: any = {};
+  statusCheck : any ;
+
+  hide = true;
+  message;
+  loading;
+  is_error;
 
   constructor(public router: Router,
     public menuController: MenuController,
@@ -28,21 +34,22 @@ export class LoginPage implements OnInit {
   }
 
 
-  login(data) {
-alert("data:"+JSON.stringify(data.name));
+  Login(data) {
 
     if (data.mobile == "1234567890" && data.password == "abc") {
-      this.router.navigate(['dataentrycredit']);
+      this.router.navigate(['/dataentrycredit']);
+      localStorage.setItem('login','yes');
       localStorage.setItem('loginStatus', 'dataentry');
     } else if (data.mobile == "1234567891" && data.password == "abc"){
       localStorage.setItem('loginStatus', 'manager');
-      this.router.navigate(['home']);
+      localStorage.setItem('login','yes');
+      this.router.navigate(['/home']);
     }else{
-
+      localStorage.setItem('login','no');
+      this.presentToast("Please try again.");
     }
-    // localStorage.setItem('loginStatus', 'manager');
   
-    let statusCheck = localStorage.getItem("loginStatus");
+    this.statusCheck = localStorage.getItem('loginStatus');
  
 
 
@@ -74,4 +81,12 @@ alert("data:"+JSON.stringify(data.name));
     toast.present();
   }
 
+
+  valueEnter() {
+    this.is_error = 0;
+  }
+  ngOnDestroy() {
+    this.loginModel = {};
+
+  }
 }

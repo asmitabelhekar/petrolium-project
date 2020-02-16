@@ -5,7 +5,7 @@ import { DateAdapter } from '@angular/material';
 import { empty, Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
-import { ToastController } from '@ionic/angular';
+import { ToastController, MenuController } from '@ionic/angular';
 
 @Component({
   selector: 'app-dataentrycredit',
@@ -42,7 +42,9 @@ export class DataentrycreditPage implements OnInit {
     public router: Router,
     public location: Location,
     public toast: ToastController,
-    public dateAdapter: DateAdapter<Date>) {
+    public dateAdapter: DateAdapter<Date>,
+    public menu : MenuController) {
+      this.menu.enable(true);
     this.dateAdapter.setLocale("en-GB");
   }
 

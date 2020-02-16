@@ -15,7 +15,7 @@
         <ion-list>
           <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
             <ion-item [routerDirection]="'root'" [routerLink]="[p.url]" (click)="sideMenuClicked(p.title)">
-              <ion-icon slot="start" [name]="p.icon" style="color:white"></ion-icon>
+              <!-- <ion-icon slot="start" [name]="p.icon" style="color:white"></ion-icon> -->
               <ion-label style="color:white; font-size: 15px;">
                 {{p.title}}
               </ion-label>

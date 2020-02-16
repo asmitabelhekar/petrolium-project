@@ -449,7 +449,7 @@ module.exports = webpackAsyncContext;
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-header>\n        <ion-toolbar >\n          <img src=\"../assets/logoapp.png\" class=\"cl-sidemenu-logo\" />\n\n          <div align=\"center\" style=\"margin-top:10px; margin-bottom:20px\">\n            <ion-title style=\"color:white\">Khamkar Petrolium</ion-title>\n          </div>\n\n        </ion-toolbar>\n      </ion-header>\n      <ion-content style=\"margin-top: 5%;\">\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\" (click)=\"sideMenuClicked(p.title)\">\n              <ion-icon slot=\"start\" [name]=\"p.icon\" style=\"color:white\"></ion-icon>\n              <ion-label style=\"color:white; font-size: 15px;\">\n                {{p.title}}\n              </ion-label>\n              <ion-icon name=\"arrow-dropright\" style=\"color:white\"></ion-icon>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n"
+module.exports = "<ion-app>\n  <ion-split-pane contentId=\"main-content\">\n    <ion-menu contentId=\"main-content\" type=\"overlay\">\n      <ion-header>\n        <ion-toolbar >\n          <img src=\"../assets/logoapp.png\" class=\"cl-sidemenu-logo\" />\n\n          <div align=\"center\" style=\"margin-top:10px; margin-bottom:20px\">\n            <ion-title style=\"color:white\">Khamkar Petrolium</ion-title>\n          </div>\n\n        </ion-toolbar>\n      </ion-header>\n      <ion-content style=\"margin-top: 5%;\">\n        <ion-list>\n          <ion-menu-toggle auto-hide=\"false\" *ngFor=\"let p of appPages\">\n            <ion-item [routerDirection]=\"'root'\" [routerLink]=\"[p.url]\" (click)=\"sideMenuClicked(p.title)\">\n              <!-- <ion-icon slot=\"start\" [name]=\"p.icon\" style=\"color:white\"></ion-icon> -->\n              <ion-label style=\"color:white; font-size: 15px;\">\n                {{p.title}}\n              </ion-label>\n              <ion-icon name=\"arrow-dropright\" style=\"color:white\"></ion-icon>\n            </ion-item>\n          </ion-menu-toggle>\n        </ion-list>\n      </ion-content>\n    </ion-menu>\n    <ion-router-outlet id=\"main-content\"></ion-router-outlet>\n  </ion-split-pane>\n</ion-app>\n"
 
 /***/ }),
 
@@ -506,6 +506,18 @@ const routes = [
     {
         path: 'dataentryopening',
         loadChildren: () => __webpack_require__.e(/*! import() | pages-dataentryopening-dataentryopening-module */ "pages-dataentryopening-dataentryopening-module").then(__webpack_require__.bind(null, /*! ./pages/dataentryopening/dataentryopening.module */ "./src/app/pages/dataentryopening/dataentryopening.module.ts")).then(m => m.DataentryopeningPageModule)
+    },
+    {
+        path: 'dataentrycredit',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-dataentrycredit-dataentrycredit-module */ "pages-dataentrycredit-dataentrycredit-module").then(__webpack_require__.bind(null, /*! ./pages/dataentrycredit/dataentrycredit.module */ "./src/app/pages/dataentrycredit/dataentrycredit.module.ts")).then(m => m.DataentrycreditPageModule)
+    },
+    {
+        path: 'debitamount',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-debitamount-debitamount-module */ "pages-debitamount-debitamount-module").then(__webpack_require__.bind(null, /*! ./pages/debitamount/debitamount.module */ "./src/app/pages/debitamount/debitamount.module.ts")).then(m => m.DebitamountPageModule)
+    },
+    {
+        path: 'reports',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-reports-reports-module */ "pages-reports-reports-module").then(__webpack_require__.bind(null, /*! ./pages/reports/reports.module */ "./src/app/pages/reports/reports.module.ts")).then(m => m.ReportsPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -530,7 +542,7 @@ AppRoutingModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".cl-logo-css {\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n}\n\n.cl-sidemenu-logo {\n  height: 80px;\n  width: 80px;\n  border-radius: 50%;\n  margin-top: 20px;\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  margin-top: 12%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2RoYW5hbmpheXJhdXQvcGV0cm9saXVtLXByb2plY3Qvc3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiLCJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLFdBQUE7RUFDQSxZQUFBO0VBQ0Esa0JBQUE7QUNDSjs7QURFQTtFQUNJLFlBQUE7RUFDQyxXQUFBO0VBQ0Msa0JBQUE7RUFDQyxnQkFBQTtFQUNELGNBQUE7RUFDQSxpQkFBQTtFQUNBLGtCQUFBO0VBQ0EsZUFBQTtBQ0NOIiwiZmlsZSI6InNyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLmNsLWxvZ28tY3Nze1xuICAgIHdpZHRoOiA4MHB4O1xuICAgIGhlaWdodCA6IDgwcHg7XG4gICAgYm9yZGVyLXJhZGl1czogNTAlO1xufVxuXG4uY2wtc2lkZW1lbnUtbG9nb3tcbiAgICBoZWlnaHQ6IDgwcHg7XG4gICAgIHdpZHRoIDogODBweDtcbiAgICAgIGJvcmRlci1yYWRpdXM6IDUwJTtcbiAgICAgICBtYXJnaW4tdG9wOiAyMHB4OyBcbiAgICAgIGRpc3BsYXk6IGJsb2NrO1xuICAgICAgbWFyZ2luLWxlZnQ6IGF1dG87XG4gICAgICBtYXJnaW4tcmlnaHQ6IGF1dG87XG4gICAgICBtYXJnaW4tdG9wOiAxMiU7XG4gIH0iLCIuY2wtbG9nby1jc3Mge1xuICB3aWR0aDogODBweDtcbiAgaGVpZ2h0OiA4MHB4O1xuICBib3JkZXItcmFkaXVzOiA1MCU7XG59XG5cbi5jbC1zaWRlbWVudS1sb2dvIHtcbiAgaGVpZ2h0OiA4MHB4O1xuICB3aWR0aDogODBweDtcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xuICBtYXJnaW4tdG9wOiAyMHB4O1xuICBkaXNwbGF5OiBibG9jaztcbiAgbWFyZ2luLWxlZnQ6IGF1dG87XG4gIG1hcmdpbi1yaWdodDogYXV0bztcbiAgbWFyZ2luLXRvcDogMTIlO1xufSJdfQ== */"
+module.exports = ".cl-logo-css {\n  width: 80px;\n  height: 80px;\n  border-radius: 50%;\n}\n\n.cl-sidemenu-logo {\n  height: 80px;\n  width: 80px;\n  border-radius: 50%;\n  margin-top: 20px;\n  display: block;\n  margin-left: auto;\n  margin-right: auto;\n  margin-top: 12%;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2RoYW5hbmpheXJhdXQvRG93bmxvYWRzL3BldHJvbGl1bS1wcm9qZWN0L3NyYy9hcHAvYXBwLmNvbXBvbmVudC5zY3NzIiwic3JjL2FwcC9hcHAuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxXQUFBO0VBQ0EsWUFBQTtFQUNBLGtCQUFBO0FDQ0o7O0FERUE7RUFDSSxZQUFBO0VBQ0MsV0FBQTtFQUNDLGtCQUFBO0VBQ0MsZ0JBQUE7RUFDRCxjQUFBO0VBQ0EsaUJBQUE7RUFDQSxrQkFBQTtFQUNBLGVBQUE7QUNDTiIsImZpbGUiOiJzcmMvYXBwL2FwcC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jbC1sb2dvLWNzc3tcbiAgICB3aWR0aDogODBweDtcbiAgICBoZWlnaHQgOiA4MHB4O1xuICAgIGJvcmRlci1yYWRpdXM6IDUwJTtcbn1cblxuLmNsLXNpZGVtZW51LWxvZ297XG4gICAgaGVpZ2h0OiA4MHB4O1xuICAgICB3aWR0aCA6IDgwcHg7XG4gICAgICBib3JkZXItcmFkaXVzOiA1MCU7XG4gICAgICAgbWFyZ2luLXRvcDogMjBweDsgXG4gICAgICBkaXNwbGF5OiBibG9jaztcbiAgICAgIG1hcmdpbi1sZWZ0OiBhdXRvO1xuICAgICAgbWFyZ2luLXJpZ2h0OiBhdXRvO1xuICAgICAgbWFyZ2luLXRvcDogMTIlO1xuICB9IiwiLmNsLWxvZ28tY3NzIHtcbiAgd2lkdGg6IDgwcHg7XG4gIGhlaWdodDogODBweDtcbiAgYm9yZGVyLXJhZGl1czogNTAlO1xufVxuXG4uY2wtc2lkZW1lbnUtbG9nbyB7XG4gIGhlaWdodDogODBweDtcbiAgd2lkdGg6IDgwcHg7XG4gIGJvcmRlci1yYWRpdXM6IDUwJTtcbiAgbWFyZ2luLXRvcDogMjBweDtcbiAgZGlzcGxheTogYmxvY2s7XG4gIG1hcmdpbi1sZWZ0OiBhdXRvO1xuICBtYXJnaW4tcmlnaHQ6IGF1dG87XG4gIG1hcmdpbi10b3A6IDEyJTtcbn0iXX0= */"
 
 /***/ }),
 
@@ -562,78 +574,138 @@ let AppComponent = class AppComponent {
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
         this.router = router;
+        this.loginStatus = "dataentry";
         this.initializeApp();
     }
     initializeApp() {
-        this.loginStatus = localStorage.getItem("loginStatus");
+        this.loginStatus = localStorage.getItem('loginStatus');
         this.login();
+        this.loginSession();
         this.platform.ready().then(() => {
             this.statusBar.styleDefault();
             this.splashScreen.hide();
         });
     }
     login() {
-        this.loginStatus = localStorage.getItem("loginStatus");
+        this.loginStatus = localStorage.getItem('loginStatus');
         if (this.loginStatus == "dataentry") {
             this.appPages = [
                 {
                     title: 'Credit',
-                    url: '/updatebalance',
-                    icon: 'document'
+                    url: '/dataentrycredit',
                 },
                 {
                     title: 'Opening',
                     url: '/dataentryopening',
-                    icon: 'person'
                 },
                 {
                     title: 'Log Out',
                     url: '/login',
-                    icon: 'log-out'
                 }
             ];
         }
         else if (this.loginStatus == "manager") {
             this.appPages = [
                 {
-                    title: 'Customer Records',
+                    title: 'Customer',
                     url: '/home',
-                    icon: 'document'
                 },
                 {
-                    title: 'Debit/Credit',
-                    url: '/addcustomer',
-                    icon: 'person'
+                    title: 'Credit',
+                    url: '/dataentrycredit',
                 },
                 {
-                    title: 'Opening/Closing',
-                    url: '/showbalancerecord',
-                    icon: 'person'
+                    title: 'Debit',
+                    url: '/debitamount',
+                },
+                {
+                    title: 'Reports',
+                    url: '/reports',
                 },
                 {
                     title: 'Log Out',
                     url: '',
-                    icon: 'log-out'
                 }
             ];
         }
         else {
             this.appPages = [
                 {
+                    title: 'Customer',
+                    url: '/home',
+                },
+                {
+                    title: 'Credit',
+                    url: '/dataentrycredit',
+                },
+                {
+                    title: 'Debit',
+                    url: '/debitamount',
+                },
+                {
+                    title: 'Reports',
+                    url: '/reports',
+                },
+                {
                     title: 'Log Out',
                     url: '',
-                    icon: 'log-out'
                 }
             ];
         }
     }
+    // ,
+    //       {
+    //         title: 'Opening/Closing',
+    //         url: '',
+    //       }
     sideMenuClicked(page) {
         if (page === 'Log Out') {
             localStorage.removeItem("loginStatus");
             localStorage.clear();
+            localStorage.setItem('login', 'no');
             this.router.navigate(['/login']);
         }
+        else if (page === 'Opening/Closing') {
+            this.checkOpeningClosing(this.data);
+        }
         else {
+        }
+    }
+    checkOpeningClosing(data) {
+        let detailData = {
+            "name": data.name,
+            "mobile": data.mobile,
+            "address": data.address,
+            "lname": data.lname,
+            "amount": data.amount,
+            "imagepath": data.imagepath,
+            "email": data.email,
+            "note": data.note,
+            "navigationFlow": "sidemenu"
+        };
+        this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }]);
+    }
+    loginSession() {
+        this.loginStatus = localStorage.getItem('loginStatus');
+        this.login();
+        let loginSession = localStorage.getItem('login');
+        if (loginSession == 'yes') {
+            this.loginStatus = localStorage.getItem('loginStatus');
+            if (this.loginStatus == "dataentry") {
+                this.router.navigate(['/dataentrycredit']);
+                return;
+            }
+            else if (this.loginStatus == "manager") {
+                this.router.navigate(['/home']);
+                return;
+            }
+            else {
+                this.router.navigate(['/home']);
+                return;
+            }
+        }
+        else {
+            this.router.navigate(['/login']);
         }
     }
 };
@@ -813,7 +885,7 @@ Object(_angular_platform_browser_dynamic__WEBPACK_IMPORTED_MODULE_2__["platformB
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /home/dhananjayraut/petrolium-project/src/main.ts */"./src/main.ts");
+module.exports = __webpack_require__(/*! /home/dhananjayraut/Downloads/petrolium-project/src/main.ts */"./src/main.ts");
 
 
 /***/ })
