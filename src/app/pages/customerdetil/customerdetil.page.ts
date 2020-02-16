@@ -65,7 +65,7 @@ export class CustomerdetilPage implements OnInit {
         this.customerNote = "NA";
       }
      
-      // this.customerIndex = parseArray.getIndex;
+      this.customerIndex = parseArray.getIndex;
       // this.customerImage = parseArray.imagepath;
       
       // console.log("display detail data:" + JSON.parse(getdetail));

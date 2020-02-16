@@ -20,6 +20,7 @@ export class HomePage {
       "amount": "2500",
       "address": "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
       "email": "lllll@gmail.com",
+      "note" : "fgfgf"
     },
     {
       "name": "smitaaa belhekar",
@@ -27,6 +28,7 @@ export class HomePage {
       "amount": "1000",
       "address": "Ahmednagar",
       "email": "smitaaa@gmail.com",
+      "note" : "fgfgf"
     },
     {
       "name": "asmita belhekar",
@@ -34,6 +36,7 @@ export class HomePage {
       "amount": "5000",
       "address": "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
       "email": "asmita@gmail.com",
+      "note" : ""
 
     },
     {
@@ -42,7 +45,7 @@ export class HomePage {
       "amount": "2500",
       "address": "Pune",
       "email": "",
-
+      "note" : "fgfgf"
     },
 
     {
@@ -51,7 +54,7 @@ export class HomePage {
       "amount": "2500",
       "address": "Mumbai",
       "email": "priya@gmail.com",
-
+      "note" : "fgfgf"
     },
     {
       "name": "asmi belhekar",
@@ -59,7 +62,7 @@ export class HomePage {
       "amount": "1000",
       "address": "Ahmednagar",
       "email": "asmi@gmail.com",
-
+      "note" : ""
     },
     {
       "name": "kiran kokate",
@@ -67,7 +70,7 @@ export class HomePage {
       "amount": "5000",
       "address": "Pune",
       "email": "kiran@gmail.com",
-
+      "note" : "fgfgf"
     },
     {
       "name": "ccccc dddd",
@@ -75,6 +78,7 @@ export class HomePage {
       "amount": "2500",
       "address": "Pune",
       "email": "ccccc@gmail.com",
+      "note" : "fgfgf"
     },
 
     {
@@ -83,7 +87,7 @@ export class HomePage {
       "amount": "2500",
       "address": "Mumbai",
       "email": "dhananjay@gmail.com",
-
+      "note" : ""
     },
     {
       "name": "cccc ppppp",
@@ -91,6 +95,7 @@ export class HomePage {
       "amount": "1000",
       "address": "Ahmednagar",
       "email": "ccc@gmail.com",
+      "note" : "fgfgf"
     },
     {
       "name": "cccc hhhhhhh ",
@@ -98,6 +103,7 @@ export class HomePage {
       "amount": "5000",
       "address": "Pune",
       "email": "chchch@gmail.com",
+      "note" : "fgfgf"
     },
     {
       "name": "aaaaaaa zzzz",
@@ -105,7 +111,7 @@ export class HomePage {
       "amount": "2500",
       "address": "",
       "email": "azazazaz@gmail.com",
-
+      "note" : "fgfgf"
     },
     {
       "name": "smitaaa belhekar",
@@ -113,6 +119,7 @@ export class HomePage {
       "amount": "1000",
       "address": "Ahmednagar",
       "email": "smitaaa@gmail.com",
+      "note" : ""
     },
     {
       "name": "aaaaaaaa   zzzz",
@@ -120,7 +127,7 @@ export class HomePage {
       "amount": "2500",
       "address": "Pune",
       "email": "azazazaz@gmail.com",
-
+      "note" : "fgfgf"
     },
     {
       "name": "smitaaa belhekar",
@@ -128,6 +135,7 @@ export class HomePage {
       "amount": "1000",
       "address": "Ahmednagar",
       "email": "smitaaa@gmail.com",
+      "note" : "fgfgf"
     },
     {
       "name": "asmita belhekar",
@@ -135,7 +143,7 @@ export class HomePage {
       "amount": "5000",
       "address": "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
       "email": "asmita@gmail.com",
-
+      "note" : "fgfgf"
     },
     {
       "name": "sejal belhekar",
@@ -143,7 +151,7 @@ export class HomePage {
       "amount": "2500",
       "address": "Pune",
       "email": "",
-
+      "note" : "fgfgf"
     },
 
     {
@@ -152,7 +160,7 @@ export class HomePage {
       "amount": "2500",
       "address": "Mumbai",
       "email": "priya@gmail.com",
-
+      "note" : "fgfgf"
     },
     {
       "name": "asmi belhekar",
@@ -160,7 +168,7 @@ export class HomePage {
       "amount": "1000",
       "address": "Ahmednagar",
       "email": "asmi@gmail.com",
-
+      "note" : "fgfgf"
     },
     {
       "name": "kiran kokate",
@@ -168,7 +176,7 @@ export class HomePage {
       "amount": "5000",
       "address": "Pune",
       "email": "kiran@gmail.com",
-
+      "note" : "fgfgf"
     },
     {
       "name": "ccccc dddd",
@@ -176,6 +184,7 @@ export class HomePage {
       "amount": "2500",
       "address": "Pune",
       "email": "ccccc@gmail.com",
+      "note" : "fgfgf"
     }
   ]
   constructor(public menuCntrl: MenuController,

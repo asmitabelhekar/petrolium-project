@@ -69706,6 +69706,7 @@ let HomePage = class HomePage {
                 "amount": "2500",
                 "address": "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
                 "email": "lllll@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "smitaaa belhekar",
@@ -69713,6 +69714,7 @@ let HomePage = class HomePage {
                 "amount": "1000",
                 "address": "Ahmednagar",
                 "email": "smitaaa@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "asmita belhekar",
@@ -69720,6 +69722,7 @@ let HomePage = class HomePage {
                 "amount": "5000",
                 "address": "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
                 "email": "asmita@gmail.com",
+                "note": ""
             },
             {
                 "name": "sejal belhekar",
@@ -69727,6 +69730,7 @@ let HomePage = class HomePage {
                 "amount": "2500",
                 "address": "Pune",
                 "email": "",
+                "note": "fgfgf"
             },
             {
                 "name": "priya abc",
@@ -69734,6 +69738,7 @@ let HomePage = class HomePage {
                 "amount": "2500",
                 "address": "Mumbai",
                 "email": "priya@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "asmi belhekar",
@@ -69741,6 +69746,7 @@ let HomePage = class HomePage {
                 "amount": "1000",
                 "address": "Ahmednagar",
                 "email": "asmi@gmail.com",
+                "note": ""
             },
             {
                 "name": "kiran kokate",
@@ -69748,6 +69754,7 @@ let HomePage = class HomePage {
                 "amount": "5000",
                 "address": "Pune",
                 "email": "kiran@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "ccccc dddd",
@@ -69755,6 +69762,7 @@ let HomePage = class HomePage {
                 "amount": "2500",
                 "address": "Pune",
                 "email": "ccccc@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "dhananjay raut",
@@ -69762,6 +69770,7 @@ let HomePage = class HomePage {
                 "amount": "2500",
                 "address": "Mumbai",
                 "email": "dhananjay@gmail.com",
+                "note": ""
             },
             {
                 "name": "cccc ppppp",
@@ -69769,6 +69778,7 @@ let HomePage = class HomePage {
                 "amount": "1000",
                 "address": "Ahmednagar",
                 "email": "ccc@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "cccc hhhhhhh ",
@@ -69776,6 +69786,7 @@ let HomePage = class HomePage {
                 "amount": "5000",
                 "address": "Pune",
                 "email": "chchch@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "aaaaaaa zzzz",
@@ -69783,6 +69794,7 @@ let HomePage = class HomePage {
                 "amount": "2500",
                 "address": "",
                 "email": "azazazaz@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "smitaaa belhekar",
@@ -69790,6 +69802,7 @@ let HomePage = class HomePage {
                 "amount": "1000",
                 "address": "Ahmednagar",
                 "email": "smitaaa@gmail.com",
+                "note": ""
             },
             {
                 "name": "aaaaaaaa   zzzz",
@@ -69797,6 +69810,7 @@ let HomePage = class HomePage {
                 "amount": "2500",
                 "address": "Pune",
                 "email": "azazazaz@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "smitaaa belhekar",
@@ -69804,6 +69818,7 @@ let HomePage = class HomePage {
                 "amount": "1000",
                 "address": "Ahmednagar",
                 "email": "smitaaa@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "asmita belhekar",
@@ -69811,6 +69826,7 @@ let HomePage = class HomePage {
                 "amount": "5000",
                 "address": "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
                 "email": "asmita@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "sejal belhekar",
@@ -69818,6 +69834,7 @@ let HomePage = class HomePage {
                 "amount": "2500",
                 "address": "Pune",
                 "email": "",
+                "note": "fgfgf"
             },
             {
                 "name": "priya abc",
@@ -69825,6 +69842,7 @@ let HomePage = class HomePage {
                 "amount": "2500",
                 "address": "Mumbai",
                 "email": "priya@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "asmi belhekar",
@@ -69832,6 +69850,7 @@ let HomePage = class HomePage {
                 "amount": "1000",
                 "address": "Ahmednagar",
                 "email": "asmi@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "kiran kokate",
@@ -69839,6 +69858,7 @@ let HomePage = class HomePage {
                 "amount": "5000",
                 "address": "Pune",
                 "email": "kiran@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "ccccc dddd",
@@ -69846,6 +69866,7 @@ let HomePage = class HomePage {
                 "amount": "2500",
                 "address": "Pune",
                 "email": "ccccc@gmail.com",
+                "note": "fgfgf"
             }
         ];
         this.getCusstomers.sort((a, b) => a.name.localeCompare(b.name));

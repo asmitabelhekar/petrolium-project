@@ -55,7 +55,7 @@ export class DataentrycreditPage implements OnInit {
         map(value => this._filter(value))
       );
 
-
+    this.userModel['date']=  new Date().toJSON().split('T')[0];
     this.today = new Date().toJSON().split('T')[0];
     let loginStatus = localStorage.getItem("loginStatus");
 

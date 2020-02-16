@@ -69709,6 +69709,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "2500",
                 "address": "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
                 "email": "lllll@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "smitaaa belhekar",
@@ -69716,6 +69717,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "1000",
                 "address": "Ahmednagar",
                 "email": "smitaaa@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "asmita belhekar",
@@ -69723,6 +69725,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "5000",
                 "address": "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
                 "email": "asmita@gmail.com",
+                "note": ""
             },
             {
                 "name": "sejal belhekar",
@@ -69730,6 +69733,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "2500",
                 "address": "Pune",
                 "email": "",
+                "note": "fgfgf"
             },
             {
                 "name": "priya abc",
@@ -69737,6 +69741,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "2500",
                 "address": "Mumbai",
                 "email": "priya@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "asmi belhekar",
@@ -69744,6 +69749,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "1000",
                 "address": "Ahmednagar",
                 "email": "asmi@gmail.com",
+                "note": ""
             },
             {
                 "name": "kiran kokate",
@@ -69751,6 +69757,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "5000",
                 "address": "Pune",
                 "email": "kiran@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "ccccc dddd",
@@ -69758,6 +69765,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "2500",
                 "address": "Pune",
                 "email": "ccccc@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "dhananjay raut",
@@ -69765,6 +69773,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "2500",
                 "address": "Mumbai",
                 "email": "dhananjay@gmail.com",
+                "note": ""
             },
             {
                 "name": "cccc ppppp",
@@ -69772,6 +69781,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "1000",
                 "address": "Ahmednagar",
                 "email": "ccc@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "cccc hhhhhhh ",
@@ -69779,6 +69789,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "5000",
                 "address": "Pune",
                 "email": "chchch@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "aaaaaaa zzzz",
@@ -69786,6 +69797,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "2500",
                 "address": "",
                 "email": "azazazaz@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "smitaaa belhekar",
@@ -69793,6 +69805,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "1000",
                 "address": "Ahmednagar",
                 "email": "smitaaa@gmail.com",
+                "note": ""
             },
             {
                 "name": "aaaaaaaa   zzzz",
@@ -69800,6 +69813,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "2500",
                 "address": "Pune",
                 "email": "azazazaz@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "smitaaa belhekar",
@@ -69807,6 +69821,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "1000",
                 "address": "Ahmednagar",
                 "email": "smitaaa@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "asmita belhekar",
@@ -69814,6 +69829,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "5000",
                 "address": "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
                 "email": "asmita@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "sejal belhekar",
@@ -69821,6 +69837,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "2500",
                 "address": "Pune",
                 "email": "",
+                "note": "fgfgf"
             },
             {
                 "name": "priya abc",
@@ -69828,6 +69845,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "2500",
                 "address": "Mumbai",
                 "email": "priya@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "asmi belhekar",
@@ -69835,6 +69853,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "1000",
                 "address": "Ahmednagar",
                 "email": "asmi@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "kiran kokate",
@@ -69842,6 +69861,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "5000",
                 "address": "Pune",
                 "email": "kiran@gmail.com",
+                "note": "fgfgf"
             },
             {
                 "name": "ccccc dddd",
@@ -69849,6 +69869,7 @@ var HomePage = /** @class */ (function () {
                 "amount": "2500",
                 "address": "Pune",
                 "email": "ccccc@gmail.com",
+                "note": "fgfgf"
             }
         ];
         this.getCusstomers.sort(function (a, b) { return a.name.localeCompare(b.name); });
