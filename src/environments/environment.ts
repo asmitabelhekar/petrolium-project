@@ -3,9 +3,15 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
+
+  // production: false,
+  // version:"v1.0/",
+  // base_url: "http://13.232.252.60:3000/api/"
+
+
   production: false,
   version: 'v1.0.0/',
-  base_url :"http://3.6.135.154:19000/api/"
+  base_url :"http://3.6.135.154:20200/api/v1.0.0/"
 };
 
 /*

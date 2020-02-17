@@ -4,7 +4,10 @@ import { Location } from '@angular/common';
 import { DateAdapter } from '@angular/material';
 import { empty, Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
-import {map, startWith} from 'rxjs/operators';
+import { map, startWith } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
+import { ApicallService } from 'src/app/service/apicall/apicall.service';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-updatebalance',
@@ -12,7 +15,7 @@ import {map, startWith} from 'rxjs/operators';
   styleUrls: ['./updatebalance.page.scss'],
 })
 export class UpdatebalancePage implements OnInit {
-  customerList: string[] = ['asmita', 'smita', 'asmi','sejal','pranil','dddd','ffff','ggggggg','hhhhh','jjjjjj'];
+  customerList: string[] = ['asmita', 'smita', 'asmi', 'sejal', 'pranil', 'dddd', 'ffff', 'ggggggg', 'hhhhh', 'jjjjjj'];
 
   showDateNoteDiv: any = 1;
   customerName: any;
@@ -27,21 +30,24 @@ export class UpdatebalancePage implements OnInit {
   displayBalnace: any = 0;
   checkFuelType: any;
   myControl = new FormControl();
+  customerId : any;
   filteredOptions: Observable<string[]>;
   buttonsArray = [
     {
       "fuelType": "Petrol",
       "indexFuel": "0",
-      "type": "1"
+      "type": "0"
     },
     {
       "fuelType": "Diesel",
       "indexFuel": "1",
-      "type": "2"
+      "type": "1"
     }];
   constructor(public activatedRoute: ActivatedRoute,
     public router: Router,
     public location: Location,
+    public apiCall: ApicallService,
+    public toastcontroller : ToastController,
     public dateAdapter: DateAdapter<Date>) {
     this.dateAdapter.setLocale("en-GB");
   }
@@ -49,42 +55,44 @@ export class UpdatebalancePage implements OnInit {
   ngOnInit() {
 
     this.filteredOptions = this.myControl.valueChanges
-    .pipe(startWith(''),
-      map(value => this._filter(value))
-    );
+      .pipe(startWith(''),
+        map(value => this._filter(value))
+      );
 
 
     this.userModel['date'] = new Date().toJSON().split('T')[0];
     this.today = new Date().toJSON().split('T')[0];
-    let loginStatus = localStorage.getItem("loginStatus");
+    // let loginStatus = localStorage.getItem("loginStatus");
 
-    if(loginStatus == "manager"){
-     
-      this.getPaymentDetail = JSON.parse(this.activatedRoute.snapshot.params['balanceObject']);
-      this.userModel['perliture'] = 70;
-      this.customerName = this.getPaymentDetail.customerName;
-      this.paymentType = this.getPaymentDetail.amountState;
-      if (this.paymentType == "1") {
-        this.paymentMethod = "Payment";
-        this.paymentNames = "Debit Payment";
-      } else if (this.paymentType == "2") {
-        this.paymentMethod = "Credit"
-        this.paymentNames = "Credit Payment";
-      } else {
-  
-      }
-  
-    }else{
+    // if(loginStatus == "manager"){
+
+    this.getPaymentDetail = JSON.parse(this.activatedRoute.snapshot.params['balanceObject']);
+    this.userModel['perliture'] = 70;
+    this.customerName = this.getPaymentDetail.customerName;
+    this.customerId = this.getPaymentDetail.customerId;
+    this.paymentType = this.getPaymentDetail.amountState;
+    if (this.paymentType == "1") {
+      this.paymentMethod = "Payment";
+      this.paymentNames = "Debit Payment";
+    } else if (this.paymentType == "2") {
+      this.paymentMethod = "Credit"
+      this.paymentNames = "Credit Payment";
+    } else {
 
     }
-   
+
+    // }else{
+
+    // }
+
   }
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-
     return this.customerList.filter(option => option.toLowerCase().includes(filterValue));
   }
+
+
   OnInput(event: any) {
     if (this.paymentMethod == "Credit") {
       this.userModel['totalamount'] = this.userModel['perliture'] * this.userModel['inlitures'];
@@ -118,8 +126,55 @@ export class UpdatebalancePage implements OnInit {
     return [date.getFullYear(), mnth, day].join("-");
   }
 
-  fuelType(fuelType) {   
-      this.checkFuelType = fuelType;
+  fuelType(fuelType) {
+    this.checkFuelType = fuelType;
+    if(fuelType == 0){
+      
+      this.userModel['type'] = 0;
+      this.userModel['perliture'] = 70;
+    }else{
+      this.userModel['type'] = 1;
+      this.userModel['perliture'] = 80;
+    }
   }
 
+  creditAmount() {
+    let send_date = {};
+    send_date['type'] = this.userModel['type'];
+    send_date['amountInLitre'] = this.userModel['inlitures'];
+    send_date['pricePerLitre'] = this.userModel['perliture']
+    send_date['finalAmount'] = this.userModel['totalamount'];
+    send_date['amountPaid'] = this.userModel['payment']
+
+    let url = environment.base_url + "customers/" + this.customerId + "/purchase"
+    this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
+      let msg = MyResponse['message'];
+      this.presentToast(msg);
+    }, error => {
+      console.log(error.error.message);
+    })
+  }
+
+  debitAmount(){
+    let send_date = {};
+
+    send_date['date'] = this.userModel['date'];
+    send_date['amount'] = this.userModel['payment'];
+    send_date['message'] = this.userModel['note']
+    let url = environment.base_url + "customers/" + this.customerId + "/passbook"
+    this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
+      let msg = MyResponse['message'];
+      this.presentToast(msg);
+    }, error => {
+      console.log(error.error.message);
+    })
+  }
+
+  async presentToast(message) {
+    const toast = await this.toastcontroller.create({
+      message: message,
+      duration: 4000
+    });
+    toast.present();
+  }
 }

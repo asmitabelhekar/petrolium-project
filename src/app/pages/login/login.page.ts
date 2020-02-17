@@ -15,17 +15,18 @@ export class LoginPage implements OnInit {
 
   loginModel: any = {}
   userModel: any = {};
-  statusCheck : any ;
+  statusCheck: any;
 
   hide = true;
   message;
   loading;
   is_error;
+  userRole: any;
 
   constructor(public router: Router,
     public menuController: MenuController,
     public preloader: LoaderserviceService,
-    public apicall: ApicallService,
+    public apiCall: ApicallService,
     public toastcontroller: ToastController) { }
 
 
@@ -36,21 +37,45 @@ export class LoginPage implements OnInit {
 
   Login(data) {
 
-    if (data.mobile == "1234567890" && data.password == "abc") {
-      this.router.navigate(['/dataentrycredit']);
-      localStorage.setItem('login','yes');
-      localStorage.setItem('loginStatus', 'dataentry');
-    } else if (data.mobile == "1234567891" && data.password == "abc"){
-      localStorage.setItem('loginStatus', 'manager');
-      localStorage.setItem('login','yes');
-      this.router.navigate(['/home']);
-    }else{
-      localStorage.setItem('login','no');
-      this.presentToast("Please try again.");
-    }
-  
+    let send_date = {};
+
+    send_date['mobile'] = this.loginModel['mobile'];
+    send_date['password'] = this.loginModel['password'];
+
+    let url = environment.base_url + "users/login"
+    this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
+      localStorage.setItem('userRole', MyResponse['result']['userRole']);
+      localStorage.setItem('login', 'yes');
+      if (this.userRole == 0) {
+        this.router.navigate(['/dataentrycredit']);
+      }
+      else if (this.userRole == 1) {
+        this.router.navigate(['/home']);
+      }
+      else {
+        this.router.navigate(['/home']);
+      }
+      let msg = MyResponse['message'];
+      this.presentToast(msg);
+    }, error => {
+      console.log(error.error.message);
+    })
+
+    // if (data.mobile == "1234567890" && data.password == "abc") {
+    //   this.router.navigate(['/dataentrycredit']);
+    //   localStorage.setItem('login','yes');
+    //   localStorage.setItem('loginStatus', 'dataentry');
+    // } else if (data.mobile == "1234567891" && data.password == "abc"){
+    //   localStorage.setItem('loginStatus', 'manager');
+    //   localStorage.setItem('login','yes');
+    //   this.router.navigate(['/home']);
+    // }else{
+    //   localStorage.setItem('login','no');
+    //   this.presentToast("Please try again.");
+    // }
+
     this.statusCheck = localStorage.getItem('loginStatus');
- 
+
 
 
     // this.preloader.showBlockingLoaderAuth();

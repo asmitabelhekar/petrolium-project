@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header class=\"new-background-color\">\n  <ion-toolbar class=\"new-background-color\">\n    <ion-buttons slot=\"start\" style=\"color:white\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title style=\"color:white\">\n      Credit\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <div fxLayout=\"column\" fxLayoutAlign=\"center\" style=\"margin-top:10%\">\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%\">\n        <input type=\"text\" placeholder=\"Customer Name\" aria-label=\"Number\" matInput [formControl]=\"myControl\"\n          [matAutocomplete]=\"auto\">\n        <mat-autocomplete #auto=\"matAutocomplete\">\n          <mat-option *ngFor=\"let option of filteredOptions | async\" [value]=\"option\">\n            {{option}}\n          </mat-option>\n        </mat-autocomplete>\n      </mat-form-field>\n\n\n    </div>\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Choose a date</mat-label>\n        <input matInput #input=\"ngModel\" [(ngModel)]=\"userModel.date\" [min]=\"minDate\" [max]=\"today\"\n          [matDatepicker]=\"picker\" placeholder=\"Choose a date\">\n        <!-- <input matInput [matDatepicker]=\"picker\" [(ngModel)]=\"userModel.date\" [max]=\"maxDate\"> -->\n        <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n        <mat-datepicker #picker (selectedChanged)=\"onDate($event)\"></mat-datepicker>\n      </mat-form-field>\n    </div>\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"space-around center\" style=\"width:96%;margin-left:2%; margin-right:2%\">\n      <div *ngFor=\"let item of buttonsArray;let i = index \" style=\"width:44%\">\n        <button mat-button style=\"width:100%\" [ngClass]=\"(checkFuelType  == i) ? 'oddBackground' : 'evenBackground' \"\n          (click)=\"fuelType(item.indexFuel)\">{{item.fuelType}}</button>\n      </div>\n    </div>\n\n    <div style=\"width: 100%;\">\n\n      <!-- <ion-row style=\"width:80%\" fxLayout=\"row\" fxLayoutAlign=\"center center\" align=\"center\">\n        <ion-col  *ngFor=\"let item of buttonsArray;let i = index \">\n          <button mat-button style=\"width:100%\" [ngClass]=\"(checkFuelType  == i) ? 'oddBackground' : 'evenBackground' \"\n            (click)=\"fuelType(item.indexFuel)\">{{item.fuelType}}</button>\n        </ion-col>\n      </ion-row> -->\n\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%; margin-top:10px\">\n          <mat-label>In Litures</mat-label>\n          <input matInput type=\"number\" name=\"inlitures\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.inlitures\"\n            #inlitures=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Per Liture</mat-label>\n          <input matInput type=\"number\" name=\"perliture\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.perliture\"\n            #perliture=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Total Amount</mat-label>\n          <input matInput type=\"number\" name=\"totalamount\" [(ngModel)]=\"userModel.totalamount\" #totalamount=\"ngModel\"\n            class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"width:100%;\">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Add Credit</mat-label>\n            <input matInput type=\"number\" name=\"payment\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.payment\"\n              #payment=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" *ngIf=\"displayBalnace == '1' \">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Balance</mat-label>\n        <input matInput type=\"number\" name=\"balance\" [(ngModel)]=\"userModel.balance\" #balance=\"ngModel\"\n          class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n      </mat-form-field>\n    </div>\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%;\">\n        <mat-label>Note</mat-label>\n        <textarea matInput class=\"form-control \" name=\"note\" [(ngModel)]=\"userModel.note\" #note=\"ngModel\"\n          pattern=\"[a-zA-z]+$\" placeholder=\"Note\"></textarea>\n      </mat-form-field>\n    </div>\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:5%;margin-bottom:20px\">\n      <button mat-raised-button [disabled]=\"payment.invalid \" class=\"submitButton\"\n        (click)=\"creditsubmit()\">Credit</button>\n    </div>\n  </div>\n\n\n</ion-content>"
+module.exports = "<ion-header class=\"new-background-color\">\n  <ion-toolbar class=\"new-background-color\">\n    <ion-buttons slot=\"start\" style=\"color:white\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title style=\"color:white\">\n      Credit\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <div fxLayout=\"column\" fxLayoutAlign=\"center\" style=\"margin-top:10%\">\n\n    <!-- <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%\">\n        <input type=\"text\" placeholder=\"Customer Name\" aria-label=\"Number\" matInput [formControl]=\"myControl\" [(ngModel)]=\"userModel.customername\"\n          [matAutocomplete]=\"auto\">\n        <mat-autocomplete #auto=\"matAutocomplete\">\n          <mat-option *ngFor=\"let option of filteredOptions | async\" [value]=\"option\">\n            {{option}}\n          </mat-option>\n        </mat-autocomplete>\n      </mat-form-field>\n    </div> -->\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%\">\n        <input type=\"text\"\n               placeholder=\"Customer Name\"\n               aria-label=\"Number\"\n               matInput\n               [(ngModel)]=\"userModel.customername\"\n               [formControl]=\"myControl\"\n               [matAutocomplete]=\"auto\">\n        <mat-autocomplete #auto=\"matAutocomplete\">\n          <mat-option *ngFor=\"let option of filteredOptions | async\" [value]=\"option\">\n            {{option}}\n          </mat-option>\n        </mat-autocomplete>\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Choose a date</mat-label>\n        <input matInput #input=\"ngModel\" [(ngModel)]=\"userModel.date\" [min]=\"minDate\" [max]=\"today\"\n          [matDatepicker]=\"picker\" placeholder=\"Choose a date\">\n        <!-- <input matInput [matDatepicker]=\"picker\" [(ngModel)]=\"userModel.date\" [max]=\"maxDate\"> -->\n        <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n        <mat-datepicker #picker (selectedChanged)=\"onDate($event)\"></mat-datepicker>\n      </mat-form-field>\n    </div>\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"space-around center\" style=\"width:96%;margin-left:2%; margin-right:2%\">\n      <div *ngFor=\"let item of buttonsArray;let i = index \" style=\"width:44%\">\n        <button mat-button style=\"width:100%\" [ngClass]=\"(checkFuelType  == i) ? 'oddBackground' : 'evenBackground' \"\n          (click)=\"fuelType(item.indexFuel)\">{{item.fuelType}}</button>\n      </div>\n    </div>\n\n    <div style=\"width: 100%;\">\n\n      <!-- <ion-row style=\"width:80%\" fxLayout=\"row\" fxLayoutAlign=\"center center\" align=\"center\">\n        <ion-col  *ngFor=\"let item of buttonsArray;let i = index \">\n          <button mat-button style=\"width:100%\" [ngClass]=\"(checkFuelType  == i) ? 'oddBackground' : 'evenBackground' \"\n            (click)=\"fuelType(item.indexFuel)\">{{item.fuelType}}</button>\n        </ion-col>\n      </ion-row> -->\n\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%; margin-top:10px\">\n          <mat-label>In Litures</mat-label>\n          <input matInput type=\"number\" name=\"inlitures\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.inlitures\"\n            #inlitures=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Per Liture</mat-label>\n          <input matInput type=\"number\" name=\"perliture\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.perliture\"\n            #perliture=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Total Amount</mat-label>\n          <input matInput type=\"number\" name=\"totalamount\" [(ngModel)]=\"userModel.totalamount\" #totalamount=\"ngModel\"\n            class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"width:100%;\">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Add Credit</mat-label>\n            <input matInput type=\"number\" name=\"payment\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.payment\"\n              #payment=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" *ngIf=\"displayBalnace == '1' \">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Balance</mat-label>\n        <input matInput type=\"number\" name=\"balance\" [(ngModel)]=\"userModel.balance\" #balance=\"ngModel\"\n          class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n      </mat-form-field>\n    </div>\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%;\">\n        <mat-label>Note</mat-label>\n        <textarea matInput class=\"form-control \" name=\"note\" [(ngModel)]=\"userModel.note\" #note=\"ngModel\"\n          pattern=\"[a-zA-z]+$\" placeholder=\"Note\"></textarea>\n      </mat-form-field>\n    </div>\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:5%;margin-bottom:20px\">\n      <button mat-raised-button [disabled]=\"payment.invalid \" class=\"submitButton\"\n        (click)=\"creditsubmit()\">Credit</button>\n    </div>\n  </div>\n\n\n</ion-content>"
 
 /***/ }),
 
@@ -138,6 +138,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
 /* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! src/app/service/apicall/apicall.service */ "./src/app/service/apicall/apicall.service.ts");
+
+
 
 
 
@@ -148,27 +152,30 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var DataentrycreditPage = /** @class */ (function () {
-    function DataentrycreditPage(activatedRoute, router, location, toast, dateAdapter, menu) {
+    function DataentrycreditPage(activatedRoute, router, location, toast, apiCall, dateAdapter, menu) {
         this.activatedRoute = activatedRoute;
         this.router = router;
         this.location = location;
         this.toast = toast;
+        this.apiCall = apiCall;
         this.dateAdapter = dateAdapter;
         this.menu = menu;
         this.myControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]();
         this.userModel = {};
         this.displayBalnace = 0;
-        this.customerList = ['asmita', 'smita', 'asmi', 'sejal', 'pranil', 'dddd', 'ffff', 'ggggggg', 'hhhhh', 'jjjjjj'];
+        this.autoCompleteArray = [];
+        this.customerList = [];
+        // customerList: string[] = ['asmita', 'smita', 'asmi', 'sejal', 'pranil', 'dddd', 'ffff', 'ggggggg', 'hhhhh', 'jjjjjj'];
         this.buttonsArray = [
             {
                 "fuelType": "Petrol",
                 "indexFuel": "0",
-                "type": "1"
+                "type": "0"
             },
             {
                 "fuelType": "Diesel",
                 "indexFuel": "1",
-                "type": "2"
+                "type": "1"
             }
         ];
         this.menu.enable(true);
@@ -176,6 +183,7 @@ var DataentrycreditPage = /** @class */ (function () {
     }
     DataentrycreditPage.prototype.ngOnInit = function () {
         var _this = this;
+        this.getCustomerList();
         this.userModel['perliture'] = 70;
         this.filteredOptions = this.myControl.valueChanges
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (value) { return _this._filter(value); }));
@@ -186,6 +194,27 @@ var DataentrycreditPage = /** @class */ (function () {
     DataentrycreditPage.prototype._filter = function (value) {
         var filterValue = value.toLowerCase();
         return this.customerList.filter(function (option) { return option.toLowerCase().includes(filterValue); });
+    };
+    DataentrycreditPage.prototype.getCustomerList = function () {
+        var _this = this;
+        var url = src_environments_environment__WEBPACK_IMPORTED_MODULE_9__["environment"].base_url + "customers";
+        console.log("url :" + url);
+        this.apiCall.get(url).subscribe(function (MyResponse) {
+            _this.getCusstomers = MyResponse['result']['list'];
+            for (var i = 0; i < _this.getCusstomers.length; i++) {
+                var fullName = _this.getCusstomers[i]['firstName'] + " " + _this.getCusstomers[i]['lastName'];
+                var id = _this.getCusstomers[i]['id'];
+                _this.customerList.push(fullName);
+                var getObject = {
+                    "name": fullName,
+                    "id": id
+                };
+                _this.autoCompleteArray.push(getObject);
+            }
+            console.log("success:" + _this.getCusstomers);
+        }, function (error) {
+            alert("failed:" + error);
+        });
     };
     DataentrycreditPage.prototype.OnInput = function (event) {
         this.userModel['totalamount'] = this.userModel['perliture'] * this.userModel['inlitures'];
@@ -208,9 +237,11 @@ var DataentrycreditPage = /** @class */ (function () {
     DataentrycreditPage.prototype.fuelType = function (fuelType) {
         this.checkFuelType = fuelType;
         if (fuelType == 0) {
+            this.userModel['type'] = 0;
             this.userModel['perliture'] = 70;
         }
         else {
+            this.userModel['type'] = 1;
             this.userModel['perliture'] = 80;
         }
     };
@@ -232,13 +263,33 @@ var DataentrycreditPage = /** @class */ (function () {
         });
     };
     DataentrycreditPage.prototype.creditsubmit = function () {
-        this.presentToast("Credited");
+        var _this = this;
+        for (var j = 0; j < this.autoCompleteArray.length; j++) {
+            if (this.userModel['customername'] == this.autoCompleteArray[j]['name']) {
+                this.userModel['id'] = this.autoCompleteArray[j]['id'];
+            }
+        }
+        var send_date = {};
+        send_date['type'] = this.userModel['type'];
+        send_date['amountInLitre'] = this.userModel['inlitures'];
+        send_date['pricePerLitre'] = this.userModel['perliture'];
+        send_date['finalAmount'] = this.userModel['totalamount'];
+        send_date['amountPaid'] = this.userModel['payment'];
+        this.url = src_environments_environment__WEBPACK_IMPORTED_MODULE_9__["environment"].base_url + "customers/" + this.userModel['id'] + "/purchase";
+        this.apiCall.postWAu(this.url, send_date).subscribe(function (MyResponse) {
+            // this.router.navigate(['/home']);
+            var msg = MyResponse['message'];
+            _this.presentToast(msg);
+        }, function (error) {
+            console.log(error.error.message);
+        });
     };
     DataentrycreditPage.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
         { type: _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["ToastController"] },
+        { type: src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_10__["ApicallService"] },
         { type: _angular_material__WEBPACK_IMPORTED_MODULE_4__["DateAdapter"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["MenuController"] }
     ]; };
@@ -252,6 +303,7 @@ var DataentrycreditPage = /** @class */ (function () {
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
             _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["ToastController"],
+            src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_10__["ApicallService"],
             _angular_material__WEBPACK_IMPORTED_MODULE_4__["DateAdapter"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_8__["MenuController"]])
     ], DataentrycreditPage);

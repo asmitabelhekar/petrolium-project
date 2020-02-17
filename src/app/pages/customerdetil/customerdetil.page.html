@@ -1,5 +1,4 @@
 <ion-header >
-  <!-- <ion-toolbar class="new-background-color"> -->
   <ion-toolbar  class="new-background-color">
 
     <ion-row>
@@ -19,22 +18,18 @@
 </ion-header>
 <ion-content>
   <div fxLayout="column" fxLayoutAlign="center center">
-    <button class="centerImg" style="font-size :16px" [ngClass]="(customerIndex % 2 == 0) ? 'odd' : 'even' ">{{customerName.charAt(0) | uppercase}}</button>
-    <!-- <div  style="margin-top:3%; font-size: 18px; margin-bottom: -5px" fxLayout="row" fxLayoutAlign="center center">  -->
+    <button class="centerImg" style="font-size :16px" [ngClass]="(customerIndex % 2 == 0) ? 'odd' : 'even' ">{{firstName}}</button>
      <ion-item>
       <ion-label style="margin-top:3%; ">
-        {{customerName}}
+        {{customerName | titlecase}}
       </ion-label>
      </ion-item>
     
-    <!-- </div> -->
   </div>
   
   <ion-item style="margin-left:-15px; margin-top:-10px" >
     <div style="margin-top:-10px" fxLayout="row" fxLayoutAlign="center center">
-      <!-- <ion-label fxLayout="row" fxLayoutAlign="center center">
-        {{customerName}}
-      </ion-label> -->
+    
     </div>
 
   </ion-item>

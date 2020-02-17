@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header >\n  <!-- <ion-toolbar class=\"new-background-color\"> -->\n  <ion-toolbar  class=\"new-background-color\">\n\n    <ion-row>\n      <ion-col size=\"2\">\n        <button ion-button class=\"BackButton\" (click)=\"goBackword()\" style=\"margin:10px\"></button>\n      </ion-col>\n      <ion-col size=\"10\">\n\n        <div class=\"TitleHeader TitleText\">\n          Customer Detail\n        </div>\n\n      </ion-col>\n    </ion-row>\n\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <div fxLayout=\"column\" fxLayoutAlign=\"center center\">\n    <button class=\"centerImg\" style=\"font-size :16px\" [ngClass]=\"(customerIndex % 2 == 0) ? 'odd' : 'even' \">{{customerName.charAt(0) | uppercase}}</button>\n    <!-- <div  style=\"margin-top:3%; font-size: 18px; margin-bottom: -5px\" fxLayout=\"row\" fxLayoutAlign=\"center center\">  -->\n     <ion-item>\n      <ion-label style=\"margin-top:3%; \">\n        {{customerName}}\n      </ion-label>\n     </ion-item>\n    \n    <!-- </div> -->\n  </div>\n  \n  <ion-item style=\"margin-left:-15px; margin-top:-10px\" >\n    <div style=\"margin-top:-10px\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <!-- <ion-label fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        {{customerName}}\n      </ion-label> -->\n    </div>\n\n  </ion-item>\n  <ion-item style=\"margin-left:-15px; \">\n\n    <ion-row style=\"height:90px; width: 100%\" align=\"center\" fxLayout=\"row\" fxLayoutAlign=\"space-around center\">\n      <ion-col size=\"6\" align=\"center\" (click)=\"makeCall()\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\n        <ion-icon name=\"call\" style=\"width:30px; height:30px; color : #2e2d2d; margin-top: 15px\">\n        </ion-icon>\n        <ion-label style=\"color:#2e2d2d\">Call</ion-label>\n      </ion-col>\n      <ion-col size=\"6\" align=\"center\" (click)=\"sendMessage()\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\n        <ion-icon name=\"text\" style=\"width:30px; height:30px;color : #2e2d2d; margin-top: 15px\">\n        </ion-icon>\n        <ion-label style=\"color:#2e2d2d\">Text</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-item>\n\n  <ion-row style=\"margin-left:15px\">\n    <ion-col size=\"2\">\n      <ion-icon name=\"call\" style=\"width:30px; height:30px; color : #5b5b5e; margin-top: 12px\">\n      </ion-icon>\n    </ion-col>\n    <ion-col size=\"10\">\n      <ion-item>\n        <ion-row style=\"width:100%\">\n\n          <ion-label *ngIf=\"customerMobile != 'NA' \">+91</ion-label>\n          <ion-label style=\"width:5px\"></ion-label>\n          <ion-label>{{customerMobile}}</ion-label>\n\n        </ion-row>\n\n      </ion-item>\n    </ion-col>\n  </ion-row>\n\n  <ion-row style=\"margin-left:15px\">\n    <ion-col size=\"2\">\n      <ion-icon name=\"mail\" style=\"width:25px; height:28px; color : #5b5b5e; margin-top: 12px\">\n      </ion-icon>\n    </ion-col>\n    <ion-col size=\"10\">\n      <ion-item>\n        <ion-label>{{customerEmail}}</ion-label>\n      </ion-item>\n\n    </ion-col>\n  </ion-row>\n\n  <ion-row style=\"margin-left:15px\">\n    <ion-col size=\"2\">\n      <ion-icon name=\"home\" style=\"width:25px; height:28px; color : #5b5b5e; margin-top: 12px\">\n      </ion-icon>\n    </ion-col>\n    <ion-col size=\"10\">\n      <ion-item>\n        <ion-label class=\"ion-text-wrap\">{{customerAddress}}</ion-label>\n      </ion-item>\n    </ion-col>\n  </ion-row>\n\n\n  <ion-row style=\"margin-left:15px; margin-bottom: 35px\">\n    <ion-col size=\"2\">\n      <ion-icon name=\"document\" style=\"width:25px; height:28px; color : #5b5b5e; margin-top: 12px\">\n      </ion-icon>\n    </ion-col>\n    <ion-col size=\"10\">\n      <ion-item>\n        <ion-label class=\"ion-text-wrap\">{{customerNote}}</ion-label>\n      </ion-item>\n    </ion-col>\n  </ion-row>\n\n\n  <div class=\"editCss\" style=\"margin-top:20%\" (click)=\"editDetails()\">\n    <ion-icon name=\"create\" style=\"width:20px; height:18px; color : #ffffff;\">\n    </ion-icon>\n    <ion-label style=\"color:white;\" align=\"center\">Edit Customer</ion-label>\n  </div>\n</ion-content>"
+module.exports = "<ion-header >\n  <ion-toolbar  class=\"new-background-color\">\n\n    <ion-row>\n      <ion-col size=\"2\">\n        <button ion-button class=\"BackButton\" (click)=\"goBackword()\" style=\"margin:10px\"></button>\n      </ion-col>\n      <ion-col size=\"10\">\n\n        <div class=\"TitleHeader TitleText\">\n          Customer Detail\n        </div>\n\n      </ion-col>\n    </ion-row>\n\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n  <div fxLayout=\"column\" fxLayoutAlign=\"center center\">\n    <button class=\"centerImg\" style=\"font-size :16px\" [ngClass]=\"(customerIndex % 2 == 0) ? 'odd' : 'even' \">{{firstName}}</button>\n     <ion-item>\n      <ion-label style=\"margin-top:3%; \">\n        {{customerName | titlecase}}\n      </ion-label>\n     </ion-item>\n    \n  </div>\n  \n  <ion-item style=\"margin-left:-15px; margin-top:-10px\" >\n    <div style=\"margin-top:-10px\" fxLayout=\"row\" fxLayoutAlign=\"center center\">\n    \n    </div>\n\n  </ion-item>\n  <ion-item style=\"margin-left:-15px; \">\n\n    <ion-row style=\"height:90px; width: 100%\" align=\"center\" fxLayout=\"row\" fxLayoutAlign=\"space-around center\">\n      <ion-col size=\"6\" align=\"center\" (click)=\"makeCall()\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\n        <ion-icon name=\"call\" style=\"width:30px; height:30px; color : #2e2d2d; margin-top: 15px\">\n        </ion-icon>\n        <ion-label style=\"color:#2e2d2d\">Call</ion-label>\n      </ion-col>\n      <ion-col size=\"6\" align=\"center\" (click)=\"sendMessage()\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\n        <ion-icon name=\"text\" style=\"width:30px; height:30px;color : #2e2d2d; margin-top: 15px\">\n        </ion-icon>\n        <ion-label style=\"color:#2e2d2d\">Text</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-item>\n\n  <ion-row style=\"margin-left:15px\">\n    <ion-col size=\"2\">\n      <ion-icon name=\"call\" style=\"width:30px; height:30px; color : #5b5b5e; margin-top: 12px\">\n      </ion-icon>\n    </ion-col>\n    <ion-col size=\"10\">\n      <ion-item>\n        <ion-row style=\"width:100%\">\n\n          <ion-label *ngIf=\"customerMobile != 'NA' \">+91</ion-label>\n          <ion-label style=\"width:5px\"></ion-label>\n          <ion-label>{{customerMobile}}</ion-label>\n\n        </ion-row>\n\n      </ion-item>\n    </ion-col>\n  </ion-row>\n\n  <ion-row style=\"margin-left:15px\">\n    <ion-col size=\"2\">\n      <ion-icon name=\"mail\" style=\"width:25px; height:28px; color : #5b5b5e; margin-top: 12px\">\n      </ion-icon>\n    </ion-col>\n    <ion-col size=\"10\">\n      <ion-item>\n        <ion-label>{{customerEmail}}</ion-label>\n      </ion-item>\n\n    </ion-col>\n  </ion-row>\n\n  <ion-row style=\"margin-left:15px\">\n    <ion-col size=\"2\">\n      <ion-icon name=\"home\" style=\"width:25px; height:28px; color : #5b5b5e; margin-top: 12px\">\n      </ion-icon>\n    </ion-col>\n    <ion-col size=\"10\">\n      <ion-item>\n        <ion-label class=\"ion-text-wrap\">{{customerAddress}}</ion-label>\n      </ion-item>\n    </ion-col>\n  </ion-row>\n\n\n  <ion-row style=\"margin-left:15px; margin-bottom: 35px\">\n    <ion-col size=\"2\">\n      <ion-icon name=\"document\" style=\"width:25px; height:28px; color : #5b5b5e; margin-top: 12px\">\n      </ion-icon>\n    </ion-col>\n    <ion-col size=\"10\">\n      <ion-item>\n        <ion-label class=\"ion-text-wrap\">{{customerNote}}</ion-label>\n      </ion-item>\n    </ion-col>\n  </ion-row>\n\n\n  <div class=\"editCss\" style=\"margin-top:20%\" (click)=\"editDetails()\">\n    <ion-icon name=\"create\" style=\"width:20px; height:18px; color : #ffffff;\">\n    </ion-icon>\n    <ion-label style=\"color:white;\" align=\"center\">Edit Customer</ion-label>\n  </div>\n</ion-content>"
 
 /***/ }),
 
@@ -125,6 +125,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/call-number/ngx */ "./node_modules/@ionic-native/call-number/ngx/index.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var _ionic_native_sms_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/sms/ngx */ "./node_modules/@ionic-native/sms/ngx/index.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/service/apicall/apicall.service */ "./src/app/service/apicall/apicall.service.ts");
+
+
 
 
 
@@ -132,53 +136,62 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let CustomerdetilPage = class CustomerdetilPage {
-    constructor(activatedRoute, router, callNumber, toast, sms) {
+    constructor(activatedRoute, router, callNumber, toast, apiCall, sms) {
         this.activatedRoute = activatedRoute;
         this.router = router;
         this.callNumber = callNumber;
         this.toast = toast;
+        this.apiCall = apiCall;
         this.sms = sms;
         this.customerImage = "";
     }
     ngOnInit() {
-        let parseArray = JSON.parse(this.activatedRoute.snapshot.params['detailData']);
-        // alert("data:"+parseArray);
-        if (parseArray.name != "") {
-            this.customerName = parseArray.name;
-        }
-        else {
-            this.customerName = "NA";
-        }
-        if (parseArray.mobile != "") {
-            this.customerMobile = parseArray.mobile;
-        }
-        else {
-            this.customerMobile = "NA";
-        }
-        if (parseArray.address != "") {
-            this.customerAddress = parseArray.address;
-        }
-        else {
-            this.customerAddress = "NA";
-        }
-        if (parseArray.email != "") {
-            this.customerEmail = parseArray.email;
-        }
-        else {
-            this.customerEmail = "NA";
-        }
-        if (parseArray.note != "") {
-            this.customerNote = parseArray.note;
-        }
-        else {
-            this.customerNote = "NA";
-        }
-        this.customerIndex = parseArray.getIndex;
-        // this.customerImage = parseArray.imagepath;
-        // console.log("display detail data:" + JSON.parse(getdetail));
+        this.customerId = JSON.parse(this.activatedRoute.snapshot.params['customerId']);
+        this.getCustomerDetailInfo();
+        // this.customerIndex = parseArray.getIndex;
     }
     goBackword() {
         this.router.navigate(['/home']);
+    }
+    getCustomerDetailInfo() {
+        let url = src_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].base_url + "customers/" + this.customerId;
+        this.apiCall.get(url).subscribe(MyResponse => {
+            this.getCustomerDetail = (MyResponse['result']);
+            if (this.getCustomerDetail.firstName != "") {
+                this.customerName = this.getCustomerDetail['firstName'] + " " + this.getCustomerDetail['lastName'];
+                this.firstName = this.customerName.charAt(0);
+                // alert("name:"+this.firstName);
+            }
+            else {
+                this.customerName = "NA";
+            }
+            if (this.getCustomerDetail['mobile'] != "") {
+                this.customerMobile = this.getCustomerDetail['mobile'];
+            }
+            else {
+                this.customerMobile = "NA";
+            }
+            if (this.getCustomerDetail['address'] != "") {
+                this.customerAddress = this.getCustomerDetail['address'];
+            }
+            else {
+                this.customerAddress = "NA";
+            }
+            if (this.getCustomerDetail['email'] != "") {
+                this.customerEmail = this.getCustomerDetail['email'];
+            }
+            else {
+                this.customerEmail = "NA";
+            }
+            if (this.getCustomerDetail['note'] != "") {
+                this.customerNote = this.getCustomerDetail['note'];
+            }
+            else {
+                this.customerNote = "NA";
+            }
+        }, error => {
+            alert("failed:" + error);
+        });
     }
     editDetails() {
         this.checkRecordStatus = "update";
@@ -188,7 +201,8 @@ let CustomerdetilPage = class CustomerdetilPage {
             "address": this.customerAddress,
             "email": this.customerEmail,
             "checkstatus": this.checkRecordStatus,
-            "note": this.customerNote
+            "note": this.customerNote,
+            "customerId": this.customerId
         };
         this.router.navigate(['/addcustomer', { detailCustomerdata: JSON.stringify(detailCustomerdata) }]);
     }
@@ -230,6 +244,7 @@ CustomerdetilPage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
     { type: _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_3__["CallNumber"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"] },
+    { type: src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__["ApicallService"] },
     { type: _ionic_native_sms_ngx__WEBPACK_IMPORTED_MODULE_5__["SMS"] }
 ];
 CustomerdetilPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -242,6 +257,7 @@ CustomerdetilPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
         _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_3__["CallNumber"],
         _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"],
+        src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__["ApicallService"],
         _ionic_native_sms_ngx__WEBPACK_IMPORTED_MODULE_5__["SMS"]])
 ], CustomerdetilPage);
 

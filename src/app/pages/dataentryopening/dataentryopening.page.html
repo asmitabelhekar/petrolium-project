@@ -51,8 +51,8 @@
     <div fxLayout="row" fxLayoutAlign="center center" style="width:100%">
       <mat-form-field style="width:90%">
         <mat-label>Fuel Type</mat-label>
-        <mat-select>
-          <mat-option *ngFor="let type of fuelType" [value]="type.type">
+        <mat-select (selectionChange)="changeClient($event.value)">
+          <mat-option *ngFor="let type of fuelType" [value]="type.type" >
             {{type.type}}
           </mat-option>
         </mat-select>

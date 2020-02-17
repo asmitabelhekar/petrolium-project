@@ -477,19 +477,19 @@ const routes = [
     },
     {
         path: 'home',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-home-home-module */ "pages-home-home-module").then(__webpack_require__.bind(null, /*! ./pages/home/home.module */ "./src/app/pages/home/home.module.ts")).then(m => m.HomePageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-home-home-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-home-home-module")]).then(__webpack_require__.bind(null, /*! ./pages/home/home.module */ "./src/app/pages/home/home.module.ts")).then(m => m.HomePageModule)
     },
     {
         path: 'login',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-login-login-module */ "pages-login-login-module").then(__webpack_require__.bind(null, /*! ./pages/login/login.module */ "./src/app/pages/login/login.module.ts")).then(m => m.LoginPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-login-login-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-login-login-module")]).then(__webpack_require__.bind(null, /*! ./pages/login/login.module */ "./src/app/pages/login/login.module.ts")).then(m => m.LoginPageModule)
     },
     {
         path: 'addcustomer',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-addcustomer-addcustomer-module */ "pages-addcustomer-addcustomer-module").then(__webpack_require__.bind(null, /*! ./pages/addcustomer/addcustomer.module */ "./src/app/pages/addcustomer/addcustomer.module.ts")).then(m => m.AddcustomerPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-addcustomer-addcustomer-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-addcustomer-addcustomer-module")]).then(__webpack_require__.bind(null, /*! ./pages/addcustomer/addcustomer.module */ "./src/app/pages/addcustomer/addcustomer.module.ts")).then(m => m.AddcustomerPageModule)
     },
     {
         path: 'updatebalance',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-updatebalance-updatebalance-module */ "pages-updatebalance-updatebalance-module").then(__webpack_require__.bind(null, /*! ./pages/updatebalance/updatebalance.module */ "./src/app/pages/updatebalance/updatebalance.module.ts")).then(m => m.UpdatebalancePageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-updatebalance-updatebalance-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-updatebalance-updatebalance-module")]).then(__webpack_require__.bind(null, /*! ./pages/updatebalance/updatebalance.module */ "./src/app/pages/updatebalance/updatebalance.module.ts")).then(m => m.UpdatebalancePageModule)
     },
     {
         path: 'showbalancerecord',
@@ -505,15 +505,15 @@ const routes = [
     },
     {
         path: 'dataentryopening',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-dataentryopening-dataentryopening-module */ "pages-dataentryopening-dataentryopening-module").then(__webpack_require__.bind(null, /*! ./pages/dataentryopening/dataentryopening.module */ "./src/app/pages/dataentryopening/dataentryopening.module.ts")).then(m => m.DataentryopeningPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-dataentryopening-dataentryopening-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-dataentryopening-dataentryopening-module")]).then(__webpack_require__.bind(null, /*! ./pages/dataentryopening/dataentryopening.module */ "./src/app/pages/dataentryopening/dataentryopening.module.ts")).then(m => m.DataentryopeningPageModule)
     },
     {
         path: 'dataentrycredit',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-dataentrycredit-dataentrycredit-module */ "pages-dataentrycredit-dataentrycredit-module").then(__webpack_require__.bind(null, /*! ./pages/dataentrycredit/dataentrycredit.module */ "./src/app/pages/dataentrycredit/dataentrycredit.module.ts")).then(m => m.DataentrycreditPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-dataentrycredit-dataentrycredit-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-dataentrycredit-dataentrycredit-module")]).then(__webpack_require__.bind(null, /*! ./pages/dataentrycredit/dataentrycredit.module */ "./src/app/pages/dataentrycredit/dataentrycredit.module.ts")).then(m => m.DataentrycreditPageModule)
     },
     {
         path: 'debitamount',
-        loadChildren: () => __webpack_require__.e(/*! import() | pages-debitamount-debitamount-module */ "pages-debitamount-debitamount-module").then(__webpack_require__.bind(null, /*! ./pages/debitamount/debitamount.module */ "./src/app/pages/debitamount/debitamount.module.ts")).then(m => m.DebitamountPageModule)
+        loadChildren: () => Promise.all(/*! import() | pages-debitamount-debitamount-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-debitamount-debitamount-module")]).then(__webpack_require__.bind(null, /*! ./pages/debitamount/debitamount.module */ "./src/app/pages/debitamount/debitamount.module.ts")).then(m => m.DebitamountPageModule)
     },
     {
         path: 'reports',
@@ -574,11 +574,11 @@ let AppComponent = class AppComponent {
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
         this.router = router;
-        this.loginStatus = "dataentry";
+        this.userRole = 0;
         this.initializeApp();
     }
     initializeApp() {
-        this.loginStatus = localStorage.getItem('loginStatus');
+        this.userRole = localStorage.getItem('userRole');
         this.login();
         this.loginSession();
         this.platform.ready().then(() => {
@@ -587,8 +587,8 @@ let AppComponent = class AppComponent {
         });
     }
     login() {
-        this.loginStatus = localStorage.getItem('loginStatus');
-        if (this.loginStatus == "dataentry") {
+        this.userRole = localStorage.getItem('userRole');
+        if (this.userRole == 0) {
             this.appPages = [
                 {
                     title: 'Credit',
@@ -604,7 +604,35 @@ let AppComponent = class AppComponent {
                 }
             ];
         }
-        else if (this.loginStatus == "manager") {
+        else if (this.userRole == 1) {
+            this.appPages = [
+                {
+                    title: 'Customer',
+                    url: '/home',
+                },
+                {
+                    title: 'Credit',
+                    url: '/dataentrycredit',
+                },
+                {
+                    title: 'Debit',
+                    url: '/debitamount',
+                },
+                {
+                    title: 'Opening',
+                    url: '/dataentryopening',
+                },
+                {
+                    title: 'Reports',
+                    url: '/reports',
+                },
+                {
+                    title: 'Log Out',
+                    url: '',
+                }
+            ];
+        }
+        else if (this.userRole == 2) {
             this.appPages = [
                 {
                     title: 'Customer',
@@ -645,6 +673,10 @@ let AppComponent = class AppComponent {
                 {
                     title: 'Debit',
                     url: '/debitamount',
+                },
+                {
+                    title: 'Opening',
+                    url: '/dataentryopening',
                 },
                 {
                     title: 'Reports',
@@ -685,16 +717,20 @@ let AppComponent = class AppComponent {
         this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }]);
     }
     loginSession() {
-        this.loginStatus = localStorage.getItem('loginStatus');
+        this.userRole = localStorage.getItem('userRole');
         this.login();
         let loginSession = localStorage.getItem('login');
         if (loginSession == 'yes') {
-            this.loginStatus = localStorage.getItem('loginStatus');
-            if (this.loginStatus == "dataentry") {
+            this.userRole = localStorage.getItem('userRole');
+            if (this.userRole == 0) {
                 this.router.navigate(['/dataentrycredit']);
                 return;
             }
-            else if (this.loginStatus == "manager") {
+            else if (this.userRole == 1) {
+                this.router.navigate(['/home']);
+                return;
+            }
+            else if (this.userRole == 2) {
                 this.router.navigate(['/home']);
                 return;
             }
@@ -832,9 +868,12 @@ __webpack_require__.r(__webpack_exports__);
 // `ng build --prod` replaces `environment.ts` with `environment.prod.ts`.
 // The list of file replacements can be found in `angular.json`.
 const environment = {
+    // production: false,
+    // version:"v1.0/",
+    // base_url: "http://13.232.252.60:3000/api/"
     production: false,
     version: 'v1.0.0/',
-    base_url: "http://3.6.135.154:19000/api/"
+    base_url: "http://3.6.135.154:20200/api/v1.0.0/"
 };
 /*
  * For easier debugging in development mode, you can import the following file

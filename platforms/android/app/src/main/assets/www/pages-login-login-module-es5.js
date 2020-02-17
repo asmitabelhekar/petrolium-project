@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"MainLoginClass\" fxLayout=\"column\" fxLayoutAlign=\"center center\" style=\"margin-top:20%\">\n\n  <!-- <h3 class=\"TitleClass\">KHAMKAR PETROLIUM</h3> -->\n<div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n  <img src=\"../../../assets/logoapp.png\" style=\"width:100px;height:100px; border-radius: 50%;\"/>\n</div>\n  <div class=\"LoginFormClass\">\n\n      <form name=\"entryform\" style=\"width: 100%;\" #f=\"ngForm\" novalidate>\n\n\n          <mat-form-field style=\"width:98%; margin-top:10%\">\n              <input matInput placeholder=\"Phone Number\" (input)=\"valueEnter()\" type=\"tel\" id=\"mobile\"\n                name=\"mobile\" class=\"form-control\" required minlength=\"10\" maxlength=\"10\" [(ngModel)]=\"loginModel.mobile\"\n                #mobile=\"ngModel\" />\n              <mat-error>\n                <div class=\"form-group\">\n                  <div *ngIf=\"mobile.invalid && (mobile.dirty || mobile.touched)\" class=\"alert alert-danger\">\n                    <div class=\"LoginError\" *ngIf=\"mobile.errors.required\">\n                      Wrong Phone Number\n                    </div>\n                     <div class=\"LoginError\" *ngIf=\"mobile.errors.minlength\">\n                      Phone Number must be at least 10 digits long.\n                    </div>\n                    <!--<div *ngIf=\"mobile.errors.maxlength\">\n                      Mobile Number must be 10 digits long.\n                    </div> -->\n  \n                  </div>\n                </div>\n              </mat-error>\n            </mat-form-field>\n\n            <mat-form-field class=\"FullWidth\">\n                <input matInput placeholder=\"Password\" (input)=\"valueEnter()\" [type]=\"hide ? 'password' : 'text'\" id=\"password\"\n                  name=\"password\" class=\"form-control\" required  [(ngModel)]=\"loginModel.password\"\n                  #password=\"ngModel\" />\n                  <mat-icon matSuffix (click)=\"hide = !hide\">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>\n                <mat-error>\n                  <div class=\"form-group\">\n                    <div *ngIf=\"password.invalid && (password.dirty || password.touched)\" class=\"alert alert-danger\">\n                      <div class=\"LoginError\" *ngIf=\"password.errors.required\">\n                        Please Enter Password\n                      </div>\n                      \n                     \n    \n                    </div>\n                  </div>\n                </mat-error>\n              </mat-form-field>\n              <div *ngIf=\"is_error\" class=\"LoginError\">\n                  {{message}}\n                </div>\n\n\n              <div class=\"LoginClass\">\n                  <button mat-raised-button [disabled]=\"mobile.invalid || password.invalid\" class=\"LogoutBtn\" (click)=\"Login(loginModel)\">Proceed</button>\n\n              </div>\n\n\n        </form>\n\n  </div>\n\n</div>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<!-- <link href=\"https://fonts.googleapis.com/css?family=Khula&display=swap\" rel=\"stylesheet\">\n\n<div fxLayout=\"column\" fxLayoutAlign=\"center center\" fxLayout.xl=\"row\" class=\"registration-main\">\n\n  <mat-card fxLayout=\"column\" fxLayoutAlign=\"center center\" fxLayout.xs=\"column\" class=\"registration-main-matcard\">\n    <mat-card-header>\n      <mat-card-title>\n        <P class=\"login-name-p-tag\"> LOGIN</P>\n      </mat-card-title>\n\n    </mat-card-header>\n\n    <mat-card-content fxLayout=\"column\" fxLayoutGap=\"20px\" class=\"registration-form\" fxLayoutAlign=\"center center\" style=\"width:80%; margin-top:10px\">\n\n      <div class=\"registration-form-img\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\n        <img src=\"../../../assets/petrol2.svg\" alt=\"\">\n      </div>\n\n      <mat-form-field style=\"width:100%\">\n\n        <input matInput required placeholder=\"Phone Number\" class=\"form-control\" name=\"mobile\"\n          [(ngModel)]=\"loginModel.mobile\" #mobile=\"ngModel\" minlength=\"10\" maxlength=10 pattern=\"[0-9]+\">\n        <mat-error>\n          <div *ngIf=\"mobile.invalid && (mobile.dirty || mobile.touched)\">\n            Phone Number Required\n          </div>\n        </mat-error>\n      </mat-form-field>\n      <mat-form-field style=\"width:100%\">\n\n        <input type=\"password\" matInput required placeholder=\"password\" class=\"form-control\" name=\"password\"\n          [(ngModel)]=\"loginModel.password\" #password=\"ngModel\" pattern=\"[a-zA-z]+$\">\n        <mat-error>\n          <div *ngIf=\"password.invalid && (password.dirty  || password.touched)\">\n            Password is Required\n          </div>\n        </mat-error>\n\n      </mat-form-field>\n    </mat-card-content>\n\n\n    <button (click)=\"login(loginModel)\" id=\"button-of-submit\"> Submit</button>\n\n\n\n  </mat-card> -->"
+module.exports = "<div class=\"MainLoginClass\" fxLayout=\"column\" fxLayoutAlign=\"center center\" style=\"margin-top:20%\">\n\n  <!-- <h3 class=\"TitleClass\">KHAMKAR PETROLIUM</h3> -->\n<div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n  <img src=\"../../../assets/logoapp.png\" style=\"width:100px;height:100px; border-radius: 50%;\"/>\n</div>\n  <div class=\"LoginFormClass\">\n\n      <form name=\"entryform\" style=\"width: 100%;\" #f=\"ngForm\" novalidate>\n\n\n          <mat-form-field style=\"width:98%; margin-top:10%\">\n              <input matInput placeholder=\"Phone Number\" (input)=\"valueEnter()\" type=\"tel\" id=\"mobile\"\n                name=\"mobile\" class=\"form-control\" required minlength=\"10\" maxlength=\"10\" [(ngModel)]=\"loginModel.mobile\"\n                #mobile=\"ngModel\" />\n              <mat-error>\n                <div class=\"form-group\">\n                  <div *ngIf=\"mobile.invalid && (mobile.dirty || mobile.touched)\" class=\"alert alert-danger\">\n                    <div class=\"LoginError\" *ngIf=\"mobile.errors.required\">\n                      Wrong Phone Number\n                    </div>\n                     <div class=\"LoginError\" *ngIf=\"mobile.errors.minlength\">\n                      Phone Number must be at least 10 digits long.\n                    </div>\n                    <!--<div *ngIf=\"mobile.errors.maxlength\">\n                      Mobile Number must be 10 digits long.\n                    </div> -->\n  \n                  </div>\n                </div>\n              </mat-error>\n            </mat-form-field>\n\n            <mat-form-field class=\"FullWidth\">\n                <input matInput placeholder=\"Password\" (input)=\"valueEnter()\" [type]=\"hide ? 'password' : 'text'\" id=\"password\"\n                  name=\"password\" class=\"form-control\" required  [(ngModel)]=\"loginModel.password\"\n                  #password=\"ngModel\" />\n                  <mat-icon matSuffix (click)=\"hide = !hide\">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>\n                <mat-error>\n                  <div class=\"form-group\">\n                    <div *ngIf=\"password.invalid && (password.dirty || password.touched)\" class=\"alert alert-danger\">\n                      <div class=\"LoginError\" *ngIf=\"password.errors.required\">\n                        Please Enter Password\n                      </div>\n                      \n                     \n    \n                    </div>\n                  </div>\n                </mat-error>\n              </mat-form-field>\n              <div *ngIf=\"is_error\" class=\"LoginError\">\n                  {{message}}\n                </div>\n\n\n              <div class=\"LoginClass\">\n                  <button mat-raised-button [disabled]=\"mobile.invalid || password.invalid\" class=\"LogoutBtn\" (click)=\"Login(loginModel)\">Login</button>\n\n              </div>\n\n\n        </form>\n\n  </div>\n\n</div>\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n<!-- <link href=\"https://fonts.googleapis.com/css?family=Khula&display=swap\" rel=\"stylesheet\">\n\n<div fxLayout=\"column\" fxLayoutAlign=\"center center\" fxLayout.xl=\"row\" class=\"registration-main\">\n\n  <mat-card fxLayout=\"column\" fxLayoutAlign=\"center center\" fxLayout.xs=\"column\" class=\"registration-main-matcard\">\n    <mat-card-header>\n      <mat-card-title>\n        <P class=\"login-name-p-tag\"> LOGIN</P>\n      </mat-card-title>\n\n    </mat-card-header>\n\n    <mat-card-content fxLayout=\"column\" fxLayoutGap=\"20px\" class=\"registration-form\" fxLayoutAlign=\"center center\" style=\"width:80%; margin-top:10px\">\n\n      <div class=\"registration-form-img\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\n        <img src=\"../../../assets/petrol2.svg\" alt=\"\">\n      </div>\n\n      <mat-form-field style=\"width:100%\">\n\n        <input matInput required placeholder=\"Phone Number\" class=\"form-control\" name=\"mobile\"\n          [(ngModel)]=\"loginModel.mobile\" #mobile=\"ngModel\" minlength=\"10\" maxlength=10 pattern=\"[0-9]+\">\n        <mat-error>\n          <div *ngIf=\"mobile.invalid && (mobile.dirty || mobile.touched)\">\n            Phone Number Required\n          </div>\n        </mat-error>\n      </mat-form-field>\n      <mat-form-field style=\"width:100%\">\n\n        <input type=\"password\" matInput required placeholder=\"password\" class=\"form-control\" name=\"password\"\n          [(ngModel)]=\"loginModel.password\" #password=\"ngModel\" pattern=\"[a-zA-z]+$\">\n        <mat-error>\n          <div *ngIf=\"password.invalid && (password.dirty  || password.touched)\">\n            Password is Required\n          </div>\n        </mat-error>\n\n      </mat-form-field>\n    </mat-card-content>\n\n\n    <button (click)=\"login(loginModel)\" id=\"button-of-submit\"> Submit</button>\n\n\n\n  </mat-card> -->"
 
 /***/ }),
 
@@ -129,7 +129,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 /* harmony import */ var src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/service/loader/loaderservice.service */ "./src/app/service/loader/loaderservice.service.ts");
-/* harmony import */ var src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/service/apicall/apicall.service */ "./src/app/service/apicall/apicall.service.ts");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/service/apicall/apicall.service */ "./src/app/service/apicall/apicall.service.ts");
+
 
 
 
@@ -137,11 +139,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LoginPage = /** @class */ (function () {
-    function LoginPage(router, menuController, preloader, apicall, toastcontroller) {
+    function LoginPage(router, menuController, preloader, apiCall, toastcontroller) {
         this.router = router;
         this.menuController = menuController;
         this.preloader = preloader;
-        this.apicall = apicall;
+        this.apiCall = apiCall;
         this.toastcontroller = toastcontroller;
         this.loginModel = {};
         this.userModel = {};
@@ -150,20 +152,40 @@ var LoginPage = /** @class */ (function () {
     LoginPage.prototype.ngOnInit = function () {
     };
     LoginPage.prototype.Login = function (data) {
-        if (data.mobile == "1234567890" && data.password == "abc") {
-            this.router.navigate(['/dataentrycredit']);
+        var _this = this;
+        var send_date = {};
+        send_date['mobile'] = this.loginModel['mobile'];
+        send_date['password'] = this.loginModel['password'];
+        var url = src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].base_url + "users/login";
+        this.apiCall.postWAu(url, send_date).subscribe(function (MyResponse) {
+            localStorage.setItem('userRole', MyResponse['result']['userRole']);
             localStorage.setItem('login', 'yes');
-            localStorage.setItem('loginStatus', 'dataentry');
-        }
-        else if (data.mobile == "1234567891" && data.password == "abc") {
-            localStorage.setItem('loginStatus', 'manager');
-            localStorage.setItem('login', 'yes');
-            this.router.navigate(['/home']);
-        }
-        else {
-            localStorage.setItem('login', 'no');
-            this.presentToast("Please try again.");
-        }
+            if (_this.userRole == 0) {
+                _this.router.navigate(['/dataentrycredit']);
+            }
+            else if (_this.userRole == 1) {
+                _this.router.navigate(['/home']);
+            }
+            else {
+                _this.router.navigate(['/home']);
+            }
+            var msg = MyResponse['message'];
+            _this.presentToast(msg);
+        }, function (error) {
+            console.log(error.error.message);
+        });
+        // if (data.mobile == "1234567890" && data.password == "abc") {
+        //   this.router.navigate(['/dataentrycredit']);
+        //   localStorage.setItem('login','yes');
+        //   localStorage.setItem('loginStatus', 'dataentry');
+        // } else if (data.mobile == "1234567891" && data.password == "abc"){
+        //   localStorage.setItem('loginStatus', 'manager');
+        //   localStorage.setItem('login','yes');
+        //   this.router.navigate(['/home']);
+        // }else{
+        //   localStorage.setItem('login','no');
+        //   this.presentToast("Please try again.");
+        // }
         this.statusCheck = localStorage.getItem('loginStatus');
         // this.preloader.showBlockingLoaderAuth();
         // let operationsUrl = environment.base_url + environment.version + "users/login";
@@ -207,7 +229,7 @@ var LoginPage = /** @class */ (function () {
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"] },
         { type: src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_4__["LoaderserviceService"] },
-        { type: src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_5__["ApicallService"] },
+        { type: src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_6__["ApicallService"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"] }
     ]; };
     LoginPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -219,55 +241,10 @@ var LoginPage = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"],
             src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_4__["LoaderserviceService"],
-            src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_5__["ApicallService"],
+            src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_6__["ApicallService"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"]])
     ], LoginPage);
     return LoginPage;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/service/apicall/apicall.service.ts":
-/*!****************************************************!*\
-  !*** ./src/app/service/apicall/apicall.service.ts ***!
-  \****************************************************/
-/*! exports provided: ApicallService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApicallService", function() { return ApicallService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-
-
-
-var ApicallService = /** @class */ (function () {
-    function ApicallService(http) {
-        this.http = http;
-    }
-    ApicallService.prototype.postWAu = function (url, data) {
-        var httpOptions = {
-            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
-                'Content-Type': 'application/json',
-            })
-        };
-        console.log(url);
-        return this.http.post(url, data, httpOptions);
-    };
-    ApicallService.ctorParameters = function () { return [
-        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
-    ]; };
-    ApicallService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
-    ], ApicallService);
-    return ApicallService;
 }());
 
 

@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<!-- <ion-header>\n  \n  <ion-toolbar class=\"new-background-color\">\n\n    <ion-row>\n      <ion-col size=\"2\">\n        <ion-buttons slot=\"start\" style=\"color:white\">\n          <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n\n      </ion-col>\n      <ion-col size=\"10\">\n\n        <div class=\"TitleHeader TitleText\">\n          Opening\n        </div>\n\n      </ion-col>\n    </ion-row>\n\n  </ion-toolbar>\n</ion-header> -->\n\n\n<ion-header class=\"new-background-color\">\n  <ion-toolbar class=\"new-background-color\">\n    <ion-buttons slot=\"start\" style=\"color:white\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title style=\"color:white\">\n      Opening\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <div fxLayout=\"column\" fxLayoutAlign=\"center center\">\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:15%; width:100%\">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Choose a date</mat-label>\n        <input matInput #input=\"ngModel\" [(ngModel)]=\"openingModel.date\" [min]=\"minDate\" [max]=\"today\" [matDatepicker]=\"picker\"\n          placeholder=\"Choose a date\">\n        <!-- <input matInput [matDatepicker]=\"picker\" [(ngModel)]=\"userModel.date\" [max]=\"maxDate\"> -->\n        <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n        <mat-datepicker #picker (selectedChanged)=\"onDate($event)\"></mat-datepicker>\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"width:100%\">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Fuel Type</mat-label>\n        <mat-select>\n          <mat-option *ngFor=\"let type of fuelType\" [value]=\"type.type\">\n            {{type.type}}\n          </mat-option>\n        </mat-select>\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"width:100%\">\n     \n        <mat-form-field style=\"width:90%; margin-top:10px\">\n          <mat-label>Opening Balance</mat-label>\n          <input matInput type=\"number\" name=\"openingbalance\" [(ngModel)]=\"openingModel.openingbalance\"\n            #openingbalance=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:10%;width:100%\">\n\n        <button mat-raised-button [disabled]=\"openingbalance.invalid \" class=\"submitButton\" (click)=\"openingBalanceSubmit()\">Submit</button>\n      </div>\n  </div>\n\n\n\n</ion-content>"
+module.exports = "<!-- <ion-header>\n  \n  <ion-toolbar class=\"new-background-color\">\n\n    <ion-row>\n      <ion-col size=\"2\">\n        <ion-buttons slot=\"start\" style=\"color:white\">\n          <ion-menu-button></ion-menu-button>\n        </ion-buttons>\n\n      </ion-col>\n      <ion-col size=\"10\">\n\n        <div class=\"TitleHeader TitleText\">\n          Opening\n        </div>\n\n      </ion-col>\n    </ion-row>\n\n  </ion-toolbar>\n</ion-header> -->\n\n\n<ion-header class=\"new-background-color\">\n  <ion-toolbar class=\"new-background-color\">\n    <ion-buttons slot=\"start\" style=\"color:white\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title style=\"color:white\">\n      Opening\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <div fxLayout=\"column\" fxLayoutAlign=\"center center\">\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:15%; width:100%\">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Choose a date</mat-label>\n        <input matInput #input=\"ngModel\" [(ngModel)]=\"openingModel.date\" [min]=\"minDate\" [max]=\"today\" [matDatepicker]=\"picker\"\n          placeholder=\"Choose a date\">\n        <!-- <input matInput [matDatepicker]=\"picker\" [(ngModel)]=\"userModel.date\" [max]=\"maxDate\"> -->\n        <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n        <mat-datepicker #picker (selectedChanged)=\"onDate($event)\"></mat-datepicker>\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"width:100%\">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Fuel Type</mat-label>\n        <mat-select (selectionChange)=\"changeClient($event.value)\">\n          <mat-option *ngFor=\"let type of fuelType\" [value]=\"type.type\" >\n            {{type.type}}\n          </mat-option>\n        </mat-select>\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"width:100%\">\n     \n        <mat-form-field style=\"width:90%; margin-top:10px\">\n          <mat-label>Opening Balance</mat-label>\n          <input matInput type=\"number\" name=\"openingbalance\" [(ngModel)]=\"openingModel.openingbalance\"\n            #openingbalance=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:10%;width:100%\">\n\n        <button mat-raised-button [disabled]=\"openingbalance.invalid \" class=\"submitButton\" (click)=\"openingBalanceSubmit()\">Submit</button>\n      </div>\n  </div>\n\n\n\n</ion-content>"
 
 /***/ }),
 
@@ -133,16 +133,21 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/service/apicall/apicall.service */ "./src/app/service/apicall/apicall.service.ts");
+
+
 
 
 
 
 
 var DataentryopeningPage = /** @class */ (function () {
-    function DataentryopeningPage(dataAdapter, location, toast) {
+    function DataentryopeningPage(dataAdapter, location, toast, apiCall) {
         this.dataAdapter = dataAdapter;
         this.location = location;
         this.toast = toast;
+        this.apiCall = apiCall;
         this.openingModel = {};
         this.fuelType = [
             { "type": "Petrol" },
@@ -158,7 +163,18 @@ var DataentryopeningPage = /** @class */ (function () {
         this.location.back();
     };
     DataentryopeningPage.prototype.openingBalanceSubmit = function () {
-        this.presentToast("Opening balance submited.");
+        var _this = this;
+        var send_date = {};
+        send_date['date'] = this.openingModel['date'];
+        send_date['type'] = this.openingModel['type'];
+        send_date['balance'] = this.openingModel['openingbalance'];
+        var url = src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].base_url + "balance";
+        this.apiCall.postWAu(url, send_date).subscribe(function (MyResponse) {
+            var msg = MyResponse['message'];
+            _this.presentToast(msg);
+        }, function (error) {
+            console.log(error.error.message);
+        });
     };
     DataentryopeningPage.prototype.presentToast = function (message) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
@@ -177,10 +193,20 @@ var DataentryopeningPage = /** @class */ (function () {
             });
         });
     };
+    DataentryopeningPage.prototype.changeClient = function (value) {
+        if (value == "Petrol") {
+            this.openingModel['type'] = 0;
+        }
+        else {
+            this.openingModel['type'] = 1;
+        }
+        console.log("type : " + this.openingModel['type']);
+    };
     DataentryopeningPage.ctorParameters = function () { return [
         { type: _angular_material__WEBPACK_IMPORTED_MODULE_2__["DateAdapter"] },
         { type: _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"] },
-        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"] }
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"] },
+        { type: src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_6__["ApicallService"] }
     ]; };
     DataentryopeningPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -190,7 +216,8 @@ var DataentryopeningPage = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["DateAdapter"],
             _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"]])
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"],
+            src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_6__["ApicallService"]])
     ], DataentryopeningPage);
     return DataentryopeningPage;
 }());

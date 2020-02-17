@@ -12,8 +12,9 @@ import { Router } from '@angular/router';
 })
 export class AppComponent {
   appPages : any;
-  loginStatus = "dataentry";
+  // loginStatus = "dataentry";
   data: any;
+  userRole : any = 0;
 
   constructor(
     private platform: Platform,
@@ -25,7 +26,7 @@ export class AppComponent {
   }
 
   initializeApp() {
-    this.loginStatus = localStorage.getItem('loginStatus');
+    this.userRole = localStorage.getItem('userRole');
     this.login();
     this.loginSession();
     this.platform.ready().then(() => {
@@ -35,8 +36,8 @@ export class AppComponent {
   }
 
   login() {
-    this.loginStatus = localStorage.getItem('loginStatus');
-    if (this.loginStatus == "dataentry") {
+    this.userRole = localStorage.getItem('userRole');
+    if (this.userRole == 0) {
       this.appPages = [
         {
           title: 'Credit',
@@ -54,7 +55,7 @@ export class AppComponent {
 
         }
       ];
-    } else if(this.loginStatus == "manager") {
+    } else if(this.userRole == 1) {
       this.appPages = [
         {
           title: 'Customer',
@@ -87,7 +88,7 @@ export class AppComponent {
 
         }
       ];
-    } else {
+    } else if(this.userRole == 2) {
       this.appPages = [
         {
           title: 'Customer',
@@ -102,6 +103,44 @@ export class AppComponent {
         {
           title: 'Debit',
           url: '/debitamount',
+
+        },
+        {
+          title: 'Opening',
+          url: '/dataentryopening',
+
+        },
+        {
+          title: 'Reports',
+          url: '/reports',
+
+        },
+        {
+          title: 'Log Out',
+          url: '',
+
+        }
+      ];
+    }else{
+      this.appPages = [
+        {
+          title: 'Customer',
+          url: '/home',
+
+        },
+        {
+          title: 'Credit',
+          url: '/dataentrycredit',
+
+        },
+        {
+          title: 'Debit',
+          url: '/debitamount',
+
+        },
+        {
+          title: 'Opening',
+          url: '/dataentryopening',
 
         },
         {
@@ -153,17 +192,20 @@ export class AppComponent {
 
 
   loginSession() {
-    this.loginStatus = localStorage.getItem('loginStatus');
+    this.userRole = localStorage.getItem('userRole');
     this.login();
     let loginSession = localStorage.getItem('login');
     if (loginSession == 'yes') {
-      this.loginStatus = localStorage.getItem('loginStatus');
-      if (this.loginStatus == "dataentry") {
+      this.userRole = localStorage.getItem('userRole');
+      if (this.userRole == 0) {
       
         this.router.navigate(['/dataentrycredit']);
         return;
       }
-      else if (this.loginStatus == "manager") {
+      else if (this.userRole == 1) {
+        this.router.navigate(['/home']);
+        return;
+      } else if (this.userRole == 2) {
         this.router.navigate(['/home']);
         return;
       }

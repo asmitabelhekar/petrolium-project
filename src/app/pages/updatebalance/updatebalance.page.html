@@ -64,10 +64,10 @@
       <div fxLayout="row" fxLayoutAlign="space-around center" style="width:96%;margin-left:2%; margin-right:2%">
         <div *ngFor="let item of buttonsArray;let i = index " style="width:44%">
           <button mat-button style="width:100%" [ngClass]="(checkFuelType  == i) ? 'oddBackground' : 'evenBackground' "
-          (click)="fuelType(item.indexFuel)">{{item.fuelType}}</button>
+            (click)="fuelType(item.indexFuel)">{{item.fuelType}}</button>
         </div>
-        </div>
-        
+      </div>
+
       <!-- <div *ngFor="let item of buttonsArray;let i = index ">
   <div style="margin-top:10px"  >
     <button style="width:30%" mat-button [ngClass]="(checkFuelType  == i) ? 'odd' : 'even' " (click)="fuelType(item.indexFuel)">{{item.fuelType}}</button>
@@ -106,8 +106,8 @@
     <div fxLayout="row" fxLayoutAlign="center center">
       <mat-form-field style="width:90%">
         <mat-label>Add {{paymentMethod}}</mat-label>
-            <input matInput type="number" name="payment" (input)="OnInput($event)" [(ngModel)]="userModel.payment"
-              #payment="ngModel" class="form-control" align="center" required pattern="[0-9.-]+$">
+        <input matInput type="number" name="payment" (input)="OnInput($event)" [(ngModel)]="userModel.payment"
+          #payment="ngModel" class="form-control" align="center" required pattern="[0-9.-]+$">
       </mat-form-field>
     </div>
 
@@ -119,6 +119,8 @@
           class="form-control" align="center" required pattern="[0-9.-]+$">
       </mat-form-field>
     </div>
+
+
     <div fxLayout="row" fxLayoutAlign="center center">
       <mat-form-field style="width:90%;">
         <mat-label>Note</mat-label>
@@ -126,17 +128,23 @@
           pattern="[a-zA-z]+$" placeholder="Note"></textarea>
       </mat-form-field>
     </div>
-    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="paymentMethod == 'Credit' " style="margin-top:5%;margin-bottom:20px">
+
+
+    <div fxLayout="row" fxLayoutAlign="center center" *ngIf="paymentMethod == 'Credit' "
+      style="margin-top:3%;margin-bottom:20px">
       <!-- <button mat-raised-button
         [disabled]="payment.invalid  || inlitures.invalid || perliture.invalid || totalamount.invalid"
         class="submitButton">Submit</button> -->
-      <button mat-raised-button [disabled]="payment.invalid " class="submitButton">Credit</button>
+      <button mat-raised-button [disabled]="payment.invalid " class="submitButton" (click)="creditAmount()">Credit</button>
     </div>
+
+
 
     <div fxLayout="row" fxLayoutAlign="center center" style="margin-top:5%" *ngIf="paymentMethod == 'Payment' ">
-
-      <button mat-raised-button [disabled]="payment.invalid " class="submitButton">Debit</button>
+      <button mat-raised-button [disabled]="payment.invalid " class="submitButton" (click)="debitAmount()">Debit</button>
     </div>
+
+
   </div>
 
 </ion-content>

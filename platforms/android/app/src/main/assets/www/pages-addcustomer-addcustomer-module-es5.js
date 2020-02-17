@@ -125,14 +125,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/service/apicall/apicall.service */ "./src/app/service/apicall/apicall.service.ts");
+
+
 
 
 
 
 var AddcustomerPage = /** @class */ (function () {
-    function AddcustomerPage(router, toast, alertController, route) {
+    function AddcustomerPage(router, toast, apiCall, alertController, route) {
         this.router = router;
         this.toast = toast;
+        this.apiCall = apiCall;
         this.alertController = alertController;
         this.route = route;
         this.userModel = {};
@@ -145,6 +150,7 @@ var AddcustomerPage = /** @class */ (function () {
         this.userModel['address'] = displayArrayValues.address;
         this.userModel['email'] = displayArrayValues.email;
         this.userModel['note'] = displayArrayValues.note;
+        this.customerId = displayArrayValues.customerId;
         var fullname = displayArrayValues.fname;
         if (fullname != "") {
             var names = fullname.split(" ");
@@ -164,9 +170,40 @@ var AddcustomerPage = /** @class */ (function () {
         // this.router.navigate(['home']);
     };
     AddcustomerPage.prototype.addCustomerData = function () {
-        alert("display customer data:" + JSON.stringify(this.userModel));
-        this.presentToast("Customer added successfully");
-        this.router.navigate(['/home']);
+        var _this = this;
+        var send_date = {};
+        send_date['firstName'] = this.userModel['fname'];
+        send_date['lastName'] = this.userModel['lname'];
+        send_date['mobile'] = this.userModel['mobile'];
+        send_date['address'] = this.userModel['address'];
+        send_date['note'] = this.userModel['note'];
+        send_date['email'] = this.userModel['email'];
+        send_date['isActive'] = 1;
+        if (this.checkStatus == "add") {
+            this.url = src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].base_url + "customers";
+            this.apiCall.postWAu(this.url, send_date).subscribe(function (MyResponse) {
+                console.log("MyResponse ", MyResponse);
+                _this.router.navigate(['/home']);
+                var msg = MyResponse['message'];
+                _this.presentToast(msg);
+            }, function (error) {
+                console.log(error.error.message);
+            });
+        }
+        else if (this.checkStatus == "update") {
+            this.url = src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].base_url + "customers/" + this.customerId;
+            this.apiCall.put(this.url, send_date).subscribe(function (MyResponse) {
+                console.log("MyResponse ", MyResponse);
+                _this.router.navigate(['/home']);
+                var msg = MyResponse['message'];
+                _this.presentToast(msg);
+            }, function (error) {
+                console.log(error.error.message);
+            });
+        }
+        else {
+        }
+        // this.router.navigate(['/home']);
     };
     AddcustomerPage.prototype.presentToast = function (message) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
@@ -221,6 +258,7 @@ var AddcustomerPage = /** @class */ (function () {
     AddcustomerPage.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"] },
+        { type: src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_5__["ApicallService"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] }
     ]; };
@@ -232,6 +270,7 @@ var AddcustomerPage = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"],
+            src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_5__["ApicallService"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
     ], AddcustomerPage);

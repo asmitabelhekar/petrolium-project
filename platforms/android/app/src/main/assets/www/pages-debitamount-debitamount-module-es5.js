@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header class=\"new-background-color\">\n  <ion-toolbar class=\"new-background-color\">\n    <ion-buttons slot=\"start\" style=\"color:white\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title style=\"color:white\">\n      Debit Amount\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n\n  <div fxLayout=\"column\" fxLayoutAlign=\"center\" style=\"margin-top:10%\">\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%\">\n        <input type=\"text\"\n               placeholder=\"Customer Name\"\n               aria-label=\"Number\"\n               matInput\n               [formControl]=\"myControl\"\n               [matAutocomplete]=\"auto\">\n        <mat-autocomplete #auto=\"matAutocomplete\">\n          <mat-option *ngFor=\"let option of filteredOptions | async\" [value]=\"option\">\n            {{option}}\n          </mat-option>\n        </mat-autocomplete>\n      </mat-form-field>\n    </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Choose a date</mat-label>\n          <input matInput #input=\"ngModel\" [(ngModel)]=\"userModel.date\" [min]=\"minDate\" [max]=\"today\"\n            [matDatepicker]=\"picker\" placeholder=\"Choose a date\">\n          <!-- <input matInput [matDatepicker]=\"picker\" [(ngModel)]=\"userModel.date\" [max]=\"maxDate\"> -->\n          <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n          <mat-datepicker #picker (selectedChanged)=\"onDate($event)\"></mat-datepicker>\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"width:100%;\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Add Debit</mat-label>\n              <input matInput type=\"number\" name=\"payment\" [(ngModel)]=\"userModel.payment\"\n                #payment=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%;\">\n          <mat-label>Note</mat-label>\n          <textarea matInput class=\"form-control \" name=\"note\" [(ngModel)]=\"userModel.note\" #note=\"ngModel\"\n            pattern=\"[a-zA-z]+$\" placeholder=\"Note\"></textarea>\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:10%\" >\n        <button mat-raised-button [disabled]=\"payment.invalid \" class=\"submitButton\" (click)=\"debitAmount()\">Debit</button>\n      </div>\n\n\n      </div>\n</ion-content>\n"
+module.exports = "<ion-header class=\"new-background-color\">\n  <ion-toolbar class=\"new-background-color\">\n    <ion-buttons slot=\"start\" style=\"color:white\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title style=\"color:white\">\n      Debit Amount\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n\n  <div fxLayout=\"column\" fxLayoutAlign=\"center\" style=\"margin-top:10%\">\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%\">\n        <input type=\"text\"\n               placeholder=\"Customer Name\"\n               aria-label=\"Number\"\n               matInput\n               [(ngModel)]=\"userModel.customername\"\n               [formControl]=\"myControl\"\n               [matAutocomplete]=\"auto\">\n        <mat-autocomplete #auto=\"matAutocomplete\">\n          <mat-option *ngFor=\"let option of filteredOptions | async\" [value]=\"option\">\n            {{option}}\n          </mat-option>\n        </mat-autocomplete>\n      </mat-form-field>\n    </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Choose a date</mat-label>\n          <input matInput #input=\"ngModel\" [(ngModel)]=\"userModel.date\" [min]=\"minDate\" [max]=\"today\"\n            [matDatepicker]=\"picker\" placeholder=\"Choose a date\">\n          <!-- <input matInput [matDatepicker]=\"picker\" [(ngModel)]=\"userModel.date\" [max]=\"maxDate\"> -->\n          <mat-datepicker-toggle matSuffix [for]=\"picker\"></mat-datepicker-toggle>\n          <mat-datepicker #picker (selectedChanged)=\"onDate($event)\"></mat-datepicker>\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"width:100%;\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Add Debit</mat-label>\n              <input matInput type=\"number\" name=\"payment\" [(ngModel)]=\"userModel.payment\"\n                #payment=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%;\">\n          <mat-label>Note</mat-label>\n          <textarea matInput class=\"form-control \" name=\"note\" [(ngModel)]=\"userModel.note\" #note=\"ngModel\"\n            pattern=\"[a-zA-z]+$\" placeholder=\"Note\"></textarea>\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:10%\" >\n        <button mat-raised-button [disabled]=\"payment.invalid \" class=\"submitButton\" (click)=\"debitAmount()\">Debit</button>\n      </div>\n\n\n      </div>\n</ion-content>\n"
 
 /***/ }),
 
@@ -130,28 +130,59 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "DebitamountPage", function() { return DebitamountPage; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var rxjs_operators__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! rxjs/operators */ "./node_modules/rxjs/_esm5/operators/index.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/service/apicall/apicall.service */ "./src/app/service/apicall/apicall.service.ts");
+
+
+
 
 
 
 
 
 var DebitamountPage = /** @class */ (function () {
-    function DebitamountPage(toast) {
+    function DebitamountPage(toast, apiCall, router) {
         this.toast = toast;
-        this.customerList = ['asmita', 'smita', 'asmi', 'sejal', 'pranil', 'dddd', 'ffff', 'ggggggg', 'hhhhh', 'jjjjjj'];
+        this.apiCall = apiCall;
+        this.router = router;
+        this.customerList = [];
         this.userModel = {};
-        this.myControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_2__["FormControl"]();
+        this.myControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_3__["FormControl"]();
+        this.autoCompleteArray = [];
     }
     DebitamountPage.prototype.ngOnInit = function () {
         var _this = this;
+        this.getCustomerList();
         this.filteredOptions = this.myControl.valueChanges
-            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_3__["map"])(function (value) { return _this._filter(value); }));
+            .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_4__["map"])(function (value) { return _this._filter(value); }));
         this.userModel['date'] = new Date().toJSON().split('T')[0];
         this.today = new Date().toJSON().split('T')[0];
         var loginStatus = localStorage.getItem("loginStatus");
+    };
+    DebitamountPage.prototype.getCustomerList = function () {
+        var _this = this;
+        var url = src_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].base_url + "customers";
+        console.log("url :" + url);
+        this.apiCall.get(url).subscribe(function (MyResponse) {
+            _this.getCusstomers = MyResponse['result']['list'];
+            for (var i = 0; i < _this.getCusstomers.length; i++) {
+                var fullName = _this.getCusstomers[i]['firstName'] + " " + _this.getCusstomers[i]['lastName'];
+                var id = _this.getCusstomers[i]['id'];
+                _this.customerList.push(fullName);
+                var getObject = {
+                    "name": fullName,
+                    "id": id
+                };
+                _this.autoCompleteArray.push(getObject);
+            }
+            console.log("success:" + _this.getCusstomers);
+        }, function (error) {
+            alert("failed:" + error);
+        });
     };
     DebitamountPage.prototype.convert = function (str) {
         var date = new Date(str), mnth = ("0" + (date.getMonth() + 1)).slice(-2), day = ("0" + date.getDate()).slice(-2);
@@ -162,7 +193,24 @@ var DebitamountPage = /** @class */ (function () {
         return this.customerList.filter(function (option) { return option.toLowerCase().includes(filterValue); });
     };
     DebitamountPage.prototype.debitAmount = function () {
-        this.presentToast("Amount debited");
+        var _this = this;
+        for (var j = 0; j < this.autoCompleteArray.length; j++) {
+            if (this.userModel['customername'] == this.autoCompleteArray[j]['name']) {
+                this.userModel['id'] = this.autoCompleteArray[j]['id'];
+            }
+        }
+        var send_date = {};
+        send_date['date'] = this.userModel['date'];
+        send_date['amount'] = this.userModel['payment'];
+        send_date['message'] = this.userModel['note'];
+        this.url = src_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].base_url + "customers/" + this.userModel['id'] + "/passbook";
+        this.apiCall.postWAu(this.url, send_date).subscribe(function (MyResponse) {
+            _this.router.navigate(['/home']);
+            var msg = MyResponse['message'];
+            _this.presentToast(msg);
+        }, function (error) {
+            console.log(error.error.message);
+        });
     };
     DebitamountPage.prototype.presentToast = function (message) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
@@ -182,7 +230,9 @@ var DebitamountPage = /** @class */ (function () {
         });
     };
     DebitamountPage.ctorParameters = function () { return [
-        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"] }
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ToastController"] },
+        { type: src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__["ApicallService"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] }
     ]; };
     DebitamountPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -190,7 +240,9 @@ var DebitamountPage = /** @class */ (function () {
             template: __webpack_require__(/*! raw-loader!./debitamount.page.html */ "./node_modules/raw-loader/index.js!./src/app/pages/debitamount/debitamount.page.html"),
             styles: [__webpack_require__(/*! ./debitamount.page.scss */ "./src/app/pages/debitamount/debitamount.page.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ToastController"],
+            src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__["ApicallService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"]])
     ], DebitamountPage);
     return DebitamountPage;
 }());

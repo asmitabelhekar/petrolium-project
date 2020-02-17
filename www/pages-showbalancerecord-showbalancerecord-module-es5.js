@@ -136,6 +136,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/call-number/ngx */ "./node_modules/@ionic-native/call-number/ngx/index.js");
 /* harmony import */ var _ionic_native_sms_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/sms/ngx */ "./node_modules/@ionic-native/sms/ngx/index.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/service/apicall/apicall.service */ "./src/app/service/apicall/apicall.service.ts");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+
+
 
 
 
@@ -144,12 +148,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ShowbalancerecordPage = /** @class */ (function () {
-    function ShowbalancerecordPage(router, activatedRoute, toastController, callNumber, sms, dialog) {
+    function ShowbalancerecordPage(router, activatedRoute, toastController, callNumber, sms, apiCall, dialog) {
         this.router = router;
         this.activatedRoute = activatedRoute;
         this.toastController = toastController;
         this.callNumber = callNumber;
         this.sms = sms;
+        this.apiCall = apiCall;
         this.dialog = dialog;
         this.balanceRecord = {
             "totalAmount": "2000",
@@ -299,11 +304,15 @@ var ShowbalancerecordPage = /** @class */ (function () {
         };
         this.totalAmount = "3000";
         this.totalAmountStatus = "Due";
+        this.getNewRecords = [];
     }
     ShowbalancerecordPage.prototype.ngOnInit = function () {
         var getdetail = this.activatedRoute.snapshot.params['detailData'];
         this.detailArray = JSON.parse(getdetail);
-        this.customerName = this.detailArray['name'];
+        this.customerId = this.detailArray['id'];
+        this.customerName = this.detailArray['name'] + " " + this.detailArray['lname'];
+        this.getBalanceRecord();
+        // alert("dusplay customerName:"+this.customerName);
         // this.customerName = this.activatedRoute.snapshot.params['customerName'];
         this.getHistoryArray = this.balanceRecord.history;
         this.displayList = this.getHistoryArray['list'];
@@ -333,7 +342,8 @@ var ShowbalancerecordPage = /** @class */ (function () {
     ShowbalancerecordPage.prototype.creditDebitAmount = function (value) {
         var balanceObject = {
             customerName: this.customerName,
-            amountState: value
+            amountState: value,
+            customerId: this.customerId
         };
         this.router.navigate(['/updatebalance', { balanceObject: JSON.stringify(balanceObject) }]);
         // let send_data = {};
@@ -395,7 +405,18 @@ var ShowbalancerecordPage = /** @class */ (function () {
         //   "note": data.note,
         //   "getIndex": i
         // }
-        this.router.navigate(['customerdetil', { detailData: JSON.stringify(this.detailArray) }]);
+        this.router.navigate(['customerdetil', { customerId: this.customerId }]);
+    };
+    ShowbalancerecordPage.prototype.getBalanceRecord = function () {
+        var _this = this;
+        // let url = "http://3.6.135.154:20200/api/v1.0.0/balance?page=0&size=10&filters=%7B%7D";
+        var url = src_environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].base_url + "customers/" + this.customerId + "/passbook";
+        this.apiCall.get(url).subscribe(function (MyResponse) {
+            _this.getNewRecords = JSON.stringify(MyResponse['result']['list']);
+            console.log("success:" + _this.getNewRecords);
+        }, function (error) {
+            alert("failed:" + error);
+        });
     };
     ShowbalancerecordPage.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
@@ -403,6 +424,7 @@ var ShowbalancerecordPage = /** @class */ (function () {
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"] },
         { type: _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_4__["CallNumber"] },
         { type: _ionic_native_sms_ngx__WEBPACK_IMPORTED_MODULE_5__["SMS"] },
+        { type: src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__["ApicallService"] },
         { type: _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatDialog"] }
     ]; };
     ShowbalancerecordPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -416,6 +438,7 @@ var ShowbalancerecordPage = /** @class */ (function () {
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"],
             _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_4__["CallNumber"],
             _ionic_native_sms_ngx__WEBPACK_IMPORTED_MODULE_5__["SMS"],
+            src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__["ApicallService"],
             _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatDialog"]])
     ], ShowbalancerecordPage);
     return ShowbalancerecordPage;

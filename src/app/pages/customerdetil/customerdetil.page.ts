@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { ToastController } from '@ionic/angular';
 import { SMS } from '@ionic-native/sms/ngx';
+import { environment } from 'src/environments/environment';
+import { ApicallService } from 'src/app/service/apicall/apicall.service';
 
 @Component({
   selector: 'app-customerdetil',
@@ -11,6 +13,7 @@ import { SMS } from '@ionic-native/sms/ngx';
 })
 export class CustomerdetilPage implements OnInit {
 
+  getCustomerDetail: any;
   customerName: any;
   customerImage = "";
   customerMobile: any;
@@ -20,55 +23,24 @@ export class CustomerdetilPage implements OnInit {
   customerNote : any;
   customerIndex : any;
   customerDetailInfo : any;
+  firstName: any;
+  customerId: any
 
   constructor(public activatedRoute: ActivatedRoute,
     public router: Router,
     private callNumber: CallNumber,
     public toast: ToastController,
+    public apiCall : ApicallService,
     private sms: SMS) { }
 
  
     ngOnInit() {
      
-      let parseArray = JSON.parse(this.activatedRoute.snapshot.params['detailData']);
-      // alert("data:"+parseArray);
-      if(parseArray.name != ""){
-        this.customerName = parseArray.name;
-      }
-      else{
-        this.customerName = "NA";
-      }
+      this.customerId = JSON.parse(this.activatedRoute.snapshot.params['customerId']);
+      this.getCustomerDetailInfo();
      
-      if(parseArray.mobile != ""){
-        this.customerMobile = parseArray.mobile;
-      }else{
-        this.customerMobile = "NA";
-      }
+      // this.customerIndex = parseArray.getIndex;
      
-      if(parseArray.address != ""){
-        this.customerAddress = parseArray.address;
-      }else{
-        this.customerAddress = "NA";
-      }
-  
-      if(parseArray.email != ""){
-        this.customerEmail = parseArray.email;
-      }
-      else{
-        this.customerEmail = "NA";
-      }
-  
-      if(parseArray.note != ""){
-        this.customerNote = parseArray.note;
-      }
-      else{
-        this.customerNote = "NA";
-      }
-     
-      this.customerIndex = parseArray.getIndex;
-      // this.customerImage = parseArray.imagepath;
-      
-      // console.log("display detail data:" + JSON.parse(getdetail));
     }
   
   
@@ -77,6 +49,54 @@ export class CustomerdetilPage implements OnInit {
       this.router.navigate(['/home']);
     }
   
+    getCustomerDetailInfo(){
+      let url = environment.base_url + "customers/" + this.customerId;
+      this.apiCall.get(url).subscribe(MyResponse => {
+        this.getCustomerDetail = (MyResponse['result']);
+
+        if(this.getCustomerDetail.firstName != ""){
+          this.customerName = this.getCustomerDetail['firstName'] + " " +  this.getCustomerDetail['lastName'];
+          this.firstName = this.customerName.charAt(0);
+          // alert("name:"+this.firstName);
+
+        }
+        else{
+          this.customerName = "NA";
+        }
+       
+        if(this.getCustomerDetail['mobile'] != ""){
+          this.customerMobile = this.getCustomerDetail['mobile'];
+        }else{
+          this.customerMobile = "NA";
+        }
+       
+        if(this.getCustomerDetail['address'] != ""){
+          this.customerAddress = this.getCustomerDetail['address'];
+        }else{
+          this.customerAddress = "NA";
+        }
+    
+        if(this.getCustomerDetail['email'] != ""){
+          this.customerEmail = this.getCustomerDetail['email'];
+
+        }
+        else{
+          this.customerEmail = "NA";
+        }
+    
+        if(this.getCustomerDetail['note'] != ""){
+          this.customerNote = this.getCustomerDetail['note'];
+        }
+        else{
+          this.customerNote = "NA";
+        }
+      },
+        error => {
+          alert("failed:" + error);
+        })
+    }
+
+
     editDetails() {
       this.checkRecordStatus = "update";
   
@@ -86,7 +106,8 @@ export class CustomerdetilPage implements OnInit {
         "address" : this.customerAddress,
         "email" : this.customerEmail,
         "checkstatus" : this.checkRecordStatus,
-        "note" : this.customerNote
+        "note" : this.customerNote,
+        "customerId" : this.customerId
       }
       this.router.navigate(['/addcustomer', { detailCustomerdata: JSON.stringify(detailCustomerdata) }]);
     }

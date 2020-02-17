@@ -6,6 +6,8 @@ import { empty, Observable } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
 import { ToastController, MenuController } from '@ionic/angular';
+import { environment } from 'src/environments/environment';
+import { ApicallService } from 'src/app/service/apicall/apicall.service';
 
 @Component({
   selector: 'app-dataentrycredit',
@@ -24,24 +26,29 @@ export class DataentrycreditPage implements OnInit {
   paymentNames: any;
   displayBalnace: any = 0;
   checkFuelType: any;
-
-  customerList: string[] = ['asmita', 'smita', 'asmi', 'sejal', 'pranil', 'dddd', 'ffff', 'ggggggg', 'hhhhh', 'jjjjjj'];
+  getCusstomers: any;
+  autoCompleteArray: any = [];
+  customerList: any = [];
+  url: any;
+  type: any;
+  // customerList: string[] = ['asmita', 'smita', 'asmi', 'sejal', 'pranil', 'dddd', 'ffff', 'ggggggg', 'hhhhh', 'jjjjjj'];
   buttonsArray = [
     {
       "fuelType": "Petrol",
       "indexFuel": "0",
-      "type": "1"
+      "type": "0"
     },
     {
       "fuelType": "Diesel",
       "indexFuel": "1",
-      "type": "2"
+      "type": "1"
     }];
 
   constructor(public activatedRoute: ActivatedRoute,
     public router: Router,
     public location: Location,
     public toast: ToastController,
+    public apiCall : ApicallService,
     public dateAdapter: DateAdapter<Date>,
     public menu : MenuController) {
       this.menu.enable(true);
@@ -49,6 +56,7 @@ export class DataentrycreditPage implements OnInit {
   }
 
   ngOnInit() {
+    this.getCustomerList();
     this.userModel['perliture'] = 70;
     this.filteredOptions = this.myControl.valueChanges
       .pipe(startWith(''),
@@ -60,12 +68,37 @@ export class DataentrycreditPage implements OnInit {
     let loginStatus = localStorage.getItem("loginStatus");
 
   }
+
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
 
     return this.customerList.filter(option => option.toLowerCase().includes(filterValue));
   }
 
+
+  getCustomerList() {
+    let url = environment.base_url + "customers";
+    console.log("url :" + url);
+    this.apiCall.get(url).subscribe(MyResponse => {
+      this.getCusstomers = MyResponse['result']['list'];
+      for (let i = 0; i < this.getCusstomers.length; i++) {
+        let fullName = this.getCusstomers[i]['firstName'] + " " + this.getCusstomers[i]['lastName'];
+        let id = this.getCusstomers[i]['id'];
+        this.customerList.push(fullName);
+        let getObject = {
+          "name": fullName,
+          "id": id
+        }
+
+        this.autoCompleteArray.push(getObject);
+
+      }
+      console.log("success:" + this.getCusstomers);
+    },
+      error => {
+        alert("failed:" + error);
+      })
+  }
 
   OnInput(event: any) {
 
@@ -95,8 +128,11 @@ export class DataentrycreditPage implements OnInit {
   fuelType(fuelType) {
     this.checkFuelType = fuelType;
     if(fuelType == 0){
+      
+      this.userModel['type'] = 0;
       this.userModel['perliture'] = 70;
     }else{
+      this.userModel['type'] = 1;
       this.userModel['perliture'] = 80;
     }
   }
@@ -111,6 +147,32 @@ export class DataentrycreditPage implements OnInit {
   }
 
   creditsubmit(){
-    this.presentToast("Credited");
+    for (let j = 0; j < this.autoCompleteArray.length; j++) {
+      if (this.userModel['customername'] == this.autoCompleteArray[j]['name']) {
+        this.userModel['id'] = this.autoCompleteArray[j]['id'];
+      }
+    }
+
+    let send_date = {};
+
+    send_date['type'] = this.userModel['type'];
+    send_date['amountInLitre'] = this.userModel['inlitures'];
+    send_date['pricePerLitre'] = this.userModel['perliture']
+    send_date['finalAmount'] = this.userModel['totalamount'];
+    send_date['amountPaid'] = this.userModel['payment']
+
+
+    this.url = environment.base_url + "customers/" + this.userModel['id'] + "/purchase"
+
+    this.apiCall.postWAu(this.url, send_date).subscribe(MyResponse => {
+      // this.router.navigate(['/home']);
+
+      let msg = MyResponse['message'];
+      this.presentToast(msg);
+
+    }, error => {
+      console.log(error.error.message);
+
+    })
   }
 }
