@@ -305,6 +305,7 @@ let ShowbalancerecordPage = class ShowbalancerecordPage {
         this.detailArray = JSON.parse(getdetail);
         this.customerId = this.detailArray['id'];
         this.customerName = this.detailArray['name'] + " " + this.detailArray['lname'];
+        this.customerNumber = this.detailArray['mobile'];
         this.getBalanceRecord();
         // alert("dusplay customerName:"+this.customerName);
         // this.customerName = this.activatedRoute.snapshot.params['customerName'];
@@ -337,7 +338,8 @@ let ShowbalancerecordPage = class ShowbalancerecordPage {
         let balanceObject = {
             customerName: this.customerName,
             amountState: value,
-            customerId: this.customerId
+            customerId: this.customerId,
+            customerMobile: this.customerNumber
         };
         this.router.navigate(['/updatebalance', { balanceObject: JSON.stringify(balanceObject) }]);
         // let send_data = {};
@@ -359,13 +361,13 @@ let ShowbalancerecordPage = class ShowbalancerecordPage {
                 intent: 'INTENT'
             }
         };
-        this.sms.send("9527902622", '', options)
+        this.sms.send(this.customerNumber, '', options)
             .then(() => {
         }, () => {
         });
     }
     makeCall() {
-        this.callNumber.callNumber("9527902622", true)
+        this.callNumber.callNumber(this.customerNumber, true)
             .then(res => console.log('Launched dialer!', res))
             .catch(err => console.log('Error launching dialer', err));
     }

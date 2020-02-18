@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Platform } from '@ionic/angular';
+import { Platform, Events, AlertController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
@@ -20,7 +20,9 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
-    public router : Router
+    public router : Router,
+    public events : Events,
+    public alertCtrl : AlertController
   ) {
     this.initializeApp();
   }
@@ -32,6 +34,19 @@ export class AppComponent {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
       this.splashScreen.hide();     
+    });
+
+    this.events.subscribe('Event-SideMenu', () => {
+      this.userRole = localStorage.getItem('userRole');
+      this.login();
+      this.loginSession();
+    });
+
+    this.platform.backButton.subscribe(() => {
+      if (this.router.url === '/home' || this.router.url === '/dataentrycredit') {
+        this.presentAlert()
+        return
+      }
     });
   }
 
@@ -160,7 +175,7 @@ export class AppComponent {
   
   sideMenuClicked(page) {
     if (page === 'Log Out') {
-      localStorage.removeItem("loginStatus");
+      localStorage.removeItem("userRole");
       localStorage.clear();
       localStorage.setItem('login','no');
       this.router.navigate(['/login']);
@@ -219,4 +234,30 @@ export class AppComponent {
     }
   }
   
+
+  async presentAlert() {
+    const alert = await this.alertCtrl.create({
+      header: '',
+      message: 'Do you want to exit?',
+      buttons: [
+        {
+          text: 'No',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            console.log('Confirm Okay');
+            // this.platform.;
+            navigator['app'].exitApp()
+          }
+        }
+      ]
+    });
+    alert.setAttribute('role', 'alert');
+    await alert.present();
+  }
 }

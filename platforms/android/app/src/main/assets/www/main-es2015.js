@@ -569,11 +569,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let AppComponent = class AppComponent {
-    constructor(platform, splashScreen, statusBar, router) {
+    constructor(platform, splashScreen, statusBar, router, events, alertCtrl) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
         this.router = router;
+        this.events = events;
+        this.alertCtrl = alertCtrl;
         this.userRole = 0;
         this.initializeApp();
     }
@@ -584,6 +586,17 @@ let AppComponent = class AppComponent {
         this.platform.ready().then(() => {
             this.statusBar.styleDefault();
             this.splashScreen.hide();
+        });
+        this.events.subscribe('Event-SideMenu', () => {
+            this.userRole = localStorage.getItem('userRole');
+            this.login();
+            this.loginSession();
+        });
+        this.platform.backButton.subscribe(() => {
+            if (this.router.url === '/home' || this.router.url === '/dataentrycredit') {
+                this.presentAlert();
+                return;
+            }
         });
     }
     login() {
@@ -691,7 +704,7 @@ let AppComponent = class AppComponent {
     }
     sideMenuClicked(page) {
         if (page === 'Log Out') {
-            localStorage.removeItem("loginStatus");
+            localStorage.removeItem("userRole");
             localStorage.clear();
             localStorage.setItem('login', 'no');
             this.router.navigate(['/login']);
@@ -743,12 +756,41 @@ let AppComponent = class AppComponent {
             this.router.navigate(['/login']);
         }
     }
+    presentAlert() {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            const alert = yield this.alertCtrl.create({
+                header: '',
+                message: 'Do you want to exit?',
+                buttons: [
+                    {
+                        text: 'No',
+                        role: 'cancel',
+                        cssClass: 'secondary',
+                        handler: (blah) => {
+                            console.log('Confirm Cancel: blah');
+                        }
+                    }, {
+                        text: 'Yes',
+                        handler: () => {
+                            console.log('Confirm Okay');
+                            // this.platform.;
+                            navigator['app'].exitApp();
+                        }
+                    }
+                ]
+            });
+            alert.setAttribute('role', 'alert');
+            yield alert.present();
+        });
+    }
 };
 AppComponent.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
     { type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"] },
     { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] },
-    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }
+    { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] }
 ];
 AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -759,7 +801,9 @@ AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"],
         _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"],
         _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"],
-        _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
+        _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]])
 ], AppComponent);
 
 

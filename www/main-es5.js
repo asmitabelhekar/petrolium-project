@@ -578,11 +578,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent(platform, splashScreen, statusBar, router) {
+    function AppComponent(platform, splashScreen, statusBar, router, events, alertCtrl) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
         this.router = router;
+        this.events = events;
+        this.alertCtrl = alertCtrl;
         this.userRole = 0;
         this.initializeApp();
     }
@@ -594,6 +596,17 @@ var AppComponent = /** @class */ (function () {
         this.platform.ready().then(function () {
             _this.statusBar.styleDefault();
             _this.splashScreen.hide();
+        });
+        this.events.subscribe('Event-SideMenu', function () {
+            _this.userRole = localStorage.getItem('userRole');
+            _this.login();
+            _this.loginSession();
+        });
+        this.platform.backButton.subscribe(function () {
+            if (_this.router.url === '/home' || _this.router.url === '/dataentrycredit') {
+                _this.presentAlert();
+                return;
+            }
         });
     };
     AppComponent.prototype.login = function () {
@@ -701,7 +714,7 @@ var AppComponent = /** @class */ (function () {
     };
     AppComponent.prototype.sideMenuClicked = function (page) {
         if (page === 'Log Out') {
-            localStorage.removeItem("loginStatus");
+            localStorage.removeItem("userRole");
             localStorage.clear();
             localStorage.setItem('login', 'no');
             this.router.navigate(['/login']);
@@ -753,11 +766,50 @@ var AppComponent = /** @class */ (function () {
             this.router.navigate(['/login']);
         }
     };
+    AppComponent.prototype.presentAlert = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertCtrl.create({
+                            header: '',
+                            message: 'Do you want to exit?',
+                            buttons: [
+                                {
+                                    text: 'No',
+                                    role: 'cancel',
+                                    cssClass: 'secondary',
+                                    handler: function (blah) {
+                                        console.log('Confirm Cancel: blah');
+                                    }
+                                }, {
+                                    text: 'Yes',
+                                    handler: function () {
+                                        console.log('Confirm Okay');
+                                        // this.platform.;
+                                        navigator['app'].exitApp();
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        alert.setAttribute('role', 'alert');
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     AppComponent.ctorParameters = function () { return [
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"] },
         { type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"] },
         { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] },
-        { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] }
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] }
     ]; };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -768,7 +820,9 @@ var AppComponent = /** @class */ (function () {
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Platform"],
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"],
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"],
-            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"]])
+            _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]])
     ], AppComponent);
     return AppComponent;
 }());

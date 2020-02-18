@@ -133,6 +133,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_sms_ngx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @ionic-native/sms/ngx */ "./node_modules/@ionic-native/sms/ngx/index.js");
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/service/apicall/apicall.service */ "./src/app/service/apicall/apicall.service.ts");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+
 
 
 
@@ -142,9 +144,10 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var CustomerdetilPage = /** @class */ (function () {
-    function CustomerdetilPage(activatedRoute, router, callNumber, toast, apiCall, sms) {
+    function CustomerdetilPage(activatedRoute, router, location, callNumber, toast, apiCall, sms) {
         this.activatedRoute = activatedRoute;
         this.router = router;
+        this.location = location;
         this.callNumber = callNumber;
         this.toast = toast;
         this.apiCall = apiCall;
@@ -157,7 +160,8 @@ var CustomerdetilPage = /** @class */ (function () {
         // this.customerIndex = parseArray.getIndex;
     };
     CustomerdetilPage.prototype.goBackword = function () {
-        this.router.navigate(['/home']);
+        this.location.back();
+        // this.router.navigate(['/showbalancerecord']);
     };
     CustomerdetilPage.prototype.getCustomerDetailInfo = function () {
         var _this = this;
@@ -256,6 +260,7 @@ var CustomerdetilPage = /** @class */ (function () {
     CustomerdetilPage.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
+        { type: _angular_common__WEBPACK_IMPORTED_MODULE_8__["Location"] },
         { type: _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_3__["CallNumber"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"] },
         { type: src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__["ApicallService"] },
@@ -269,6 +274,7 @@ var CustomerdetilPage = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
+            _angular_common__WEBPACK_IMPORTED_MODULE_8__["Location"],
             _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_3__["CallNumber"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"],
             src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__["ApicallService"],

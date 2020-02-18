@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
+import { LoadingController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -47,5 +48,10 @@ getMessage(): Observable<any> {
   return this.subject.asObservable();
 }
 
-  constructor() { }
+  constructor(public loadingController: LoadingController) { }
+
+  async loadingPresent(message: string = null, duration: number = null) {
+    const loading = await this.loadingController.create({ message, duration });
+    return await loading.present();
+}
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController, ToastController } from '@ionic/angular';
+import { MenuController, ToastController, Events } from '@ionic/angular';
 import { LoaderserviceService } from 'src/app/service/loader/loaderservice.service';
 import { environment } from 'src/environments/environment';
 import { ApicallService } from 'src/app/service/apicall/apicall.service';
@@ -27,6 +27,8 @@ export class LoginPage implements OnInit {
     public menuController: MenuController,
     public preloader: LoaderserviceService,
     public apiCall: ApicallService,
+    public events : Events,
+    public loader : LoaderserviceService,
     public toastcontroller: ToastController) { }
 
 
@@ -37,6 +39,7 @@ export class LoginPage implements OnInit {
 
   Login(data) {
 
+    this.loader.showBlockingLoaderAuth();
     let send_date = {};
 
     send_date['mobile'] = this.loginModel['mobile'];
@@ -45,52 +48,29 @@ export class LoginPage implements OnInit {
     let url = environment.base_url + "users/login"
     this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
       localStorage.setItem('userRole', MyResponse['result']['userRole']);
+      this.userRole =  MyResponse['result']['userRole'];
       localStorage.setItem('login', 'yes');
-      if (this.userRole == 0) {
+      this.events.publish('Event-SideMenu')
+      if (this.userRole == '0') {
         this.router.navigate(['/dataentrycredit']);
       }
-      else if (this.userRole == 1) {
+      else if (this.userRole == '1') {
         this.router.navigate(['/home']);
       }
       else {
         this.router.navigate(['/home']);
       }
       let msg = MyResponse['message'];
-      this.presentToast(msg);
+      this.presentToast("Login Successfully");
+      // this.loader.hideBlockingLoaderAuth();
     }, error => {
+      this.presentToast("Please try again");
       console.log(error.error.message);
     })
 
-    // if (data.mobile == "1234567890" && data.password == "abc") {
-    //   this.router.navigate(['/dataentrycredit']);
-    //   localStorage.setItem('login','yes');
-    //   localStorage.setItem('loginStatus', 'dataentry');
-    // } else if (data.mobile == "1234567891" && data.password == "abc"){
-    //   localStorage.setItem('loginStatus', 'manager');
-    //   localStorage.setItem('login','yes');
-    //   this.router.navigate(['/home']);
-    // }else{
-    //   localStorage.setItem('login','no');
-    //   this.presentToast("Please try again.");
-    // }
 
     this.statusCheck = localStorage.getItem('loginStatus');
 
-
-
-    // this.preloader.showBlockingLoaderAuth();
-
-    // let operationsUrl = environment.base_url + environment.version + "users/login";
-    // this.apicall.postWAu(operationsUrl, data).subscribe(MyResponse => {
-    //   console.log(MyResponse);
-    //   MyResponse['result']['password'] = data['password'];
-    //   this.preloader.hideBlockingLoaderAuth();
-    //   this.router.navigate(['home']);
-
-    // }, error => {
-    //   this.presentToast("Please try again");
-    //   console.log(error)
-    // })
 
 
 

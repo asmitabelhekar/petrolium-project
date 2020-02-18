@@ -173,6 +173,7 @@ export class ShowbalancerecordPage implements OnInit {
   getBalanceRecordData: any;
   customerId : any;
   getNewRecords : any = [] ;
+  customerNumber : any;
 
   constructor(public router: Router,
     public activatedRoute: ActivatedRoute,
@@ -189,9 +190,8 @@ export class ShowbalancerecordPage implements OnInit {
     this.detailArray = JSON.parse(getdetail);
     this.customerId = this.detailArray['id']
     this.customerName = this.detailArray['name'] +  " " + this.detailArray['lname'];
+    this.customerNumber = this.detailArray['mobile'];
     this.getBalanceRecord();
-    // alert("dusplay customerName:"+this.customerName);
-    // this.customerName = this.activatedRoute.snapshot.params['customerName'];
     this.getHistoryArray = this.balanceRecord.history;
     this.displayList = this.getHistoryArray['list'];
   }
@@ -202,10 +202,8 @@ export class ShowbalancerecordPage implements OnInit {
 
   clickMenuItem(getStatus) {
     if (getStatus == "1") {
-      // this.presentToast("Amount Debited Successfully");
       this.creditDebitAmount(1);
     } else if (getStatus == "2") {
-      //  this.presentToast("Amount Debited Successfully");
       this.creditDebitAmount(2);
 
     } else if (getStatus == "3") {
@@ -222,24 +220,12 @@ export class ShowbalancerecordPage implements OnInit {
     let balanceObject = {
       customerName: this.customerName,
       amountState: value,
-      customerId : this.customerId
+      customerId : this.customerId,
+      customerMobile : this.customerNumber
 
     }
     this.router.navigate(['/updatebalance', { balanceObject: JSON.stringify(balanceObject) }]);
-    // let send_data = {};
-    // send_data['text'] = "Are you sure you want to discard the changes?";
-    // send_data['button2'] = "No";
-    // send_data['button1'] = "Yes";
-
-    // const dialogRef = this.dialog.open(UpdatebalancePage, {
-    //   width: '450px',
-    //   data: send_data
-    // });
-
-    // dialogRef.afterClosed().subscribe(result => {
-
-    //   console.log("result", result);
-    // });
+  
   }
 
   sentMessage() {
@@ -249,14 +235,14 @@ export class ShowbalancerecordPage implements OnInit {
         intent: 'INTENT'
       }
     }
-    this.sms.send("9527902622", '', options)
+    this.sms.send(this.customerNumber, '', options)
       .then(() => {
       }, () => {
       });
   }
 
   makeCall() {
-    this.callNumber.callNumber("9527902622", true)
+    this.callNumber.callNumber(this.customerNumber, true)
       .then(res => console.log('Launched dialer!', res))
       .catch(err => console.log('Error launching dialer', err));
   }
@@ -271,32 +257,18 @@ export class ShowbalancerecordPage implements OnInit {
 
   customerDetail() {
 
-    // let detailData =
-    // {
-    //   "name": data.name,
-    //   "mobile": data.mobile,
-    //   "address": data.address,
-    //   "lname": data.lname,
-    //   "amount": data.amount,
-    //   "imagepath": data.imagepath,
-    //   "email": data.email,
-    //   "note": data.note,
-    //   "getIndex": i
-    // }
-
-
     this.router.navigate(['customerdetil', { customerId: this.customerId }])
   }
 
   getBalanceRecord() {
-    // let url = "http://3.6.135.154:20200/api/v1.0.0/balance?page=0&size=10&filters=%7B%7D";
     let url =  environment.base_url + "customers/" + this.customerId + "/passbook" ;
     this.apiCall.get(url).subscribe(MyResponse => {
       this.getNewRecords = JSON.stringify(MyResponse['result']['list']);
       console.log("success:" + this.getNewRecords);
     },
       error => {
-        alert("failed:" + error);
+        this.presentToast("Something went wrong");
+    
       })
   }
 }

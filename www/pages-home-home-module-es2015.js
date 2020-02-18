@@ -268,9 +268,10 @@ let HomePage = class HomePage {
     //     "note": "fgfgf"
     //   }
     // ]
-    constructor(menuCntrl, router, apiCall) {
+    constructor(menuCntrl, router, events, apiCall) {
         this.menuCntrl = menuCntrl;
         this.router = router;
+        this.events = events;
         this.apiCall = apiCall;
         this.getCusstomers = [];
         this.getCustomerList();
@@ -280,6 +281,9 @@ let HomePage = class HomePage {
     }
     ngOnInit() {
         this.getCustomerList();
+        this.events.subscribe('Event-AddCustomer', () => {
+            this.getCustomerList();
+        });
     }
     addCustomer() {
         this.checkRecordStatus = "add";
@@ -309,6 +313,7 @@ let HomePage = class HomePage {
             "id": data.id,
             "name": data.firstName,
             "lname": data.lastName,
+            "mobile": data.mobile
         };
         this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }]);
         // this.router.navigate(['showbalancerecord' ]);
@@ -327,6 +332,7 @@ let HomePage = class HomePage {
 HomePage.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"] },
     { type: src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_4__["ApicallService"] }
 ];
 HomePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -337,6 +343,7 @@ HomePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     }),
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"],
         _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"],
         src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_4__["ApicallService"]])
 ], HomePage);
 

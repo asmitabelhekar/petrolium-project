@@ -181,7 +181,13 @@ let UpdatebalancePage = class UpdatebalancePage {
         // if(loginStatus == "manager"){
         this.getPaymentDetail = JSON.parse(this.activatedRoute.snapshot.params['balanceObject']);
         this.userModel['perliture'] = 70;
+        this.customerMobile = this.getPaymentDetail.customerMobile;
         this.customerName = this.getPaymentDetail.customerName;
+        if (this.customerName != "") {
+            let names = this.customerName.split(" ");
+            this.fname = names[0];
+            this.lname = names[(names.length - 1)];
+        }
         this.customerId = this.getPaymentDetail.customerId;
         this.paymentType = this.getPaymentDetail.amountState;
         if (this.paymentType == "1") {
@@ -217,7 +223,7 @@ let UpdatebalancePage = class UpdatebalancePage {
     }
     goBackword() {
         this.location.back();
-        // this.router.navigate(['showbalancerecord']);
+        // this.router.navigate(['/showbalancerecord']);
     }
     getPaymentDetailInfo(detail) {
         let getDate = this.convert(detail.date);
@@ -249,6 +255,13 @@ let UpdatebalancePage = class UpdatebalancePage {
         this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
             let msg = MyResponse['message'];
             this.presentToast(msg);
+            let detailData = {
+                "id": this.customerId,
+                "name": this.fname,
+                "lname": this.lname,
+                "mobile": this.customerMobile
+            };
+            this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }]);
         }, error => {
             console.log(error.error.message);
         });
@@ -262,6 +275,13 @@ let UpdatebalancePage = class UpdatebalancePage {
         this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
             let msg = MyResponse['message'];
             this.presentToast(msg);
+            let detailData = {
+                "id": this.customerId,
+                "name": this.fname,
+                "lname": this.lname,
+                "mobile": this.customerMobile
+            };
+            this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }]);
         }, error => {
             console.log(error.error.message);
         });

@@ -64,7 +64,8 @@ export class DebitamountPage implements OnInit {
       console.log("success:" + this.getCusstomers);
     },
       error => {
-        alert("failed:" + error);
+        this.presentToast("Something went wrong");
+       
       })
   }
   convert(str) {
@@ -104,6 +105,7 @@ export class DebitamountPage implements OnInit {
       this.presentToast(msg);
 
     }, error => {
+      this.presentToast("Something went wrong");
       console.log(error.error.message);
 
     })

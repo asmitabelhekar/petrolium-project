@@ -133,11 +133,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let LoginPage = class LoginPage {
-    constructor(router, menuController, preloader, apiCall, toastcontroller) {
+    constructor(router, menuController, preloader, apiCall, events, loader, toastcontroller) {
         this.router = router;
         this.menuController = menuController;
         this.preloader = preloader;
         this.apiCall = apiCall;
+        this.events = events;
+        this.loader = loader;
         this.toastcontroller = toastcontroller;
         this.loginModel = {};
         this.userModel = {};
@@ -146,17 +148,20 @@ let LoginPage = class LoginPage {
     ngOnInit() {
     }
     Login(data) {
+        this.loader.showBlockingLoaderAuth();
         let send_date = {};
         send_date['mobile'] = this.loginModel['mobile'];
         send_date['password'] = this.loginModel['password'];
         let url = src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].base_url + "users/login";
         this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
             localStorage.setItem('userRole', MyResponse['result']['userRole']);
+            this.userRole = MyResponse['result']['userRole'];
             localStorage.setItem('login', 'yes');
-            if (this.userRole == 0) {
+            this.events.publish('Event-SideMenu');
+            if (this.userRole == '0') {
                 this.router.navigate(['/dataentrycredit']);
             }
-            else if (this.userRole == 1) {
+            else if (this.userRole == '1') {
                 this.router.navigate(['/home']);
             }
             else {
@@ -164,6 +169,7 @@ let LoginPage = class LoginPage {
             }
             let msg = MyResponse['message'];
             this.presentToast(msg);
+            // this.loader.hideBlockingLoaderAuth();
         }, error => {
             console.log(error.error.message);
         });
@@ -216,6 +222,8 @@ LoginPage.ctorParameters = () => [
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"] },
     { type: src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_4__["LoaderserviceService"] },
     { type: src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_6__["ApicallService"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Events"] },
+    { type: src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_4__["LoaderserviceService"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"] }
 ];
 LoginPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -228,71 +236,10 @@ LoginPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"],
         src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_4__["LoaderserviceService"],
         src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_6__["ApicallService"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Events"],
+        src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_4__["LoaderserviceService"],
         _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"]])
 ], LoginPage);
-
-
-
-/***/ }),
-
-/***/ "./src/app/service/loader/loaderservice.service.ts":
-/*!*********************************************************!*\
-  !*** ./src/app/service/loader/loaderservice.service.ts ***!
-  \*********************************************************/
-/*! exports provided: LoaderserviceService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoaderserviceService", function() { return LoaderserviceService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm2015/core.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm2015/index.js");
-
-
-
-let LoaderserviceService = class LoaderserviceService {
-    constructor() {
-        this.loadingStatus = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-        this.loaderTop = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-        this.blockingLoader = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-        this.blockingLoaderAuth = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-        this.bgGrey = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-        this.blockingLoaderFlag = false;
-        this.loaderTopFlag = false;
-        this.subject = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-    }
-    showBlockingLoader() {
-        console.log("load");
-        this.blockingLoader.next(true);
-        this.blockingLoaderFlag = true;
-    }
-    hideBlockingLoader() {
-        this.blockingLoader.next(false);
-        this.blockingLoaderFlag = false;
-    }
-    showBlockingLoaderAuth() {
-        this.blockingLoaderAuth.next(true);
-    }
-    hideBlockingLoaderAuth() {
-        this.blockingLoaderAuth.next(false);
-    }
-    sendMessage(message) {
-        // console.log("name",message);
-        let set_data = {};
-        set_data['message'] = message;
-        this.subject.next(set_data);
-    }
-    getMessage() {
-        return this.subject.asObservable();
-    }
-};
-LoaderserviceService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-    Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-        providedIn: 'root'
-    }),
-    tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-], LoaderserviceService);
 
 
 

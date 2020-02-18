@@ -311,6 +311,7 @@ var ShowbalancerecordPage = /** @class */ (function () {
         this.detailArray = JSON.parse(getdetail);
         this.customerId = this.detailArray['id'];
         this.customerName = this.detailArray['name'] + " " + this.detailArray['lname'];
+        this.customerNumber = this.detailArray['mobile'];
         this.getBalanceRecord();
         // alert("dusplay customerName:"+this.customerName);
         // this.customerName = this.activatedRoute.snapshot.params['customerName'];
@@ -343,7 +344,8 @@ var ShowbalancerecordPage = /** @class */ (function () {
         var balanceObject = {
             customerName: this.customerName,
             amountState: value,
-            customerId: this.customerId
+            customerId: this.customerId,
+            customerMobile: this.customerNumber
         };
         this.router.navigate(['/updatebalance', { balanceObject: JSON.stringify(balanceObject) }]);
         // let send_data = {};
@@ -365,13 +367,13 @@ var ShowbalancerecordPage = /** @class */ (function () {
                 intent: 'INTENT'
             }
         };
-        this.sms.send("9527902622", '', options)
+        this.sms.send(this.customerNumber, '', options)
             .then(function () {
         }, function () {
         });
     };
     ShowbalancerecordPage.prototype.makeCall = function () {
-        this.callNumber.callNumber("9527902622", true)
+        this.callNumber.callNumber(this.customerNumber, true)
             .then(function (res) { return console.log('Launched dialer!', res); })
             .catch(function (err) { return console.log('Error launching dialer', err); });
     };

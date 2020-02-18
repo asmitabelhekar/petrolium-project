@@ -271,9 +271,10 @@ var HomePage = /** @class */ (function () {
     //     "note": "fgfgf"
     //   }
     // ]
-    function HomePage(menuCntrl, router, apiCall) {
+    function HomePage(menuCntrl, router, events, apiCall) {
         this.menuCntrl = menuCntrl;
         this.router = router;
+        this.events = events;
         this.apiCall = apiCall;
         this.getCusstomers = [];
         this.getCustomerList();
@@ -282,7 +283,11 @@ var HomePage = /** @class */ (function () {
         // this.makePdf();
     }
     HomePage.prototype.ngOnInit = function () {
+        var _this = this;
         this.getCustomerList();
+        this.events.subscribe('Event-AddCustomer', function () {
+            _this.getCustomerList();
+        });
     };
     HomePage.prototype.addCustomer = function () {
         this.checkRecordStatus = "add";
@@ -312,6 +317,7 @@ var HomePage = /** @class */ (function () {
             "id": data.id,
             "name": data.firstName,
             "lname": data.lastName,
+            "mobile": data.mobile
         };
         this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }]);
         // this.router.navigate(['showbalancerecord' ]);
@@ -330,6 +336,7 @@ var HomePage = /** @class */ (function () {
     HomePage.ctorParameters = function () { return [
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"] },
         { type: src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_4__["ApicallService"] }
     ]; };
     HomePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -340,6 +347,7 @@ var HomePage = /** @class */ (function () {
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["MenuController"],
             _angular_router__WEBPACK_IMPORTED_MODULE_3__["Router"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"],
             src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_4__["ApicallService"]])
     ], HomePage);
     return HomePage;

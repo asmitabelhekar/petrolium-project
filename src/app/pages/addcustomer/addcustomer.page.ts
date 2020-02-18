@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ToastController, AlertController } from '@ionic/angular';
+import { ToastController, AlertController, LoadingController, Events } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 import { ApicallService } from 'src/app/service/apicall/apicall.service';
+import { LoaderserviceService } from 'src/app/service/loader/loaderservice.service';
 
 @Component({
   selector: 'app-addcustomer',
@@ -11,6 +12,7 @@ import { ApicallService } from 'src/app/service/apicall/apicall.service';
 })
 export class AddcustomerPage implements OnInit {
 
+  loading: any;
   userModel: any = {}
   savetext: any;
   recordstatus: any;
@@ -20,8 +22,11 @@ export class AddcustomerPage implements OnInit {
 
   constructor(public router: Router,
     public toast: ToastController,
+    public loader : LoaderserviceService,
     public apiCall: ApicallService,
+    public loadingController : LoadingController,
     public alertController: AlertController,
+    public events : Events,
     public route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -58,7 +63,10 @@ export class AddcustomerPage implements OnInit {
     // this.router.navigate(['home']);
   }
 
-  addCustomerData() {
+  async addCustomerData() {
+    this.loading = await this.loadingController.create({
+      message: 'Loading data from api',
+    });
     let send_date = {};
 
     send_date['firstName'] = this.userModel['fname'];
@@ -70,16 +78,19 @@ export class AddcustomerPage implements OnInit {
     send_date['isActive'] = 1;
 
     if (this.checkStatus == "add") {
+     
       this.url = environment.base_url + "customers"
 
       this.apiCall.postWAu(this.url, send_date).subscribe(MyResponse => {
         console.log("MyResponse ", MyResponse);
+        this.events.publish('Event-AddCustomer')
         this.router.navigate(['/home']);
 
         let msg = MyResponse['message'];
         this.presentToast(msg);
 
       }, error => {
+        this.presentToast("Something went wrong");
         console.log(error.error.message);
 
       })
@@ -88,12 +99,14 @@ export class AddcustomerPage implements OnInit {
 
       this.apiCall.put(this.url, send_date).subscribe(MyResponse => {
         console.log("MyResponse ", MyResponse);
+        this.events.publish('Event-AddCustomer')
         this.router.navigate(['/home']);
 
         let msg = MyResponse['message'];
         this.presentToast(msg);
 
       }, error => {
+        this.presentToast("Something went wrong");
         console.log(error.error.message);
 
       })
@@ -128,7 +141,7 @@ export class AddcustomerPage implements OnInit {
         }, {
           text: 'OK',
           handler: () => {
-            this.router.navigate(['/home']);
+            this.router.navigate(['customerdetil', { customerId: this.customerId }])
           }
         }]
     });

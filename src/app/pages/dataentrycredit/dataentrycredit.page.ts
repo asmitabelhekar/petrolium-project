@@ -57,6 +57,7 @@ export class DataentrycreditPage implements OnInit {
 
   ngOnInit() {
     this.getCustomerList();
+    this.userModel['type'] = 0;
     this.userModel['perliture'] = 70;
     this.filteredOptions = this.myControl.valueChanges
       .pipe(startWith(''),
@@ -171,6 +172,7 @@ export class DataentrycreditPage implements OnInit {
       this.presentToast(msg);
 
     }, error => {
+      this.presentToast("Something went wrong");
       console.log(error.error.message);
 
     })

@@ -19,6 +19,7 @@ export class UpdatebalancePage implements OnInit {
 
   showDateNoteDiv: any = 1;
   customerName: any;
+  customerMobile: any;
   payment: any;
   isValidInput: boolean;
   userModel: any = {}
@@ -27,6 +28,8 @@ export class UpdatebalancePage implements OnInit {
   getPaymentDetail: any;
   paymentNames: any;
   today: any;
+  fname: any;
+  lname: any;
   displayBalnace: any = 0;
   checkFuelType: any;
   myControl = new FormControl();
@@ -62,13 +65,16 @@ export class UpdatebalancePage implements OnInit {
 
     this.userModel['date'] = new Date().toJSON().split('T')[0];
     this.today = new Date().toJSON().split('T')[0];
-    // let loginStatus = localStorage.getItem("loginStatus");
-
-    // if(loginStatus == "manager"){
-
     this.getPaymentDetail = JSON.parse(this.activatedRoute.snapshot.params['balanceObject']);
     this.userModel['perliture'] = 70;
+    this.customerMobile = this.getPaymentDetail.customerMobile;
     this.customerName = this.getPaymentDetail.customerName;
+
+    if (this.customerName != "") {
+      let names = this.customerName.split(" ");
+      this.fname = names[0];
+      this.lname = names[(names.length - 1)];
+    }
     this.customerId = this.getPaymentDetail.customerId;
     this.paymentType = this.getPaymentDetail.amountState;
     if (this.paymentType == "1") {
@@ -111,7 +117,7 @@ export class UpdatebalancePage implements OnInit {
 
   goBackword() {
     this.location.back();
-    // this.router.navigate(['showbalancerecord']);
+    // this.router.navigate(['/showbalancerecord']);
   }
 
   getPaymentDetailInfo(detail) {
@@ -150,7 +156,18 @@ export class UpdatebalancePage implements OnInit {
     this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
       let msg = MyResponse['message'];
       this.presentToast(msg);
+      
+      let detailData =
+      {
+        "id" : this.customerId,
+        "name": this.fname,
+        "lname": this.lname,
+        "mobile" : this.customerMobile
+      }
+  
+      this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }])
     }, error => {
+      this.presentToast("Something went wrong");
       console.log(error.error.message);
     })
   }
@@ -165,7 +182,17 @@ export class UpdatebalancePage implements OnInit {
     this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
       let msg = MyResponse['message'];
       this.presentToast(msg);
+      let detailData =
+      {
+        "id" : this.customerId,
+        "name": this.fname,
+        "lname": this.lname,
+        "mobile" : this.customerMobile
+      }
+  
+      this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }])
     }, error => {
+      this.presentToast("Something went wrong");
       console.log(error.error.message);
     })
   }

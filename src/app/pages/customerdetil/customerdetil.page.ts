@@ -5,6 +5,7 @@ import { ToastController } from '@ionic/angular';
 import { SMS } from '@ionic-native/sms/ngx';
 import { environment } from 'src/environments/environment';
 import { ApicallService } from 'src/app/service/apicall/apicall.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-customerdetil',
@@ -28,8 +29,10 @@ export class CustomerdetilPage implements OnInit {
 
   constructor(public activatedRoute: ActivatedRoute,
     public router: Router,
+    public location : Location,
     private callNumber: CallNumber,
     public toast: ToastController,
+    
     public apiCall : ApicallService,
     private sms: SMS) { }
 
@@ -46,7 +49,8 @@ export class CustomerdetilPage implements OnInit {
   
   
     goBackword() {
-      this.router.navigate(['/home']);
+      this.location.back();
+      // this.router.navigate(['/showbalancerecord']);
     }
   
     getCustomerDetailInfo(){
@@ -92,6 +96,7 @@ export class CustomerdetilPage implements OnInit {
         }
       },
         error => {
+          this.presentToast("Something went wrong");
           alert("failed:" + error);
         })
     }

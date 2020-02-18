@@ -31,7 +31,7 @@
         <ion-row >
           <mat-form-field style="width:95%; margin-right:5%">
             <input matInput class="form-control " name="fname" required [(ngModel)]="userModel.fname" #fname="ngModel"
-              pattern="[a-zA-z]+$" placeholder="First Name" />
+              pattern="[a-zA-z   ]+$" placeholder="First Name" />
             <mat-error>
               <div class="form-group">
                 <div *ngIf="fname.invalid && (fname.dirty || fname.touched)">
@@ -130,7 +130,7 @@
         <ion-row >
         <mat-form-field style="width:95%; margin-right:5%">
           <textarea matInput class="form-control " name="address"  [(ngModel)]="userModel.address" #address="ngModel"
-            pattern="[a-zA-z]+$" placeholder="Address" ></textarea>
+            pattern="[a-zA-z  ]+$" placeholder="Address" ></textarea>
         </mat-form-field>
         </ion-row>
       </ion-col>
@@ -146,7 +146,7 @@
         <ion-row >
         <mat-form-field style="width:95%; margin-right:5%">
           <textarea matInput class="form-control " name="note" [(ngModel)]="userModel.note" #note="ngModel"
-            pattern="[a-zA-z]+$" placeholder="Note" ></textarea>
+            pattern="[a-zA-z  ]+$" placeholder="Note" ></textarea>
         
         </mat-form-field>
         </ion-row>

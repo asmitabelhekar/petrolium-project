@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuController } from '@ionic/angular';
+import { MenuController, Events, ToastController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import * as pdfmake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
@@ -193,6 +193,8 @@ export class HomePage {
   constructor(
     public menuCntrl: MenuController,
     public router: Router,
+    public events : Events,
+    public toast : ToastController,
     public apiCall: ApicallService) {
     this.getCustomerList();
     this.getCusstomers.sort((a, b) => a.name.localeCompare(b.name));
@@ -201,6 +203,9 @@ export class HomePage {
   }
   ngOnInit() {
     this.getCustomerList();
+    this.events.subscribe('Event-AddCustomer', () => {
+      this.getCustomerList();
+    });
   }
 
   addCustomer() {
@@ -237,6 +242,7 @@ export class HomePage {
       "id" : data.id,
       "name": data.firstName,
       "lname": data.lastName,
+      "mobile" : data.mobile
     }
 
     this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }])
@@ -254,7 +260,16 @@ export class HomePage {
       console.log("success:" + this.getCusstomers);
     },
       error => {
-        alert("failed:" + error);
+        this.presentToast("Something went wrong");
+     
       })
+  }
+
+  async presentToast(message) {
+    const toast = await this.toast.create({
+      message: message,
+      duration: 4000
+    });
+    toast.present();
   }
 }

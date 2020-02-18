@@ -139,11 +139,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var LoginPage = /** @class */ (function () {
-    function LoginPage(router, menuController, preloader, apiCall, toastcontroller) {
+    function LoginPage(router, menuController, preloader, apiCall, events, loader, toastcontroller) {
         this.router = router;
         this.menuController = menuController;
         this.preloader = preloader;
         this.apiCall = apiCall;
+        this.events = events;
+        this.loader = loader;
         this.toastcontroller = toastcontroller;
         this.loginModel = {};
         this.userModel = {};
@@ -153,17 +155,20 @@ var LoginPage = /** @class */ (function () {
     };
     LoginPage.prototype.Login = function (data) {
         var _this = this;
+        this.loader.showBlockingLoaderAuth();
         var send_date = {};
         send_date['mobile'] = this.loginModel['mobile'];
         send_date['password'] = this.loginModel['password'];
         var url = src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].base_url + "users/login";
         this.apiCall.postWAu(url, send_date).subscribe(function (MyResponse) {
             localStorage.setItem('userRole', MyResponse['result']['userRole']);
+            _this.userRole = MyResponse['result']['userRole'];
             localStorage.setItem('login', 'yes');
-            if (_this.userRole == 0) {
+            _this.events.publish('Event-SideMenu');
+            if (_this.userRole == '0') {
                 _this.router.navigate(['/dataentrycredit']);
             }
-            else if (_this.userRole == 1) {
+            else if (_this.userRole == '1') {
                 _this.router.navigate(['/home']);
             }
             else {
@@ -171,6 +176,7 @@ var LoginPage = /** @class */ (function () {
             }
             var msg = MyResponse['message'];
             _this.presentToast(msg);
+            // this.loader.hideBlockingLoaderAuth();
         }, function (error) {
             console.log(error.error.message);
         });
@@ -230,6 +236,8 @@ var LoginPage = /** @class */ (function () {
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"] },
         { type: src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_4__["LoaderserviceService"] },
         { type: src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_6__["ApicallService"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Events"] },
+        { type: src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_4__["LoaderserviceService"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"] }
     ]; };
     LoginPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -242,73 +250,11 @@ var LoginPage = /** @class */ (function () {
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["MenuController"],
             src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_4__["LoaderserviceService"],
             src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_6__["ApicallService"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Events"],
+            src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_4__["LoaderserviceService"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"]])
     ], LoginPage);
     return LoginPage;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/service/loader/loaderservice.service.ts":
-/*!*********************************************************!*\
-  !*** ./src/app/service/loader/loaderservice.service.ts ***!
-  \*********************************************************/
-/*! exports provided: LoaderserviceService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoaderserviceService", function() { return LoaderserviceService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-
-
-
-var LoaderserviceService = /** @class */ (function () {
-    function LoaderserviceService() {
-        this.loadingStatus = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-        this.loaderTop = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-        this.blockingLoader = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-        this.blockingLoaderAuth = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-        this.bgGrey = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-        this.blockingLoaderFlag = false;
-        this.loaderTopFlag = false;
-        this.subject = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-    }
-    LoaderserviceService.prototype.showBlockingLoader = function () {
-        console.log("load");
-        this.blockingLoader.next(true);
-        this.blockingLoaderFlag = true;
-    };
-    LoaderserviceService.prototype.hideBlockingLoader = function () {
-        this.blockingLoader.next(false);
-        this.blockingLoaderFlag = false;
-    };
-    LoaderserviceService.prototype.showBlockingLoaderAuth = function () {
-        this.blockingLoaderAuth.next(true);
-    };
-    LoaderserviceService.prototype.hideBlockingLoaderAuth = function () {
-        this.blockingLoaderAuth.next(false);
-    };
-    LoaderserviceService.prototype.sendMessage = function (message) {
-        // console.log("name",message);
-        var set_data = {};
-        set_data['message'] = message;
-        this.subject.next(set_data);
-    };
-    LoaderserviceService.prototype.getMessage = function () {
-        return this.subject.asObservable();
-    };
-    LoaderserviceService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], LoaderserviceService);
-    return LoaderserviceService;
 }());
 
 
