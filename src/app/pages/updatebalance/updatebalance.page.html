@@ -19,31 +19,13 @@
 
 
 
-  <div fxLayout="column" fxLayoutAlign="center" style="margin-top:5%">
-
-    <!-- <div fxLayout="row" fxLayoutAlign="center center">
-      <mat-form-field style="width:80%">
-        <input type="text"
-               placeholder="Pick one"
-               aria-label="Number"
-               matInput
-               [formControl]="myControl"
-               [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
-          <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
-            {{option}}
-          </mat-option>
-        </mat-autocomplete>
-      </mat-form-field>
-
-    </div> -->
+  <div fxLayout="column" fxLayoutAlign="center" style="margin-top:2%">
 
     <div fxLayout="row" fxLayoutAlign="center center">
       <mat-form-field style="width:90%">
         <mat-label>Choose a date</mat-label>
         <input matInput #input="ngModel" [(ngModel)]="userModel.date" [min]="minDate" [max]="today"
           [matDatepicker]="picker" placeholder="Choose a date">
-        <!-- <input matInput [matDatepicker]="picker" [(ngModel)]="userModel.date" [max]="maxDate"> -->
         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
         <mat-datepicker #picker (selectedChanged)="onDate($event)"></mat-datepicker>
       </mat-form-field>
@@ -53,13 +35,6 @@
 
     <div *ngIf="paymentMethod == 'Credit' " style="width: 100%;">
 
-      <!-- <ion-row style="width:100%">
-        <ion-col fxLayout="row" fxLayoutAlign="space-around center" *ngFor="let item of buttonsArray;let i = index "
-          style="width:50%">
-          <button mat-button style="width:50%" [ngClass]="(checkFuelType  == i) ? 'oddBackground' : 'evenBackground' "
-            (click)="fuelType(item.indexFuel)">{{item.fuelType}}</button>
-        </ion-col>
-      </ion-row> -->
 
       <div fxLayout="row" fxLayoutAlign="space-around center" style="width:96%;margin-left:2%; margin-right:2%">
         <div *ngFor="let item of buttonsArray;let i = index " style="width:44%">
@@ -68,11 +43,6 @@
         </div>
       </div>
 
-      <!-- <div *ngFor="let item of buttonsArray;let i = index ">
-  <div style="margin-top:10px"  >
-    <button style="width:30%" mat-button [ngClass]="(checkFuelType  == i) ? 'odd' : 'even' " (click)="fuelType(item.indexFuel)">{{item.fuelType}}</button>
-</div>
-</div> -->
 
 
       <div fxLayout="row" fxLayoutAlign="center center">

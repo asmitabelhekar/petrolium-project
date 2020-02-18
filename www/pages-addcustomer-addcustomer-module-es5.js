@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ion-header class=\"new-background-color\">\n  <ion-toolbar class=\"new-background-color\">\n\n    <ion-row>\n      <ion-col size=\"2\">\n        <ion-icon name=\"close\" style=\"width:30px; height:30px; margin:10px ;color : #ffffff\" (click)=\"goBackword()\">\n        </ion-icon>\n        <!-- <checkRecordStatus ion-button class=\"BackButton\" (click)=\"goBackword()\" style=\"margin:10px\"></button> -->\n      </ion-col>\n      <ion-col size=\"10\">\n        <ion-label class=\"TitleHeader TitleText\" style=\"font-size: 17px;\">\n          Add Customer\n        </ion-label>\n      </ion-col>\n     \n    </ion-row>\n\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <form #userForm=\"ngForm\">\n    <!-- <button style=\"width:55px; height: 55px; background-color: #bfc0c9;font-size:20px\" class=\"centerImg\">+</button> -->\n    <ion-row style=\"width:100%;margin-top:10%\">\n      <ion-col size=\"2\">\n        <ion-icon name=\"person\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n        </ion-icon>\n      </ion-col>\n      <ion-col size=\"10\">\n        <ion-row >\n          <mat-form-field style=\"width:95%; margin-right:5%\">\n            <input matInput class=\"form-control \" name=\"fname\" required [(ngModel)]=\"userModel.fname\" #fname=\"ngModel\"\n              pattern=\"[a-zA-z   ]+$\" placeholder=\"First Name\" />\n            <mat-error>\n              <div class=\"form-group\">\n                <div *ngIf=\"fname.invalid && (fname.dirty || fname.touched)\">\n                  First Name Is Requird\n                </div>\n              </div>\n            </mat-error>\n\n          </mat-form-field>\n        </ion-row>\n      \n\n      </ion-col>\n    </ion-row>\n\n    <ion-row style=\"margin-top:-10px\">\n      <ion-col size=\"2\">\n        <!-- <ion-icon name=\"person\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n        </ion-icon> -->\n      </ion-col>\n      <ion-col size=\"10\">\n        <ion-row >\n        <mat-form-field style=\"width:95%; margin-right:5%\">\n          <input matInput class=\"form-control \" name=\"lname\" required [(ngModel)]=\"userModel.lname\" #lname=\"ngModel\"\n            pattern=\"[a-zA-z]+$\" placeholder=\"Last Name\" />\n          <mat-error>\n            <div class=\"form-group\">\n              <div *ngIf=\"lname.invalid && (lname.dirty || lname.touched)\">\n                Last Name Is Requird\n              </div>\n            </div>\n          </mat-error>\n  \n        </mat-form-field>\n        </ion-row>\n      </ion-col>\n      \n    </ion-row>\n\n\n<ion-row style=\"margin-top:-10px\">\n  <ion-col size=\"2\">\n    <ion-icon name=\"call\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n    </ion-icon>\n  </ion-col>\n  <ion-col size=\"10\">\n    <ion-row >\n    <mat-form-field style=\"width:95%; margin-right:5%\">\n      <input matInput class=\"form-control \" name=\"mobile\" minlength=\"10\" maxlength=\"10\" required [(ngModel)]=\"userModel.mobile\" #mobile=\"ngModel\"\n        pattern=\"[0-9]+$\" placeholder=\"Mobile\" />\n      <mat-error>\n        <div class=\"form-group\">\n          <div *ngIf=\"mobile.invalid && (mobile.dirty || mobile.touched)\">\n            Mobile Number Is Requird\n          </div>\n        </div>\n      </mat-error>\n\n    </mat-form-field>\n    </ion-row>\n  </ion-col>\n</ion-row>\n    \n<ion-row style=\"margin-top:-10px\">\n  <ion-col size=\"2\">\n    <ion-icon name=\"mail\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n    </ion-icon>\n  </ion-col>\n\n  <ion-col size=\"10\">\n    <ion-row >\n    <mat-form-field style=\"width:95%; margin-right:5%\">\n      <input matInput class=\"form-control \" name=\"email\" [(ngModel)]=\"userModel.email\" #email=\"ngModel\"\n        pattern=\"[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\" placeholder=\"Email\" />\n      <mat-error>\n        <div class=\"form-group\">\n          <div *ngIf=\"email.invalid && (email.dirty || email.touched)\">\n            Email Is Requird\n          </div>\n        </div>\n      </mat-error>\n\n    </mat-form-field>\n    </ion-row>\n  </ion-col>\n</ion-row>\n\n   \n\n    <ion-row style=\"margin-top:-10px\">\n      <ion-col size=\"2\">\n        <ion-icon name=\"home\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n        </ion-icon>\n      </ion-col>\n      <ion-col size=\"10\">\n        <ion-row >\n        <mat-form-field style=\"width:95%; margin-right:5%\">\n          <textarea matInput class=\"form-control \" name=\"address\"  [(ngModel)]=\"userModel.address\" #address=\"ngModel\"\n            pattern=\"[a-zA-z  ]+$\" placeholder=\"Address\" ></textarea>\n        </mat-form-field>\n        </ion-row>\n      </ion-col>\n    </ion-row>\n\n    <ion-row style=\"margin-top:-10px\">\n      <ion-col size=\"2\">\n        <ion-icon name=\"document\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n        </ion-icon>\n      </ion-col>\n    \n      <ion-col size=\"10\">\n        <ion-row >\n        <mat-form-field style=\"width:95%; margin-right:5%\">\n          <textarea matInput class=\"form-control \" name=\"note\" [(ngModel)]=\"userModel.note\" #note=\"ngModel\"\n            pattern=\"[a-zA-z  ]+$\" placeholder=\"Note\" ></textarea>\n        \n        </mat-form-field>\n        </ion-row>\n      </ion-col>\n    </ion-row>\n\n   \n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:15px\">\n      <button mat-raised-button\n        [disabled]=\"mobile.invalid || address.invalid || fname.invalid || lname.invalid \"\n        class=\"submitButton\" (click)=\"addCustomerData()\">Save</button>\n\n    </div>\n  </form>\n\n\n</ion-content>\n"
+module.exports = "\n<ion-header class=\"new-background-color\">\n  <ion-toolbar class=\"new-background-color\">\n\n    <ion-row>\n      <ion-col size=\"2\">\n        <ion-icon name=\"close\" style=\"width:30px; height:30px; margin:10px ;color : #ffffff\" (click)=\"goBackword()\">\n        </ion-icon>\n        <!-- <checkRecordStatus ion-button class=\"BackButton\" (click)=\"goBackword()\" style=\"margin:10px\"></button> -->\n      </ion-col>\n      <ion-col size=\"10\">\n        <ion-label class=\"TitleHeader TitleText\" style=\"font-size: 17px;\">\n          Add Customer\n        </ion-label>\n      </ion-col>\n     \n    </ion-row>\n\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <form #userForm=\"ngForm\">\n    <!-- <button style=\"width:55px; height: 55px; background-color: #bfc0c9;font-size:20px\" class=\"centerImg\">+</button> -->\n    <ion-row style=\"width:100%;margin-top:5%\">\n      <ion-col size=\"2\">\n        <ion-icon name=\"person\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n        </ion-icon>\n      </ion-col>\n      <ion-col size=\"10\">\n        <ion-row >\n          <mat-form-field style=\"width:95%; margin-right:5%\">\n            <input matInput class=\"form-control \" name=\"fname\" required [(ngModel)]=\"userModel.fname\" #fname=\"ngModel\"\n              pattern=\"[a-zA-z   ]+$\" placeholder=\"First Name\" />\n            <mat-error>\n              <div class=\"form-group\">\n                <div *ngIf=\"fname.invalid && (fname.dirty || fname.touched)\">\n                  First Name Is Requird\n                </div>\n              </div>\n            </mat-error>\n\n          </mat-form-field>\n        </ion-row>\n      \n\n      </ion-col>\n    </ion-row>\n\n    <ion-row style=\"margin-top:-10px\">\n      <ion-col size=\"2\">\n        <!-- <ion-icon name=\"person\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n        </ion-icon> -->\n      </ion-col>\n      <ion-col size=\"10\">\n        <ion-row >\n        <mat-form-field style=\"width:95%; margin-right:5%\">\n          <input matInput class=\"form-control \" name=\"lname\" required [(ngModel)]=\"userModel.lname\" #lname=\"ngModel\"\n            pattern=\"[a-zA-z]+$\" placeholder=\"Last Name\" />\n          <mat-error>\n            <div class=\"form-group\">\n              <div *ngIf=\"lname.invalid && (lname.dirty || lname.touched)\">\n                Last Name Is Requird\n              </div>\n            </div>\n          </mat-error>\n  \n        </mat-form-field>\n        </ion-row>\n      </ion-col>\n      \n    </ion-row>\n\n\n<ion-row style=\"margin-top:-10px\">\n  <ion-col size=\"2\">\n    <ion-icon name=\"call\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n    </ion-icon>\n  </ion-col>\n  <ion-col size=\"10\">\n    <ion-row >\n    <mat-form-field style=\"width:95%; margin-right:5%\">\n      <input matInput class=\"form-control \" name=\"mobile\" type=\"number\" minlength=\"10\" maxlength=\"10\" required [(ngModel)]=\"userModel.mobile\" #mobile=\"ngModel\"\n        pattern=\"[0-9]+$\" placeholder=\"Mobile\" />\n      <mat-error>\n        <div class=\"form-group\">\n          <div *ngIf=\"mobile.invalid && (mobile.dirty || mobile.touched)\">\n            Mobile Number Is Requird\n          </div>\n        </div>\n      </mat-error>\n\n    </mat-form-field>\n    </ion-row>\n  </ion-col>\n</ion-row>\n    \n<ion-row style=\"margin-top:-10px\">\n  <ion-col size=\"2\">\n    <ion-icon name=\"mail\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n    </ion-icon>\n  </ion-col>\n\n  <ion-col size=\"10\">\n    <ion-row >\n    <mat-form-field style=\"width:95%; margin-right:5%\">\n      <input matInput class=\"form-control \" name=\"email\" [(ngModel)]=\"userModel.email\" #email=\"ngModel\"\n        pattern=\"[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\" placeholder=\"Email\" />\n      <mat-error>\n        <div class=\"form-group\">\n          <div *ngIf=\"email.invalid && (email.dirty || email.touched)\">\n            Email Is Requird\n          </div>\n        </div>\n      </mat-error>\n\n    </mat-form-field>\n    </ion-row>\n  </ion-col>\n</ion-row>\n\n   \n\n    <ion-row style=\"margin-top:-10px\">\n      <ion-col size=\"2\">\n        <ion-icon name=\"home\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n        </ion-icon>\n      </ion-col>\n      <ion-col size=\"10\">\n        <ion-row >\n        <mat-form-field style=\"width:95%; margin-right:5%\">\n          <textarea matInput class=\"form-control \" name=\"address\"  [(ngModel)]=\"userModel.address\" #address=\"ngModel\"\n            pattern=\"[a-zA-z  ]+$\" placeholder=\"Address\" ></textarea>\n        </mat-form-field>\n        </ion-row>\n      </ion-col>\n    </ion-row>\n\n    <ion-row style=\"margin-top:-10px\">\n      <ion-col size=\"2\">\n        <ion-icon name=\"document\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n        </ion-icon>\n      </ion-col>\n    \n      <ion-col size=\"10\">\n        <ion-row >\n        <mat-form-field style=\"width:95%; margin-right:5%\">\n          <textarea matInput class=\"form-control \" name=\"note\" [(ngModel)]=\"userModel.note\" #note=\"ngModel\"\n            pattern=\"[a-zA-z  ]+$\" placeholder=\"Note\" ></textarea>\n        \n        </mat-form-field>\n        </ion-row>\n      </ion-col>\n    </ion-row>\n\n   \n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:15px\">\n      <button mat-raised-button\n        [disabled]=\"mobile.invalid || address.invalid || fname.invalid || lname.invalid \"\n        class=\"submitButton\" (click)=\"addCustomerData()\">Save</button>\n\n    </div>\n  </form>\n\n\n</ion-content>\n"
 
 /***/ }),
 
@@ -170,7 +170,15 @@ var AddcustomerPage = /** @class */ (function () {
         }
     };
     AddcustomerPage.prototype.goBackword = function () {
-        this.displayCloseAlert();
+        if (this.checkStatus == "add") {
+            this.displayAlert();
+        }
+        else if (this.checkStatus == "update") {
+            this.displayCloseAlert();
+        }
+        else {
+            this.displayAlert();
+        }
         // this.router.navigate(['home']);
     };
     AddcustomerPage.prototype.addCustomerData = function () {
@@ -259,6 +267,39 @@ var AddcustomerPage = /** @class */ (function () {
                                     text: 'OK',
                                     handler: function () {
                                         _this.router.navigate(['customerdetil', { customerId: _this.customerId }]);
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddcustomerPage.prototype.displayAlert = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            header: 'Alert',
+                            message: 'Are you sure want to discard changes',
+                            buttons: [
+                                {
+                                    text: 'Cancel',
+                                    handler: function () {
+                                        alert.dismiss();
+                                    }
+                                }, {
+                                    text: 'OK',
+                                    handler: function () {
+                                        _this.router.navigate(['/home']);
                                     }
                                 }
                             ]
@@ -378,64 +419,46 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoaderserviceService", function() { return LoaderserviceService; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
-/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
-
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
 
 
 
 var LoaderserviceService = /** @class */ (function () {
+    //   loadingStatus = new Subject<boolean>();
+    //   loaderTop = new Subject<boolean>();
+    //   blockingLoader = new Subject<boolean>();
+    //   blockingLoaderAuth = new Subject<boolean>();
+    //   bgGrey = new Subject<boolean>();
+    //   blockingLoaderFlag = false;
+    //   loaderTopFlag = false;
+    //   private subject = new Subject<any>();
+    //   showBlockingLoader(){
+    //     console.log("load");
+    //     this.blockingLoader.next(true);
+    //     this.blockingLoaderFlag = true;
+    //   }
+    //   hideBlockingLoader(){
+    //     this.blockingLoader.next(false);
+    //     this.blockingLoaderFlag = false;
+    //   }
+    //   showBlockingLoaderAuth(){
+    //     this.blockingLoaderAuth.next(true);
+    //   }
+    //   hideBlockingLoaderAuth(){
+    //     this.blockingLoaderAuth.next(false);
+    //   }
+    //   sendMessage(message) {
+    //     // console.log("name",message);
+    //     let set_data = {};
+    //     set_data['message'] = message;
+    //     this.subject.next(set_data);
+    // }
+    // getMessage(): Observable<any> {
+    //   return this.subject.asObservable();
+    // }
     function LoaderserviceService(loadingController) {
         this.loadingController = loadingController;
-        this.loadingStatus = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-        this.loaderTop = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-        this.blockingLoader = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-        this.blockingLoaderAuth = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-        this.bgGrey = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
-        this.blockingLoaderFlag = false;
-        this.loaderTopFlag = false;
-        this.subject = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
     }
-    LoaderserviceService.prototype.showBlockingLoader = function () {
-        console.log("load");
-        this.blockingLoader.next(true);
-        this.blockingLoaderFlag = true;
-    };
-    LoaderserviceService.prototype.hideBlockingLoader = function () {
-        this.blockingLoader.next(false);
-        this.blockingLoaderFlag = false;
-    };
-    LoaderserviceService.prototype.showBlockingLoaderAuth = function () {
-        this.blockingLoaderAuth.next(true);
-    };
-    LoaderserviceService.prototype.hideBlockingLoaderAuth = function () {
-        this.blockingLoaderAuth.next(false);
-    };
-    LoaderserviceService.prototype.sendMessage = function (message) {
-        // console.log("name",message);
-        var set_data = {};
-        set_data['message'] = message;
-        this.subject.next(set_data);
-    };
-    LoaderserviceService.prototype.getMessage = function () {
-        return this.subject.asObservable();
-    };
-    LoaderserviceService.prototype.loadingPresent = function (message, duration) {
-        if (message === void 0) { message = null; }
-        if (duration === void 0) { duration = null; }
-        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var loading;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
-                switch (_a.label) {
-                    case 0: return [4 /*yield*/, this.loadingController.create({ message: message, duration: duration })];
-                    case 1:
-                        loading = _a.sent();
-                        return [4 /*yield*/, loading.present()];
-                    case 2: return [2 /*return*/, _a.sent()];
-                }
-            });
-        });
-    };
     LoaderserviceService.prototype.presentLoading = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
             var loading, _a, role, data;
@@ -470,13 +493,13 @@ var LoaderserviceService = /** @class */ (function () {
         });
     };
     LoaderserviceService.ctorParameters = function () { return [
-        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"] }
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"] }
     ]; };
     LoaderserviceService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
             providedIn: 'root'
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"]])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"]])
     ], LoaderserviceService);
     return LoaderserviceService;
 }());

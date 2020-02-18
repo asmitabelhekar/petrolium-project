@@ -58,7 +58,13 @@ export class AddcustomerPage implements OnInit {
 
 
   goBackword() {
-    this.displayCloseAlert();
+    if (this.checkStatus == "add") {
+      this.displayAlert();
+    } else if (this.checkStatus == "update") {
+      this.displayCloseAlert();
+    } else {
+      this.displayAlert();
+    }
     // this.router.navigate(['home']);
   }
 
@@ -141,6 +147,27 @@ export class AddcustomerPage implements OnInit {
           text: 'OK',
           handler: () => {
             this.router.navigate(['customerdetil', { customerId: this.customerId }])
+          }
+        }]
+    });
+
+    await alert.present();
+  }
+
+  async displayAlert() {
+    const alert = await this.alertController.create({
+      header: 'Alert',
+      message: 'Are you sure want to discard changes',
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            alert.dismiss();
+          }
+        }, {
+          text: 'OK',
+          handler: () => {
+            this.router.navigate(['/home'])
           }
         }]
     });

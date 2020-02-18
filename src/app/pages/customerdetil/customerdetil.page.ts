@@ -50,7 +50,16 @@ export class CustomerdetilPage implements OnInit {
   
   
     goBackword() {
-      this.location.back();
+      // this.location.back();
+      let detailData =
+      {
+        "id" : this.customerId,
+        "name": this.getCustomerDetail['firstName'],
+        "lname": this.getCustomerDetail['lastName'],
+        "mobile" : this.customerMobile
+      }
+  
+      this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }])
       // this.router.navigate(['/showbalancerecord']);
     }
   
