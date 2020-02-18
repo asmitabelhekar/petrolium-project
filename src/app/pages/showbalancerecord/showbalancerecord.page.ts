@@ -8,6 +8,7 @@ import { MatDialog } from '@angular/material';
 import { UpdatebalancePage } from '../updatebalance/updatebalance.page';
 import { ApicallService } from 'src/app/service/apicall/apicall.service';
 import { environment } from 'src/environments/environment';
+import { LoaderserviceService } from 'src/app/service/loader/loaderservice.service';
 
 @Component({
   selector: 'app-showbalancerecord',
@@ -180,6 +181,7 @@ export class ShowbalancerecordPage implements OnInit {
     public toastController: ToastController,
     public callNumber: CallNumber,
     public sms: SMS,
+    public loader : LoaderserviceService,
     public apiCall: ApicallService,
     public dialog: MatDialog) { }
 
@@ -261,12 +263,15 @@ export class ShowbalancerecordPage implements OnInit {
   }
 
   getBalanceRecord() {
+    this.loader.presentLoading();
     let url =  environment.base_url + "customers/" + this.customerId + "/passbook" ;
     this.apiCall.get(url).subscribe(MyResponse => {
       this.getNewRecords = JSON.stringify(MyResponse['result']['list']);
       console.log("success:" + this.getNewRecords);
+      this.loader.stopLoading();
     },
       error => {
+        this.loader.stopLoading();
         this.presentToast("Something went wrong");
     
       })

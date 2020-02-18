@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { MenuController, Events, ToastController } from '@ionic/angular';
+import { MenuController, Events, ToastController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
 import * as pdfmake from 'pdfmake/build/pdfmake';
 import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { ApicallService } from 'src/app/service/apicall/apicall.service';
 import { environment } from 'src/environments/environment';
+import { LoaderserviceService } from 'src/app/service/loader/loaderservice.service';
 
 @Component({
   selector: 'app-home',
@@ -194,6 +195,7 @@ export class HomePage {
     public menuCntrl: MenuController,
     public router: Router,
     public events : Events,
+    public loader : LoaderserviceService,
     public toast : ToastController,
     public apiCall: ApicallService) {
     this.getCustomerList();
@@ -249,17 +251,32 @@ export class HomePage {
     // this.router.navigate(['showbalancerecord' ]);
   }
 
+  // async presentLoading() {
+  //   const loading = await this.loadingController.create({
+  //     message: 'Please wait...',
+  //     // spinner: null
+  //   });
+  //   await loading.present();
+  //   setTimeout(() => {
+  //     loading.dismiss();
+  //   }, 6000);
+  //   const { role, data } = await loading.onDidDismiss();
+  //   console.log('Loading dismissed!' + role + ' Data: ' + data);
 
+  // }
 
 
   getCustomerList() {
+    this.loader.presentLoading();
     let url = environment.base_url + "customers";
     console.log("url :" + url);
     this.apiCall.get(url).subscribe(MyResponse => {
       this.getCusstomers = MyResponse['result']['list'];
       console.log("success:" + this.getCusstomers);
+      this.loader.stopLoading();
     },
       error => {
+        this.loader.stopLoading();
         this.presentToast("Something went wrong");
      
       })

@@ -5,6 +5,7 @@ import { ToastController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 import { ApicallService } from 'src/app/service/apicall/apicall.service';
 import { Router } from '@angular/router';
+import { LoaderserviceService } from 'src/app/service/loader/loaderservice.service';
 
 @Component({
   selector: 'app-dataentryopening',
@@ -22,6 +23,7 @@ export class DataentryopeningPage implements OnInit {
   constructor(
     public dataAdapter: DateAdapter<Date>,
     public location: Location,
+    public loader: LoaderserviceService,
     public toast: ToastController,
     public apiCall: ApicallService,
     public router: Router
@@ -38,7 +40,7 @@ export class DataentryopeningPage implements OnInit {
     this.location.back();
   }
   openingBalanceSubmit() {
-
+    this.loader.presentLoading();
     let send_date = {};
 
     send_date['date'] = this.openingModel['date'];
@@ -49,8 +51,9 @@ export class DataentryopeningPage implements OnInit {
       let msg = MyResponse['message'];
       this.presentToast(msg);
       this.router.navigate(['/dataentrycredit']);
-
+      this.loader.stopLoading();
     }, error => {
+      this.loader.stopLoading();
       this.presentToast("Something went wrong");
       console.log(error.error.message);
 
@@ -66,14 +69,14 @@ export class DataentryopeningPage implements OnInit {
     toast.present();
   }
 
-  changeClient(value){
-    if(value == "Petrol"){
+  changeClient(value) {
+    if (value == "Petrol") {
       this.openingModel['type'] = 0;
-    }else{
+    } else {
       this.openingModel['type'] = 1;
     }
-  
-  console.log("type : " + this.openingModel['type'] );
+
+    console.log("type : " + this.openingModel['type']);
   }
 
 }

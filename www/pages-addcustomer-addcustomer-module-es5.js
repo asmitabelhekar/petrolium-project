@@ -136,12 +136,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AddcustomerPage = /** @class */ (function () {
-    function AddcustomerPage(router, toast, loader, apiCall, loadingController, alertController, events, route) {
+    function AddcustomerPage(router, toast, loader, apiCall, alertController, events, route) {
         this.router = router;
         this.toast = toast;
         this.loader = loader;
         this.apiCall = apiCall;
-        this.loadingController = loadingController;
         this.alertController = alertController;
         this.events = events;
         this.route = route;
@@ -176,53 +175,51 @@ var AddcustomerPage = /** @class */ (function () {
     };
     AddcustomerPage.prototype.addCustomerData = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
-            var _a, send_date;
+            var send_date;
             var _this = this;
-            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
-                switch (_b.label) {
-                    case 0:
-                        _a = this;
-                        return [4 /*yield*/, this.loadingController.create({
-                                message: 'Loading data from api',
-                            })];
-                    case 1:
-                        _a.loading = _b.sent();
-                        send_date = {};
-                        send_date['firstName'] = this.userModel['fname'];
-                        send_date['lastName'] = this.userModel['lname'];
-                        send_date['mobile'] = this.userModel['mobile'];
-                        send_date['address'] = this.userModel['address'];
-                        send_date['note'] = this.userModel['note'];
-                        send_date['email'] = this.userModel['email'];
-                        send_date['isActive'] = 1;
-                        if (this.checkStatus == "add") {
-                            this.url = src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].base_url + "customers";
-                            this.apiCall.postWAu(this.url, send_date).subscribe(function (MyResponse) {
-                                console.log("MyResponse ", MyResponse);
-                                _this.events.publish('Event-AddCustomer');
-                                _this.router.navigate(['/home']);
-                                var msg = MyResponse['message'];
-                                _this.presentToast(msg);
-                            }, function (error) {
-                                console.log(error.error.message);
-                            });
-                        }
-                        else if (this.checkStatus == "update") {
-                            this.url = src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].base_url + "customers/" + this.customerId;
-                            this.apiCall.put(this.url, send_date).subscribe(function (MyResponse) {
-                                console.log("MyResponse ", MyResponse);
-                                _this.events.publish('Event-AddCustomer');
-                                _this.router.navigate(['/home']);
-                                var msg = MyResponse['message'];
-                                _this.presentToast(msg);
-                            }, function (error) {
-                                console.log(error.error.message);
-                            });
-                        }
-                        else {
-                        }
-                        return [2 /*return*/];
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                this.loader.presentLoading();
+                send_date = {};
+                send_date['firstName'] = this.userModel['fname'];
+                send_date['lastName'] = this.userModel['lname'];
+                send_date['mobile'] = this.userModel['mobile'];
+                send_date['address'] = this.userModel['address'];
+                send_date['note'] = this.userModel['note'];
+                send_date['email'] = this.userModel['email'];
+                send_date['isActive'] = 1;
+                if (this.checkStatus == "add") {
+                    this.url = src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].base_url + "customers";
+                    this.apiCall.postWAu(this.url, send_date).subscribe(function (MyResponse) {
+                        console.log("MyResponse ", MyResponse);
+                        _this.events.publish('Event-AddCustomer');
+                        _this.router.navigate(['/home']);
+                        var msg = MyResponse['message'];
+                        _this.presentToast(msg);
+                        _this.loader.stopLoading();
+                    }, function (error) {
+                        _this.presentToast("Something went wrong");
+                        console.log(error.error.message);
+                    });
                 }
+                else if (this.checkStatus == "update") {
+                    this.loader.presentLoading();
+                    this.url = src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].base_url + "customers/" + this.customerId;
+                    this.apiCall.put(this.url, send_date).subscribe(function (MyResponse) {
+                        console.log("MyResponse ", MyResponse);
+                        _this.events.publish('Event-AddCustomer');
+                        _this.router.navigate(['/home']);
+                        var msg = MyResponse['message'];
+                        _this.presentToast(msg);
+                        _this.loader.stopLoading();
+                    }, function (error) {
+                        _this.loader.stopLoading();
+                        _this.presentToast("Something went wrong");
+                        console.log(error.error.message);
+                    });
+                }
+                else {
+                }
+                return [2 /*return*/];
             });
         });
     };
@@ -281,7 +278,6 @@ var AddcustomerPage = /** @class */ (function () {
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"] },
         { type: src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_6__["LoaderserviceService"] },
         { type: src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_5__["ApicallService"] },
-        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Events"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] }
@@ -296,12 +292,193 @@ var AddcustomerPage = /** @class */ (function () {
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"],
             src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_6__["LoaderserviceService"],
             src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_5__["ApicallService"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Events"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
     ], AddcustomerPage);
     return AddcustomerPage;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/service/apicall/apicall.service.ts":
+/*!****************************************************!*\
+  !*** ./src/app/service/apicall/apicall.service.ts ***!
+  \****************************************************/
+/*! exports provided: ApicallService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApicallService", function() { return ApicallService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
+
+
+var ApicallService = /** @class */ (function () {
+    function ApicallService(http) {
+        this.http = http;
+    }
+    ApicallService.prototype.postWAu = function (url, data) {
+        var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+                'Content-Type': 'application/json',
+            })
+        };
+        console.log(url);
+        return this.http.post(url, data, httpOptions);
+    };
+    ApicallService.prototype.get = function (url) {
+        var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+                'Content-Type': 'application/json',
+            })
+        };
+        console.log(url);
+        return this.http.get(url, httpOptions);
+    };
+    ApicallService.prototype.put = function (url, data) {
+        console.log(url);
+        var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+                'Content-Type': 'application/json',
+            })
+        };
+        return this.http.put(url, data, httpOptions);
+    };
+    ApicallService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
+    ]; };
+    ApicallService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], ApicallService);
+    return ApicallService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/service/loader/loaderservice.service.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/service/loader/loaderservice.service.ts ***!
+  \*********************************************************/
+/*! exports provided: LoaderserviceService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoaderserviceService", function() { return LoaderserviceService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
+
+
+var LoaderserviceService = /** @class */ (function () {
+    function LoaderserviceService(loadingController) {
+        this.loadingController = loadingController;
+        this.loadingStatus = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        this.loaderTop = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        this.blockingLoader = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        this.blockingLoaderAuth = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        this.bgGrey = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+        this.blockingLoaderFlag = false;
+        this.loaderTopFlag = false;
+        this.subject = new rxjs__WEBPACK_IMPORTED_MODULE_2__["Subject"]();
+    }
+    LoaderserviceService.prototype.showBlockingLoader = function () {
+        console.log("load");
+        this.blockingLoader.next(true);
+        this.blockingLoaderFlag = true;
+    };
+    LoaderserviceService.prototype.hideBlockingLoader = function () {
+        this.blockingLoader.next(false);
+        this.blockingLoaderFlag = false;
+    };
+    LoaderserviceService.prototype.showBlockingLoaderAuth = function () {
+        this.blockingLoaderAuth.next(true);
+    };
+    LoaderserviceService.prototype.hideBlockingLoaderAuth = function () {
+        this.blockingLoaderAuth.next(false);
+    };
+    LoaderserviceService.prototype.sendMessage = function (message) {
+        // console.log("name",message);
+        var set_data = {};
+        set_data['message'] = message;
+        this.subject.next(set_data);
+    };
+    LoaderserviceService.prototype.getMessage = function () {
+        return this.subject.asObservable();
+    };
+    LoaderserviceService.prototype.loadingPresent = function (message, duration) {
+        if (message === void 0) { message = null; }
+        if (duration === void 0) { duration = null; }
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var loading;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.loadingController.create({ message: message, duration: duration })];
+                    case 1:
+                        loading = _a.sent();
+                        return [4 /*yield*/, loading.present()];
+                    case 2: return [2 /*return*/, _a.sent()];
+                }
+            });
+        });
+    };
+    LoaderserviceService.prototype.presentLoading = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var loading, _a, role, data;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
+                    case 0: return [4 /*yield*/, this.loadingController.create({
+                            message: 'Please wait...',
+                        })];
+                    case 1:
+                        loading = _b.sent();
+                        return [4 /*yield*/, loading.present()];
+                    case 2:
+                        _b.sent();
+                        setTimeout(function () {
+                            loading.dismiss();
+                        });
+                        return [4 /*yield*/, loading.onDidDismiss()];
+                    case 3:
+                        _a = _b.sent(), role = _a.role, data = _a.data;
+                        console.log('Loading dismissed!' + role + ' Data: ' + data);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    LoaderserviceService.prototype.stopLoading = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                this.loadingController.dismiss();
+                return [2 /*return*/];
+            });
+        });
+    };
+    LoaderserviceService.ctorParameters = function () { return [
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"] }
+    ]; };
+    LoaderserviceService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_3__["LoadingController"]])
+    ], LoaderserviceService);
+    return LoaderserviceService;
 }());
 
 

@@ -8,6 +8,7 @@ import { map, startWith } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ApicallService } from 'src/app/service/apicall/apicall.service';
 import { ToastController } from '@ionic/angular';
+import { LoaderserviceService } from 'src/app/service/loader/loaderservice.service';
 
 @Component({
   selector: 'app-updatebalance',
@@ -49,6 +50,7 @@ export class UpdatebalancePage implements OnInit {
   constructor(public activatedRoute: ActivatedRoute,
     public router: Router,
     public location: Location,
+    public loader : LoaderserviceService,
     public apiCall: ApicallService,
     public toastcontroller : ToastController,
     public dateAdapter: DateAdapter<Date>) {
@@ -145,6 +147,7 @@ export class UpdatebalancePage implements OnInit {
   }
 
   creditAmount() {
+    this.loader.presentLoading();
     let send_date = {};
     send_date['type'] = this.userModel['type'];
     send_date['amountInLitre'] = this.userModel['inlitures'];
@@ -166,13 +169,16 @@ export class UpdatebalancePage implements OnInit {
       }
   
       this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }])
+      this.loader.stopLoading();
     }, error => {
+      this.loader.stopLoading();
       this.presentToast("Something went wrong");
       console.log(error.error.message);
     })
   }
 
   debitAmount(){
+    this.loader.presentLoading();
     let send_date = {};
 
     send_date['date'] = this.userModel['date'];
@@ -191,7 +197,9 @@ export class UpdatebalancePage implements OnInit {
       }
   
       this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }])
+      this.loader.stopLoading();
     }, error => {
+      this.loader.stopLoading();
       this.presentToast("Something went wrong");
       console.log(error.error.message);
     })

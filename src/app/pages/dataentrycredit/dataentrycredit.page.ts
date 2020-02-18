@@ -8,6 +8,7 @@ import { map, startWith } from 'rxjs/operators';
 import { ToastController, MenuController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 import { ApicallService } from 'src/app/service/apicall/apicall.service';
+import { LoaderserviceService } from 'src/app/service/loader/loaderservice.service';
 
 @Component({
   selector: 'app-dataentrycredit',
@@ -48,10 +49,11 @@ export class DataentrycreditPage implements OnInit {
     public router: Router,
     public location: Location,
     public toast: ToastController,
-    public apiCall : ApicallService,
+    public apiCall: ApicallService,
+    public loader: LoaderserviceService,
     public dateAdapter: DateAdapter<Date>,
-    public menu : MenuController) {
-      this.menu.enable(true);
+    public menu: MenuController) {
+    this.menu.enable(true);
     this.dateAdapter.setLocale("en-GB");
   }
 
@@ -64,7 +66,7 @@ export class DataentrycreditPage implements OnInit {
         map(value => this._filter(value))
       );
 
-    this.userModel['date']=  new Date().toJSON().split('T')[0];
+    this.userModel['date'] = new Date().toJSON().split('T')[0];
     this.today = new Date().toJSON().split('T')[0];
     let loginStatus = localStorage.getItem("loginStatus");
 
@@ -78,6 +80,7 @@ export class DataentrycreditPage implements OnInit {
 
 
   getCustomerList() {
+
     let url = environment.base_url + "customers";
     console.log("url :" + url);
     this.apiCall.get(url).subscribe(MyResponse => {
@@ -128,11 +131,11 @@ export class DataentrycreditPage implements OnInit {
 
   fuelType(fuelType) {
     this.checkFuelType = fuelType;
-    if(fuelType == 0){
-      
+    if (fuelType == 0) {
+
       this.userModel['type'] = 0;
       this.userModel['perliture'] = 70;
-    }else{
+    } else {
       this.userModel['type'] = 1;
       this.userModel['perliture'] = 80;
     }
@@ -147,7 +150,8 @@ export class DataentrycreditPage implements OnInit {
     toast.present();
   }
 
-  creditsubmit(){
+  creditsubmit() {
+    this.loader.presentLoading();
     for (let j = 0; j < this.autoCompleteArray.length; j++) {
       if (this.userModel['customername'] == this.autoCompleteArray[j]['name']) {
         this.userModel['id'] = this.autoCompleteArray[j]['id'];
@@ -170,8 +174,9 @@ export class DataentrycreditPage implements OnInit {
 
       let msg = MyResponse['message'];
       this.presentToast(msg);
-
+      this.loader.stopLoading();
     }, error => {
+      this.loader.stopLoading();
       this.presentToast("Something went wrong");
       console.log(error.error.message);
 

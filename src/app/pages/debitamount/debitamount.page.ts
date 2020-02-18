@@ -8,6 +8,7 @@ import { map, startWith } from 'rxjs/operators';
 import { ToastController } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
 import { ApicallService } from 'src/app/service/apicall/apicall.service';
+import { LoaderserviceService } from 'src/app/service/loader/loaderservice.service';
 
 @Component({
   selector: 'app-debitamount',
@@ -29,6 +30,7 @@ export class DebitamountPage implements OnInit {
 
   constructor(public toast: ToastController,
     public apiCall: ApicallService,
+    public loader: LoaderserviceService,
     public router: Router) { }
 
   ngOnInit() {
@@ -65,7 +67,7 @@ export class DebitamountPage implements OnInit {
     },
       error => {
         this.presentToast("Something went wrong");
-       
+
       })
   }
   convert(str) {
@@ -84,6 +86,7 @@ export class DebitamountPage implements OnInit {
 
 
   debitAmount() {
+    this.loader.presentLoading();
     for (let j = 0; j < this.autoCompleteArray.length; j++) {
       if (this.userModel['customername'] == this.autoCompleteArray[j]['name']) {
         this.userModel['id'] = this.autoCompleteArray[j]['id'];
@@ -103,8 +106,10 @@ export class DebitamountPage implements OnInit {
 
       let msg = MyResponse['message'];
       this.presentToast(msg);
-
+      this.loader.stopLoading();
     }, error => {
+      ;
+      this.loader.stopLoading()
       this.presentToast("Something went wrong");
       console.log(error.error.message);
 

@@ -483,23 +483,23 @@ var routes = [
     },
     {
         path: 'home',
-        loadChildren: function () { return Promise.all(/*! import() | pages-home-home-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-home-home-module")]).then(__webpack_require__.bind(null, /*! ./pages/home/home.module */ "./src/app/pages/home/home.module.ts")).then(function (m) { return m.HomePageModule; }); }
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-home-home-module */ "pages-home-home-module").then(__webpack_require__.bind(null, /*! ./pages/home/home.module */ "./src/app/pages/home/home.module.ts")).then(function (m) { return m.HomePageModule; }); }
     },
     {
         path: 'login',
-        loadChildren: function () { return Promise.all(/*! import() | pages-login-login-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-login-login-module")]).then(__webpack_require__.bind(null, /*! ./pages/login/login.module */ "./src/app/pages/login/login.module.ts")).then(function (m) { return m.LoginPageModule; }); }
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-login-login-module */ "pages-login-login-module").then(__webpack_require__.bind(null, /*! ./pages/login/login.module */ "./src/app/pages/login/login.module.ts")).then(function (m) { return m.LoginPageModule; }); }
     },
     {
         path: 'addcustomer',
-        loadChildren: function () { return Promise.all(/*! import() | pages-addcustomer-addcustomer-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-addcustomer-addcustomer-module")]).then(__webpack_require__.bind(null, /*! ./pages/addcustomer/addcustomer.module */ "./src/app/pages/addcustomer/addcustomer.module.ts")).then(function (m) { return m.AddcustomerPageModule; }); }
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-addcustomer-addcustomer-module */ "pages-addcustomer-addcustomer-module").then(__webpack_require__.bind(null, /*! ./pages/addcustomer/addcustomer.module */ "./src/app/pages/addcustomer/addcustomer.module.ts")).then(function (m) { return m.AddcustomerPageModule; }); }
     },
     {
         path: 'updatebalance',
-        loadChildren: function () { return Promise.all(/*! import() | pages-updatebalance-updatebalance-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-updatebalance-updatebalance-module")]).then(__webpack_require__.bind(null, /*! ./pages/updatebalance/updatebalance.module */ "./src/app/pages/updatebalance/updatebalance.module.ts")).then(function (m) { return m.UpdatebalancePageModule; }); }
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-updatebalance-updatebalance-module */ "pages-updatebalance-updatebalance-module").then(__webpack_require__.bind(null, /*! ./pages/updatebalance/updatebalance.module */ "./src/app/pages/updatebalance/updatebalance.module.ts")).then(function (m) { return m.UpdatebalancePageModule; }); }
     },
     {
         path: 'showbalancerecord',
-        loadChildren: function () { return Promise.all(/*! import() | pages-showbalancerecord-showbalancerecord-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-showbalancerecord-showbalancerecord-module")]).then(__webpack_require__.bind(null, /*! ./pages/showbalancerecord/showbalancerecord.module */ "./src/app/pages/showbalancerecord/showbalancerecord.module.ts")).then(function (m) { return m.ShowbalancerecordPageModule; }); }
+        loadChildren: function () { return Promise.all(/*! import() | pages-showbalancerecord-showbalancerecord-module */[__webpack_require__.e("default~pages-customerdetil-customerdetil-module~pages-showbalancerecord-showbalancerecord-module"), __webpack_require__.e("pages-showbalancerecord-showbalancerecord-module")]).then(__webpack_require__.bind(null, /*! ./pages/showbalancerecord/showbalancerecord.module */ "./src/app/pages/showbalancerecord/showbalancerecord.module.ts")).then(function (m) { return m.ShowbalancerecordPageModule; }); }
     },
     {
         path: 'sliderimages',
@@ -507,19 +507,19 @@ var routes = [
     },
     {
         path: 'customerdetil',
-        loadChildren: function () { return Promise.all(/*! import() | pages-customerdetil-customerdetil-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-customerdetil-customerdetil-module")]).then(__webpack_require__.bind(null, /*! ./pages/customerdetil/customerdetil.module */ "./src/app/pages/customerdetil/customerdetil.module.ts")).then(function (m) { return m.CustomerdetilPageModule; }); }
+        loadChildren: function () { return Promise.all(/*! import() | pages-customerdetil-customerdetil-module */[__webpack_require__.e("default~pages-customerdetil-customerdetil-module~pages-showbalancerecord-showbalancerecord-module"), __webpack_require__.e("pages-customerdetil-customerdetil-module")]).then(__webpack_require__.bind(null, /*! ./pages/customerdetil/customerdetil.module */ "./src/app/pages/customerdetil/customerdetil.module.ts")).then(function (m) { return m.CustomerdetilPageModule; }); }
     },
     {
         path: 'dataentryopening',
-        loadChildren: function () { return Promise.all(/*! import() | pages-dataentryopening-dataentryopening-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-dataentryopening-dataentryopening-module")]).then(__webpack_require__.bind(null, /*! ./pages/dataentryopening/dataentryopening.module */ "./src/app/pages/dataentryopening/dataentryopening.module.ts")).then(function (m) { return m.DataentryopeningPageModule; }); }
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-dataentryopening-dataentryopening-module */ "pages-dataentryopening-dataentryopening-module").then(__webpack_require__.bind(null, /*! ./pages/dataentryopening/dataentryopening.module */ "./src/app/pages/dataentryopening/dataentryopening.module.ts")).then(function (m) { return m.DataentryopeningPageModule; }); }
     },
     {
         path: 'dataentrycredit',
-        loadChildren: function () { return Promise.all(/*! import() | pages-dataentrycredit-dataentrycredit-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-dataentrycredit-dataentrycredit-module")]).then(__webpack_require__.bind(null, /*! ./pages/dataentrycredit/dataentrycredit.module */ "./src/app/pages/dataentrycredit/dataentrycredit.module.ts")).then(function (m) { return m.DataentrycreditPageModule; }); }
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-dataentrycredit-dataentrycredit-module */ "pages-dataentrycredit-dataentrycredit-module").then(__webpack_require__.bind(null, /*! ./pages/dataentrycredit/dataentrycredit.module */ "./src/app/pages/dataentrycredit/dataentrycredit.module.ts")).then(function (m) { return m.DataentrycreditPageModule; }); }
     },
     {
         path: 'debitamount',
-        loadChildren: function () { return Promise.all(/*! import() | pages-debitamount-debitamount-module */[__webpack_require__.e("common"), __webpack_require__.e("pages-debitamount-debitamount-module")]).then(__webpack_require__.bind(null, /*! ./pages/debitamount/debitamount.module */ "./src/app/pages/debitamount/debitamount.module.ts")).then(function (m) { return m.DebitamountPageModule; }); }
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-debitamount-debitamount-module */ "pages-debitamount-debitamount-module").then(__webpack_require__.bind(null, /*! ./pages/debitamount/debitamount.module */ "./src/app/pages/debitamount/debitamount.module.ts")).then(function (m) { return m.DebitamountPageModule; }); }
     },
     {
         path: 'reports',

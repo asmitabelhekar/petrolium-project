@@ -134,6 +134,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
 /* harmony import */ var src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/service/apicall/apicall.service */ "./src/app/service/apicall/apicall.service.ts");
 /* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/service/loader/loaderservice.service */ "./src/app/service/loader/loaderservice.service.ts");
+
 
 
 
@@ -144,12 +146,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var CustomerdetilPage = /** @class */ (function () {
-    function CustomerdetilPage(activatedRoute, router, location, callNumber, toast, apiCall, sms) {
+    function CustomerdetilPage(activatedRoute, router, location, callNumber, toast, loader, apiCall, sms) {
         this.activatedRoute = activatedRoute;
         this.router = router;
         this.location = location;
         this.callNumber = callNumber;
         this.toast = toast;
+        this.loader = loader;
         this.apiCall = apiCall;
         this.sms = sms;
         this.customerImage = "";
@@ -165,6 +168,7 @@ var CustomerdetilPage = /** @class */ (function () {
     };
     CustomerdetilPage.prototype.getCustomerDetailInfo = function () {
         var _this = this;
+        this.loader.presentLoading();
         var url = src_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].base_url + "customers/" + this.customerId;
         this.apiCall.get(url).subscribe(function (MyResponse) {
             _this.getCustomerDetail = (MyResponse['result']);
@@ -200,7 +204,10 @@ var CustomerdetilPage = /** @class */ (function () {
             else {
                 _this.customerNote = "NA";
             }
+            _this.loader.stopLoading();
         }, function (error) {
+            _this.loader.stopLoading();
+            _this.presentToast("Something went wrong");
             alert("failed:" + error);
         });
     };
@@ -263,6 +270,7 @@ var CustomerdetilPage = /** @class */ (function () {
         { type: _angular_common__WEBPACK_IMPORTED_MODULE_8__["Location"] },
         { type: _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_3__["CallNumber"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"] },
+        { type: src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_9__["LoaderserviceService"] },
         { type: src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__["ApicallService"] },
         { type: _ionic_native_sms_ngx__WEBPACK_IMPORTED_MODULE_5__["SMS"] }
     ]; };
@@ -277,6 +285,7 @@ var CustomerdetilPage = /** @class */ (function () {
             _angular_common__WEBPACK_IMPORTED_MODULE_8__["Location"],
             _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_3__["CallNumber"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["ToastController"],
+            src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_9__["LoaderserviceService"],
             src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__["ApicallService"],
             _ionic_native_sms_ngx__WEBPACK_IMPORTED_MODULE_5__["SMS"]])
     ], CustomerdetilPage);

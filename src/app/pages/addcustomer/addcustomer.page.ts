@@ -22,11 +22,10 @@ export class AddcustomerPage implements OnInit {
 
   constructor(public router: Router,
     public toast: ToastController,
-    public loader : LoaderserviceService,
+    public loader: LoaderserviceService,
     public apiCall: ApicallService,
-    public loadingController : LoadingController,
     public alertController: AlertController,
-    public events : Events,
+    public events: Events,
     public route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -64,9 +63,7 @@ export class AddcustomerPage implements OnInit {
   }
 
   async addCustomerData() {
-    this.loading = await this.loadingController.create({
-      message: 'Loading data from api',
-    });
+    this.loader.presentLoading();
     let send_date = {};
 
     send_date['firstName'] = this.userModel['fname'];
@@ -78,7 +75,7 @@ export class AddcustomerPage implements OnInit {
     send_date['isActive'] = 1;
 
     if (this.checkStatus == "add") {
-     
+
       this.url = environment.base_url + "customers"
 
       this.apiCall.postWAu(this.url, send_date).subscribe(MyResponse => {
@@ -88,13 +85,14 @@ export class AddcustomerPage implements OnInit {
 
         let msg = MyResponse['message'];
         this.presentToast(msg);
-
+        this.loader.stopLoading();
       }, error => {
         this.presentToast("Something went wrong");
         console.log(error.error.message);
 
       })
     } else if (this.checkStatus == "update") {
+      this.loader.presentLoading();
       this.url = environment.base_url + "customers/" + this.customerId;
 
       this.apiCall.put(this.url, send_date).subscribe(MyResponse => {
@@ -104,8 +102,9 @@ export class AddcustomerPage implements OnInit {
 
         let msg = MyResponse['message'];
         this.presentToast(msg);
-
+        this.loader.stopLoading();
       }, error => {
+        this.loader.stopLoading();
         this.presentToast("Something went wrong");
         console.log(error.error.message);
 

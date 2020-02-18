@@ -6,6 +6,7 @@ import { SMS } from '@ionic-native/sms/ngx';
 import { environment } from 'src/environments/environment';
 import { ApicallService } from 'src/app/service/apicall/apicall.service';
 import { Location } from '@angular/common';
+import { LoaderserviceService } from 'src/app/service/loader/loaderservice.service';
 
 @Component({
   selector: 'app-customerdetil',
@@ -32,7 +33,7 @@ export class CustomerdetilPage implements OnInit {
     public location : Location,
     private callNumber: CallNumber,
     public toast: ToastController,
-    
+    public loader : LoaderserviceService,
     public apiCall : ApicallService,
     private sms: SMS) { }
 
@@ -54,6 +55,7 @@ export class CustomerdetilPage implements OnInit {
     }
   
     getCustomerDetailInfo(){
+      this.loader.presentLoading();
       let url = environment.base_url + "customers/" + this.customerId;
       this.apiCall.get(url).subscribe(MyResponse => {
         this.getCustomerDetail = (MyResponse['result']);
@@ -62,7 +64,7 @@ export class CustomerdetilPage implements OnInit {
           this.customerName = this.getCustomerDetail['firstName'] + " " +  this.getCustomerDetail['lastName'];
           this.firstName = this.customerName.charAt(0);
           // alert("name:"+this.firstName);
-
+         
         }
         else{
           this.customerName = "NA";
@@ -94,8 +96,10 @@ export class CustomerdetilPage implements OnInit {
         else{
           this.customerNote = "NA";
         }
+        this.loader.stopLoading();
       },
         error => {
+          this.loader.stopLoading();
           this.presentToast("Something went wrong");
           alert("failed:" + error);
         })

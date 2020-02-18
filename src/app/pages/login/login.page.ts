@@ -38,8 +38,7 @@ export class LoginPage implements OnInit {
 
 
   Login(data) {
-
-    this.loader.showBlockingLoaderAuth();
+    this.loader.presentLoading();
     let send_date = {};
 
     send_date['mobile'] = this.loginModel['mobile'];
@@ -62,8 +61,10 @@ export class LoginPage implements OnInit {
       }
       let msg = MyResponse['message'];
       this.presentToast("Login Successfully");
+      this.loader.stopLoading();
       // this.loader.hideBlockingLoaderAuth();
     }, error => {
+      this.loader.stopLoading();
       this.presentToast("Please try again");
       console.log(error.error.message);
     })

@@ -138,6 +138,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! src/app/service/apicall/apicall.service */ "./src/app/service/apicall/apicall.service.ts");
 /* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! src/app/service/loader/loaderservice.service */ "./src/app/service/loader/loaderservice.service.ts");
+
 
 
 
@@ -148,12 +150,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var ShowbalancerecordPage = /** @class */ (function () {
-    function ShowbalancerecordPage(router, activatedRoute, toastController, callNumber, sms, apiCall, dialog) {
+    function ShowbalancerecordPage(router, activatedRoute, toastController, callNumber, sms, loader, apiCall, dialog) {
         this.router = router;
         this.activatedRoute = activatedRoute;
         this.toastController = toastController;
         this.callNumber = callNumber;
         this.sms = sms;
+        this.loader = loader;
         this.apiCall = apiCall;
         this.dialog = dialog;
         this.balanceRecord = {
@@ -313,8 +316,6 @@ var ShowbalancerecordPage = /** @class */ (function () {
         this.customerName = this.detailArray['name'] + " " + this.detailArray['lname'];
         this.customerNumber = this.detailArray['mobile'];
         this.getBalanceRecord();
-        // alert("dusplay customerName:"+this.customerName);
-        // this.customerName = this.activatedRoute.snapshot.params['customerName'];
         this.getHistoryArray = this.balanceRecord.history;
         this.displayList = this.getHistoryArray['list'];
     };
@@ -323,11 +324,9 @@ var ShowbalancerecordPage = /** @class */ (function () {
     };
     ShowbalancerecordPage.prototype.clickMenuItem = function (getStatus) {
         if (getStatus == "1") {
-            // this.presentToast("Amount Debited Successfully");
             this.creditDebitAmount(1);
         }
         else if (getStatus == "2") {
-            //  this.presentToast("Amount Debited Successfully");
             this.creditDebitAmount(2);
         }
         else if (getStatus == "3") {
@@ -348,17 +347,6 @@ var ShowbalancerecordPage = /** @class */ (function () {
             customerMobile: this.customerNumber
         };
         this.router.navigate(['/updatebalance', { balanceObject: JSON.stringify(balanceObject) }]);
-        // let send_data = {};
-        // send_data['text'] = "Are you sure you want to discard the changes?";
-        // send_data['button2'] = "No";
-        // send_data['button1'] = "Yes";
-        // const dialogRef = this.dialog.open(UpdatebalancePage, {
-        //   width: '450px',
-        //   data: send_data
-        // });
-        // dialogRef.afterClosed().subscribe(result => {
-        //   console.log("result", result);
-        // });
     };
     ShowbalancerecordPage.prototype.sentMessage = function () {
         var options = {
@@ -395,29 +383,19 @@ var ShowbalancerecordPage = /** @class */ (function () {
         });
     };
     ShowbalancerecordPage.prototype.customerDetail = function () {
-        // let detailData =
-        // {
-        //   "name": data.name,
-        //   "mobile": data.mobile,
-        //   "address": data.address,
-        //   "lname": data.lname,
-        //   "amount": data.amount,
-        //   "imagepath": data.imagepath,
-        //   "email": data.email,
-        //   "note": data.note,
-        //   "getIndex": i
-        // }
         this.router.navigate(['customerdetil', { customerId: this.customerId }]);
     };
     ShowbalancerecordPage.prototype.getBalanceRecord = function () {
         var _this = this;
-        // let url = "http://3.6.135.154:20200/api/v1.0.0/balance?page=0&size=10&filters=%7B%7D";
+        this.loader.presentLoading();
         var url = src_environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].base_url + "customers/" + this.customerId + "/passbook";
         this.apiCall.get(url).subscribe(function (MyResponse) {
             _this.getNewRecords = JSON.stringify(MyResponse['result']['list']);
             console.log("success:" + _this.getNewRecords);
+            _this.loader.stopLoading();
         }, function (error) {
-            alert("failed:" + error);
+            _this.loader.stopLoading();
+            _this.presentToast("Something went wrong");
         });
     };
     ShowbalancerecordPage.ctorParameters = function () { return [
@@ -426,6 +404,7 @@ var ShowbalancerecordPage = /** @class */ (function () {
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"] },
         { type: _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_4__["CallNumber"] },
         { type: _ionic_native_sms_ngx__WEBPACK_IMPORTED_MODULE_5__["SMS"] },
+        { type: src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_9__["LoaderserviceService"] },
         { type: src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__["ApicallService"] },
         { type: _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatDialog"] }
     ]; };
@@ -440,6 +419,7 @@ var ShowbalancerecordPage = /** @class */ (function () {
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"],
             _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_4__["CallNumber"],
             _ionic_native_sms_ngx__WEBPACK_IMPORTED_MODULE_5__["SMS"],
+            src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_9__["LoaderserviceService"],
             src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__["ApicallService"],
             _angular_material__WEBPACK_IMPORTED_MODULE_6__["MatDialog"]])
     ], ShowbalancerecordPage);
