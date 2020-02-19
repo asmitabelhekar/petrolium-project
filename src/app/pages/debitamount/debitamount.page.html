@@ -64,7 +64,10 @@
       <div fxLayout="row" fxLayoutAlign="center center" style="margin-top:10%" >
         <button mat-raised-button [disabled]="payment.invalid " class="submitButton" (click)="debitAmount()">Debit</button>
       </div>
-
+      <div fxLayout="row" fxLayoutAlign="center center" style="margin-top:5%;margin-bottom:20px">
+        <button mat-raised-button [disabled]="payment.invalid " class="submitButton"
+          (click)="creditsubmit()">Credit</button>
+      </div>
 
       </div>
 </ion-content>

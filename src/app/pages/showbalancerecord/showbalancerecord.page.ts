@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { ToastController } from '@ionic/angular';
+import { ToastController, Events } from '@ionic/angular';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { SMS } from '@ionic-native/sms/ngx';
 import { UpdatebalancePageModule } from '../updatebalance/updatebalance.module';
@@ -15,6 +15,7 @@ import { LoaderserviceService } from 'src/app/service/loader/loaderservice.servi
   templateUrl: './showbalancerecord.page.html',
   styleUrls: ['./showbalancerecord.page.scss'],
 })
+@Pipe({name: 'negativeNumber'})
 export class ShowbalancerecordPage implements OnInit {
 
   balanceRecord = {
@@ -175,12 +176,14 @@ export class ShowbalancerecordPage implements OnInit {
   customerId: any;
   getNewRecords: any = [];
   customerNumber: any;
+  getPlusValue : any;
   showRecordsData: any;
   constructor(public router: Router,
     public activatedRoute: ActivatedRoute,
     public toastController: ToastController,
     public callNumber: CallNumber,
     public sms: SMS,
+    public events : Events,
     public loader: LoaderserviceService,
     public apiCall: ApicallService,
     public dialog: MatDialog) { }
@@ -196,6 +199,16 @@ export class ShowbalancerecordPage implements OnInit {
     this.getBalanceRecord();
     this.getHistoryArray = this.balanceRecord.history;
     this.displayList = this.getHistoryArray['list'];
+
+    this.events.subscribe('Event-UpdateBalance', () => {
+      this.getBalanceRecord();
+    });
+
+    
+  }
+
+  transform(value: number): number { 
+    return Math.abs(value);
   }
 
   goBackword() {
@@ -276,6 +289,12 @@ export class ShowbalancerecordPage implements OnInit {
       if (this.totalAmount == null) {
         this.totalAmount = 0;
       } else {
+        if(this.totalAmount >0){
+          this.totalAmountStatus = "Due";
+        }else{
+         this.getPlusValue= this.transform(this.totalAmount);
+          this.totalAmountStatus = "Advance";
+        }
         this.totalAmount = MyResponse['result']['totalAmount'];
       }
       this.loader.stopLoading();

@@ -148,10 +148,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let UpdatebalancePage = class UpdatebalancePage {
-    constructor(activatedRoute, router, location, loader, apiCall, toastcontroller, dateAdapter) {
+    constructor(activatedRoute, router, location, events, loader, apiCall, toastcontroller, dateAdapter) {
         this.activatedRoute = activatedRoute;
         this.router = router;
         this.location = location;
+        this.events = events;
         this.loader = loader;
         this.apiCall = apiCall;
         this.toastcontroller = toastcontroller;
@@ -261,6 +262,7 @@ let UpdatebalancePage = class UpdatebalancePage {
         this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
             let msg = MyResponse['message'];
             this.presentToast(msg);
+            this.events.publish('Event-UpdateBalance');
             let detailData = {
                 "id": this.customerId,
                 "name": this.fname,
@@ -285,6 +287,7 @@ let UpdatebalancePage = class UpdatebalancePage {
         this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
             let msg = MyResponse['message'];
             this.presentToast(msg);
+            this.events.publish('Event-UpdateBalance');
             let detailData = {
                 "id": this.customerId,
                 "name": this.fname,
@@ -313,6 +316,7 @@ UpdatebalancePage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
     { type: _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__["Events"] },
     { type: src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_11__["LoaderserviceService"] },
     { type: src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_9__["ApicallService"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__["ToastController"] },
@@ -327,6 +331,7 @@ UpdatebalancePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
     tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"],
         _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"],
         _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_10__["Events"],
         src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_11__["LoaderserviceService"],
         src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_9__["ApicallService"],
         _ionic_angular__WEBPACK_IMPORTED_MODULE_10__["ToastController"],

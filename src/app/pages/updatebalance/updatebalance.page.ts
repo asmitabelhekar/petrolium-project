@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ApicallService } from 'src/app/service/apicall/apicall.service';
-import { ToastController } from '@ionic/angular';
+import { ToastController, Events } from '@ionic/angular';
 import { LoaderserviceService } from 'src/app/service/loader/loaderservice.service';
 
 @Component({
@@ -34,7 +34,7 @@ export class UpdatebalancePage implements OnInit {
   displayBalnace: any = 0;
   checkFuelType: any;
   myControl = new FormControl();
-  customerId : any;
+  customerId: any;
   filteredOptions: Observable<string[]>;
   buttonsArray = [
     {
@@ -50,9 +50,10 @@ export class UpdatebalancePage implements OnInit {
   constructor(public activatedRoute: ActivatedRoute,
     public router: Router,
     public location: Location,
-    public loader : LoaderserviceService,
+    public events: Events,
+    public loader: LoaderserviceService,
     public apiCall: ApicallService,
-    public toastcontroller : ToastController,
+    public toastcontroller: ToastController,
     public dateAdapter: DateAdapter<Date>) {
     this.dateAdapter.setLocale("en-GB");
   }
@@ -89,9 +90,6 @@ export class UpdatebalancePage implements OnInit {
 
     }
 
-    // }else{
-
-    // }
 
   }
 
@@ -119,7 +117,6 @@ export class UpdatebalancePage implements OnInit {
 
   goBackword() {
     this.location.back();
-    // this.router.navigate(['/showbalancerecord']);
   }
 
   getPaymentDetailInfo(detail) {
@@ -136,11 +133,11 @@ export class UpdatebalancePage implements OnInit {
 
   fuelType(fuelType) {
     this.checkFuelType = fuelType;
-    if(fuelType == 0){
-      
+    if (fuelType == 0) {
+
       this.userModel['type'] = 0;
       this.userModel['perliture'] = 70;
-    }else{
+    } else {
       this.userModel['type'] = 1;
       this.userModel['perliture'] = 80;
     }
@@ -155,7 +152,7 @@ export class UpdatebalancePage implements OnInit {
     send_date['finalAmount'] = this.userModel['totalamount'];
     send_date['amountPaid'] = this.userModel['payment']
     send_date['date'] = this.userModel['date'];
-    if( this.userModel['note'] != ""){
+    if (this.userModel['note'] != "") {
       send_date['message'] = this.userModel['note']
     }
 
@@ -163,15 +160,15 @@ export class UpdatebalancePage implements OnInit {
     this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
       let msg = MyResponse['message'];
       this.presentToast(msg);
-      
+      this.events.publish('Event-UpdateBalance');
       let detailData =
       {
-        "id" : this.customerId,
+        "id": this.customerId,
         "name": this.fname,
         "lname": this.lname,
-        "mobile" : this.customerMobile
+        "mobile": this.customerMobile
       }
-  
+
       this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }])
       this.loader.stopLoading();
     }, error => {
@@ -181,7 +178,7 @@ export class UpdatebalancePage implements OnInit {
     })
   }
 
-  debitAmount(){
+  debitAmount() {
     this.loader.presentLoading();
     let send_date = {};
 
@@ -192,14 +189,15 @@ export class UpdatebalancePage implements OnInit {
     this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
       let msg = MyResponse['message'];
       this.presentToast(msg);
+      this.events.publish('Event-UpdateBalance');
       let detailData =
       {
-        "id" : this.customerId,
+        "id": this.customerId,
         "name": this.fname,
         "lname": this.lname,
-        "mobile" : this.customerMobile
+        "mobile": this.customerMobile
       }
-  
+
       this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }])
       this.loader.stopLoading();
     }, error => {

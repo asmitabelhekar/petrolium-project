@@ -122,11 +122,9 @@ export class DataentryopeningPage implements OnInit {
           this.openingModel['openingbalance'] = MyResponse['result']['list'][i]['balance'];
         }
 
-        alert("id display" + this.openingModel['id']);
       } else {
         this.openingModel['id'] = "";
         this.openingModel['openingbalance'] = 0;
-        alert("check:" + this.openingModel['openingbalance']);
       }
 
 

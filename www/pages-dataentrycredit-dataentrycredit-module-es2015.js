@@ -162,7 +162,6 @@ let DataentrycreditPage = class DataentrycreditPage {
         this.displayBalnace = 0;
         this.autoCompleteArray = [];
         this.customerList = [];
-        // customerList: string[] = ['asmita', 'smita', 'asmi', 'sejal', 'pranil', 'dddd', 'ffff', 'ggggggg', 'hhhhh', 'jjjjjj'];
         this.buttonsArray = [
             {
                 "fuelType": "Petrol",
@@ -224,7 +223,6 @@ let DataentrycreditPage = class DataentrycreditPage {
     }
     goBackword() {
         this.location.back();
-        // this.router.navigate(['showbalancerecord']);
     }
     convert(str) {
         var date = new Date(str), mnth = ("0" + (date.getMonth() + 1)).slice(-2), day = ("0" + date.getDate()).slice(-2);
@@ -269,9 +267,17 @@ let DataentrycreditPage = class DataentrycreditPage {
         }
         this.url = src_environments_environment__WEBPACK_IMPORTED_MODULE_9__["environment"].base_url + "customers/" + this.userModel['id'] + "/purchase";
         this.apiCall.postWAu(this.url, send_date).subscribe(MyResponse => {
-            // this.router.navigate(['/home']);
             let msg = MyResponse['message'];
             this.presentToast(msg);
+            let userRole = localStorage.getItem('userRole');
+            if (userRole == '0') {
+            }
+            else if (userRole == '1') {
+                this.router.navigate(['/home']);
+            }
+            else {
+                this.router.navigate(['/home']);
+            }
             this.loader.stopLoading();
         }, error => {
             this.loader.stopLoading();

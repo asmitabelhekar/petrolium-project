@@ -9,7 +9,6 @@ export class ApicallService {
   constructor(private http: HttpClient) { }
 
   public postWAu(url, data) {
-
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -17,13 +16,11 @@ export class ApicallService {
       })
     }
     console.log(url);
-
     return this.http.post(url, data, httpOptions);
   }
 
 
   public get(url) {
-
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
@@ -34,15 +31,14 @@ export class ApicallService {
   }
 
 
-public put(url,data) {
-
-  console.log(url);
-  const httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type':  'application/json',
-      // 'Authorization':'Token' + " " +auth_token
-    })
+  public put(url, data) {
+    console.log(url);
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        // 'Authorization':'Token' + " " +auth_token
+      })
+    }
+    return this.http.put(url, data, httpOptions);
   }
-  return this.http.put(url,data,httpOptions);
-}
 }

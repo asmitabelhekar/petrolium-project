@@ -43,14 +43,11 @@ export class CustomerdetilPage implements OnInit {
       this.customerId = JSON.parse(this.activatedRoute.snapshot.params['customerId']);
       this.getCustomerDetailInfo();
      
-      // this.customerIndex = parseArray.getIndex;
-     
     }
   
   
   
     goBackword() {
-      // this.location.back();
       let detailData =
       {
         "id" : this.customerId,
@@ -60,7 +57,6 @@ export class CustomerdetilPage implements OnInit {
       }
   
       this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }])
-      // this.router.navigate(['/showbalancerecord']);
     }
   
     getCustomerDetailInfo(){
@@ -72,7 +68,6 @@ export class CustomerdetilPage implements OnInit {
         if(this.getCustomerDetail.firstName != ""){
           this.customerName = this.getCustomerDetail['firstName'] + " " +  this.getCustomerDetail['lastName'];
           this.firstName = this.customerName.charAt(0);
-          // alert("name:"+this.firstName);
          
         }
         else{
@@ -144,20 +139,15 @@ export class CustomerdetilPage implements OnInit {
   
   
       var options={
-        replaceLineBreaks: false, // true to replace \n by a new line, false by default
+        replaceLineBreaks: false,
         android: {
-             intent: 'INTENT'  // Opens Default sms app
+             intent: 'INTENT' 
           }
   }
   this.sms.send(this.customerMobile, '',options)
     .then(()=>{
-      // alert("success");
     },()=>{
-    // alert("failed");
     });
-  
-  
-      // this.sms.send(this.customerMobile, 'Hello world!');
     }
   
   

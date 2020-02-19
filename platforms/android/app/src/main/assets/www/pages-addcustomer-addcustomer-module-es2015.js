@@ -173,7 +173,6 @@ let AddcustomerPage = class AddcustomerPage {
         else {
             this.displayAlert();
         }
-        // this.router.navigate(['home']);
     }
     addCustomerData() {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
@@ -222,7 +221,6 @@ let AddcustomerPage = class AddcustomerPage {
             }
             else {
             }
-            // this.router.navigate(['/home']);
         });
     }
     presentToast(message) {

@@ -154,10 +154,8 @@ let CustomerdetilPage = class CustomerdetilPage {
     ngOnInit() {
         this.customerId = JSON.parse(this.activatedRoute.snapshot.params['customerId']);
         this.getCustomerDetailInfo();
-        // this.customerIndex = parseArray.getIndex;
     }
     goBackword() {
-        // this.location.back();
         let detailData = {
             "id": this.customerId,
             "name": this.getCustomerDetail['firstName'],
@@ -165,7 +163,6 @@ let CustomerdetilPage = class CustomerdetilPage {
             "mobile": this.customerMobile
         };
         this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }]);
-        // this.router.navigate(['/showbalancerecord']);
     }
     getCustomerDetailInfo() {
         this.loader.presentLoading();
@@ -175,7 +172,6 @@ let CustomerdetilPage = class CustomerdetilPage {
             if (this.getCustomerDetail.firstName != "") {
                 this.customerName = this.getCustomerDetail['firstName'] + " " + this.getCustomerDetail['lastName'];
                 this.firstName = this.customerName.charAt(0);
-                // alert("name:"+this.firstName);
             }
             else {
                 this.customerName = "NA";
@@ -236,16 +232,13 @@ let CustomerdetilPage = class CustomerdetilPage {
         var options = {
             replaceLineBreaks: false,
             android: {
-                intent: 'INTENT' // Opens Default sms app
+                intent: 'INTENT'
             }
         };
         this.sms.send(this.customerMobile, '', options)
             .then(() => {
-            // alert("success");
         }, () => {
-            // alert("failed");
         });
-        // this.sms.send(this.customerMobile, 'Hello world!');
     }
     presentToast(message) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {

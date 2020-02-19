@@ -65,7 +65,6 @@ export class AddcustomerPage implements OnInit {
     } else {
       this.displayAlert();
     }
-    // this.router.navigate(['home']);
   }
 
   async addCustomerData() {
@@ -124,7 +123,6 @@ export class AddcustomerPage implements OnInit {
     }
 
 
-    // this.router.navigate(['/home']);
   }
 
   async presentToast(message) {

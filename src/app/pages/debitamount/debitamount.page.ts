@@ -18,7 +18,6 @@ import { LoaderserviceService } from 'src/app/service/loader/loaderservice.servi
 export class DebitamountPage implements OnInit {
 
   customerList: any = [];
-  // customerList: string[] = ['asmita', 'smita', 'asmi', 'sejal', 'pranil', 'dddd', 'ffff', 'ggggggg', 'hhhhh', 'jjjjjj'];
   today: any;
   userModel: any = {}
   myControl = new FormControl();

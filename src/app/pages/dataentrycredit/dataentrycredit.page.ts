@@ -32,7 +32,6 @@ export class DataentrycreditPage implements OnInit {
   customerList: any = [];
   url: any;
   type: any;
-  // customerList: string[] = ['asmita', 'smita', 'asmi', 'sejal', 'pranil', 'dddd', 'ffff', 'ggggggg', 'hhhhh', 'jjjjjj'];
   buttonsArray = [
     {
       "fuelType": "Petrol",
@@ -119,7 +118,6 @@ export class DataentrycreditPage implements OnInit {
 
   goBackword() {
     this.location.back();
-    // this.router.navigate(['showbalancerecord']);
   }
 
   convert(str) {
@@ -166,18 +164,25 @@ export class DataentrycreditPage implements OnInit {
     send_date['finalAmount'] = this.userModel['totalamount'];
     send_date['amountPaid'] = this.userModel['payment']
     send_date['date'] = this.userModel['date'];
-    if(this.userModel['note'] != ""){
+    if (this.userModel['note'] != "") {
       send_date['message'] = this.userModel['note']
     }
-   
+
 
     this.url = environment.base_url + "customers/" + this.userModel['id'] + "/purchase"
 
     this.apiCall.postWAu(this.url, send_date).subscribe(MyResponse => {
-      // this.router.navigate(['/home']);
 
       let msg = MyResponse['message'];
       this.presentToast(msg);
+      let userRole = localStorage.getItem('userRole');
+      if (userRole == '0') {
+      } else if (userRole == '1') {
+        this.router.navigate(['/home']);
+      }
+      else {
+        this.router.navigate(['/home']);
+      }
       this.loader.stopLoading();
     }, error => {
       this.loader.stopLoading();

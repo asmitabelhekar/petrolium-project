@@ -201,7 +201,6 @@ export class HomePage {
     this.getCustomerList();
     this.getCusstomers.sort((a, b) => a.name.localeCompare(b.name));
     this.menuCntrl.enable(true);
-    // this.makePdf();
   }
   ngOnInit() {
     this.getCustomerList();
@@ -226,18 +225,6 @@ export class HomePage {
 
   getBalanceDetail(data) {
 
-    // let detailData =
-    // {
-    //   "id" : data.id,
-    //   "name": data.firstName,
-    //   "mobile": data.mobile,
-    //   "address": data.address,
-    //   "lname": data.lastName,
-    //   "amount": data.payment,
-    //   "email": data.email,
-    //   "note": data.note,
-
-    // }
 
     let detailData =
     {
@@ -248,22 +235,8 @@ export class HomePage {
     }
 
     this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }])
-    // this.router.navigate(['showbalancerecord' ]);
   }
 
-  // async presentLoading() {
-  //   const loading = await this.loadingController.create({
-  //     message: 'Please wait...',
-  //     // spinner: null
-  //   });
-  //   await loading.present();
-  //   setTimeout(() => {
-  //     loading.dismiss();
-  //   }, 6000);
-  //   const { role, data } = await loading.onDidDismiss();
-  //   console.log('Loading dismissed!' + role + ' Data: ' + data);
-
-  // }
 
 
   getCustomerList() {

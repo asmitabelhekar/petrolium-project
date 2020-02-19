@@ -47,9 +47,9 @@
         <ion-col size="8">
           <div fxLayout="row" fxLayoutAlign="end end">
             <ion-label  style="color:white;margin-right:10px;font-size: 15px; ">Balance :
-              ₹{{totalAmount}}</ion-label>
-           </div>
-           
+              ₹{{getPlusValue}} {{totalAmountStatus}}</ion-label>
+           </div> 
+            
         </ion-col>
       </ion-row>
       <!-- <h5 fxLayout="row" fxLayoutAlign="center center" style="color:white; margin-bottom:20px">Balance :
@@ -83,9 +83,14 @@
   
           </ion-card>
           
-          <ion-row style="margin-left:20px" >
+          <ion-row style="margin-left:20px"  *ngIf="listArray.balance != null">
             <ion-col size="12">
               <label  style="font-size: 13px;color:grey">₹{{listArray.balance}} Advance</label>
+            </ion-col>
+          </ion-row>
+          <ion-row style="margin-right:20px"  *ngIf="listArray.balance == null">
+            <ion-col size="12">
+              <label style="font-size: 13px;color:grey">₹0 Advance</label>
             </ion-col>
           </ion-row>
         </div>
@@ -107,9 +112,14 @@
             </ion-row>
   
           </ion-card>
-          <ion-row style="margin-right:20px"  >
+          <ion-row style="margin-right:20px" *ngIf="listArray.balance != null" >
             <ion-col size="12">
               <label style="font-size: 13px;color:grey">₹{{listArray.balance}} Due</label>
+            </ion-col>
+          </ion-row>
+          <ion-row style="margin-right:20px"  *ngIf="listArray.balance == null">
+            <ion-col size="12">
+              <label style="font-size: 13px;color:grey">₹0 Due</label>
             </ion-col>
           </ion-row>
         </div>
