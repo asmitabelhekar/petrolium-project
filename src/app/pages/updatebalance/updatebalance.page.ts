@@ -154,6 +154,10 @@ export class UpdatebalancePage implements OnInit {
     send_date['pricePerLitre'] = this.userModel['perliture']
     send_date['finalAmount'] = this.userModel['totalamount'];
     send_date['amountPaid'] = this.userModel['payment']
+    send_date['date'] = this.userModel['date'];
+    if( this.userModel['note'] != ""){
+      send_date['message'] = this.userModel['note']
+    }
 
     let url = environment.base_url + "customers/" + this.customerId + "/purchase"
     this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {

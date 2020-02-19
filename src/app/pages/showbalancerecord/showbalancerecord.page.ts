@@ -167,31 +167,31 @@ export class ShowbalancerecordPage implements OnInit {
 
   customerName: any;
   getHistoryArray: any;
-  totalAmount = "3000";
+  totalAmount: any;
   totalAmountStatus = "Due";
   displayList: any;
   detailArray: any;
   getBalanceRecordData: any;
-  customerId : any;
-  getNewRecords : any = [] ;
-  customerNumber : any;
-
+  customerId: any;
+  getNewRecords: any = [];
+  customerNumber: any;
+  showRecordsData: any;
   constructor(public router: Router,
     public activatedRoute: ActivatedRoute,
     public toastController: ToastController,
     public callNumber: CallNumber,
     public sms: SMS,
-    public loader : LoaderserviceService,
+    public loader: LoaderserviceService,
     public apiCall: ApicallService,
     public dialog: MatDialog) { }
 
   ngOnInit() {
 
-   
+
     let getdetail = this.activatedRoute.snapshot.params['detailData'];
     this.detailArray = JSON.parse(getdetail);
     this.customerId = this.detailArray['id']
-    this.customerName = this.detailArray['name'] +  " " + this.detailArray['lname'];
+    this.customerName = this.detailArray['name'] + " " + this.detailArray['lname'];
     this.customerNumber = this.detailArray['mobile'];
     this.getBalanceRecord();
     this.getHistoryArray = this.balanceRecord.history;
@@ -222,12 +222,12 @@ export class ShowbalancerecordPage implements OnInit {
     let balanceObject = {
       customerName: this.customerName,
       amountState: value,
-      customerId : this.customerId,
-      customerMobile : this.customerNumber
+      customerId: this.customerId,
+      customerMobile: this.customerNumber
 
     }
     this.router.navigate(['/updatebalance', { balanceObject: JSON.stringify(balanceObject) }]);
-  
+
   }
 
   sentMessage() {
@@ -264,16 +264,26 @@ export class ShowbalancerecordPage implements OnInit {
 
   getBalanceRecord() {
     this.loader.presentLoading();
-    let url =  environment.base_url + "customers/" + this.customerId + "/passbook" ;
+    let url = environment.base_url + "customers/" + this.customerId + "/passbook";
     this.apiCall.get(url).subscribe(MyResponse => {
-      this.getNewRecords = JSON.stringify(MyResponse['result']['list']);
-      console.log("success:" + this.getNewRecords);
+      this.getNewRecords = (MyResponse['result']['history']);
+      if(this.getNewRecords.length > 0){
+        this.showRecordsData = 0;
+      }else{
+        this.showRecordsData = 1;
+      }
+      this.totalAmount = MyResponse['result']['totalAmount'];
+      if (this.totalAmount == null) {
+        this.totalAmount = 0;
+      } else {
+        this.totalAmount = MyResponse['result']['totalAmount'];
+      }
       this.loader.stopLoading();
     },
       error => {
         this.loader.stopLoading();
         this.presentToast("Something went wrong");
-    
+
       })
   }
 }

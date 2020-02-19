@@ -16,6 +16,7 @@ export class DataentryopeningPage implements OnInit {
 
   today: any;
   openingModel: any = {}
+  openingBalance: any;
   fuelType = [
     { "type": "Petrol" },
     { "type": "Diesel" }
@@ -29,6 +30,9 @@ export class DataentryopeningPage implements OnInit {
     public router: Router
   ) {
     this.dataAdapter.setLocale("en-GB");
+    this.openingModel['date'] = new Date().toJSON().split('T')[0];
+    this.today = new Date().toJSON().split('T')[0];
+
   }
 
   ngOnInit() {
@@ -46,18 +50,37 @@ export class DataentryopeningPage implements OnInit {
     send_date['date'] = this.openingModel['date'];
     send_date['type'] = this.openingModel['type'];
     send_date['balance'] = this.openingModel['openingbalance']
-    let url = environment.base_url + "balance";
-    this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
-      let msg = MyResponse['message'];
-      this.presentToast(msg);
-      this.router.navigate(['/dataentrycredit']);
-      this.loader.stopLoading();
-    }, error => {
-      this.loader.stopLoading();
-      this.presentToast("Something went wrong");
-      console.log(error.error.message);
 
-    })
+    if (this.openingModel['openingbalance'] == 0 || this.openingModel['openingbalance'] == "") {
+
+      let url = environment.base_url + "balance";
+      this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
+        let msg = MyResponse['message'];
+        this.presentToast(msg);
+        this.router.navigate(['/dataentrycredit']);
+        this.loader.stopLoading();
+      }, error => {
+        this.loader.stopLoading();
+        this.presentToast("Something went wrong");
+        console.log(error.error.message);
+
+      })
+    } else {
+
+      let url = environment.base_url + "balance/" + this.openingModel['id'];
+      this.apiCall.put(url, send_date).subscribe(MyResponse => {
+        let msg = MyResponse['message'];
+        this.presentToast(msg);
+        this.router.navigate(['/dataentrycredit']);
+        this.loader.stopLoading();
+      }, error => {
+        this.loader.stopLoading();
+        this.presentToast("Something went wrong");
+        console.log(error.error.message);
+
+      })
+    }
+
 
   }
 
@@ -72,11 +95,47 @@ export class DataentryopeningPage implements OnInit {
   changeClient(value) {
     if (value == "Petrol") {
       this.openingModel['type'] = 0;
+      this.getOpeningBalance();
     } else {
       this.openingModel['type'] = 1;
+      this.getOpeningBalance();
     }
 
     console.log("type : " + this.openingModel['type']);
   }
 
+
+  getOpeningBalance() {
+    this.loader.presentLoading();
+
+    let objectt = {};
+    objectt['date'] = this.openingModel['date'];
+    objectt['type'] = this.openingModel['type'];
+    let url = environment.base_url + "balance?" + "filters=" + JSON.stringify(objectt);
+    console.log("url :" + url);
+    this.apiCall.get(url).subscribe(MyResponse => {
+
+      let getData = MyResponse['result']['list'];
+      if (getData.length > 0) {
+        for (let i = 0; i < getData.length; i++) {
+          this.openingModel['id'] = MyResponse['result']['list'][i]['id'];
+          this.openingModel['openingbalance'] = MyResponse['result']['list'][i]['balance'];
+        }
+
+        alert("id display" + this.openingModel['id']);
+      } else {
+        this.openingModel['id'] = "";
+        this.openingModel['openingbalance'] = 0;
+        alert("check:" + this.openingModel['openingbalance']);
+      }
+
+
+      this.loader.stopLoading();
+    },
+      error => {
+        this.loader.stopLoading();
+        this.presentToast("Something went wrong");
+
+      })
+  }
 }

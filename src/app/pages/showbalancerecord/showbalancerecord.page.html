@@ -47,7 +47,7 @@
         <ion-col size="8">
           <div fxLayout="row" fxLayoutAlign="end end">
             <ion-label  style="color:white;margin-right:10px;font-size: 15px; ">Balance :
-              ₹{{totalAmount}} {{totalAmountStatus}}</ion-label>
+              ₹{{totalAmount}}</ion-label>
            </div>
            
         </ion-col>
@@ -58,21 +58,21 @@
   
     <div style="width:100%;margin-top:37%">
    
-   
-    <div *ngFor="let item of getHistoryArray" style="width:100%;">
+   <div *ngIf="showRecordsData == 0">
+    <div *ngFor="let item of getNewRecords" style="width:100%;">
       <div fxLayout="row" fxLayoutAlign="center center">
         <label fxLayoutAlign="center center" style="font-size: 10px;color: white; background-color: rgb(182, 180, 180);padding:5px;width:22%; border-radius: 15px;margin-top:10px">{{item.date}}</label>
       </div>
       <div *ngFor="let listArray of item.list" style="width:100%;margin-top:10px">
-        <div fxLayout="column" fxLayoutAlign="start start" *ngIf="listArray.type == '1' ">
+        <div fxLayout="column" fxLayoutAlign="start start" *ngIf="0 > listArray.balance">
           <ion-card 
             style="border: 1px solid grey; width:200px; margin-left:20px; margin-top:5px;padding:4px">
             <ion-row>
-              <ion-col size="7">
+              <ion-col size="8">
                 <label style="font-size: 17px;color:red">₹{{listArray.amount}}</label>
               </ion-col>
-              <ion-col size="5">
-                <label style="font-size: 10px;color:grey">{{listArray.time}}</label>
+              <ion-col size="4">
+                <label style="font-size: 10px;color:grey">{{listArray.time | date:"hh:mm a"}}</label>
               </ion-col>
             </ion-row>
             <ion-row>
@@ -82,31 +82,32 @@
             </ion-row>
   
           </ion-card>
-          <ion-row style="margin-left:20px">
+          
+          <ion-row style="margin-left:20px" >
             <ion-col size="12">
-              <label style="font-size: 13px;color:grey">₹{{listArray.balance}} Advance</label>
+              <label  style="font-size: 13px;color:grey">₹{{listArray.balance}} Advance</label>
             </ion-col>
           </ion-row>
         </div>
-        <div fxLayout="column" fxLayoutAlign="end end" *ngIf="listArray.type == '2' ">
+        <div fxLayout="column" fxLayoutAlign="end end" *ngIf="listArray.balance >=  0 ">
           <ion-card 
             style="border: 1px solid grey;width:200px; margin-right:20px; margin-top:5px; padding:4px">
             <ion-row>
-              <ion-col size="7">
+              <ion-col size="8">
                 <label style="font-size: 17px;color:green">₹{{listArray.amount}}</label>
               </ion-col>
-              <ion-col size="5">
-                <label style="font-size: 10px;color:grey">{{listArray.time}}</label>
+              <ion-col size="4">
+                <label style="font-size: 10px;color:grey">{{listArray.time | date:"hh:mm a"}}</label>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col size="8">
-                <label style="font-size: 13px;color:rgb(7, 7, 7)">{{listArray.comment}}</label>
+                <label style="font-size: 13px;color:rgb(7, 7, 7)">{{listArray.message}}</label>
               </ion-col>
             </ion-row>
   
           </ion-card>
-          <ion-row style="margin-right:20px">
+          <ion-row style="margin-right:20px"  >
             <ion-col size="12">
               <label style="font-size: 13px;color:grey">₹{{listArray.balance}} Due</label>
             </ion-col>
@@ -114,6 +115,11 @@
         </div>
       </div>
     </div>
+   </div>
+
+   <div *ngIf="showRecordsData == 1" fxLayout="row" fxLayoutAlign="center center">
+<h1>No records found.</h1>
+   </div>
   </div>
 
 

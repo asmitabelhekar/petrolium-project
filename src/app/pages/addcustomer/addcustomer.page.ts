@@ -76,8 +76,12 @@ export class AddcustomerPage implements OnInit {
     send_date['lastName'] = this.userModel['lname'];
     send_date['mobile'] = this.userModel['mobile']
     send_date['address'] = this.userModel['address'];
-    send_date['note'] = this.userModel['note'];
-    send_date['email'] = this.userModel['email'];
+    if (this.userModel['note'] != "") {
+      send_date['note'] = this.userModel['note'];
+    }
+    if (this.userModel['email'] != "") {
+      send_date['email'] = this.userModel['email'];
+    }
     send_date['isActive'] = 1;
 
     if (this.checkStatus == "add") {

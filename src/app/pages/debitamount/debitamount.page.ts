@@ -96,7 +96,10 @@ export class DebitamountPage implements OnInit {
 
     send_date['date'] = this.userModel['date'];
     send_date['amount'] = this.userModel['payment'];
-    send_date['message'] = this.userModel['note']
+
+    if(this.userModel['note'] != ""){
+      send_date['message'] = this.userModel['note']
+    }
 
 
     this.url = environment.base_url + "customers/" + this.userModel['id'] + "/passbook"

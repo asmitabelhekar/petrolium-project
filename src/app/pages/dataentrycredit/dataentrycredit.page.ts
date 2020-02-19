@@ -165,7 +165,11 @@ export class DataentrycreditPage implements OnInit {
     send_date['pricePerLitre'] = this.userModel['perliture']
     send_date['finalAmount'] = this.userModel['totalamount'];
     send_date['amountPaid'] = this.userModel['payment']
-
+    send_date['date'] = this.userModel['date'];
+    if(this.userModel['note'] != ""){
+      send_date['message'] = this.userModel['note']
+    }
+   
 
     this.url = environment.base_url + "customers/" + this.userModel['id'] + "/purchase"
 
