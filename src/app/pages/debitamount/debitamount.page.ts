@@ -26,6 +26,8 @@ export class DebitamountPage implements OnInit {
   customerId: any;
   getCusstomers: any;
   autoCompleteArray: any = [];
+  checkRecordStatus: any;
+  recordNotPresent = 0;
 
   constructor(public toast: ToastController,
     public apiCall: ApicallService,
@@ -69,6 +71,29 @@ export class DebitamountPage implements OnInit {
 
       })
   }
+
+  addCustomer() {
+    this.recordNotPresent = 0;
+    this.checkRecordStatus = "add";
+
+    let detailCustomerdata = {
+      "fname": "",
+      "mobile": "",
+      "address": "",
+      "email": "",
+      "checkstatus": this.checkRecordStatus,
+      "note": ""
+    }
+    this.router.navigate(['/addcustomer', { detailCustomerdata: JSON.stringify(detailCustomerdata) }]);
+  }
+
+  ionViewWillLeave() {
+    this.recordNotPresent = 0;
+  }
+
+  ionViewDidLeave() {
+    this.recordNotPresent = 0;
+  }
   convert(str) {
     var date = new Date(str),
       mnth = ("0" + (date.getMonth() + 1)).slice(-2),
@@ -79,7 +104,9 @@ export class DebitamountPage implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-
+    if (this.customerList.filter(option => option.toLowerCase().includes(filterValue)) == undefined || this.customerList.filter(option => option.toLowerCase().includes(filterValue)) == "" || this.customerList.filter(option => option.toLowerCase().includes(filterValue)) == null) {
+      this.recordNotPresent = 1;
+    }
     return this.customerList.filter(option => option.toLowerCase().includes(filterValue));
   }
 
@@ -90,6 +117,11 @@ export class DebitamountPage implements OnInit {
       if (this.userModel['customername'] == this.autoCompleteArray[j]['name']) {
         this.userModel['id'] = this.autoCompleteArray[j]['id'];
       }
+    }
+
+    if (this.userModel['id'] == undefined || this.userModel['id'] == "" || this.userModel['id'] == null) {
+      this.presentToast("Customer of this name is not present .Please add customer first.")
+      return;
     }
     let send_date = {};
 

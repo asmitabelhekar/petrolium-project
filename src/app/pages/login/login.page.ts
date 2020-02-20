@@ -62,7 +62,6 @@ export class LoginPage implements OnInit {
       let msg = MyResponse['message'];
       this.presentToast("Login Successfully");
       this.loader.stopLoading();
-      // this.loader.hideBlockingLoaderAuth();
     }, error => {
       this.loader.stopLoading();
       this.presentToast("Please try again");

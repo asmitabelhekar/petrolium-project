@@ -31,6 +31,8 @@ export class DataentrycreditPage implements OnInit {
   autoCompleteArray: any = [];
   customerList: any = [];
   url: any;
+  checkRecordStatus: any;
+  recordNotPresent = 0;
   type: any;
   buttonsArray = [
     {
@@ -73,11 +75,34 @@ export class DataentrycreditPage implements OnInit {
 
   private _filter(value: string): string[] {
     const filterValue = value.toLowerCase();
-
+    if (this.customerList.filter(option => option.toLowerCase().includes(filterValue)) == undefined || this.customerList.filter(option => option.toLowerCase().includes(filterValue)) == "" || this.customerList.filter(option => option.toLowerCase().includes(filterValue)) == null) {
+      this.recordNotPresent = 1;
+    }
     return this.customerList.filter(option => option.toLowerCase().includes(filterValue));
   }
 
+  addCustomer() {
+    this.recordNotPresent = 0;
+    this.checkRecordStatus = "add";
 
+    let detailCustomerdata = {
+      "fname": "",
+      "mobile": "",
+      "address": "",
+      "email": "",
+      "checkstatus": this.checkRecordStatus,
+      "note": ""
+    }
+    this.router.navigate(['/addcustomer', { detailCustomerdata: JSON.stringify(detailCustomerdata) }]);
+  }
+
+  ionViewWillLeave() {
+    this.recordNotPresent = 0;
+  }
+
+  ionViewDidLeave() {
+    this.recordNotPresent = 0;
+  }
   getCustomerList() {
 
     let url = environment.base_url + "customers";
@@ -155,7 +180,10 @@ export class DataentrycreditPage implements OnInit {
         this.userModel['id'] = this.autoCompleteArray[j]['id'];
       }
     }
-
+    if (this.userModel['id'] == undefined || this.userModel['id'] == "" || this.userModel['id'] == null) {
+      this.presentToast("Customer of this name is not present .Please add customer first.")
+      return;
+    }
     let send_date = {};
 
     send_date['type'] = this.userModel['type'];
