@@ -17,14 +17,15 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <div fxLayout="column" fxLayoutAlign="center center" style="margin-top:15%">
-    <button class="centerImg" style="font-size :16px" [ngClass]="(customerIndex % 2 == 0) ? 'odd' : 'even' ">{{firstName}}</button>
+  <button class="centerImg" style="font-size :16px; margin-top:15%" [ngClass]="(customerIndex % 2 == 0) ? 'odd' : 'even' ">{{firstName | uppercase}}</button>
+
+  <div fxLayout="column" fxLayoutAlign="center center">
+    <!-- <button class="centerImg" style="font-size :16px" [ngClass]="(customerIndex % 2 == 0) ? 'odd' : 'even' ">{{firstName | uppercase}}</button> -->
      <ion-item>
       <ion-label style="margin-top:3%; ">
         {{customerName | titlecase}}
       </ion-label>
      </ion-item>
-    
   </div>
   
   <ion-item style="margin-left:-15px; margin-top:-10px" >
