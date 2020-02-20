@@ -177,6 +177,7 @@ let UpdatebalancePage = class UpdatebalancePage {
         this.dateAdapter.setLocale("en-GB");
     }
     ngOnInit() {
+        this.userModel['type'] = 2;
         this.filteredOptions = this.myControl.valueChanges
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(value => this._filter(value)));
         this.userModel['date'] = new Date().toJSON().split('T')[0];
@@ -245,34 +246,40 @@ let UpdatebalancePage = class UpdatebalancePage {
     }
     creditAmount() {
         this.loader.presentLoading();
-        let send_date = {};
-        send_date['type'] = this.userModel['type'];
-        send_date['amountInLitre'] = this.userModel['inlitures'];
-        send_date['pricePerLitre'] = this.userModel['perliture'];
-        send_date['finalAmount'] = this.userModel['totalamount'];
-        send_date['amountPaid'] = this.userModel['payment'];
-        send_date['date'] = this.userModel['date'];
-        if (this.userModel['note'] != "") {
-            send_date['message'] = this.userModel['note'];
+        if (this.userModel['type'] == 2) {
+            this.presentToast("Please select fuel type.");
         }
-        let url = src_environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].base_url + "customers/" + this.customerId + "/purchase";
-        this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
-            let msg = MyResponse['message'];
-            this.presentToast(msg);
-            this.events.publish('Event-UpdateBalance');
-            let detailData = {
-                "id": this.customerId,
-                "name": this.fname,
-                "lname": this.lname,
-                "mobile": this.customerMobile
-            };
-            this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }]);
-            this.loader.stopLoading();
-        }, error => {
-            this.loader.stopLoading();
-            this.presentToast("Something went wrong");
-            console.log(error.error.message);
-        });
+        else {
+            let send_date = {};
+            send_date['type'] = this.userModel['type'];
+            send_date['amountInLitre'] = this.userModel['inlitures'];
+            send_date['pricePerLitre'] = this.userModel['perliture'];
+            send_date['finalAmount'] = this.userModel['totalamount'];
+            send_date['amountPaid'] = this.userModel['payment'];
+            send_date['date'] = this.userModel['date'];
+            if (this.userModel['note'] != "") {
+                send_date['message'] = this.userModel['note'];
+            }
+            let url = src_environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].base_url + "customers/" + this.customerId + "/purchase";
+            this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
+                let msg = MyResponse['message'];
+                this.presentToast(msg);
+                this.events.publish('Event-UpdateBalance');
+                let detailData = {
+                    "id": this.customerId,
+                    "name": this.fname,
+                    "lname": this.lname,
+                    "mobile": this.customerMobile
+                };
+                this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }]);
+                this.loader.stopLoading();
+            }, error => {
+                this.loader.stopLoading();
+                this.presentToast("Something went wrong");
+                console.log(error.error.message);
+            });
+        }
+        this.loader.stopLoading();
     }
     debitAmount() {
         this.loader.presentLoading();

@@ -60,7 +60,7 @@ export class DataentrycreditPage implements OnInit {
 
   ngOnInit() {
     this.getCustomerList();
-    this.userModel['type'] = 0;
+    this.userModel['type'] = 2
     this.userModel['perliture'] = 70;
     this.filteredOptions = this.myControl.valueChanges
       .pipe(startWith(''),
@@ -175,48 +175,55 @@ export class DataentrycreditPage implements OnInit {
 
   creditsubmit() {
     this.loader.presentLoading();
-    for (let j = 0; j < this.autoCompleteArray.length; j++) {
-      if (this.userModel['customername'] == this.autoCompleteArray[j]['name']) {
-        this.userModel['id'] = this.autoCompleteArray[j]['id'];
-      }
+    if(this.userModel['type'] == 2){
+      this.presentToast("Please select fuel type.");
     }
-    if (this.userModel['id'] == undefined || this.userModel['id'] == "" || this.userModel['id'] == null) {
-      this.presentToast("Customer of this name is not present .Please add customer first.")
-      return;
-    }
-    let send_date = {};
-
-    send_date['type'] = this.userModel['type'];
-    send_date['amountInLitre'] = this.userModel['inlitures'];
-    send_date['pricePerLitre'] = this.userModel['perliture']
-    send_date['finalAmount'] = this.userModel['totalamount'];
-    send_date['amountPaid'] = this.userModel['payment']
-    send_date['date'] = this.userModel['date'];
-    if (this.userModel['note'] != "") {
-      send_date['message'] = this.userModel['note']
-    }
-
-
-    this.url = environment.base_url + "customers/" + this.userModel['id'] + "/purchase"
-
-    this.apiCall.postWAu(this.url, send_date).subscribe(MyResponse => {
-
-      let msg = MyResponse['message'];
-      this.presentToast(msg);
-      let userRole = localStorage.getItem('userRole');
-      if (userRole == '0') {
-      } else if (userRole == '1') {
-        this.router.navigate(['/home']);
+    else{
+      for (let j = 0; j < this.autoCompleteArray.length; j++) {
+        if (this.userModel['customername'] == this.autoCompleteArray[j]['name']) {
+          this.userModel['id'] = this.autoCompleteArray[j]['id'];
+        }
       }
-      else {
-        this.router.navigate(['/home']);
+      if (this.userModel['id'] == undefined || this.userModel['id'] == "" || this.userModel['id'] == null) {
+        this.presentToast("Customer of this name is not present .Please add customer first.")
+        return;
       }
-      this.loader.stopLoading();
-    }, error => {
-      this.loader.stopLoading();
-      this.presentToast("Something went wrong");
-      console.log(error.error.message);
-
-    })
+      let send_date = {};
+  
+      send_date['type'] = this.userModel['type'];
+      send_date['amountInLitre'] = this.userModel['inlitures'];
+      send_date['pricePerLitre'] = this.userModel['perliture']
+      send_date['finalAmount'] = this.userModel['totalamount'];
+      send_date['amountPaid'] = this.userModel['payment']
+      send_date['date'] = this.userModel['date'];
+      if (this.userModel['note'] != "") {
+        send_date['message'] = this.userModel['note']
+      }
+  
+  
+      this.url = environment.base_url + "customers/" + this.userModel['id'] + "/purchase"
+  
+      this.apiCall.postWAu(this.url, send_date).subscribe(MyResponse => {
+  
+        let msg = MyResponse['message'];
+        this.presentToast(msg);
+        let userRole = localStorage.getItem('userRole');
+        if (userRole == '0') {
+        } else if (userRole == '1') {
+          this.router.navigate(['/home']);
+        }
+        else {
+          this.router.navigate(['/home']);
+        }
+        this.loader.stopLoading();
+      }, error => {
+        this.loader.stopLoading();
+       
+        this.presentToast("Something went wrong");
+        console.log(error.error.message);
+  
+      })
+    }
+    this.loader.stopLoading();
   }
 }

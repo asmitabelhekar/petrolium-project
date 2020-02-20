@@ -59,7 +59,7 @@ export class UpdatebalancePage implements OnInit {
   }
 
   ngOnInit() {
-
+    this.userModel['type'] = 2;
     this.filteredOptions = this.myControl.valueChanges
       .pipe(startWith(''),
         map(value => this._filter(value))
@@ -145,37 +145,43 @@ export class UpdatebalancePage implements OnInit {
 
   creditAmount() {
     this.loader.presentLoading();
-    let send_date = {};
-    send_date['type'] = this.userModel['type'];
-    send_date['amountInLitre'] = this.userModel['inlitures'];
-    send_date['pricePerLitre'] = this.userModel['perliture']
-    send_date['finalAmount'] = this.userModel['totalamount'];
-    send_date['amountPaid'] = this.userModel['payment']
-    send_date['date'] = this.userModel['date'];
-    if (this.userModel['note'] != "") {
-      send_date['message'] = this.userModel['note']
-    }
-
-    let url = environment.base_url + "customers/" + this.customerId + "/purchase"
-    this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
-      let msg = MyResponse['message'];
-      this.presentToast(msg);
-      this.events.publish('Event-UpdateBalance');
-      let detailData =
-      {
-        "id": this.customerId,
-        "name": this.fname,
-        "lname": this.lname,
-        "mobile": this.customerMobile
+    if(this.userModel['type'] == 2){
+      this.presentToast("Please select fuel type.");
+    }else{
+      let send_date = {};
+      send_date['type'] = this.userModel['type'];
+      send_date['amountInLitre'] = this.userModel['inlitures'];
+      send_date['pricePerLitre'] = this.userModel['perliture']
+      send_date['finalAmount'] = this.userModel['totalamount'];
+      send_date['amountPaid'] = this.userModel['payment']
+      send_date['date'] = this.userModel['date'];
+      if (this.userModel['note'] != "") {
+        send_date['message'] = this.userModel['note']
       }
+  
+      let url = environment.base_url + "customers/" + this.customerId + "/purchase"
+      this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
+        let msg = MyResponse['message'];
+        this.presentToast(msg);
+        this.events.publish('Event-UpdateBalance');
+        let detailData =
+        {
+          "id": this.customerId,
+          "name": this.fname,
+          "lname": this.lname,
+          "mobile": this.customerMobile
+        }
+  
+        this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }])
+        this.loader.stopLoading();
+      }, error => {
+        this.loader.stopLoading();
+        this.presentToast("Something went wrong");
+        console.log(error.error.message);
+      })
+    }
+    this.loader.stopLoading();
 
-      this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }])
-      this.loader.stopLoading();
-    }, error => {
-      this.loader.stopLoading();
-      this.presentToast("Something went wrong");
-      console.log(error.error.message);
-    })
   }
 
   debitAmount() {
@@ -203,6 +209,7 @@ export class UpdatebalancePage implements OnInit {
       this.loader.stopLoading();
     }, error => {
       this.loader.stopLoading();
+
       this.presentToast("Something went wrong");
       console.log(error.error.message);
     })

@@ -96,6 +96,9 @@ export class CustomerdetilPage implements OnInit {
     
         if(this.getCustomerDetail['note'] != "" || this.getCustomerDetail['note'] != null){
           this.customerNote = this.getCustomerDetail['note'];
+          if(this.customerNote == null){
+            this.customerNote = "NA";
+          }
         }
         else{
           this.customerNote = "NA";

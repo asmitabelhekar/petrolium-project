@@ -15,6 +15,7 @@ import { LoaderserviceService } from 'src/app/service/loader/loaderservice.servi
 export class DataentryopeningPage implements OnInit {
 
   today: any;
+  previousOpeningBalance : any;
   openingModel: any = {}
   openingBalance: any;
   fuelType = [
@@ -51,7 +52,7 @@ export class DataentryopeningPage implements OnInit {
     send_date['type'] = this.openingModel['type'];
     send_date['balance'] = this.openingModel['openingbalance']
 
-    if (this.openingModel['openingbalance'] == 0 || this.openingModel['openingbalance'] == "") {
+    if (this.previousOpeningBalance == 0 || this.previousOpeningBalance == "") {
 
       let url = environment.base_url + "balance";
       this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
@@ -119,11 +120,13 @@ export class DataentryopeningPage implements OnInit {
       if (getData.length > 0) {
         for (let i = 0; i < getData.length; i++) {
           this.openingModel['id'] = MyResponse['result']['list'][i]['id'];
+          this.previousOpeningBalance = MyResponse['result']['list'][i]['balance'];
           this.openingModel['openingbalance'] = MyResponse['result']['list'][i]['balance'];
         }
 
       } else {
         this.openingModel['id'] = "";
+        this.previousOpeningBalance = 0;
         this.openingModel['openingbalance'] = 0;
       }
 

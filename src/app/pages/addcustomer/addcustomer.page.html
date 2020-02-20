@@ -80,13 +80,17 @@
   <ion-col size="10">
     <ion-row >
     <mat-form-field style="width:95%; margin-right:5%">
-      <input matInput class="form-control " name="mobile" type="number" minlength="10" maxlength="10" required [(ngModel)]="userModel.mobile" #mobile="ngModel"
+
+      <input matInput class="form-control " name="mobile" type="tel" minlength="10" maxlength="10" id="mobile"
+       required [(ngModel)]="userModel.mobile" #mobile="ngModel"
         pattern="[0-9]+$" placeholder="Mobile" />
+
       <mat-error>
         <div class="form-group">
           <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)">
             Mobile Number Is Requird
           </div>
+          
         </div>
       </mat-error>
 

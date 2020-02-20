@@ -187,7 +187,7 @@ var DataentrycreditPage = /** @class */ (function () {
     DataentrycreditPage.prototype.ngOnInit = function () {
         var _this = this;
         this.getCustomerList();
-        this.userModel['type'] = 0;
+        this.userModel['type'] = 2;
         this.userModel['perliture'] = 70;
         this.filteredOptions = this.myControl.valueChanges
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(function (value) { return _this._filter(value); }));
@@ -290,44 +290,50 @@ var DataentrycreditPage = /** @class */ (function () {
     DataentrycreditPage.prototype.creditsubmit = function () {
         var _this = this;
         this.loader.presentLoading();
-        for (var j = 0; j < this.autoCompleteArray.length; j++) {
-            if (this.userModel['customername'] == this.autoCompleteArray[j]['name']) {
-                this.userModel['id'] = this.autoCompleteArray[j]['id'];
-            }
+        if (this.userModel['type'] == 2) {
+            this.presentToast("Please select fuel type.");
         }
-        if (this.userModel['id'] == undefined || this.userModel['id'] == "" || this.userModel['id'] == null) {
-            this.presentToast("Customer of this name is not present .Please add customer first.");
-            return;
+        else {
+            for (var j = 0; j < this.autoCompleteArray.length; j++) {
+                if (this.userModel['customername'] == this.autoCompleteArray[j]['name']) {
+                    this.userModel['id'] = this.autoCompleteArray[j]['id'];
+                }
+            }
+            if (this.userModel['id'] == undefined || this.userModel['id'] == "" || this.userModel['id'] == null) {
+                this.presentToast("Customer of this name is not present .Please add customer first.");
+                return;
+            }
+            var send_date = {};
+            send_date['type'] = this.userModel['type'];
+            send_date['amountInLitre'] = this.userModel['inlitures'];
+            send_date['pricePerLitre'] = this.userModel['perliture'];
+            send_date['finalAmount'] = this.userModel['totalamount'];
+            send_date['amountPaid'] = this.userModel['payment'];
+            send_date['date'] = this.userModel['date'];
+            if (this.userModel['note'] != "") {
+                send_date['message'] = this.userModel['note'];
+            }
+            this.url = src_environments_environment__WEBPACK_IMPORTED_MODULE_9__["environment"].base_url + "customers/" + this.userModel['id'] + "/purchase";
+            this.apiCall.postWAu(this.url, send_date).subscribe(function (MyResponse) {
+                var msg = MyResponse['message'];
+                _this.presentToast(msg);
+                var userRole = localStorage.getItem('userRole');
+                if (userRole == '0') {
+                }
+                else if (userRole == '1') {
+                    _this.router.navigate(['/home']);
+                }
+                else {
+                    _this.router.navigate(['/home']);
+                }
+                _this.loader.stopLoading();
+            }, function (error) {
+                _this.loader.stopLoading();
+                _this.presentToast("Something went wrong");
+                console.log(error.error.message);
+            });
         }
-        var send_date = {};
-        send_date['type'] = this.userModel['type'];
-        send_date['amountInLitre'] = this.userModel['inlitures'];
-        send_date['pricePerLitre'] = this.userModel['perliture'];
-        send_date['finalAmount'] = this.userModel['totalamount'];
-        send_date['amountPaid'] = this.userModel['payment'];
-        send_date['date'] = this.userModel['date'];
-        if (this.userModel['note'] != "") {
-            send_date['message'] = this.userModel['note'];
-        }
-        this.url = src_environments_environment__WEBPACK_IMPORTED_MODULE_9__["environment"].base_url + "customers/" + this.userModel['id'] + "/purchase";
-        this.apiCall.postWAu(this.url, send_date).subscribe(function (MyResponse) {
-            var msg = MyResponse['message'];
-            _this.presentToast(msg);
-            var userRole = localStorage.getItem('userRole');
-            if (userRole == '0') {
-            }
-            else if (userRole == '1') {
-                _this.router.navigate(['/home']);
-            }
-            else {
-                _this.router.navigate(['/home']);
-            }
-            _this.loader.stopLoading();
-        }, function (error) {
-            _this.loader.stopLoading();
-            _this.presentToast("Something went wrong");
-            console.log(error.error.message);
-        });
+        this.loader.stopLoading();
     };
     DataentrycreditPage.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },

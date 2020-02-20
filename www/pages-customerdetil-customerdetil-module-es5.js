@@ -203,6 +203,9 @@ var CustomerdetilPage = /** @class */ (function () {
             }
             if (_this.getCustomerDetail['note'] != "" || _this.getCustomerDetail['note'] != null) {
                 _this.customerNote = _this.getCustomerDetail['note'];
+                if (_this.customerNote == null) {
+                    _this.customerNote = "NA";
+                }
             }
             else {
                 _this.customerNote = "NA";
