@@ -176,32 +176,32 @@ var CustomerdetilPage = /** @class */ (function () {
         var url = src_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].base_url + "customers/" + this.customerId;
         this.apiCall.get(url).subscribe(function (MyResponse) {
             _this.getCustomerDetail = (MyResponse['result']);
-            if (_this.getCustomerDetail.firstName != "") {
+            if (_this.getCustomerDetail.firstName != "" || _this.getCustomerDetail.firstName != null) {
                 _this.customerName = _this.getCustomerDetail['firstName'] + " " + _this.getCustomerDetail['lastName'];
                 _this.firstName = _this.customerName.charAt(0);
             }
             else {
                 _this.customerName = "NA";
             }
-            if (_this.getCustomerDetail['mobile'] != "") {
+            if (_this.getCustomerDetail['mobile'] != "" || _this.getCustomerDetail['mobile'] != null) {
                 _this.customerMobile = _this.getCustomerDetail['mobile'];
             }
             else {
                 _this.customerMobile = "NA";
             }
-            if (_this.getCustomerDetail['address'] != "") {
+            if (_this.getCustomerDetail['address'] != "" || _this.getCustomerDetail['address'] != null) {
                 _this.customerAddress = _this.getCustomerDetail['address'];
             }
             else {
                 _this.customerAddress = "NA";
             }
-            if (_this.getCustomerDetail['email'] != "") {
+            if (_this.getCustomerDetail['email'] != "" || _this.getCustomerDetail['email'] != null) {
                 _this.customerEmail = _this.getCustomerDetail['email'];
             }
             else {
                 _this.customerEmail = "NA";
             }
-            if (_this.getCustomerDetail['note'] != "") {
+            if (_this.getCustomerDetail['note'] != "" || _this.getCustomerDetail['note'] != null) {
                 _this.customerNote = _this.getCustomerDetail['note'];
             }
             else {

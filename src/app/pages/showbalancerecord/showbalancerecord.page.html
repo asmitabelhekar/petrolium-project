@@ -64,7 +64,7 @@
         <label fxLayoutAlign="center center" style="font-size: 10px;color: white; background-color: rgb(182, 180, 180);padding:5px;width:22%; border-radius: 15px;margin-top:10px">{{item.date}}</label>
       </div>
       <div *ngFor="let listArray of item.list" style="width:100%;margin-top:10px">
-        <div fxLayout="column" fxLayoutAlign="start start" *ngIf="0 > listArray.balance">
+        <div fxLayout="column" fxLayoutAlign="start start" *ngIf="0 > listArray.amount">
           <ion-card 
             style="border: 1px solid grey; width:200px; margin-left:20px; margin-top:5px;padding:4px">
             <ion-row>
@@ -94,12 +94,12 @@
             </ion-col>
           </ion-row>
         </div>
-        <div fxLayout="column" fxLayoutAlign="end end" *ngIf="listArray.balance >=  0 ">
+        <div fxLayout="column" fxLayoutAlign="end end" *ngIf="listArray.amount >  0 ">
           <ion-card 
             style="border: 1px solid grey;width:200px; margin-right:20px; margin-top:5px; padding:4px">
             <ion-row>
               <ion-col size="8">
-                <label style="font-size: 17px;color:green">₹{{listArray.amount}}</label>
+                <label style="font-size: 17px;color:green">₹{{listArray.amount | negativenumber}}</label>
               </ion-col>
               <ion-col size="4">
                 <label style="font-size: 10px;color:grey">{{listArray.time | date:"hh:mm a"}}</label>
@@ -114,7 +114,7 @@
           </ion-card>
           <ion-row style="margin-right:20px" *ngIf="listArray.balance != null" >
             <ion-col size="12">
-              <label style="font-size: 13px;color:grey">₹{{listArray.balance}} Due</label>
+              <label style="font-size: 13px;color:grey">₹{{listArray.balance | negativenumber}} Due</label>
             </ion-col>
           </ion-row>
           <ion-row style="margin-right:20px"  *ngIf="listArray.balance == null">

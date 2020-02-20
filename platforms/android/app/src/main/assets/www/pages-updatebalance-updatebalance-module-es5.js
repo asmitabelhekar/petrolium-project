@@ -287,7 +287,7 @@ var UpdatebalancePage = /** @class */ (function () {
         this.loader.presentLoading();
         var send_date = {};
         send_date['date'] = this.userModel['date'];
-        send_date['amount'] = this.userModel['payment'];
+        send_date['amount'] = this.userModel['payment'] * -1;
         send_date['message'] = this.userModel['note'];
         var url = src_environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].base_url + "customers/" + this.customerId + "/passbook";
         this.apiCall.postWAu(url, send_date).subscribe(function (MyResponse) {

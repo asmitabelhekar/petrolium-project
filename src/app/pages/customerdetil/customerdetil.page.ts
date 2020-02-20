@@ -65,7 +65,7 @@ export class CustomerdetilPage implements OnInit {
       this.apiCall.get(url).subscribe(MyResponse => {
         this.getCustomerDetail = (MyResponse['result']);
 
-        if(this.getCustomerDetail.firstName != ""){
+        if(this.getCustomerDetail.firstName != "" || this.getCustomerDetail.firstName != null){
           this.customerName = this.getCustomerDetail['firstName'] + " " +  this.getCustomerDetail['lastName'];
           this.firstName = this.customerName.charAt(0);
          
@@ -74,19 +74,19 @@ export class CustomerdetilPage implements OnInit {
           this.customerName = "NA";
         }
        
-        if(this.getCustomerDetail['mobile'] != ""){
+        if(this.getCustomerDetail['mobile'] != "" || this.getCustomerDetail['mobile'] != null){
           this.customerMobile = this.getCustomerDetail['mobile'];
         }else{
           this.customerMobile = "NA";
         }
        
-        if(this.getCustomerDetail['address'] != ""){
+        if(this.getCustomerDetail['address'] != "" || this.getCustomerDetail['address'] != null){
           this.customerAddress = this.getCustomerDetail['address'];
         }else{
           this.customerAddress = "NA";
         }
     
-        if(this.getCustomerDetail['email'] != ""){
+        if(this.getCustomerDetail['email'] != "" || this.getCustomerDetail['email'] != null){
           this.customerEmail = this.getCustomerDetail['email'];
 
         }
@@ -94,7 +94,7 @@ export class CustomerdetilPage implements OnInit {
           this.customerEmail = "NA";
         }
     
-        if(this.getCustomerDetail['note'] != ""){
+        if(this.getCustomerDetail['note'] != "" || this.getCustomerDetail['note'] != null){
           this.customerNote = this.getCustomerDetail['note'];
         }
         else{
