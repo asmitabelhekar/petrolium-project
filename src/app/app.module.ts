@@ -21,8 +21,11 @@ import { FileOpener } from '@ionic-native/file-opener';
 import { FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 import { UpdatebalancePage } from './pages/updatebalance/updatebalance.page';
 import { HttpClientModule } from '@angular/common/http';
+// import { NegativenumberPipe } from '../../src/app/pipes/negativenumber.pipe'
+import { NegativenumberPipe } from './pipes/negativenumber.pipe';
+import { CustomPipe } from './custom.pipe';
 @NgModule({
-  declarations: [AppComponent, ],
+  declarations: [AppComponent ],
   entryComponents: [],
   imports: [
     BrowserModule,
@@ -54,9 +57,10 @@ import { HttpClientModule } from '@angular/common/http';
   providers: [
     StatusBar,
     SplashScreen,
+    
     {provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
     { provide: MAT_DATE_LOCALE, useValue: 'en-GB' },
-    MatDatepickerModule
+    MatDatepickerModule,
   ],
   bootstrap: [AppComponent]
 })

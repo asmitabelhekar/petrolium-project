@@ -284,6 +284,7 @@ export class ShowbalancerecordPage implements OnInit {
         this.showRecordsData = 0;
       }else{
         this.showRecordsData = 1;
+        this.totalAmountStatus="";
       }
       this.totalAmount = MyResponse['result']['totalAmount'];
       if (this.totalAmount == null) {

@@ -187,9 +187,10 @@ var AddcustomerPage = /** @class */ (function () {
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 this.loader.presentLoading();
                 send_date = {};
+                this.mobieNumber = this.userModel['mobile'];
                 send_date['firstName'] = this.userModel['fname'];
                 send_date['lastName'] = this.userModel['lname'];
-                send_date['mobile'] = this.userModel['mobile'];
+                send_date['mobile'] = this.mobieNumber.toString();
                 send_date['address'] = this.userModel['address'];
                 if (this.userModel['note'] != "") {
                     send_date['note'] = this.userModel['note'];

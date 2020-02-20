@@ -209,8 +209,6 @@ var UpdatebalancePage = /** @class */ (function () {
         }
         else {
         }
-        // }else{
-        // }
     };
     UpdatebalancePage.prototype._filter = function (value) {
         var filterValue = value.toLowerCase();
@@ -232,7 +230,6 @@ var UpdatebalancePage = /** @class */ (function () {
     };
     UpdatebalancePage.prototype.goBackword = function () {
         this.location.back();
-        // this.router.navigate(['/showbalancerecord']);
     };
     UpdatebalancePage.prototype.getPaymentDetailInfo = function (detail) {
         var getDate = this.convert(detail.date);

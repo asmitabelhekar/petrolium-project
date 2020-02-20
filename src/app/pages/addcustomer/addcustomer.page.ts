@@ -19,6 +19,7 @@ export class AddcustomerPage implements OnInit {
   checkStatus: any;
   customerId: any;
   url: any;
+  mobieNumber : String ;
 
   constructor(public router: Router,
     public toast: ToastController,
@@ -70,10 +71,11 @@ export class AddcustomerPage implements OnInit {
   async addCustomerData() {
     this.loader.presentLoading();
     let send_date = {};
+this.mobieNumber = this.userModel['mobile'];
 
     send_date['firstName'] = this.userModel['fname'];
     send_date['lastName'] = this.userModel['lname'];
-    send_date['mobile'] = this.userModel['mobile']
+    send_date['mobile'] = this.mobieNumber.toString();
     send_date['address'] = this.userModel['address'];
     if (this.userModel['note'] != "") {
       send_date['note'] = this.userModel['note'];

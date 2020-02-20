@@ -177,7 +177,6 @@ var LoginPage = /** @class */ (function () {
             var msg = MyResponse['message'];
             _this.presentToast("Login Successfully");
             _this.loader.stopLoading();
-            // this.loader.hideBlockingLoaderAuth();
         }, function (error) {
             _this.loader.stopLoading();
             _this.presentToast("Please try again");

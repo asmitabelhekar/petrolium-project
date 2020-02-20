@@ -11,6 +11,8 @@ import { MatCardMdImage, MatCardModule, MatMenuModule } from '@angular/material'
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { CallNumber } from '@ionic-native/call-number/ngx';
 import { SMS } from '@ionic-native/sms/ngx';
+import { NegativenumberPipe } from 'src/app/pipes/negativenumber.pipe';
+import { CustomPipe } from 'src/app/custom.pipe';
 
 @NgModule({
   imports: [
@@ -19,10 +21,12 @@ import { SMS } from '@ionic-native/sms/ngx';
     IonicModule,
     MatCardModule,
     FlexLayoutModule,
+    
     MatMenuModule,
     ShowbalancerecordPageRoutingModule
   ],
-  providers:[SMS,CallNumber],
-  declarations: [ShowbalancerecordPage]
+  exports:[NegativenumberPipe],
+  providers:[SMS,CallNumber,],
+  declarations: [ShowbalancerecordPage,NegativenumberPipe]
 })
 export class ShowbalancerecordPageModule {}

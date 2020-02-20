@@ -202,8 +202,6 @@ let UpdatebalancePage = class UpdatebalancePage {
         }
         else {
         }
-        // }else{
-        // }
     }
     _filter(value) {
         const filterValue = value.toLowerCase();
@@ -225,7 +223,6 @@ let UpdatebalancePage = class UpdatebalancePage {
     }
     goBackword() {
         this.location.back();
-        // this.router.navigate(['/showbalancerecord']);
     }
     getPaymentDetailInfo(detail) {
         let getDate = this.convert(detail.date);

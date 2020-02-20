@@ -47,7 +47,7 @@
         <ion-col size="8">
           <div fxLayout="row" fxLayoutAlign="end end">
             <ion-label  style="color:white;margin-right:10px;font-size: 15px; ">Balance :
-              ₹{{getPlusValue}} {{totalAmountStatus}}</ion-label>
+              ₹{{totalAmount | negativenumber}} {{totalAmountStatus}}</ion-label>
            </div> 
             
         </ion-col>
@@ -69,7 +69,7 @@
             style="border: 1px solid grey; width:200px; margin-left:20px; margin-top:5px;padding:4px">
             <ion-row>
               <ion-col size="8">
-                <label style="font-size: 17px;color:red">₹{{listArray.amount}}</label>
+                <label style="font-size: 17px;color:red">₹{{listArray.amount | negativenumber}}</label>
               </ion-col>
               <ion-col size="4">
                 <label style="font-size: 10px;color:grey">{{listArray.time | date:"hh:mm a"}}</label>
@@ -85,7 +85,7 @@
           
           <ion-row style="margin-left:20px"  *ngIf="listArray.balance != null">
             <ion-col size="12">
-              <label  style="font-size: 13px;color:grey">₹{{listArray.balance}} Advance</label>
+              <label  style="font-size: 13px;color:grey">₹{{listArray.balance | negativenumber}} Advance</label>
             </ion-col>
           </ion-row>
           <ion-row style="margin-right:20px"  *ngIf="listArray.balance == null">
