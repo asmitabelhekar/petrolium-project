@@ -98,6 +98,16 @@ export class AppComponent {
 
         },
         {
+          title: 'Petrol/Diesel',
+          url: '/petroldieselamount',
+
+        },
+        {
+          title: 'Tanker',
+          url: '/tanker',
+
+        },
+        {
           title: 'Log Out',
           url: '',
 
@@ -131,6 +141,16 @@ export class AppComponent {
 
         },
         {
+          title: 'Petrol/Diesel',
+          url: '/petroldieselamount',
+
+        },
+        {
+          title: 'Tanker',
+          url: '/tanker',
+
+        },
+        {
           title: 'Log Out',
           url: '',
 
@@ -161,6 +181,16 @@ export class AppComponent {
         {
           title: 'Reports',
           url: '/reports',
+
+        },
+        {
+          title: 'Petrol/Diesel',
+          url: '/petroldieselamount',
+
+        },
+        {
+          title: 'Tanker',
+          url: '/tanker',
 
         },
         {

@@ -1,0 +1,57 @@
+<ion-header class="new-background-color">
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start" style="color:white">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="color:white">
+      Petrol/Diesel
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content >
+<div fxLayout="column" fxLayoutAlign="center center" style="width:100;">
+
+  <div fxLayout="row" fxLayoutAlign="center center" class="cl_margin_top">
+
+    <h3>Fuel type amount record</h3>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center center" class="cl_width cl_margin_top">
+    <mat-form-field class="cl_width">
+      <input matInput class="form-control " name="petrolamount" type="tel"
+        id="petrolamount" required [(ngModel)]="userModel.petrolamount" #petrolamount="ngModel" pattern="[0-9.  ]+$"
+        placeholder="Petrol" />
+      <mat-error>
+        <div class="form-group">
+          <div *ngIf="petrolamount.invalid && (petrolamount.dirty || petrolamount.touched)">
+            Petrol Is Requird
+          </div>
+        </div>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+
+  <div fxLayout="row" fxLayoutAlign="center center"  class="cl_width">
+    <mat-form-field class="cl_width">
+      <input matInput class="form-control " name="dieselamount" type="tel" 
+        id="dieselamount" required [(ngModel)]="userModel.dieselamount" #dieselamount="ngModel" pattern="[0-9 . ]+$"
+        placeholder="Diesel" />
+      <mat-error>
+        <div class="form-group">
+          <div *ngIf="dieselamount.invalid && (dieselamount.dirty || dieselamount.touched)">
+            Diesel Is Requird
+          </div>
+        </div>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+
+  <div fxLayout="row" fxLayoutAlign="center center" class="cl_margin_top">
+    <button mat-button [disabled]="dieselamount.invalid || petrolamount.invalid" (click)="submit()" class="submitButton">Submit</button>
+  </div>
+</div>
+
+</ion-content>

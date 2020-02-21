@@ -50,6 +50,14 @@ const routes: Routes = [
   {
     path: 'reports',
     loadChildren: () => import('./pages/reports/reports.module').then( m => m.ReportsPageModule)
+  },
+  {
+    path: 'petroldieselamount',
+    loadChildren: () => import('./pages/petroldieselamount/petroldieselamount.module').then( m => m.PetroldieselamountPageModule)
+  },
+  {
+    path: 'tanker',
+    loadChildren: () => import('./pages/tanker/tanker.module').then( m => m.TankerPageModule)
   }
 ];
 
