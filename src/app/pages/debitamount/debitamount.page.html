@@ -26,9 +26,9 @@
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
             {{option}}
           </mat-option>
-          <mat-option  [value]="option" *ngIf="recordNotPresent == 1">
+          <!-- <mat-option  [value]="option" *ngIf="recordNotPresent == 1">
             Record not present
-           </mat-option>
+           </mat-option> -->
            <mat-option  [value]="option" *ngIf="recordNotPresent == 1"  (click)="addCustomer()">
              Add Customer
             </mat-option>

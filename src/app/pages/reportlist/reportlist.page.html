@@ -1,9 +1,33 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>reportlist</ion-title>
+<ion-header class="new-background-color">
+  <ion-toolbar class="new-background-color">
+
+    <ion-row>
+      <ion-col size="2">
+        <button ion-button class="cl-back-button" (click)="goBackword()" style="margin:10px"></button>
+      </ion-col>
+      <ion-col size="10">
+        <ion-label class="TitleHeader TitleText" style="font-size: 17px;">
+          List
+        </ion-label>
+      </ion-col>
+
+    </ion-row>
+
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
 
+<ion-content>
+  <div fxLayout="column" fxLayoutAlign="center center">
+
+    <ion-card *ngFor="let item of recordList"
+      style="padding:10px; border-radius: 10px;margin-top:5%;width:90%">
+
+      <div fxLayout="column" fxLayoutAlign="start start">
+        <label style="margin-top:5px;font-size: 14px;color:black;">{{item.name}}</label><br /><br />
+        <label style="margin-top:2px;font-size: 14px;color:black;">{{item.amount}}</label>
+      </div>
+
+    </ion-card>
+  </div>
 </ion-content>

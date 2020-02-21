@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reportlist',
@@ -7,9 +8,42 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportlistPage implements OnInit {
 
-  constructor() { }
+  recordList = [
+    {
+      "name": "asmita belhekar",
+      "amount": "20000"
+    },
+    {
+      "name": "asmita belhekar",
+      "amount": "20000"
+    },
+    {
+      "name": "asmita belhekar",
+      "amount": "20000"
+    },
+    {
+      "name": "asmita belhekar",
+      "amount": "20000"
+    },
+    {
+      "name": "asmita belhekar",
+      "amount": "20000"
+    },
+    {
+      "name": "asmita belhekar",
+      "amount": "20000"
+    },
+    {
+      "name": "asmita belhekar",
+      "amount": "20000"
+    }
+  ]
+  constructor(public router: Router) { }
 
   ngOnInit() {
   }
 
+  goBackword() {
+    this.router.navigate(['/reports']);
+  }
 }

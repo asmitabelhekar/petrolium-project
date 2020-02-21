@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-reports',
@@ -30,9 +31,12 @@ export class ReportsPage implements OnInit {
      "amount" : "90000"
     }
   ]
-  constructor() { }
+  constructor(public router : Router) { }
 
   ngOnInit() {
   }
 
+  dislayList(){
+    this.router.navigate(['/reportlist']);
+  }
 }
