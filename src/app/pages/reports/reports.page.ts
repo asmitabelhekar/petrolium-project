@@ -13,17 +13,17 @@ export class ReportsPage implements OnInit {
     {
      "recordName" : "Customerwise",
      "progress" : "0.5",
-     "amount" : "10000"
+     "amount" : "60000"
     },
     {
      "recordName" : "Tankerwise",
      "progress" : "0.1",
-     "amount" : "60000"
+     "amount" : "10000"
     },
     {
      "recordName" : "Usagewise",
      "progress" : "0.4",
-     "amount" : "30000"
+     "amount" : "40000"
     },
     {
      "recordName" : "Customerwise",

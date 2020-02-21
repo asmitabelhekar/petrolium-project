@@ -128,8 +128,13 @@ export class DebitamountPage implements OnInit {
     send_date['date'] = this.userModel['date'];
     send_date['amount'] = this.userModel['payment'] * -1;
 
-    if(this.userModel['note'] != ""){
+
+    if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined ) {
+          
+      send_date['message'] = "Debited with  " + this.userModel['payment'];
+    }else{
       send_date['message'] = this.userModel['note']
+   
     }
 
 

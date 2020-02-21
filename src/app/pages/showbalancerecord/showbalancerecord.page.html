@@ -21,40 +21,44 @@
 
 
   <div style="background-color: #414a58;position: fixed; width:100%;z-index: 1; ">
-
+  
     <ion-row fxLayout="row" fxLayoutAlign="space-around center" style="color:white">
       <div fxLayout="column" fxLayoutAlign="center center" (click)="clickMenuItem(1)">
         <ion-icon name="arrow-round-up" style="width:25px;height:25px; margin-bottom:10px; margin-top:20px"></ion-icon>
-        <label style="font-size: 14px; margin-bottom:15px;">Debited</label>
+        <label style="font-size: 12px; margin-bottom:15px;">Debited</label>
       </div>
       <div fxLayout="column" fxLayoutAlign="center center" (click)="clickMenuItem(2)">
         <ion-icon name="arrow-round-down" style="width:25px;height:25px; margin-bottom:10px; margin-top:20px">
         </ion-icon>
-        <label style="font-size: 14px;margin-bottom:15px;">Credited</label>
+        <label style="font-size: 12px;margin-bottom:15px;">Credited</label>
       </div>
       <div fxLayout="column" fxLayoutAlign="center center" (click)="clickMenuItem(3)">
         <ion-icon name="mail" style="width:25px;height:25px; margin-bottom:10px; margin-top:20px"></ion-icon>
-        <label style="font-size: 14px;margin-bottom:15px;">Message</label>
+        <label style="font-size: 12px;margin-bottom:15px;">Message</label>
       </div>
       <div fxLayout="column" fxLayoutAlign="center center" (click)="clickMenuItem(4)">
         <ion-icon name="call" style="width:25px;height:25px; margin-bottom:10px; margin-top:20px"></ion-icon>
-        <label style="font-size: 14px;margin-bottom:15px;">Call</label>
+        <label style="font-size: 12px;margin-bottom:15px;">Call</label>
+      </div>
+      <div fxLayout="column" fxLayoutAlign="center center" (click)="clickMenuItem(5)">
+        <ion-icon name="call" style="width:25px;height:25px; margin-bottom:10px; margin-top:20px"></ion-icon>
+        <label style="font-size: 12px;margin-bottom:15px;">Detail</label>
       </div>
     </ion-row>
     <ion-row style="margin-top:10px">
       <ion-col size="4">
-        <label style="font-size: 15px;color: whitesmoke; margin-left:5px; ">Transactions</label>
+        <label style="font-size: 14px;color: whitesmoke; margin-left:5px; ">Transactions</label>
       </ion-col>
       <ion-col size="8">
         <div fxLayout="row" fxLayoutAlign="end end">
-          <ion-label style="color:white;margin-right:10px;font-size: 15px; ">Balance :
+          <ion-label style="color:white;margin-right:10px;font-size: 14px; ">Balance :
             ₹{{totalAmount | negativenumber}} {{totalAmountStatus}}</ion-label>
         </div>
 
       </ion-col>
     </ion-row>
-    <!-- <h5 fxLayout="row" fxLayoutAlign="center center" style="color:white; margin-bottom:20px">Balance :
-        ₹{{totalAmount}} {{totalAmountStatus}}</h5> -->
+    
+
   </div>
 
   <div style="width:100%;margin-top:37%">
@@ -78,7 +82,7 @@
               </ion-row>
               <ion-row>
                 <ion-col size="8">
-                  <label style="font-size: 13px;color:rgb(17, 17, 17)">{{listArray.comment}}</label>
+                  <label style="font-size: 13px;color:rgb(17, 17, 17)">{{listArray.message}}</label>
                 </ion-col>
               </ion-row>
 

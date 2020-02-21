@@ -225,6 +225,8 @@ export class ShowbalancerecordPage implements OnInit {
       this.sentMessage();
     } else if (getStatus == "4") {
       this.makeCall();
+    } else if (getStatus == "5") {
+     this.presentToast("display");
     } else {
       this.presentToast("others");
 

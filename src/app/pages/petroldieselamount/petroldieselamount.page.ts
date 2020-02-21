@@ -33,9 +33,7 @@ export class PetroldieselamountPage implements OnInit {
 
   submit() {
     if (this.checkStatus == "add") {
-      alert("post");
     } else if (this.checkStatus == "update") {
-      alert("put");
     } else {
 
     }

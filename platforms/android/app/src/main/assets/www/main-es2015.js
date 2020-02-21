@@ -518,6 +518,18 @@ const routes = [
     {
         path: 'reports',
         loadChildren: () => __webpack_require__.e(/*! import() | pages-reports-reports-module */ "pages-reports-reports-module").then(__webpack_require__.bind(null, /*! ./pages/reports/reports.module */ "./src/app/pages/reports/reports.module.ts")).then(m => m.ReportsPageModule)
+    },
+    {
+        path: 'petroldieselamount',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-petroldieselamount-petroldieselamount-module */ "pages-petroldieselamount-petroldieselamount-module").then(__webpack_require__.bind(null, /*! ./pages/petroldieselamount/petroldieselamount.module */ "./src/app/pages/petroldieselamount/petroldieselamount.module.ts")).then(m => m.PetroldieselamountPageModule)
+    },
+    {
+        path: 'tanker',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-tanker-tanker-module */ "pages-tanker-tanker-module").then(__webpack_require__.bind(null, /*! ./pages/tanker/tanker.module */ "./src/app/pages/tanker/tanker.module.ts")).then(m => m.TankerPageModule)
+    },
+    {
+        path: 'reportlist',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-reportlist-reportlist-module */ "pages-reportlist-reportlist-module").then(__webpack_require__.bind(null, /*! ./pages/reportlist/reportlist.module */ "./src/app/pages/reportlist/reportlist.module.ts")).then(m => m.ReportlistPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -640,6 +652,14 @@ let AppComponent = class AppComponent {
                     url: '/reports',
                 },
                 {
+                    title: 'Petrol/Diesel',
+                    url: '/petroldieselamount',
+                },
+                {
+                    title: 'Tanker',
+                    url: '/tanker',
+                },
+                {
                     title: 'Log Out',
                     url: '',
                 }
@@ -668,6 +688,14 @@ let AppComponent = class AppComponent {
                     url: '/reports',
                 },
                 {
+                    title: 'Petrol/Diesel',
+                    url: '/petroldieselamount',
+                },
+                {
+                    title: 'Tanker',
+                    url: '/tanker',
+                },
+                {
                     title: 'Log Out',
                     url: '',
                 }
@@ -694,6 +722,14 @@ let AppComponent = class AppComponent {
                 {
                     title: 'Reports',
                     url: '/reports',
+                },
+                {
+                    title: 'Petrol/Diesel',
+                    url: '/petroldieselamount',
+                },
+                {
+                    title: 'Tanker',
+                    url: '/tanker',
                 },
                 {
                     title: 'Log Out',

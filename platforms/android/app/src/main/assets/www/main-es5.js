@@ -524,6 +524,18 @@ var routes = [
     {
         path: 'reports',
         loadChildren: function () { return __webpack_require__.e(/*! import() | pages-reports-reports-module */ "pages-reports-reports-module").then(__webpack_require__.bind(null, /*! ./pages/reports/reports.module */ "./src/app/pages/reports/reports.module.ts")).then(function (m) { return m.ReportsPageModule; }); }
+    },
+    {
+        path: 'petroldieselamount',
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-petroldieselamount-petroldieselamount-module */ "pages-petroldieselamount-petroldieselamount-module").then(__webpack_require__.bind(null, /*! ./pages/petroldieselamount/petroldieselamount.module */ "./src/app/pages/petroldieselamount/petroldieselamount.module.ts")).then(function (m) { return m.PetroldieselamountPageModule; }); }
+    },
+    {
+        path: 'tanker',
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-tanker-tanker-module */ "pages-tanker-tanker-module").then(__webpack_require__.bind(null, /*! ./pages/tanker/tanker.module */ "./src/app/pages/tanker/tanker.module.ts")).then(function (m) { return m.TankerPageModule; }); }
+    },
+    {
+        path: 'reportlist',
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-reportlist-reportlist-module */ "pages-reportlist-reportlist-module").then(__webpack_require__.bind(null, /*! ./pages/reportlist/reportlist.module */ "./src/app/pages/reportlist/reportlist.module.ts")).then(function (m) { return m.ReportlistPageModule; }); }
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -650,6 +662,14 @@ var AppComponent = /** @class */ (function () {
                     url: '/reports',
                 },
                 {
+                    title: 'Petrol/Diesel',
+                    url: '/petroldieselamount',
+                },
+                {
+                    title: 'Tanker',
+                    url: '/tanker',
+                },
+                {
                     title: 'Log Out',
                     url: '',
                 }
@@ -678,6 +698,14 @@ var AppComponent = /** @class */ (function () {
                     url: '/reports',
                 },
                 {
+                    title: 'Petrol/Diesel',
+                    url: '/petroldieselamount',
+                },
+                {
+                    title: 'Tanker',
+                    url: '/tanker',
+                },
+                {
                     title: 'Log Out',
                     url: '',
                 }
@@ -704,6 +732,14 @@ var AppComponent = /** @class */ (function () {
                 {
                     title: 'Reports',
                     url: '/reports',
+                },
+                {
+                    title: 'Petrol/Diesel',
+                    url: '/petroldieselamount',
+                },
+                {
+                    title: 'Tanker',
+                    url: '/tanker',
                 },
                 {
                     title: 'Log Out',

@@ -16,10 +16,10 @@
 
   <div fxLayout="column" fxLayoutAlign="center center" style="margin-top:3%">
 
-    <div fxLayout="row" fxLayoutAlign="center center" class="cl_margin_top">
+    <!-- <div fxLayout="row" fxLayoutAlign="center center" class="cl_margin_top">
 
       <h3>Tanker record</h3>
-    </div>
+    </div> -->
 
     <div fxLayout="row" fxLayoutAlign="center center" style="width:100%;margin-top:3%">
       <mat-form-field style="width:90%">
@@ -43,7 +43,7 @@
     <div fxLayout="row" fxLayoutAlign="center center" style="width:100%">
      
         <mat-form-field style="width:90%; margin-top:10px">
-          <mat-label>Tanker Balance</mat-label>
+          <mat-label>Amount</mat-label>
           <input matInput type="number" name="tankerbalance" [(ngModel)]="tankerModel.tankerbalance"
             #tankerbalance="ngModel" class="form-control" align="center" required pattern="[0-9.-]+$">
         </mat-form-field>
