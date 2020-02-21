@@ -8,14 +8,14 @@ import { ToastController } from '@ionic/angular';
 })
 export class PetroldieselamountPage implements OnInit {
 
-  userModel : any = {};
-  constructor(public toasController : ToastController) { }
+  userModel: any = {};
+  constructor(public toasController: ToastController) { }
 
   ngOnInit() {
   }
 
-  submit(){
-this.presentToast("Amount submited")
+  submit() {
+    this.presentToast("Amount submited")
   }
 
   async presentToast(message) {

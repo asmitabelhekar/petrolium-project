@@ -7,6 +7,29 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ReportsPage implements OnInit {
 
+  progress = 0.1;
+  recordList = [
+    {
+     "recordName" : "Customerwise",
+     "progress" : "0.5",
+     "amount" : "10000"
+    },
+    {
+     "recordName" : "Tankerwise",
+     "progress" : "0.1",
+     "amount" : "60000"
+    },
+    {
+     "recordName" : "Usagewise",
+     "progress" : "0.4",
+     "amount" : "30000"
+    },
+    {
+     "recordName" : "Customerwise",
+     "progress" : "0.9",
+     "amount" : "90000"
+    }
+  ]
   constructor() { }
 
   ngOnInit() {

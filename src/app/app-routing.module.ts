@@ -58,6 +58,10 @@ const routes: Routes = [
   {
     path: 'tanker',
     loadChildren: () => import('./pages/tanker/tanker.module').then( m => m.TankerPageModule)
+  },
+  {
+    path: 'reportlist',
+    loadChildren: () => import('./pages/reportlist/reportlist.module').then( m => m.ReportlistPageModule)
   }
 ];
 
