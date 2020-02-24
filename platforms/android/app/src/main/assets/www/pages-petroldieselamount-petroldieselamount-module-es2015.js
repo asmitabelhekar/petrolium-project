@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header class=\"new-background-color\">\n  <ion-toolbar class=\"new-background-color\">\n    <ion-buttons slot=\"start\" style=\"color:white\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title style=\"color:white\">\n      Petrol/Diesel\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content >\n<div fxLayout=\"column\" fxLayoutAlign=\"center center\" style=\"width:100;\">\n\n  <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top: 3%;\">\n\n    <h5>Fuel type record</h5>\n  </div>\n  <div fxLayout=\"row\" fxLayoutAlign=\"center center\" class=\"cl_width\" style=\"margin-top: 3%;\">\n    <mat-form-field class=\"cl_width\">\n      <input matInput class=\"form-control \" name=\"petrolamount\" type=\"tel\"\n        id=\"petrolamount\" required [(ngModel)]=\"userModel.petrolamount\" #petrolamount=\"ngModel\" pattern=\"[0-9.  ]+$\"\n        placeholder=\"Petrol\" />\n      <mat-error>\n        <div class=\"form-group\">\n          <div *ngIf=\"petrolamount.invalid && (petrolamount.dirty || petrolamount.touched)\">\n            Petrol Is Requird\n          </div>\n        </div>\n      </mat-error>\n    </mat-form-field>\n  </div>\n\n\n  <div fxLayout=\"row\" fxLayoutAlign=\"center center\"  class=\"cl_width\">\n    <mat-form-field class=\"cl_width\">\n      <input matInput class=\"form-control \" name=\"dieselamount\" type=\"tel\" \n        id=\"dieselamount\" required [(ngModel)]=\"userModel.dieselamount\" #dieselamount=\"ngModel\" pattern=\"[0-9 . ]+$\"\n        placeholder=\"Diesel\" />\n      <mat-error>\n        <div class=\"form-group\">\n          <div *ngIf=\"dieselamount.invalid && (dieselamount.dirty || dieselamount.touched)\">\n            Diesel Is Requird\n          </div>\n        </div>\n      </mat-error>\n    </mat-form-field>\n  </div>\n\n\n  <div fxLayout=\"row\" fxLayoutAlign=\"center center\" class=\"cl_margin_top\" style=\"width:100%\">\n    <button mat-button [disabled]=\"dieselamount.invalid || petrolamount.invalid\" (click)=\"submit()\" class=\"submitButton\">Submit</button>\n  </div>\n</div>\n\n</ion-content>"
+module.exports = "<ion-header class=\"new-background-color\">\n  <ion-toolbar class=\"new-background-color\">\n    <ion-buttons slot=\"start\" style=\"color:white\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title style=\"color:white\">\n      Petrol/Diesel\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content >\n<div fxLayout=\"column\" fxLayoutAlign=\"center center\" style=\"width:100;\">\n\n  <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top: 3%;\">\n\n    <h5>Fuel type record</h5>\n  </div>\n  <div fxLayout=\"row\" fxLayoutAlign=\"center center\" class=\"cl_width\" style=\"margin-top: 3%;\">\n    <mat-form-field class=\"cl_width\">\n      <input matInput class=\"form-control \" name=\"petrolamount\" type=\"tel\"\n        id=\"petrolamount\" required [(ngModel)]=\"userModel.petrolamount\" #petrolamount=\"ngModel\" pattern=\"[0-9.  ]+$\"\n        placeholder=\"Petrol\" />\n      <mat-error>\n        <div class=\"form-group\">\n          <div *ngIf=\"petrolamount.invalid && (petrolamount.dirty || petrolamount.touched)\">\n            Petrol Is Requird\n          </div>\n        </div>\n      </mat-error>\n    </mat-form-field>\n  </div>\n\n\n  <div fxLayout=\"row\" fxLayoutAlign=\"center center\"  class=\"cl_width\">\n    <mat-form-field class=\"cl_width\">\n      <input matInput class=\"form-control \" name=\"dieselamount\" type=\"tel\" \n        id=\"dieselamount\" required [(ngModel)]=\"userModel.dieselamount\" #dieselamount=\"ngModel\" pattern=\"[0-9 . ]+$\"\n        placeholder=\"Diesel\" />\n      <mat-error>\n        <div class=\"form-group\">\n          <div *ngIf=\"dieselamount.invalid && (dieselamount.dirty || dieselamount.touched)\">\n            Diesel Is Requird\n          </div>\n        </div>\n      </mat-error>\n    </mat-form-field>\n  </div>\n\n\n  <div fxLayout=\"row\" fxLayoutAlign=\"center center\" class=\"cl_margin_top\" style=\"width:100%\">\n    <button mat-button [disabled]=\"dieselamount.invalid || petrolamount.invalid\" (click)=\"fuelTypeBalanceSubmit()\" class=\"submitButton\">Submit</button>\n  </div>\n</div>\n\n</ion-content>"
 
 /***/ }),
 
@@ -140,13 +140,20 @@ let PetroldieselamountPage = class PetroldieselamountPage {
         this.url = "http://www.mocky.io/v2/5e4fc0663000009000226b53";
     }
     ngOnInit() {
-        this.getPetrolDieselAmount();
-        if (this.userModel['petrolamount'] != null || this.userModel['petrolamount'] != "" || this.userModel['petrolamount'] != undefined ||
-            this.userModel['dieselamount'] != null || this.userModel['dieselamount'] != "" || this.userModel['dieselamount'] != undefined) {
-            this.checkStatus = "update";
+        // this.getPetrolDieselAmount();
+        this.getPetrolAmount();
+        this.getDieselAmount();
+        if (this.userModel['petrolamount'] == null || this.userModel['petrolamount'] == "" || this.userModel['petrolamount'] == undefined) {
+            this.checkStatus = "add";
         }
         else {
-            this.checkStatus = "add";
+            this.checkStatus = "update";
+        }
+        if (this.userModel['dieselamount'] == null || this.userModel['dieselamount'] == "" || this.userModel['dieselamount'] == undefined) {
+            this.checkStatusDiesel = "add";
+        }
+        else {
+            this.checkStatusDiesel = "update";
         }
     }
     submit() {
@@ -167,12 +174,41 @@ let PetroldieselamountPage = class PetroldieselamountPage {
             toast.present();
         });
     }
-    getPetrolDieselAmount() {
+    getDieselAmount() {
         this.loader.presentLoading();
-        this.apiCall.get(this.url).subscribe(MyResponse => {
-            let getData = MyResponse[0];
-            this.userModel['petrolamount'] = getData['petrolamount'];
-            this.userModel['dieselamount'] = getData['dieselamount'];
+        let geturl = src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].base_url + "price";
+        this.apiCall.get(geturl).subscribe(MyResponse => {
+            this.getData = MyResponse['result']['list'];
+            for (let k = 0; k < this.getData.length; k++) {
+                if (this.getData[k]['type'] == 1) {
+                    this.userModel['type'] = 1;
+                    this.userModel['dieselamount'] = this.getData[k]['price'];
+                    this.userModel['dId'] = this.getData[k]['id'];
+                    return;
+                }
+                localStorage.setItem("dieselPrice", this.userModel['dieselamount']);
+            }
+            this.loader.stopLoading();
+        }, error => {
+            alert("display data:" + error);
+            this.loader.stopLoading();
+            this.presentToast("Something went wrong");
+        });
+    }
+    getPetrolAmount() {
+        this.loader.presentLoading();
+        let geturl = src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].base_url + "price";
+        this.apiCall.get(geturl).subscribe(MyResponse => {
+            this.getData = MyResponse['result']['list'];
+            for (let k = 0; k < this.getData.length; k++) {
+                if (this.getData[k]['type'] == 0) {
+                    this.userModel['type'] = 0;
+                    this.userModel['petrolamount'] = this.getData[k]['price'];
+                    this.userModel['pId'] = this.getData[k]['id'];
+                    return;
+                }
+                localStorage.setItem("petrolPrice", this.userModel['petrolamount']);
+            }
             this.loader.stopLoading();
         }, error => {
             alert("display data:" + error);
@@ -182,13 +218,18 @@ let PetroldieselamountPage = class PetroldieselamountPage {
     }
     fuelTypeBalanceSubmit() {
         this.loader.presentLoading();
+        this.submitPetrolAmount();
+        this.submitDieselAmount();
+    }
+    submitPetrolAmount() {
         let send_date = {};
-        send_date['petrolamount'] = this.userModel['petrolamount'];
-        send_date['dieselamount'] = this.userModel['dieselamount'];
+        send_date['type'] = 0;
+        send_date['price'] = this.userModel['petrolamount'];
         if (this.checkStatus == "add") {
-            let url = src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].base_url + "balance";
+            let url = src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].base_url + "price";
             this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
                 let msg = MyResponse['message'];
+                localStorage.setItem("petrolPrice", this.userModel['petrolamount']);
                 this.presentToast(msg);
                 this.loader.stopLoading();
             }, error => {
@@ -198,9 +239,41 @@ let PetroldieselamountPage = class PetroldieselamountPage {
             });
         }
         else {
-            let url = src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].base_url + "balance/" + this.userModel['id'];
+            let url = src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].base_url + "price/" + this.userModel['pId'];
             this.apiCall.put(url, send_date).subscribe(MyResponse => {
                 let msg = MyResponse['message'];
+                this.presentToast(msg);
+                localStorage.setItem("petrolPrice", this.userModel['petrolamount']);
+                this.loader.stopLoading();
+            }, error => {
+                this.loader.stopLoading();
+                this.presentToast("Something went wrong");
+                console.log(error.error.message);
+            });
+        }
+    }
+    submitDieselAmount() {
+        let send_date = {};
+        send_date['type'] = 1;
+        send_date['price'] = this.userModel['dieselamount'];
+        if (this.checkStatusDiesel == "add") {
+            let url = src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].base_url + "price";
+            this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
+                let msg = MyResponse['message'];
+                localStorage.setItem("dieselPrice", this.userModel['dieselamount']);
+                this.presentToast(msg);
+                this.loader.stopLoading();
+            }, error => {
+                this.loader.stopLoading();
+                this.presentToast("Something went wrong");
+                console.log(error.error.message);
+            });
+        }
+        else {
+            let url = src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].base_url + "price/" + this.userModel['dId'];
+            this.apiCall.put(url, send_date).subscribe(MyResponse => {
+                let msg = MyResponse['message'];
+                localStorage.setItem("dieselPrice", this.userModel['dieselamount']);
                 this.presentToast(msg);
                 this.loader.stopLoading();
             }, error => {

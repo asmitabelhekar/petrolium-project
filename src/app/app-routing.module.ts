@@ -62,6 +62,10 @@ const routes: Routes = [
   {
     path: 'reportlist',
     loadChildren: () => import('./pages/reportlist/reportlist.module').then( m => m.ReportlistPageModule)
+  },
+  {
+    path: 'purchasehistory',
+    loadChildren: () => import('./pages/purchasehistory/purchasehistory.module').then( m => m.PurchasehistoryPageModule)
   }
 ];
 

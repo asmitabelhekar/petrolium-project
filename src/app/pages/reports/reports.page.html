@@ -11,15 +11,13 @@
 
 <ion-content>
   <div fxLayout="column" fxLayoutAlign="center center" style="margin-top: 5px;">
-    <ion-card  *ngFor="let item of recordList" style="padding:10px; border-radius: 10px;margin-top:8px;width:90%" (click)="dislayList()"> 
+    <ion-card  *ngFor="let item of recordList" style="padding:10px; border-radius: 10px;margin-top:8px;width:96%" (click)="dislayList()"> 
       <div fxLayout="row" fxLayoutAlign="start center">
 
-        <div fxLayout="column" fxLayoutAlign="start start" style="width:95%">
+        <div fxLayout="column" fxLayoutAlign="start start" style="width:100%">
           <label style="margin-top:10px;font-size: 16px;color:black;">{{item.recordName}}</label>
           <label style="margin-top:10px ;font-size: 13px;color:black;">{{item.amount}}</label>
-
           <ion-progress-bar color="medium" style="margin-top:10px;width:100%" value="{{item.progress}}" ></ion-progress-bar>
-         
          </div>
      
          <div fxLayoutAlign="center center">

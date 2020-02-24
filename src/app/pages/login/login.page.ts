@@ -45,11 +45,13 @@ export class LoginPage implements OnInit {
     send_date['password'] = this.loginModel['password'];
 
     let url = environment.base_url + "users/login"
-    this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
+    this.apiCall.postWAu(url, send_date).subscribe(MyResponse =>
+       {
       localStorage.setItem('userRole', MyResponse['result']['userRole']);
       this.userRole =  MyResponse['result']['userRole'];
       localStorage.setItem('login', 'yes');
       this.events.publish('Event-SideMenu')
+
       if (this.userRole == '0') {
         this.router.navigate(['/dataentrycredit']);
       }
@@ -62,10 +64,14 @@ export class LoginPage implements OnInit {
       let msg = MyResponse['message'];
       this.presentToast("Login Successfully");
       this.loader.stopLoading();
-    }, error => {
+
+    }, 
+    error => {
+
       this.loader.stopLoading();
       this.presentToast("Please try again");
       console.log(error.error.message);
+      
     })
 
 

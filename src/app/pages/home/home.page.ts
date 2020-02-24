@@ -13,199 +13,32 @@ import { LoaderserviceService } from 'src/app/service/loader/loaderservice.servi
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
+
+  getSearchKey: any;
+  // keyvalue = "Arti";
   checkRecordStatus: any;
   getData: any;
-  getCusstomers : any = [];
-  // getCusstomers = [
+  showNoRecordsFound: any;
+  serchKey: String;
+  autocomplete: any;
+  getCusstomers: any = [];
+  url = environment.base_url + "customers";
 
-  //   {
-  //     "name": "llllllllll jjjjjjjjjjj",
-  //     "mobile": "",
-  //     "amount": "2500",
-  //     "address": "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
-  //     "email": "lllll@gmail.com",
-  //     "note": "fgfgf"
-  //   },
-  //   {
-  //     "name": "smitaaa belhekar",
-  //     "mobile": "1234567890",
-  //     "amount": "1000",
-  //     "address": "Ahmednagar",
-  //     "email": "smitaaa@gmail.com",
-  //     "note": "fgfgf"
-  //   },
-  //   {
-  //     "name": "asmita belhekar",
-  //     "mobile": "9527902622",
-  //     "amount": "5000",
-  //     "address": "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
-  //     "email": "asmita@gmail.com",
-  //     "note": ""
-
-  //   },
-  //   {
-  //     "name": "sejal belhekar",
-  //     "mobile": "1234567890",
-  //     "amount": "2500",
-  //     "address": "Pune",
-  //     "email": "",
-  //     "note": "fgfgf"
-  //   },
-
-  //   {
-  //     "name": "priya abc",
-  //     "mobile": "1234567890",
-  //     "amount": "2500",
-  //     "address": "Mumbai",
-  //     "email": "priya@gmail.com",
-  //     "note": "fgfgf"
-  //   },
-  //   {
-  //     "name": "asmi belhekar",
-  //     "mobile": "9527902622",
-  //     "amount": "1000",
-  //     "address": "Ahmednagar",
-  //     "email": "asmi@gmail.com",
-  //     "note": ""
-  //   },
-  //   {
-  //     "name": "kiran kokate",
-  //     "mobile": "9096467346",
-  //     "amount": "5000",
-  //     "address": "Pune",
-  //     "email": "kiran@gmail.com",
-  //     "note": "fgfgf"
-  //   },
-  //   {
-  //     "name": "ccccc dddd",
-  //     "mobile": "1234567890",
-  //     "amount": "2500",
-  //     "address": "Pune",
-  //     "email": "ccccc@gmail.com",
-  //     "note": "fgfgf"
-  //   },
-
-  //   {
-  //     "name": "dhananjay raut",
-  //     "mobile": "1234567890",
-  //     "amount": "2500",
-  //     "address": "Mumbai",
-  //     "email": "dhananjay@gmail.com",
-  //     "note": ""
-  //   },
-  //   {
-  //     "name": "cccc ppppp",
-  //     "mobile": "1234567890",
-  //     "amount": "1000",
-  //     "address": "Ahmednagar",
-  //     "email": "ccc@gmail.com",
-  //     "note": "fgfgf"
-  //   },
-  //   {
-  //     "name": "cccc hhhhhhh ",
-  //     "mobile": "1234567890",
-  //     "amount": "5000",
-  //     "address": "Pune",
-  //     "email": "chchch@gmail.com",
-  //     "note": "fgfgf"
-  //   },
-  //   {
-  //     "name": "aaaaaaa zzzz",
-  //     "mobile": "1234567890",
-  //     "amount": "2500",
-  //     "address": "",
-  //     "email": "azazazaz@gmail.com",
-  //     "note": "fgfgf"
-  //   },
-  //   {
-  //     "name": "smitaaa belhekar",
-  //     "mobile": "1234567890",
-  //     "amount": "1000",
-  //     "address": "Ahmednagar",
-  //     "email": "smitaaa@gmail.com",
-  //     "note": ""
-  //   },
-  //   {
-  //     "name": "aaaaaaaa   zzzz",
-  //     "mobile": "1234567890",
-  //     "amount": "2500",
-  //     "address": "Pune",
-  //     "email": "azazazaz@gmail.com",
-  //     "note": "fgfgf"
-  //   },
-  //   {
-  //     "name": "smitaaa belhekar",
-  //     "mobile": "1234567890",
-  //     "amount": "1000",
-  //     "address": "Ahmednagar",
-  //     "email": "smitaaa@gmail.com",
-  //     "note": "fgfgf"
-  //   },
-  //   {
-  //     "name": "asmita belhekar",
-  //     "mobile": "9527902622",
-  //     "amount": "5000",
-  //     "address": "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
-  //     "email": "asmita@gmail.com",
-  //     "note": "fgfgf"
-  //   },
-  //   {
-  //     "name": "sejal belhekar",
-  //     "mobile": "1234567890",
-  //     "amount": "2500",
-  //     "address": "Pune",
-  //     "email": "",
-  //     "note": "fgfgf"
-  //   },
-
-  //   {
-  //     "name": "priya abc",
-  //     "mobile": "1234567890",
-  //     "amount": "2500",
-  //     "address": "Mumbai",
-  //     "email": "priya@gmail.com",
-  //     "note": "fgfgf"
-  //   },
-  //   {
-  //     "name": "asmi belhekar",
-  //     "mobile": "9527902622",
-  //     "amount": "1000",
-  //     "address": "Ahmednagar",
-  //     "email": "asmi@gmail.com",
-  //     "note": "fgfgf"
-  //   },
-  //   {
-  //     "name": "kiran kokate",
-  //     "mobile": "9096467346",
-  //     "amount": "5000",
-  //     "address": "Pune",
-  //     "email": "kiran@gmail.com",
-  //     "note": "fgfgf"
-  //   },
-  //   {
-  //     "name": "ccccc dddd",
-  //     "mobile": "1234567890",
-  //     "amount": "2500",
-  //     "address": "Pune",
-  //     "email": "ccccc@gmail.com",
-  //     "note": "fgfgf"
-  //   }
-  // ]
   constructor(
     public menuCntrl: MenuController,
     public router: Router,
-    public events : Events,
-    public loader : LoaderserviceService,
-    public toast : ToastController,
+    public events: Events,
+    public loader: LoaderserviceService,
+    public toast: ToastController,
     public apiCall: ApicallService) {
-    this.getCustomerList();
+    this.getCustomerList(this.url);
     this.getCusstomers.sort((a, b) => a.name.localeCompare(b.name));
     this.menuCntrl.enable(true);
   }
   ngOnInit() {
-    this.getCustomerList();
+    this.getCustomerList(this.url);
     this.events.subscribe('Event-AddCustomer', () => {
-      this.getCustomerList();
+      this.getCustomerList(this.url);
     });
   }
 
@@ -228,10 +61,10 @@ export class HomePage {
 
     let detailData =
     {
-      "id" : data.id,
+      "id": data.id,
       "name": data.firstName,
       "lname": data.lastName,
-      "mobile" : data.mobile
+      "mobile": data.mobile
     }
 
     this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }])
@@ -239,19 +72,26 @@ export class HomePage {
 
 
 
-  getCustomerList() {
-    this.loader.presentLoading();
-    let url = environment.base_url + "customers";
+  getCustomerList(url) {
+    // this.loader.presentLoading();
+
+    // let url = environment.base_url + "customers";
+    // this.url = environment.base_url + "customers?" + "search=" + this.keyvalue ;
     console.log("url :" + url);
     this.apiCall.get(url).subscribe(MyResponse => {
       this.getCusstomers = MyResponse['result']['list'];
+      if (this.getCusstomers.length > 0) {
+        this.showNoRecordsFound = 1;
+      } else {
+        this.showNoRecordsFound = 0;
+      }
       console.log("success:" + this.getCusstomers);
-      this.loader.stopLoading();
+      // this.loader.stopLoading();
     },
       error => {
-        this.loader.stopLoading();
+        // this.loader.stopLoading();
         this.presentToast("Something went wrong");
-     
+
       })
   }
 
@@ -261,5 +101,20 @@ export class HomePage {
       duration: 4000
     });
     toast.present();
+  }
+
+  OnInput(event: any) {
+    this.serchKey = (event)
+    if (this.serchKey.length > 3) {
+      this.url = environment.base_url + "customers?" + "search=" + this.serchKey;
+      this.getCustomerList(this.url);
+    } else {
+      this.url = environment.base_url + "customers";
+      this.getCustomerList(this.url);
+    }
+  }
+
+  getItems() {
+    console.log("get events:" + this.autocomplete);
   }
 }

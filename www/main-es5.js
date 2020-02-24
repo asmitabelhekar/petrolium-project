@@ -536,6 +536,10 @@ var routes = [
     {
         path: 'reportlist',
         loadChildren: function () { return __webpack_require__.e(/*! import() | pages-reportlist-reportlist-module */ "pages-reportlist-reportlist-module").then(__webpack_require__.bind(null, /*! ./pages/reportlist/reportlist.module */ "./src/app/pages/reportlist/reportlist.module.ts")).then(function (m) { return m.ReportlistPageModule; }); }
+    },
+    {
+        path: 'purchasehistory',
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-purchasehistory-purchasehistory-module */ "pages-purchasehistory-purchasehistory-module").then(__webpack_require__.bind(null, /*! ./pages/purchasehistory/purchasehistory.module */ "./src/app/pages/purchasehistory/purchasehistory.module.ts")).then(function (m) { return m.PurchasehistoryPageModule; }); }
     }
 ];
 var AppRoutingModule = /** @class */ (function () {

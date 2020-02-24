@@ -132,14 +132,25 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+/* harmony import */ var src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! src/app/service/loader/loaderservice.service */ "./src/app/service/loader/loaderservice.service.ts");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/app/service/apicall/apicall.service */ "./src/app/service/apicall/apicall.service.ts");
+/* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+
+
+
+
 
 
 
 
 var TankerPage = /** @class */ (function () {
-    function TankerPage(dateAdapter, toastcontroller) {
+    function TankerPage(dateAdapter, toastcontroller, apiCall, router, loader) {
         this.dateAdapter = dateAdapter;
         this.toastcontroller = toastcontroller;
+        this.apiCall = apiCall;
+        this.router = router;
+        this.loader = loader;
         this.tankerModel = {};
         this.buttonsArray = [
             {
@@ -157,6 +168,8 @@ var TankerPage = /** @class */ (function () {
     }
     TankerPage.prototype.ngOnInit = function () {
         this.tankerModel['type'] = 2;
+        this.petrolPrice = localStorage.getItem('petrolPrice');
+        this.dieselPrice = localStorage.getItem('dieselPrice');
         this.tankerModel['date'] = new Date().toJSON().split('T')[0];
         this.today = new Date().toJSON().split('T')[0];
     };
@@ -164,19 +177,45 @@ var TankerPage = /** @class */ (function () {
         this.checkFuelType = fuelType;
         if (fuelType == 0) {
             this.tankerModel['type'] = 0;
-            this.tankerModel['perliture'] = 70;
         }
         else {
             this.tankerModel['type'] = 1;
-            this.tankerModel['perliture'] = 80;
         }
     };
     TankerPage.prototype.tankerBalanceSubmit = function () {
+        var _this = this;
+        this.loader.presentLoading();
         if (this.tankerModel['type'] == 2) {
             this.presentToast("Please select fuel type.");
+            this.loader.stopLoading();
         }
         else {
-            this.presentToast("submited.");
+            this.loader.presentLoading();
+            this.tankerModel['perliture'] = "10.20";
+            var send_date = {};
+            send_date['type'] = this.tankerModel['type'];
+            send_date['amount'] = this.tankerModel['tankerbalance'];
+            send_date['date'] = this.tankerModel['date'];
+            if (this.tankerModel['type'] == 0) {
+                send_date['perLitrePrice'] = this.petrolPrice;
+            }
+            else {
+                send_date['perLitrePrice'] = this.dieselPrice;
+            }
+            var url = src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].base_url + "tanker";
+            this.apiCall.postWAu(url, send_date).subscribe(function (MyResponse) {
+                var msg = MyResponse['message'];
+                _this.presentToast(msg);
+                _this.router.navigate(['/tanker']);
+                // this.tankerModel['type'] = "";
+                // this.tankerModel['tankerbalance'] = "";
+                _this.loader.stopLoading();
+            }, function (error) {
+                ;
+                _this.loader.stopLoading();
+                _this.presentToast("Something went wrong");
+                console.log(error.error.message);
+            });
         }
     };
     TankerPage.prototype.presentToast = function (msg) {
@@ -198,7 +237,10 @@ var TankerPage = /** @class */ (function () {
     };
     TankerPage.ctorParameters = function () { return [
         { type: _angular_material__WEBPACK_IMPORTED_MODULE_2__["DateAdapter"] },
-        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"] }
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"] },
+        { type: src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_6__["ApicallService"] },
+        { type: _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"] },
+        { type: src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_4__["LoaderserviceService"] }
     ]; };
     TankerPage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -207,9 +249,176 @@ var TankerPage = /** @class */ (function () {
             styles: [__webpack_require__(/*! ./tanker.page.scss */ "./src/app/pages/tanker/tanker.page.scss")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_material__WEBPACK_IMPORTED_MODULE_2__["DateAdapter"],
-            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"]])
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"],
+            src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_6__["ApicallService"],
+            _angular_router__WEBPACK_IMPORTED_MODULE_7__["Router"],
+            src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_4__["LoaderserviceService"]])
     ], TankerPage);
     return TankerPage;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/service/apicall/apicall.service.ts":
+/*!****************************************************!*\
+  !*** ./src/app/service/apicall/apicall.service.ts ***!
+  \****************************************************/
+/*! exports provided: ApicallService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApicallService", function() { return ApicallService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
+
+
+var ApicallService = /** @class */ (function () {
+    function ApicallService(http) {
+        this.http = http;
+    }
+    ApicallService.prototype.postWAu = function (url, data) {
+        var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+                'Content-Type': 'application/json',
+            })
+        };
+        console.log(url);
+        return this.http.post(url, data, httpOptions);
+    };
+    ApicallService.prototype.get = function (url) {
+        var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+                'Content-Type': 'application/json',
+            })
+        };
+        console.log(url);
+        return this.http.get(url, httpOptions);
+    };
+    ApicallService.prototype.put = function (url, data) {
+        console.log(url);
+        var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+                'Content-Type': 'application/json',
+            })
+        };
+        return this.http.put(url, data, httpOptions);
+    };
+    ApicallService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
+    ]; };
+    ApicallService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], ApicallService);
+    return ApicallService;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/service/loader/loaderservice.service.ts":
+/*!*********************************************************!*\
+  !*** ./src/app/service/loader/loaderservice.service.ts ***!
+  \*********************************************************/
+/*! exports provided: LoaderserviceService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "LoaderserviceService", function() { return LoaderserviceService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _ionic_angular__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @ionic/angular */ "./node_modules/@ionic/angular/dist/fesm5.js");
+
+
+
+var LoaderserviceService = /** @class */ (function () {
+    //   loadingStatus = new Subject<boolean>();
+    //   loaderTop = new Subject<boolean>();
+    //   blockingLoader = new Subject<boolean>();
+    //   blockingLoaderAuth = new Subject<boolean>();
+    //   bgGrey = new Subject<boolean>();
+    //   blockingLoaderFlag = false;
+    //   loaderTopFlag = false;
+    //   private subject = new Subject<any>();
+    //   showBlockingLoader(){
+    //     console.log("load");
+    //     this.blockingLoader.next(true);
+    //     this.blockingLoaderFlag = true;
+    //   }
+    //   hideBlockingLoader(){
+    //     this.blockingLoader.next(false);
+    //     this.blockingLoaderFlag = false;
+    //   }
+    //   showBlockingLoaderAuth(){
+    //     this.blockingLoaderAuth.next(true);
+    //   }
+    //   hideBlockingLoaderAuth(){
+    //     this.blockingLoaderAuth.next(false);
+    //   }
+    //   sendMessage(message) {
+    //     // console.log("name",message);
+    //     let set_data = {};
+    //     set_data['message'] = message;
+    //     this.subject.next(set_data);
+    // }
+    // getMessage(): Observable<any> {
+    //   return this.subject.asObservable();
+    // }
+    function LoaderserviceService(loadingController) {
+        this.loadingController = loadingController;
+    }
+    LoaderserviceService.prototype.presentLoading = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var loading, _a, role, data;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_b) {
+                switch (_b.label) {
+                    case 0: return [4 /*yield*/, this.loadingController.create({
+                            message: 'Please wait...',
+                        })];
+                    case 1:
+                        loading = _b.sent();
+                        return [4 /*yield*/, loading.present()];
+                    case 2:
+                        _b.sent();
+                        setTimeout(function () {
+                            loading.dismiss();
+                        });
+                        return [4 /*yield*/, loading.onDidDismiss()];
+                    case 3:
+                        _a = _b.sent(), role = _a.role, data = _a.data;
+                        console.log('Loading dismissed!' + role + ' Data: ' + data);
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    LoaderserviceService.prototype.stopLoading = function () {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                this.loadingController.dismiss();
+                return [2 /*return*/];
+            });
+        });
+    };
+    LoaderserviceService.ctorParameters = function () { return [
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"] }
+    ]; };
+    LoaderserviceService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_ionic_angular__WEBPACK_IMPORTED_MODULE_2__["LoadingController"]])
+    ], LoaderserviceService);
+    return LoaderserviceService;
 }());
 
 

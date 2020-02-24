@@ -233,7 +233,10 @@ var DebitamountPage = /** @class */ (function () {
         var send_date = {};
         send_date['date'] = this.userModel['date'];
         send_date['amount'] = this.userModel['payment'] * -1;
-        if (this.userModel['note'] != "") {
+        if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined) {
+            send_date['message'] = "Debited with  " + this.userModel['payment'];
+        }
+        else {
             send_date['message'] = this.userModel['note'];
         }
         this.url = src_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].base_url + "customers/" + this.userModel['id'] + "/passbook";

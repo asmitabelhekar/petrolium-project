@@ -15,7 +15,12 @@ import { FlexLayoutModule } from '@angular/flex-layout';
   imports: [
     CommonModule,
     FormsModule,
-    IonicModule,MatFormFieldModule,MatButtonModule,MatIconModule,MatInputModule,FlexLayoutModule,MatCardModule,
+    IonicModule,
+    MatFormFieldModule,
+    MatButtonModule,MatIconModule,
+    MatInputModule,
+    FlexLayoutModule,
+    MatCardModule,
     AddcustomerPageRoutingModule
   ],
   declarations: [AddcustomerPage]

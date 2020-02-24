@@ -226,9 +226,9 @@ export class ShowbalancerecordPage implements OnInit {
     } else if (getStatus == "4") {
       this.makeCall();
     } else if (getStatus == "5") {
-     this.presentToast("display");
+      this.router.navigate(['/purchasehistory' ,{ customerId : this.customerId}]);
+
     } else {
-      this.presentToast("others");
 
     }
   }
