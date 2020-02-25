@@ -30,18 +30,30 @@
 
     </ion-card> -->
 
+    <div fxLayoutAlign="center center" style="width:96%">
+      <ion-row style="width:96%; border : 1px solid rgb(117, 115, 115); border-radius: 15px; margin:15px">
+        <ion-col size="1">
+          <ion-icon name="search" style="width:20px; height: 20px;margin-top:5px"></ion-icon>  
+          </ion-col>
+        <ion-col size="11" style="border: 0.1px solid white;">
+          
+          <input type="text" [(ngModel)]="getSearchKey" (input)="OnInput(getSearchKey)" placeholder="Search" style="width:100%;border: 1px solid white;"/>
+        </ion-col>
+      </ion-row>
+    </div>
+
     <ion-card *ngFor="let item of recordList"
     style="padding:10px; border-radius: 10px;margin-top:5px;width:96%">
 
     <div fxLayout="column" fxLayoutAlign="start start">
       <div fxLayout="row" fxLayoutAlign="center center">
-        <ion-icon name="person" style="width:10px; height: 15px"></ion-icon>
+        <ion-icon name="person" style="width:15px; height: 15px; margin-top:5px"></ion-icon>
         <label style="margin-top:5px;font-size: 14px;color:black; margin-left:10px">{{item.name}}</label>
       </div>
 
       <div fxLayout="row" fxLayoutAlign="center center">
-        <label style="margin-top:2px;font-size: 16px;color:black;">₹</label>
-        <label style="margin-top:2px;font-size: 14px;color:black; margin-left:10px">{{item.amount}}</label>
+        <label style="margin-top:2px;font-size: 16px;color:black; margin-left: 3px;">₹</label>
+        <label style="margin-top:2px;font-size: 14px;color:black; margin-left:12px">{{item.amount}}</label>
       </div>
     </div>
 

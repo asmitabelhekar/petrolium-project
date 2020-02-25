@@ -662,10 +662,6 @@ var AppComponent = /** @class */ (function () {
                     url: '/dataentryopening',
                 },
                 {
-                    title: 'Reports',
-                    url: '/reports',
-                },
-                {
                     title: 'Petrol/Diesel',
                     url: '/petroldieselamount',
                 },

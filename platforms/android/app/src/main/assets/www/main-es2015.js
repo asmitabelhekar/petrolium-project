@@ -652,10 +652,6 @@ let AppComponent = class AppComponent {
                     url: '/dataentryopening',
                 },
                 {
-                    title: 'Reports',
-                    url: '/reports',
-                },
-                {
                     title: 'Petrol/Diesel',
                     url: '/petroldieselamount',
                 },

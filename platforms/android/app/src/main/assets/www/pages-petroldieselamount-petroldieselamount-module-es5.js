@@ -198,6 +198,12 @@ var PetroldieselamountPage = /** @class */ (function () {
                 if (_this.getData[k]['type'] == 1) {
                     _this.userModel['type'] = 1;
                     _this.userModel['dieselamount'] = _this.getData[k]['price'];
+                    if (_this.getData[k]['price'] == null || _this.getData[k]['price'] == "" || _this.getData[k]['price'] == undefined) {
+                        _this.checkStatusDiesel = "add";
+                    }
+                    else {
+                        _this.checkStatusDiesel = "update";
+                    }
                     _this.userModel['dId'] = _this.getData[k]['id'];
                     return;
                 }
@@ -220,6 +226,12 @@ var PetroldieselamountPage = /** @class */ (function () {
                 if (_this.getData[k]['type'] == 0) {
                     _this.userModel['type'] = 0;
                     _this.userModel['petrolamount'] = _this.getData[k]['price'];
+                    if (_this.getData[k]['price'] == null || _this.getData[k]['price'] == "" || _this.getData[k]['price'] == undefined) {
+                        _this.checkStatus = "add";
+                    }
+                    else {
+                        _this.checkStatus = "update";
+                    }
                     _this.userModel['pId'] = _this.getData[k]['id'];
                     return;
                 }

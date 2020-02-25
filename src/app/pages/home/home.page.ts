@@ -14,6 +14,7 @@ import { LoaderserviceService } from 'src/app/service/loader/loaderservice.servi
 })
 export class HomePage {
 
+  userModel : any = {};
   getSearchKey: any;
   // keyvalue = "Arti";
   checkRecordStatus: any;
@@ -22,7 +23,8 @@ export class HomePage {
   serchKey: String;
   autocomplete: any;
   getCusstomers: any = [];
-  url = environment.base_url + "customers";
+  url = environment.base_url + "customers?" + "size=" + 1000;
+
 
   constructor(
     public menuCntrl: MenuController,
@@ -37,6 +39,8 @@ export class HomePage {
   }
   ngOnInit() {
     this.getCustomerList(this.url);
+    this.getPetrolAmount();
+    this.getDieselAmount();
     this.events.subscribe('Event-AddCustomer', () => {
       this.getCustomerList(this.url);
     });
@@ -109,7 +113,7 @@ export class HomePage {
       this.url = environment.base_url + "customers?" + "search=" + this.serchKey;
       this.getCustomerList(this.url);
     } else {
-      this.url = environment.base_url + "customers";
+      this.url = environment.base_url + "customers?" + "size=" + 1000;
       this.getCustomerList(this.url);
     }
   }
@@ -117,4 +121,57 @@ export class HomePage {
   getItems() {
     console.log("get events:" + this.autocomplete);
   }
+
+  getDieselAmount() {
+    this.loader.presentLoading();
+    let geturl = environment.base_url + "price"
+    this.apiCall.get(geturl).subscribe(MyResponse => {
+      this.getData = MyResponse['result']['list'];
+      for(let k=0; k< this.getData.length; k++){
+          
+          if(this.getData[k]['type'] == 1){
+            this.userModel['dieselamount'] = this.getData[k]['price'];
+            localStorage.setItem("dieselPrice",this.getData[k]['price']);
+          console.log("diesel price:"+this.getData[k]['price']);
+
+            return;
+          }
+        
+
+      }
+     
+      this.loader.stopLoading();
+    },
+      error => {
+        alert("display data:" + error);
+        this.loader.stopLoading();
+        this.presentToast("Something went wrong");
+      })
+  }
+  getPetrolAmount() {
+    this.loader.presentLoading();
+    let geturl = environment.base_url + "price"
+    this.apiCall.get(geturl).subscribe(MyResponse => {
+      this.getData = MyResponse['result']['list'];
+      for(let k=0; k< this.getData.length; k++){
+          if(this.getData[k]['type'] == 0){
+            this.userModel['petrolamount'] = this.getData[k]['price'];
+            localStorage.setItem("petrolPrice",this.getData[k]['price']);
+          console.log("petrol price:"+this.getData[k]['price']);
+            return;
+          }
+          
+      }
+     
+      this.loader.stopLoading();
+    },
+      error => {
+        alert("display data:" + error);
+        this.loader.stopLoading();
+        this.presentToast("Something went wrong");
+      })
+  }
+
+
+
 }

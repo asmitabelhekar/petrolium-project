@@ -93,11 +93,6 @@ export class AppComponent {
 
         },
         {
-          title: 'Reports',
-          url: '/reports',
-
-        },
-        {
           title: 'Petrol/Diesel',
           url: '/petroldieselamount',
 

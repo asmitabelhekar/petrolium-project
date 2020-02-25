@@ -179,9 +179,11 @@ let DataentrycreditPage = class DataentrycreditPage {
         this.dateAdapter.setLocale("en-GB");
     }
     ngOnInit() {
+        this.petrolPrice = localStorage.getItem('petrolPrice');
+        this.dieselPrice = localStorage.getItem('dieselPrice');
+        this.userModel['perliture'] = this.petrolPrice;
         this.getCustomerList();
         this.userModel['type'] = 2;
-        this.userModel['perliture'] = 70;
         this.filteredOptions = this.myControl.valueChanges
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(value => this._filter(value)));
         this.userModel['date'] = new Date().toJSON().split('T')[0];
@@ -255,11 +257,11 @@ let DataentrycreditPage = class DataentrycreditPage {
         this.checkFuelType = fuelType;
         if (fuelType == 0) {
             this.userModel['type'] = 0;
-            this.userModel['perliture'] = 70;
+            this.userModel['perliture'] = this.petrolPrice;
         }
         else {
             this.userModel['type'] = 1;
-            this.userModel['perliture'] = 80;
+            this.userModel['perliture'] = this.dieselPrice;
         }
     }
     presentToast(message) {

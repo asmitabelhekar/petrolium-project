@@ -15,7 +15,7 @@
 
 <ion-content>
 
-  <div fxLayout="column" fxLayoutAlign="center center">
+  <div *ngIf="showPurchaseRecord == 1" fxLayout="column" fxLayoutAlign="center center">
 
     <div *ngFor="let item of getPurchaseHistory" style="width:100%; border-radius: 10px;">
       <div fxLayout="row" fxLayoutAlign="center center">
@@ -82,5 +82,9 @@
 
     </div>
 
+  </div>
+
+  <div *ngIf="showPurchaseRecord == 0" fxLayout="row" fxLayoutAlign="center center" style="margin-top: 25%;">
+    <h3>No records found</h3>
   </div>
 </ion-content>

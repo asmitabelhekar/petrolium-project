@@ -31,6 +31,8 @@ export class DataentrycreditPage implements OnInit {
   autoCompleteArray: any = [];
   customerList: any = [];
   url: any;
+  petrolPrice: any;
+  dieselPrice: any;
   checkRecordStatus: any;
   recordNotPresent = 0;
   type: any;
@@ -59,9 +61,13 @@ export class DataentrycreditPage implements OnInit {
   }
 
   ngOnInit() {
+
+    this.petrolPrice = localStorage.getItem('petrolPrice');
+    this.dieselPrice = localStorage.getItem('dieselPrice');
+    this.userModel['perliture'] = this.petrolPrice;
+    
     this.getCustomerList();
     this.userModel['type'] = 2
-    this.userModel['perliture'] = 70;
     this.filteredOptions = this.myControl.valueChanges
       .pipe(startWith(''),
         map(value => this._filter(value))
@@ -157,10 +163,10 @@ export class DataentrycreditPage implements OnInit {
     if (fuelType == 0) {
 
       this.userModel['type'] = 0;
-      this.userModel['perliture'] = 70;
+      this.userModel['perliture'] = this.petrolPrice;
     } else {
       this.userModel['type'] = 1;
-      this.userModel['perliture'] = 80;
+      this.userModel['perliture'] = this.dieselPrice;
     }
   }
 
@@ -196,8 +202,7 @@ export class DataentrycreditPage implements OnInit {
       send_date['finalAmount'] = this.userModel['totalamount'];
       send_date['amountPaid'] = this.userModel['payment']
       send_date['date'] = this.userModel['date'];
-      if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined ) {
-          
+      if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined ) {      
         send_date['message'] = "Credited with  " + this.userModel['payment'];
       }else{
         send_date['message'] = this.userModel['note']

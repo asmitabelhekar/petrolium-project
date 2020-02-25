@@ -16,6 +16,7 @@ export class PurchasehistoryPage implements OnInit {
   getPurchaseHistory: any;
   historyModel : any ={};
   customerId : any;
+  showPurchaseRecord : any;
 
   constructor(public location: Location,
     public loader: LoaderserviceService,
@@ -39,6 +40,11 @@ export class PurchasehistoryPage implements OnInit {
     // let url = "http://www.mocky.io/v2/5e50b9a23100007b00415896";
     this.apiCall.get(url).subscribe(MyResponse => {
       this.getPurchaseHistory = MyResponse['result']['history'];
+      if(this.getPurchaseHistory.length > 0){
+        this.showPurchaseRecord = 1;
+      }else{
+        this.showPurchaseRecord = 0;
+      }
       this.loader.stopLoading();
     },
       error => {

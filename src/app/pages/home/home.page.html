@@ -23,9 +23,8 @@
       <ion-col size="1">
         <ion-icon name="search" style="width:20px; height: 20px;margin-top:5px"></ion-icon>  
         </ion-col>
-      <ion-col size="11" style="border: 0.1px solid white;">
-        
-        <input type="text" [(ngModel)]="getSearchKey" (input)="OnInput(getSearchKey)" placeholder="Search" style="width:100%;border: 1px solid white;"/>
+      <ion-col size="11" >
+        <input type="text" [(ngModel)]="getSearchKey" (input)="OnInput(getSearchKey)" placeholder="Search" style="width:96%;margin-right:2%;"/>
       </ion-col>
     </ion-row>
   </div>
@@ -44,7 +43,7 @@
   </div>
 </div>
  <div *ngIf="showNoRecordsFound == 0" fxLayout="row" fxLayoutAlign="center center" style="margin-top: 25%;">
-   <h5>No records found</h5>
+   <h3>No records found</h3>
  </div>
 <div>
   <button (click)="addCustomer()" align="center" style="position:fixed; width:60px;height:60px;right:30px; bottom:20px; background-color: #2e2d2d;border-radius: 50%;"><ion-icon style="width:30px; height: 30px;color:white" name="add"></ion-icon></button>

@@ -33,3 +33,12 @@ transform: translate(-50%,-50%);
 background: linear-gradient(120deg,#3498db,#8e44ad);
 
 }
+
+input {
+  border: none;
+}
+
+
+input:focus {
+  outline: none;
+}

@@ -183,6 +183,12 @@ let PetroldieselamountPage = class PetroldieselamountPage {
                 if (this.getData[k]['type'] == 1) {
                     this.userModel['type'] = 1;
                     this.userModel['dieselamount'] = this.getData[k]['price'];
+                    if (this.getData[k]['price'] == null || this.getData[k]['price'] == "" || this.getData[k]['price'] == undefined) {
+                        this.checkStatusDiesel = "add";
+                    }
+                    else {
+                        this.checkStatusDiesel = "update";
+                    }
                     this.userModel['dId'] = this.getData[k]['id'];
                     return;
                 }
@@ -204,6 +210,12 @@ let PetroldieselamountPage = class PetroldieselamountPage {
                 if (this.getData[k]['type'] == 0) {
                     this.userModel['type'] = 0;
                     this.userModel['petrolamount'] = this.getData[k]['price'];
+                    if (this.getData[k]['price'] == null || this.getData[k]['price'] == "" || this.getData[k]['price'] == undefined) {
+                        this.checkStatus = "add";
+                    }
+                    else {
+                        this.checkStatus = "update";
+                    }
                     this.userModel['pId'] = this.getData[k]['id'];
                     return;
                 }

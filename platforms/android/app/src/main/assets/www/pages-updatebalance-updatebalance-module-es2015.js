@@ -178,12 +178,14 @@ let UpdatebalancePage = class UpdatebalancePage {
     }
     ngOnInit() {
         this.userModel['type'] = 2;
+        this.petrolPrice = localStorage.getItem('petrolPrice');
+        this.dieselPrice = localStorage.getItem('dieselPrice');
+        this.userModel['perliture'] = this.petrolPrice;
         this.filteredOptions = this.myControl.valueChanges
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(value => this._filter(value)));
         this.userModel['date'] = new Date().toJSON().split('T')[0];
         this.today = new Date().toJSON().split('T')[0];
         this.getPaymentDetail = JSON.parse(this.activatedRoute.snapshot.params['balanceObject']);
-        this.userModel['perliture'] = 70;
         this.customerMobile = this.getPaymentDetail.customerMobile;
         this.customerName = this.getPaymentDetail.customerName;
         if (this.customerName != "") {
@@ -237,11 +239,11 @@ let UpdatebalancePage = class UpdatebalancePage {
         this.checkFuelType = fuelType;
         if (fuelType == 0) {
             this.userModel['type'] = 0;
-            this.userModel['perliture'] = 70;
+            this.userModel['perliture'] = this.petrolPrice;
         }
         else {
             this.userModel['type'] = 1;
-            this.userModel['perliture'] = 80;
+            this.userModel['perliture'] = this.dieselPrice;
         }
     }
     creditAmount() {
@@ -257,7 +259,10 @@ let UpdatebalancePage = class UpdatebalancePage {
             send_date['finalAmount'] = this.userModel['totalamount'];
             send_date['amountPaid'] = this.userModel['payment'];
             send_date['date'] = this.userModel['date'];
-            if (this.userModel['note'] != "") {
+            if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined) {
+                send_date['message'] = "Credited with  " + this.userModel['payment'];
+            }
+            else {
                 send_date['message'] = this.userModel['note'];
             }
             let url = src_environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].base_url + "customers/" + this.customerId + "/purchase";
@@ -286,7 +291,13 @@ let UpdatebalancePage = class UpdatebalancePage {
         let send_date = {};
         send_date['date'] = this.userModel['date'];
         send_date['amount'] = this.userModel['payment'] * -1;
-        send_date['message'] = this.userModel['note'];
+        if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined) {
+            send_date['message'] = "Debited with  " + this.userModel['payment'];
+        }
+        else {
+            send_date['message'] = this.userModel['note'];
+        }
+        // send_date['message'] = this.userModel['note']
         let url = src_environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].base_url + "customers/" + this.customerId + "/passbook";
         this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
             let msg = MyResponse['message'];
