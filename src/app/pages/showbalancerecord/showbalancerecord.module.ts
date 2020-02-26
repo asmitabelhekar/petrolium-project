@@ -25,8 +25,8 @@ import { CustomPipe } from 'src/app/custom.pipe';
     MatMenuModule,
     ShowbalancerecordPageRoutingModule
   ],
-  exports:[NegativenumberPipe],
   providers:[SMS,CallNumber,],
+  exports:[NegativenumberPipe],
   declarations: [ShowbalancerecordPage,NegativenumberPipe]
 })
 export class ShowbalancerecordPageModule {}

@@ -43,7 +43,7 @@
           </ion-col>
         </ion-row>
 
-        <ion-row style="margin-left: 5px;">
+        <!-- <ion-row style="margin-left: 5px;">
           <ion-col size="6">
             <label class="cl_title_css">Total Amount : </label>
           </ion-col>
@@ -59,26 +59,20 @@
           <ion-col size="6">
             <label class="cl_label_css">{{history.amountPaid}}</label>
           </ion-col>
+        </ion-row> -->
+
+
+        <ion-row style="margin-left: 5px;">
+          <ion-col size="6">
+            <label class="cl_title_css">Credited Amount : </label>
+          </ion-col>
+          <ion-col size="6">
+            <label class="cl_label_css">₹ {{history.finalAmount - history.amountPaid }}</label>
+          </ion-col>
         </ion-row>
-
-
       </ion-card>
 
 
-
-      <!-- <ion-card *ngFor="let history of item.list">
-        <div fxLayout="row" fxLayoutAlign="start start">
-          <div fxLayout="column" fxLayoutAlign="start start" style="width:90%">
-            <label class="cl_label_css" *ngIf="history.type == '0' ">Fuel Type : Petrol</label>
-            <label class="cl_label_css" *ngIf="history.type == '1' ">Fuel Type : Diesel</label>
-            <label class="cl_label_css">Total Amount : {{history.finalAmount}}</label>
-            <label class="cl_label_css">Paid Amount : {{history.amountPaid}}</label>
-          </div>
-          <div fxlayout="row" fxLayoutAlign="start start">
-            <label class="cl_label_css">{{history.amountInLitre}} Ltr</label>
-          </div>
-        </div>
-      </ion-card> -->
 
     </div>
 

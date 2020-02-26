@@ -75,7 +75,8 @@
 
     <div fxLayout="row" fxLayoutAlign="center center">
       <mat-form-field style="width:90%">
-        <mat-label>Add {{paymentMethod}}</mat-label>
+        <mat-label *ngIf="paymentMethod == 'Credit' ">Amount Paid</mat-label>
+        <mat-label *ngIf="paymentMethod == 'Payment' ">Add {{paymentMethod}}</mat-label>
         <input matInput type="number" name="payment" (input)="OnInput($event)" [(ngModel)]="userModel.payment"
           #payment="ngModel" class="form-control" align="center" required pattern="[0-9.-]+$">
       </mat-form-field>

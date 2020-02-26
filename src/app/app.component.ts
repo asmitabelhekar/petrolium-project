@@ -98,6 +98,11 @@ export class AppComponent {
 
         },
         {
+          title: 'Tanker List',
+          url: '/showtankerlist',
+
+        },
+        {
           title: 'Tanker',
           url: '/tanker',
 

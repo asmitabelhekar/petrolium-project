@@ -9,6 +9,7 @@ import { PurchasehistoryPageRoutingModule } from './purchasehistory-routing.modu
 import { PurchasehistoryPage } from './purchasehistory.page';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatFormFieldModule } from '@angular/material';
+import { NegativenumberPipe } from 'src/app/pipes/negativenumber.pipe';
 
 @NgModule({
   imports: [
@@ -19,6 +20,7 @@ import { MatFormFieldModule } from '@angular/material';
     MatFormFieldModule,
     PurchasehistoryPageRoutingModule
   ],
+ 
   declarations: [PurchasehistoryPage]
 })
 export class PurchasehistoryPageModule {}

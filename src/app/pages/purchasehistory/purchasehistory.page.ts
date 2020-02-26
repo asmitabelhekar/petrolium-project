@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Pipe } from '@angular/core';
 import { Location } from '@angular/common';
 import { LoaderserviceService } from 'src/app/service/loader/loaderservice.service';
 import { ApicallService } from 'src/app/service/apicall/apicall.service';

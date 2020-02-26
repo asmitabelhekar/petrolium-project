@@ -1,0 +1,65 @@
+<ion-header class="new-background-color">
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start" style="color:white">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="color:white">
+      Tanker List
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+  <div *ngIf="showTankerRecord == 1" fxLayout="column" fxLayoutAlign="center center" style="width:100%">
+
+
+      <ion-card *ngFor="let history of getTankerHistory" style="border-radius: 10px;">
+        <ion-row style="margin-left: 5px;">
+          <ion-col size="6">
+            <label class="cl_title_css">Fuel Type:</label>
+          </ion-col>
+          <ion-col size="6">
+            <label class="cl_label_css" *ngIf="history.type == '0' ">Petrol</label>
+            <label class="cl_label_css" *ngIf="history.type == '1' ">Diesel</label>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-left: 5px;">
+          <ion-col size="6">
+            <label class="cl_title_css">Per Liture Price : </label>
+          </ion-col>
+          <ion-col size="6">
+            <label class="cl_label_css">{{history.perLitrePrice}}</label>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-left: 5px;">
+          <ion-col size="6">
+            <label class="cl_title_css">Amount : </label>
+          </ion-col>
+          <ion-col size="6">
+            <label class="cl_label_css">{{history.amount}}</label>
+          </ion-col>
+        </ion-row>
+
+        <ion-row style="margin-left: 5px;">
+          <ion-col size="6">
+            <label class="cl_title_css">Date : </label>
+          </ion-col>
+          <ion-col size="6">
+            <label class="cl_label_css">{{history.date | date }}</label>
+          </ion-col>
+        </ion-row>
+
+
+      </ion-card>
+
+    <!-- </div> -->
+
+  </div>
+
+  <div *ngIf="showTankerRecord == 0" fxLayout="row" fxLayoutAlign="center center" style="margin-top: 25%;">
+    <h3>No records found</h3>
+  </div>
+</ion-content>
