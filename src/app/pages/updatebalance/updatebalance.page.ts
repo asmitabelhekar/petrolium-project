@@ -32,7 +32,7 @@ export class UpdatebalancePage implements OnInit {
   fname: any;
   lname: any;
   displayBalnace: any = 0;
-  checkFuelType: any;
+  checkFuelType: any = 0;
   myControl = new FormControl();
   customerId: any;
   petrolPrice: any;

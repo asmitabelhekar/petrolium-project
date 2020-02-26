@@ -15,7 +15,7 @@ import { LoaderserviceService } from 'src/app/service/loader/loaderservice.servi
 export class DataentryopeningPage implements OnInit {
 
   today: any;
-  checkFuelType: any;
+  checkFuelType: any = 0;
   previousOpeningBalance : any;
   openingModel: any = {}
   openingBalance: any;
@@ -51,7 +51,8 @@ export class DataentryopeningPage implements OnInit {
   }
 
   ngOnInit() {
-    this.openingModel['type'] = 2;
+    this.openingModel['type'] = 0;
+    this.getOpeningBalance( this.openingModel['type']);
     this.openingModel['date'] = new Date().toJSON().split('T')[0];
     this.today = new Date().toJSON().split('T')[0];
   }
@@ -112,10 +113,10 @@ export class DataentryopeningPage implements OnInit {
     if (fuelType == 0) {
 
       this.openingModel['type'] = 0;
-      this.getOpeningBalance();
+      this.getOpeningBalance( this.openingModel['type']);
     } else {
       this.openingModel['type'] = 1;
-      this.getOpeningBalance();
+      this.getOpeningBalance( this.openingModel['type']);
     }
   }
 
@@ -130,22 +131,22 @@ export class DataentryopeningPage implements OnInit {
   changeClient(value) {
     if (value == "Petrol") {
       this.openingModel['type'] = 0;
-      this.getOpeningBalance();
+      this.getOpeningBalance( this.openingModel['type']);
     } else {
       this.openingModel['type'] = 1;
-      this.getOpeningBalance();
+      this.getOpeningBalance( this.openingModel['type']);
     }
 
     console.log("type : " + this.openingModel['type']);
   }
 
 
-  getOpeningBalance() {
+  getOpeningBalance(type) {
     this.loader.presentLoading();
 
       let objectt = {};
       objectt['date'] = this.openingModel['date'];
-      objectt['type'] = this.openingModel['type'];
+      objectt['type'] =type;
       let url = environment.base_url + "balance?" + "filters=" + JSON.stringify(objectt);
       console.log("url :" + url);
       this.apiCall.get(url).subscribe(MyResponse => {

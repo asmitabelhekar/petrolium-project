@@ -27,7 +27,7 @@ export class DataentrycreditPage implements OnInit {
   getPaymentDetail: any;
   paymentNames: any;
   displayBalnace: any = 0;
-  checkFuelType: any;
+  checkFuelType: any = 0;
   getCusstomers: any;
   autoCompleteArray: any = [];
   customerList: any = [];
