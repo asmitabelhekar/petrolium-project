@@ -13,7 +13,10 @@
 
   <div fxLayout="column" fxLayoutAlign="center" style="margin-top:5%">
 
-    
+    <!-- <div fxLayout="row" fxLayoutAlign="center center">
+      <input type="text" [(ngModel)]="getSearchKey" (input)="getInput(getSearchKey)" placeholder="Search" style="width:96%;margin-right:2%;"/>
+
+    </div> -->
 
     <div fxLayout="row" fxLayoutAlign="center center">
       <mat-form-field style="width:90%">
@@ -28,13 +31,10 @@
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
             {{option}}
           </mat-option>
-          <!-- <mat-option  [value]="option" *ngIf="recordNotPresent == 1">
-           Record not present
-          </mat-option> -->
+        
           <mat-option  [value]="option" *ngIf="recordNotPresent == 1"  (click)="addCustomer()">
             Add Customer
            </mat-option>
-          <!-- <button (click)="addCustomer()" *ngIf="recordNotPresent == 1" style="width:100%; height:50px">Add Customer</button> -->
         </mat-autocomplete>
       </mat-form-field>
     </div>

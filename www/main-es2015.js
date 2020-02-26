@@ -534,6 +534,10 @@ const routes = [
     {
         path: 'purchasehistory',
         loadChildren: () => __webpack_require__.e(/*! import() | pages-purchasehistory-purchasehistory-module */ "pages-purchasehistory-purchasehistory-module").then(__webpack_require__.bind(null, /*! ./pages/purchasehistory/purchasehistory.module */ "./src/app/pages/purchasehistory/purchasehistory.module.ts")).then(m => m.PurchasehistoryPageModule)
+    },
+    {
+        path: 'showtankerlist',
+        loadChildren: () => __webpack_require__.e(/*! import() | pages-showtankerlist-showtankerlist-module */ "pages-showtankerlist-showtankerlist-module").then(__webpack_require__.bind(null, /*! ./pages/showtankerlist/showtankerlist.module */ "./src/app/pages/showtankerlist/showtankerlist.module.ts")).then(m => m.ShowtankerlistPageModule)
     }
 ];
 let AppRoutingModule = class AppRoutingModule {
@@ -654,6 +658,10 @@ let AppComponent = class AppComponent {
                 {
                     title: 'Petrol/Diesel',
                     url: '/petroldieselamount',
+                },
+                {
+                    title: 'Tanker List',
+                    url: '/showtankerlist',
                 },
                 {
                     title: 'Tanker',

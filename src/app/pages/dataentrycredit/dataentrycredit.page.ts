@@ -19,6 +19,7 @@ export class DataentrycreditPage implements OnInit {
 
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
+  serchKey: any;
   today: any;
   userModel: any = {}
   paymentMethod: any;
@@ -36,6 +37,7 @@ export class DataentrycreditPage implements OnInit {
   checkRecordStatus: any;
   recordNotPresent = 0;
   type: any;
+  getData: any;
   buttonsArray = [
     {
       "fuelType": "Petrol",
@@ -64,7 +66,9 @@ export class DataentrycreditPage implements OnInit {
 
     this.petrolPrice = localStorage.getItem('petrolPrice');
     this.dieselPrice = localStorage.getItem('dieselPrice');
-    this.userModel['perliture'] = this.petrolPrice;
+    this.getPetrolAmount();
+    this.getDieselAmount();
+    this.userModel['perliture'] = this.userModel['petrolamount'];
     
     this.getCustomerList();
     this.userModel['type'] = 2
@@ -106,12 +110,23 @@ export class DataentrycreditPage implements OnInit {
     this.recordNotPresent = 0;
   }
 
+  // getInput(event: any) {
+  //   this.serchKey = (event)
+  //   if (this.serchKey.length > 3) {
+  //     let getUrl = environment.base_url + "customers?" + "search=" + this.serchKey;
+  //     this.getCustomerList(getUrl);
+  //   } else {
+  //     let checkUrl = environment.base_url + "customers?" + "size=" + 1000;
+  //     this.getCustomerList(checkUrl);
+  //   }
+  // }
+
   ionViewDidLeave() {
     this.recordNotPresent = 0;
   }
   getCustomerList() {
 
-    let url = environment.base_url + "customers";
+    let url = environment.base_url + "customers?"+ "size=" + 1000;
     console.log("url :" + url);
     this.apiCall.get(url).subscribe(MyResponse => {
       this.getCusstomers = MyResponse['result']['list'];
@@ -163,10 +178,10 @@ export class DataentrycreditPage implements OnInit {
     if (fuelType == 0) {
 
       this.userModel['type'] = 0;
-      this.userModel['perliture'] = this.petrolPrice;
+      this.userModel['perliture'] =this.userModel['petrolamount'];
     } else {
       this.userModel['type'] = 1;
-      this.userModel['perliture'] = this.dieselPrice;
+      this.userModel['perliture'] =this.userModel['dieselamount'] ;
     }
   }
 
@@ -235,4 +250,57 @@ export class DataentrycreditPage implements OnInit {
     }
     this.loader.stopLoading();
   }
+
+
+  getDieselAmount() {
+    this.loader.presentLoading();
+    let geturl = environment.base_url + "price"
+    this.apiCall.get(geturl).subscribe(MyResponse => {
+      this.getData = MyResponse['result']['list'];
+      for(let k=0; k< this.getData.length; k++){
+          
+          if(this.getData[k]['type'] == 1){
+            this.userModel['dieselamount'] = this.getData[k]['price'];
+            localStorage.setItem("dieselPrice",this.getData[k]['price']);
+          console.log("diesel price:"+this.getData[k]['price']);
+
+            return;
+          }
+        
+
+      }
+     
+      this.loader.stopLoading();
+    },
+      error => {
+        alert("display data:" + error);
+        this.loader.stopLoading();
+        this.presentToast("Something went wrong");
+      })
+  }
+  getPetrolAmount() {
+    this.loader.presentLoading();
+    let geturl = environment.base_url + "price"
+    this.apiCall.get(geturl).subscribe(MyResponse => {
+      this.getData = MyResponse['result']['list'];
+      for(let k=0; k< this.getData.length; k++){
+          if(this.getData[k]['type'] == 0){
+            this.userModel['petrolamount'] = this.getData[k]['price'];
+            this.userModel['perliture'] = this.getData[k]['price'];
+            localStorage.setItem("petrolPrice",this.getData[k]['price']);
+          console.log("petrol price:"+this.getData[k]['price']);
+            return;
+          }
+          
+      }
+     
+      this.loader.stopLoading();
+    },
+      error => {
+        alert("display data:" + error);
+        this.loader.stopLoading();
+        this.presentToast("Something went wrong");
+      })
+  }
+
 }

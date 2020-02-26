@@ -540,6 +540,10 @@ var routes = [
     {
         path: 'purchasehistory',
         loadChildren: function () { return __webpack_require__.e(/*! import() | pages-purchasehistory-purchasehistory-module */ "pages-purchasehistory-purchasehistory-module").then(__webpack_require__.bind(null, /*! ./pages/purchasehistory/purchasehistory.module */ "./src/app/pages/purchasehistory/purchasehistory.module.ts")).then(function (m) { return m.PurchasehistoryPageModule; }); }
+    },
+    {
+        path: 'showtankerlist',
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-showtankerlist-showtankerlist-module */ "pages-showtankerlist-showtankerlist-module").then(__webpack_require__.bind(null, /*! ./pages/showtankerlist/showtankerlist.module */ "./src/app/pages/showtankerlist/showtankerlist.module.ts")).then(function (m) { return m.ShowtankerlistPageModule; }); }
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -664,6 +668,10 @@ var AppComponent = /** @class */ (function () {
                 {
                     title: 'Petrol/Diesel',
                     url: '/petroldieselamount',
+                },
+                {
+                    title: 'Tanker List',
+                    url: '/showtankerlist',
                 },
                 {
                     title: 'Tanker',

@@ -95,8 +95,8 @@ ShowbalancerecordPageModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
             _angular_material__WEBPACK_IMPORTED_MODULE_7__["MatMenuModule"],
             _showbalancerecord_routing_module__WEBPACK_IMPORTED_MODULE_5__["ShowbalancerecordPageRoutingModule"]
         ],
-        exports: [src_app_pipes_negativenumber_pipe__WEBPACK_IMPORTED_MODULE_11__["NegativenumberPipe"]],
         providers: [_ionic_native_sms_ngx__WEBPACK_IMPORTED_MODULE_10__["SMS"], _ionic_native_call_number_ngx__WEBPACK_IMPORTED_MODULE_9__["CallNumber"],],
+        exports: [src_app_pipes_negativenumber_pipe__WEBPACK_IMPORTED_MODULE_11__["NegativenumberPipe"]],
         declarations: [_showbalancerecord_page__WEBPACK_IMPORTED_MODULE_6__["ShowbalancerecordPage"], src_app_pipes_negativenumber_pipe__WEBPACK_IMPORTED_MODULE_11__["NegativenumberPipe"]]
     })
 ], ShowbalancerecordPageModule);
