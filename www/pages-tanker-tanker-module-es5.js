@@ -206,7 +206,7 @@ var TankerPage = /** @class */ (function () {
             this.apiCall.postWAu(url, send_date).subscribe(function (MyResponse) {
                 var msg = MyResponse['message'];
                 _this.presentToast(msg);
-                _this.router.navigate(['/tanker']);
+                _this.router.navigate(['/showtankerlist']);
                 // this.tankerModel['type'] = "";
                 // this.tankerModel['tankerbalance'] = "";
                 _this.loader.stopLoading();

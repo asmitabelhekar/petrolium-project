@@ -148,6 +148,7 @@ let DataentryopeningPage = class DataentryopeningPage {
         this.toast = toast;
         this.apiCall = apiCall;
         this.router = router;
+        this.checkFuelType = 0;
         this.openingModel = {};
         this.fuelType = [
             { "type": "Petrol" },
@@ -170,7 +171,8 @@ let DataentryopeningPage = class DataentryopeningPage {
         this.today = new Date().toJSON().split('T')[0];
     }
     ngOnInit() {
-        this.openingModel['type'] = 2;
+        this.openingModel['type'] = 0;
+        this.getOpeningBalance(this.openingModel['type']);
         this.openingModel['date'] = new Date().toJSON().split('T')[0];
         this.today = new Date().toJSON().split('T')[0];
     }
@@ -219,11 +221,11 @@ let DataentryopeningPage = class DataentryopeningPage {
         this.checkFuelType = fuelType;
         if (fuelType == 0) {
             this.openingModel['type'] = 0;
-            this.getOpeningBalance();
+            this.getOpeningBalance(this.openingModel['type']);
         }
         else {
             this.openingModel['type'] = 1;
-            this.getOpeningBalance();
+            this.getOpeningBalance(this.openingModel['type']);
         }
     }
     presentToast(message) {
@@ -238,19 +240,19 @@ let DataentryopeningPage = class DataentryopeningPage {
     changeClient(value) {
         if (value == "Petrol") {
             this.openingModel['type'] = 0;
-            this.getOpeningBalance();
+            this.getOpeningBalance(this.openingModel['type']);
         }
         else {
             this.openingModel['type'] = 1;
-            this.getOpeningBalance();
+            this.getOpeningBalance(this.openingModel['type']);
         }
         console.log("type : " + this.openingModel['type']);
     }
-    getOpeningBalance() {
+    getOpeningBalance(type) {
         this.loader.presentLoading();
         let objectt = {};
         objectt['date'] = this.openingModel['date'];
-        objectt['type'] = this.openingModel['type'];
+        objectt['type'] = type;
         let url = src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].base_url + "balance?" + "filters=" + JSON.stringify(objectt);
         console.log("url :" + url);
         this.apiCall.get(url).subscribe(MyResponse => {

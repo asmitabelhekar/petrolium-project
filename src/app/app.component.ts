@@ -156,6 +156,29 @@ export class AppComponent {
 
         }
       ];
+    }else if (this.userRole == 3) {
+      this.appPages = [
+        {
+          title: 'Tanker Sell',
+          url: '/tankersellsubmit',
+
+        },
+        {
+          title: 'Credit',
+          url: '/dataentrycredit',
+
+        },
+        {
+          title: 'Opening',
+          url: '/dataentryopening',
+
+        },
+        {
+          title: 'Log Out',
+          url: '/login',
+
+        }
+      ];
     }else{
       this.appPages = [
         {
@@ -252,6 +275,9 @@ export class AppComponent {
         return;
       } else if (this.userRole == 2) {
         this.router.navigate(['/home']);
+        return;
+      }else if (this.userRole == 3) {
+        this.router.navigate(['/tankersellsubmit']);
         return;
       }
       else {

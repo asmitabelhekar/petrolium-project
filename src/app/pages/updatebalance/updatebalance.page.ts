@@ -61,7 +61,7 @@ export class UpdatebalancePage implements OnInit {
   }
 
   ngOnInit() {
-    this.userModel['type'] = 2;
+    this.userModel['type'] = 0;
 
     this.petrolPrice = localStorage.getItem('petrolPrice');
     this.dieselPrice = localStorage.getItem('dieselPrice');

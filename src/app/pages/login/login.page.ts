@@ -57,6 +57,10 @@ export class LoginPage implements OnInit {
       }
       else if (this.userRole == '1') {
         this.router.navigate(['/home']);
+      }else if (this.userRole == '2') {
+        this.router.navigate(['/home']);
+      }else if (this.userRole == '3') {
+        this.router.navigate(['/tankersellsubmit']);
       }
       else {
         this.router.navigate(['/home']);

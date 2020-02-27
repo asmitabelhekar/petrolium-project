@@ -167,6 +167,7 @@ var UpdatebalancePage = /** @class */ (function () {
         this.showDateNoteDiv = 1;
         this.userModel = {};
         this.displayBalnace = 0;
+        this.checkFuelType = 0;
         this.myControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]();
         this.buttonsArray = [
             {
@@ -184,7 +185,7 @@ var UpdatebalancePage = /** @class */ (function () {
     }
     UpdatebalancePage.prototype.ngOnInit = function () {
         var _this = this;
-        this.userModel['type'] = 2;
+        this.userModel['type'] = 0;
         this.petrolPrice = localStorage.getItem('petrolPrice');
         this.dieselPrice = localStorage.getItem('dieselPrice');
         this.userModel['perliture'] = this.petrolPrice;

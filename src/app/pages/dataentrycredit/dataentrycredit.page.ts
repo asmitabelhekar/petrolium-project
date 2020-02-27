@@ -71,7 +71,7 @@ export class DataentrycreditPage implements OnInit {
     this.userModel['perliture'] = this.userModel['petrolamount'];
     
     this.getCustomerList();
-    this.userModel['type'] = 2
+    this.userModel['type'] = 0;
     this.filteredOptions = this.myControl.valueChanges
       .pipe(startWith(''),
         map(value => this._filter(value))

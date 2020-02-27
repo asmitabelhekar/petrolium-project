@@ -160,6 +160,7 @@ let DataentrycreditPage = class DataentrycreditPage {
         this.myControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]();
         this.userModel = {};
         this.displayBalnace = 0;
+        this.checkFuelType = 0;
         this.autoCompleteArray = [];
         this.customerList = [];
         this.recordNotPresent = 0;
@@ -185,7 +186,7 @@ let DataentrycreditPage = class DataentrycreditPage {
         this.getDieselAmount();
         this.userModel['perliture'] = this.userModel['petrolamount'];
         this.getCustomerList();
-        this.userModel['type'] = 2;
+        this.userModel['type'] = 0;
         this.filteredOptions = this.myControl.valueChanges
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(value => this._filter(value)));
         this.userModel['date'] = new Date().toJSON().split('T')[0];

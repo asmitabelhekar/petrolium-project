@@ -1,0 +1,102 @@
+<ion-header class="new-background-color">
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start" style="color:white">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="color:white">
+      Tanker Sell
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div fxLayout="column" fxLayoutAlign="center center">
+
+    <div fxLayout="row" fxLayoutAlign="center center" style="width:100%">
+     
+      <mat-form-field style="width:90%; margin-top:10px">
+        <mat-label>Opening Balance</mat-label>
+        <input matInput type="number" name="openingbalance"  (input)="OnInput($event)"  [(ngModel)]="tankerSellModel.openingbalance"
+          #openingbalance="ngModel" class="form-control" align="center" required pattern="[0-9.-]+$">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center" style="width:100%">
+     
+      <mat-form-field style="width:90%; margin-top:10px">
+        <mat-label>Closing Balance</mat-label>
+        <input matInput type="number" name="closingbalance"  (input)="OnInput($event)"  [(ngModel)]="tankerSellModel.closingbalance"
+          #closingbalance="ngModel" class="form-control" align="center" required pattern="[0-9.-]+$">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center" style="width:100%">
+     
+      <mat-form-field style="width:90%; margin-top:10px">
+        <mat-label>Nosel Rate</mat-label>
+        <input matInput type="number" name="noselrate" [(ngModel)]="tankerSellModel.noselrate"
+          #noselrate="ngModel" class="form-control" align="center" required pattern="[0-9.-]+$">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center" style="width:100%">
+     
+      <mat-form-field style="width:90%; margin-top:10px">
+        <mat-label>Testing</mat-label>
+        <input matInput type="number" name="testing" (input)="totalAmount($event)" [(ngModel)]="tankerSellModel.testing"
+          #testing="ngModel" class="form-control" align="center" required pattern="[0-9.-]+$">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center" style="width:100%">
+     
+      <mat-form-field style="width:90%; margin-top:10px">
+        <mat-label>Total Amount</mat-label>
+        <input matInput type="number" name="totalamount" [(ngModel)]="tankerSellModel.totalamount"
+          #totalamount="ngModel" class="form-control" align="center" required pattern="[0-9.-]+$">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center" style="width:100%">
+     
+      <mat-form-field style="width:90%; margin-top:10px">
+        <mat-label>Rate</mat-label>
+        <input matInput type="number" name="rate" (input)="finalAmount($event)" [(ngModel)]="tankerSellModel.rate"
+          #rate="ngModel" class="form-control" align="center" required pattern="[0-9.-]+$">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center" style="width:100%">
+     
+      <mat-form-field style="width:90%; margin-top:10px">
+        <mat-label>Final Amount</mat-label>
+        <input matInput type="number" name="finalamount" [(ngModel)]="tankerSellModel.finalamount"
+          #finalamount="ngModel" class="form-control" align="center" required pattern="[0-9.-]+$">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center" style="width:100%">
+     
+      <mat-form-field style="width:90%; margin-top:10px">
+        <mat-label>Credit</mat-label>
+        <input matInput type="number" name="credit" (input)="totalSellAmount($event)" [(ngModel)]="tankerSellModel.credit"
+          #credit="ngModel" class="form-control" align="center" required pattern="[0-9.-]+$">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center" style="width:100%">
+     
+      <mat-form-field style="width:90%; margin-top:10px">
+        <mat-label>Total Sell</mat-label>
+        <input matInput type="number" name="totalsell" [(ngModel)]="tankerSellModel.totalsell"
+          #totalsell="ngModel" class="form-control" align="center" required pattern="[0-9.-]+$">
+      </mat-form-field>
+    </div>
+
+    <div fxLayout="row" fxLayoutAlign="center center" style="margin-top:10%;width:100%">
+      <button mat-raised-button [disabled]="openingbalance.invalid || closingbalance.invalid || noselrate.invalid || testing.invalid || totalamount.invalid || rate.invalid ||
+      finalamount.invalid || credit.invalid || totalsell.invalid " class="submitButton" (click)="openingBalanceSubmit()">Submit</button>
+    </div>
+  </div>
+ 
+</ion-content>

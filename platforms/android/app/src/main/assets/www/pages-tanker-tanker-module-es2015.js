@@ -199,7 +199,7 @@ let TankerPage = class TankerPage {
             this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
                 let msg = MyResponse['message'];
                 this.presentToast(msg);
-                this.router.navigate(['/tanker']);
+                this.router.navigate(['/showtankerlist']);
                 // this.tankerModel['type'] = "";
                 // this.tankerModel['tankerbalance'] = "";
                 this.loader.stopLoading();

@@ -70,6 +70,10 @@ const routes: Routes = [
   {
     path: 'showtankerlist',
     loadChildren: () => import('./pages/showtankerlist/showtankerlist.module').then( m => m.ShowtankerlistPageModule)
+  },
+  {
+    path: 'tankersellsubmit',
+    loadChildren: () => import('./pages/tankersellsubmit/tankersellsubmit.module').then( m => m.TankersellsubmitPageModule)
   }
 ];
 
