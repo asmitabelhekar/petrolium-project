@@ -29,6 +29,15 @@ export class DebitamountPage implements OnInit {
   checkRecordStatus: any;
   recordNotPresent = 0;
 
+  debitType = [
+    {"type" : "Select debit type"},
+    {"type" : "Cash"},
+    {"type" : "Card"},
+    {"type" : "Cheque"}, 
+  ];
+
+
+
   constructor(public toast: ToastController,
     public apiCall: ApicallService,
     public loader: LoaderserviceService,

@@ -49,6 +49,24 @@
         </mat-form-field>
       </div>
 
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-form-field style="width:90%">
+          <mat-label>Debit Type</mat-label>
+          <select matNativeControl required>
+            <option *ngFor="let type of debitType" [value]="type.type"> {{type.type}}</option>
+          </select>
+        </mat-form-field>
+      </div>
+  
+
+      <div fxLayout="row" fxLayoutAlign="center center" style="width:100%;">
+        <mat-form-field style="width:90%">
+          <mat-label>Debit Detail</mat-label>
+              <input matInput type="text" name="debitdetail" [(ngModel)]="userModel.debitdetail"
+                #debitdetail="ngModel" class="form-control" align="center" required pattern="[a-zA-Z.  -]+$">
+        </mat-form-field>
+      </div>
+
 
       <div fxLayout="row" fxLayoutAlign="center center" style="width:100%;">
         <mat-form-field style="width:90%">

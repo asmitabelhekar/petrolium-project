@@ -20,24 +20,56 @@
 
     <div fxLayout="row" fxLayoutAlign="center center">
       <mat-form-field style="width:90%">
-        <input type="text"
-               placeholder="Customer Name"
-               aria-label="Number"
-               matInput
-               [(ngModel)]="userModel.customername"
-               [formControl]="myControl"
-               [matAutocomplete]="auto">
+        <input type="text" placeholder="Customer Name" aria-label="Number" matInput [(ngModel)]="userModel.customername"
+          [formControl]="myControl" [matAutocomplete]="auto">
         <mat-autocomplete #auto="matAutocomplete">
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
             {{option}}
           </mat-option>
-        
-          <mat-option  [value]="option" *ngIf="recordNotPresent == 1"  (click)="addCustomer()">
+
+          <mat-option [value]="option" *ngIf="recordNotPresent == 1" (click)="addCustomer()">
             Add Customer
-           </mat-option>
+          </mat-option>
         </mat-autocomplete>
       </mat-form-field>
     </div>
+
+    <div *ngIf="checkDriverDiv == 0 ">
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-form-field style="width:90%">
+          <input matInput class="form-control " name="dname" required [(ngModel)]="userModel.dname" #dname="ngModel"
+            pattern="[a-zA-z   ]+$" placeholder="Driver Name" />
+          <!-- <mat-error>
+            <div class="form-group">
+              <div *ngIf="dname.invalid && (dname.dirty || dname.touched)">
+                Driver Name Is Requird
+              </div>
+            </div>
+          </mat-error> -->
+        </mat-form-field>
+      </div>
+  
+  
+  
+      <div fxLayout="row" fxLayoutAlign="center center" >
+        <mat-form-field style="width:90%">
+          <mat-label>Vehicle Number</mat-label>
+          <select matNativeControl required>
+            <option *ngFor="let type of vehicleNumber" [value]="type.vihiclenumber"> {{type.vihiclenumber}}</option>
+          </select>
+        </mat-form-field>
+      </div>
+  
+    </div>
+
+ 
+
+    <!-- <div fxLayout="row" fxLayoutAlign="center center">
+      <mat-form-field style="width:90%">
+        <input matInput class="form-control " name="sname" required [(ngModel)]="userModel.sname" #sname="ngModel"
+          pattern="[a-zA-z   ]+$" placeholder="Staff Name" />
+      </mat-form-field>
+    </div> -->
 
 
     <div fxLayout="row" fxLayoutAlign="center center">
@@ -78,6 +110,8 @@
       </div>
 
 
+
+
       <div fxLayout="row" fxLayoutAlign="center center">
         <mat-form-field style="width:90%">
           <mat-label>Per Liture</mat-label>
@@ -100,8 +134,8 @@
     <div fxLayout="row" fxLayoutAlign="center center" style="width:100%;">
       <mat-form-field style="width:90%">
         <mat-label>Amount Paid</mat-label>
-            <input matInput type="number" name="payment" (input)="OnInput($event)" [(ngModel)]="userModel.payment"
-              #payment="ngModel" class="form-control" align="center" required pattern="[0-9.-]+$">
+        <input matInput type="number" name="payment" (input)="OnInput($event)" [(ngModel)]="userModel.payment"
+          #payment="ngModel" class="form-control" align="center" required pattern="[0-9.-]+$">
       </mat-form-field>
     </div>
 

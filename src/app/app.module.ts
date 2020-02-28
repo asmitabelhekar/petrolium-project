@@ -12,9 +12,9 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
-import { MatFormFieldModule, MatInputModule, MatIconModule, MatCardModule, MatMenuModule, MatDialogModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatSelectModule, MatAutocompleteModule } from '@angular/material'
+import { MatFormFieldModule, MatInputModule, MatIconModule, MatCardModule, MatMenuModule, MatDialogModule, MatDatepickerModule, MatNativeDateModule, MAT_DATE_LOCALE, MatAutocompleteModule, MatOptionModule } from '@angular/material'
 import {MatButtonModule} from '@angular/material/button';
-
+import {MatSelectModule} from '@angular/material/select'; 
 import { File } from '@ionic-native/file';
 import { FileOpener } from '@ionic-native/file-opener';
 
@@ -32,12 +32,7 @@ import { CustomPipe } from './custom.pipe';
     IonicModule.forRoot(),
     AppRoutingModule,
     FlexLayoutModule,
-    MatFormFieldModule,
-    MatIconModule,
     MatNativeDateModule,
-    BrowserAnimationsModule,
-    FlexLayoutModule,
-    MatButtonModule,
     MatFormFieldModule,
     MatButtonModule,
     MatCardModule,
@@ -53,6 +48,8 @@ import { CustomPipe } from './custom.pipe';
     MatSelectModule,
     MatAutocompleteModule,
     ReactiveFormsModule,
+    MatOptionModule
+    
   ],
   providers: [
     StatusBar,

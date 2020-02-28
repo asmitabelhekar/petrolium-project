@@ -17,6 +17,11 @@ import { LoaderserviceService } from 'src/app/service/loader/loaderservice.servi
 })
 export class DataentrycreditPage implements OnInit {
 
+
+  checkArray = [ 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R']
+ str = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20";
+ temp = new Array();
+displayString : any = "asmita";
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
   serchKey: any;
@@ -38,6 +43,7 @@ export class DataentrycreditPage implements OnInit {
   recordNotPresent = 0;
   type: any;
   getData: any;
+  checkDriverDiv: any = 1;
   buttonsArray = [
     {
       "fuelType": "Petrol",
@@ -50,6 +56,24 @@ export class DataentrycreditPage implements OnInit {
       "type": "1"
     }];
 
+    food = [
+      {value: 'steak-0', viewValue: 'Steak'},
+      {value: 'pizza-1', viewValue: 'Pizza'},
+      {value: 'tacos-2', viewValue: 'Tacos'}
+    ];
+
+    vehicleNumber = [
+      {"vihiclenumber" : "Select vehicle number"},
+      {"vihiclenumber" : "MH67GH4567"},
+      {"vihiclenumber" : "MH67GH4566"},
+      {"vihiclenumber" : "MH67GH4565"},
+      {"vihiclenumber" : "MH67GH4564"},
+      {"vihiclenumber" : "MH67GH4563"},
+      {"vihiclenumber" : "MH67GH4562"},
+
+      
+    ];
+
   constructor(public activatedRoute: ActivatedRoute,
     public router: Router,
     public location: Location,
@@ -57,13 +81,21 @@ export class DataentrycreditPage implements OnInit {
     public apiCall: ApicallService,
     public loader: LoaderserviceService,
     public dateAdapter: DateAdapter<Date>,
-    public menu: MenuController) {
+    public menu: MenuController)
+     {
     this.menu.enable(true);
     this.dateAdapter.setLocale("en-GB");
   }
 
   ngOnInit() {
 
+    this.temp = this.str.split(",");
+    for (let a in this.temp ) {
+      this.temp[a] = parseInt(this.temp[a]); // Explicitly include base as per Álvaro's comment
+  }
+
+  console.log("display array:"+this.checkArray);
+  this.userModel['dname'] = this.checkArray.toString();
     this.petrolPrice = localStorage.getItem('petrolPrice');
     this.dieselPrice = localStorage.getItem('dieselPrice');
     this.getPetrolAmount();
@@ -77,6 +109,12 @@ export class DataentrycreditPage implements OnInit {
         map(value => this._filter(value))
       );
 
+      if(this.userModel['customerName'] == "" || this.userModel['customerName'] == null || this.userModel['customerName'] == undefined){
+        this.checkDriverDiv = 1;
+      }else{
+        this.checkDriverDiv = 0;
+      }
+
     this.userModel['date'] = new Date().toJSON().split('T')[0];
     this.today = new Date().toJSON().split('T')[0];
     let loginStatus = localStorage.getItem("loginStatus");
@@ -87,6 +125,10 @@ export class DataentrycreditPage implements OnInit {
     const filterValue = value.toLowerCase();
     if (this.customerList.filter(option => option.toLowerCase().includes(filterValue)) == undefined || this.customerList.filter(option => option.toLowerCase().includes(filterValue)) == "" || this.customerList.filter(option => option.toLowerCase().includes(filterValue)) == null) {
       this.recordNotPresent = 1;
+      this.checkDriverDiv = 1;
+    }else{
+
+      this.checkDriverDiv = 0;
     }
     return this.customerList.filter(option => option.toLowerCase().includes(filterValue));
   }
