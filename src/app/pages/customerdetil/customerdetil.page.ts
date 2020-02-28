@@ -28,6 +28,8 @@ export class CustomerdetilPage implements OnInit {
   firstName: any;
   customerId: any
 
+  vehicleDetail : any;
+
   constructor(public activatedRoute: ActivatedRoute,
     public router: Router,
     public location : Location,
@@ -103,6 +105,8 @@ export class CustomerdetilPage implements OnInit {
         else{
           this.customerNote = "NA";
         }
+
+        this.vehicleDetail = this.getCustomerDetail['vehicles'];
         this.loader.stopLoading();
       },
         error => {
@@ -123,7 +127,8 @@ export class CustomerdetilPage implements OnInit {
         "email" : this.customerEmail,
         "checkstatus" : this.checkRecordStatus,
         "note" : this.customerNote,
-        "customerId" : this.customerId
+        "customerId" : this.customerId,
+        "vehicles" : this.vehicleDetail
       }
       this.router.navigate(['/addcustomer', { detailCustomerdata: JSON.stringify(detailCustomerdata) }]);
     }

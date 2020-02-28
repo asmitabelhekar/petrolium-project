@@ -19,7 +19,10 @@ export class AddcustomerPage implements OnInit {
   checkStatus: any;
   customerId: any;
   url: any;
+  displayVehicleRecord: any = 1;
   mobieNumber: String;
+  vehicleDetailArray: any;
+  getData: any;
 
   constructor(public router: Router,
     public toast: ToastController,
@@ -37,6 +40,10 @@ export class AddcustomerPage implements OnInit {
     this.userModel['address'] = displayArrayValues.address;
     this.userModel['email'] = displayArrayValues.email;
     this.userModel['note'] = displayArrayValues.note;
+    this.vehicleDetailArray = displayArrayValues.vehicles;
+    if(this.vehicleDetailArray.length > 0){
+      this.displayVehicleRecord = 0;
+    }
     this.customerId = displayArrayValues.customerId;
 
     let fullname = displayArrayValues.fname;
@@ -70,60 +77,68 @@ export class AddcustomerPage implements OnInit {
 
   async addCustomerData() {
     this.loader.presentLoading();
-    let send_date = {};
-    this.mobieNumber = this.userModel['mobile'];
-
-    send_date['firstName'] = this.userModel['fname'];
-    send_date['lastName'] = this.userModel['lname'];
-    send_date['mobile'] = this.mobieNumber.toString();
-    send_date['address'] = this.userModel['address'];
-    if (this.userModel['note'] != "") {
-      send_date['note'] = this.userModel['note'];
+    if(this.vehicleDetailArray.length > 0){
+      let send_date = {};
+      this.mobieNumber = this.userModel['mobile'];
+  
+      send_date['firstName'] = this.userModel['fname'];
+      send_date['lastName'] = this.userModel['lname'];
+      send_date['mobile'] = this.mobieNumber.toString();
+      send_date['address'] = this.userModel['address'];
+      
+      send_date['vehicles'] = this.vehicleDetailArray;
+      if (this.userModel['note'] != "") {
+        send_date['note'] = this.userModel['note'];
+      }
+      if (this.userModel['email'] != "") {
+        send_date['email'] = this.userModel['email'];
+      }
+      send_date['isActive'] = 1;
+  
+      if (this.checkStatus == "add") {
+  
+        this.url = environment.base_url + "customers"
+  
+        this.apiCall.postWAu(this.url, send_date).subscribe(MyResponse => {
+          console.log("MyResponse ", MyResponse);
+          this.events.publish('Event-AddCustomer')
+          this.router.navigate(['/home']);
+  
+          let msg = MyResponse['message'];
+          this.presentToast(msg);
+          this.loader.stopLoading();
+        }, error => {
+          this.presentToast("Something went wrong");
+          console.log(error.error.message);
+  
+        })
+      } else if (this.checkStatus == "update") {
+        this.loader.presentLoading();
+        this.url = environment.base_url + "customers/" + this.customerId;
+  
+        this.apiCall.put(this.url, send_date).subscribe(MyResponse => {
+          console.log("MyResponse ", MyResponse);
+          this.events.publish('Event-AddCustomer')
+          this.router.navigate(['/home']);
+  
+          let msg = MyResponse['message'];
+          this.presentToast(msg);
+          this.loader.stopLoading();
+        }, error => {
+          this.loader.stopLoading();
+          this.presentToast("Something went wrong");
+          console.log(error.error.message);
+  
+        })
+      } else {
+  
+      }
+  
     }
-    if (this.userModel['email'] != "") {
-      send_date['email'] = this.userModel['email'];
+    else{
+      this.presentToast("Please add vehicle details.");
     }
-    send_date['isActive'] = 1;
-
-    if (this.checkStatus == "add") {
-
-      this.url = environment.base_url + "customers"
-
-      this.apiCall.postWAu(this.url, send_date).subscribe(MyResponse => {
-        console.log("MyResponse ", MyResponse);
-        this.events.publish('Event-AddCustomer')
-        this.router.navigate(['/home']);
-
-        let msg = MyResponse['message'];
-        this.presentToast(msg);
-        this.loader.stopLoading();
-      }, error => {
-        this.presentToast("Something went wrong");
-        console.log(error.error.message);
-
-      })
-    } else if (this.checkStatus == "update") {
-      this.loader.presentLoading();
-      this.url = environment.base_url + "customers/" + this.customerId;
-
-      this.apiCall.put(this.url, send_date).subscribe(MyResponse => {
-        console.log("MyResponse ", MyResponse);
-        this.events.publish('Event-AddCustomer')
-        this.router.navigate(['/home']);
-
-        let msg = MyResponse['message'];
-        this.presentToast(msg);
-        this.loader.stopLoading();
-      }, error => {
-        this.loader.stopLoading();
-        this.presentToast("Something went wrong");
-        console.log(error.error.message);
-
-      })
-    } else {
-
-    }
-
+ 
 
   }
 
@@ -178,4 +193,57 @@ export class AddcustomerPage implements OnInit {
 
     await alert.present();
   }
+
+  addVehicle() {
+    if (this.userModel['dname'] == "" || this.userModel['dname'] == null || this.userModel['dname'] == undefined) {
+      alert("please fill driver name.")
+    } else {
+      if (this.userModel['numberv'] == "" || this.userModel['numberv'] == null || this.userModel['numberv'] == undefined) {
+        alert("please fill vehicle number")
+      }
+      else {
+        let objjj = {
+          "driverName": this.userModel['dname'],
+          "displaydata ": this.userModel['numberv']
+        };
+        this.displayVehicleRecord = 0;
+        this.vehicleDetailArray.push(objjj);
+
+      }
+
+    }
+  }
+
+  removeRecord(index) {
+    console.log("before remove array:" + this.vehicleDetailArray);
+
+    for (var i = 0; i < this.vehicleDetailArray.length; i++) {
+      if (i == index) {
+        this.vehicleDetailArray.splice(i, 1);
+      }
+    }
+    if (this.vehicleDetailArray.length > 0) {
+      this.displayVehicleRecord = 0;
+    } else {
+      this.displayVehicleRecord = 1;
+    }
+    console.log("after remove array:" + this.vehicleDetailArray);
+  }
+
+  updateRecord(index, data) {
+    this.getData = JSON.stringify(data);
+    this.userModel['dname'] = data.driverName;
+    this.userModel['numberv'] = data.displaydata;
+    let name = this.userModel['dname'];
+    // this.vehicleDetailArray = this.replaceAt(this.vehicleDetailArray, index, data.driverName);
+
+    // alert("disaplay data:" +this.getData['driverName']);
+  }
+   
+   replaceAt(array, index, value) {
+    const ret = array.slice(0);
+    ret[index] = value;
+    return ret;
+  }
+  
 }

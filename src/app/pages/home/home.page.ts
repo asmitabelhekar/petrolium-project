@@ -55,7 +55,9 @@ export class HomePage {
       "address": "",
       "email": "",
       "checkstatus": this.checkRecordStatus,
-      "note": ""
+      "note": "",
+      "vehicles" : []
+
     }
     this.router.navigate(['/addcustomer', { detailCustomerdata: JSON.stringify(detailCustomerdata) }]);
   }

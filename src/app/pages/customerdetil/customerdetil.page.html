@@ -69,7 +69,7 @@
     </ion-col>
   </ion-row>
 
-  <ion-row style="margin-left:15px">
+  <!-- <ion-row style="margin-left:15px">
     <ion-col size="2">
       <ion-icon name="mail" style="width:25px; height:28px; color : #5b5b5e; margin-top: 12px">
       </ion-icon>
@@ -80,7 +80,7 @@
       </ion-item>
 
     </ion-col>
-  </ion-row>
+  </ion-row> -->
 
   <ion-row style="margin-left:15px">
     <ion-col size="2">
@@ -107,6 +107,41 @@
     </ion-col>
   </ion-row>
 
+  <!-- <div >
+    <table>
+      <th style="margin-right: 20px;">Driver Name</th>
+      <th>Vehicle Number</th>
+      <tr *ngFor="let x of vehicleDetail">
+        <td>{{ x.driverName }}</td>
+        <td>{{ x.number }}</td>
+      </tr>
+    </table>
+  </div> -->
+<div fxlayout="row" fxLayoutAlign="center center" style="width:90%">
+  <label>Vehicle Detail</label>
+  <div fxLayout="column" fxLayoutAlign="center center" style="width:90%">
+    <ion-row style="border: 1px solid grey; width:100%">
+      <ion-col size="6" style="border-right: 1px solid grey;" >
+        <b>Driver Name</b>
+      </ion-col>
+      <ion-col size="6" >
+        <b>Vehicle Number</b>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngFor="let x of vehicleDetail" style="border: 1px solid grey; width:  100%;" >
+      <ion-col size="6" style="border-right: 1px solid grey;" >
+        <label >{{ x.driverName }}</label>
+      </ion-col >
+      <ion-col size="6" >
+       <label >
+        {{ x.number }}
+       </label> 
+      </ion-col>
+    </ion-row>
+  </div>
+
+</div>
 
   <div class="editCss" style="margin-top:20%" (click)="editDetails()">
     <ion-icon name="create" style="width:20px; height:18px; color : #ffffff;">

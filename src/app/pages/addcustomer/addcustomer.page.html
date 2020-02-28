@@ -20,7 +20,7 @@
 </ion-header>
 <ion-content>
 
-  <form #userForm="ngForm">
+  <form #userForm="ngForm" style="width:100%">
     <!-- <button style="width:55px; height: 55px; background-color: #bfc0c9;font-size:20px" class="centerImg">+</button> -->
     <ion-row style="width:100%;margin-top:5%">
       <ion-col size="2">
@@ -156,6 +156,104 @@
         </ion-row>
       </ion-col>
     </ion-row>
+
+    <ion-row style="margin-top:-10px">
+      <ion-col size="2">
+        <ion-icon name="person" style="width:25px; height:25px; color : #93959e; margin: 20px">
+        </ion-icon>
+      </ion-col>
+      <ion-col size="10">
+        <ion-row >
+          <mat-form-field style="width:95%; margin-right:5%">
+            <input matInput class="form-control " name="dname" required [(ngModel)]="userModel.dname" #dname="ngModel"
+              pattern="[a-zA-z   ]+$" placeholder="Driver Name" />
+            <mat-error>
+              <div class="form-group">
+                <div *ngIf="dname.invalid && (dname.dirty || dname.touched)">
+                  Driver Name Is Requird
+                </div>
+              </div>
+            </mat-error>
+
+          </mat-form-field>
+        </ion-row>
+      
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top:-10px">
+      <ion-col size="2">
+        <ion-icon name="person" style="width:25px; height:25px; color : #93959e; margin: 20px">
+        </ion-icon>
+      </ion-col>
+      <ion-col size="8">
+        <ion-row >
+          <mat-form-field style="width:95%; margin-right:5%">
+            <input matInput class="form-control " name="numberv" required [(ngModel)]="userModel.numberv" #numberv="ngModel"
+              pattern="[a-zA-z   ]+$" placeholder="Vehicle Number" />
+            <mat-error>
+              <div class="form-group">
+                <div *ngIf="numberv.invalid && (numberv.dirty || numberv.touched)">
+                  Driver Name Is Requird
+                </div>
+              </div>
+            </mat-error>
+
+          </mat-form-field>
+        </ion-row>
+      
+
+        
+        
+        
+      </ion-col>
+      <ion-col size="2">
+        <ion-icon name="add-circle" style="width:25px; height:25px; color : #93959e; margin: 20px" (click)="addVehicle()">
+        </ion-icon>
+      </ion-col>
+    </ion-row>
+
+    <div fxlayout="row" fxLayoutAlign="center center">
+      <div fxLayout="column" fxLayoutAlign="center center" *ngIf="displayVehicleRecord == 0" style="width:85%">
+      <label>Vehicle Detail</label>
+
+        <ion-row style="border: 1px solid grey; width:100%">
+          <ion-col size="4" style="border-right: 1px solid grey;" >
+           <label class="cl_table_title_css"> <b >Driver Name</b></label>
+          </ion-col>
+          <ion-col size="4" style="border-right: 1px solid grey;" >
+           <label class="cl_table_title_css">  <b>Vehicle Number</b> </label>
+          </ion-col>
+          <ion-col size="2" style="border-right: 1px solid grey;" >
+            <label class="cl_table_title_css"> <b>Update</b></label>
+          </ion-col>
+          <ion-col size="2" >
+            <label class="cl_table_title_css"> <b>Delete</b></label>
+          </ion-col>
+        </ion-row>
+    
+        <ion-row *ngFor="let item of vehicleDetailArray; let i = index;" style="border: 1px solid grey; width:  100%;" >
+          <ion-col size="4" style="border-right: 1px solid grey;" >
+            <label class="cl_table_content_css">{{item.driverName }}</label>
+          </ion-col >
+          <ion-col size="4" style="border-right: 1px solid grey;" >
+           <label class="cl_table_content_css">
+            {{item.displaydata}}
+           </label> 
+          </ion-col>
+
+          <ion-col size="2" style="border-right: 1px solid grey;" >
+          <ion-icon name="create" style="width: 20px; height: 20px;" (click)="updateRecord(i,item)"></ion-icon>
+           </ion-col>
+
+           <ion-col size="2" style="border-right: 1px solid grey;" >
+            <ion-icon name="close" style="width: 20px; height: 20px;" (click)="removeRecord(i)"></ion-icon>
+           </ion-col>
+        </ion-row>
+      </div>
+    
+    </div>
 
    
     <div fxLayout="row" fxLayoutAlign="center center" style="margin-top:15px">

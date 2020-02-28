@@ -37,12 +37,16 @@ displayString : any = "asmita";
   autoCompleteArray: any = [];
   customerList: any = [];
   url: any;
+  userName : any;
+  userId : any;
+  userMobile : any;
   petrolPrice: any;
   dieselPrice: any;
   checkRecordStatus: any;
   recordNotPresent = 0;
   type: any;
   getData: any;
+  userObject : any = {};
   checkDriverDiv: any = 1;
   buttonsArray = [
     {
@@ -88,14 +92,22 @@ displayString : any = "asmita";
   }
 
   ngOnInit() {
+    this.userName = localStorage.getItem('userName');
+    this.userId = localStorage.getItem('userId');
+    this.userMobile = localStorage.getItem('userMobileNumber');
 
-    this.temp = this.str.split(",");
-    for (let a in this.temp ) {
-      this.temp[a] = parseInt(this.temp[a]); // Explicitly include base as per Álvaro's comment
-  }
+    this.userObject = {
+      "name" : this.userName,
+      "id" : this.userId,
+      "mobile" : this.userMobile
+    }
+  //   this.temp = this.str.split(",");
+  //   for (let a in this.temp ) {
+  //     this.temp[a] = parseInt(this.temp[a]); // Explicitly include base as per Álvaro's comment
+  // }
+  
 
   console.log("display array:"+this.checkArray);
-  this.userModel['dname'] = this.checkArray.toString();
     this.petrolPrice = localStorage.getItem('petrolPrice');
     this.dieselPrice = localStorage.getItem('dieselPrice');
     this.getPetrolAmount();
@@ -113,6 +125,7 @@ displayString : any = "asmita";
         this.checkDriverDiv = 1;
       }else{
         this.checkDriverDiv = 0;
+
       }
 
     this.userModel['date'] = new Date().toJSON().split('T')[0];
@@ -129,6 +142,13 @@ displayString : any = "asmita";
     }else{
 
       this.checkDriverDiv = 0;
+      for (let i = 0; i < this.getCusstomers.length; i++) {
+        let fullName = this.getCusstomers[i]['firstName'] + " " + this.getCusstomers[i]['lastName'];
+        if(fullName == this.userModel['customername']){
+
+        }
+       
+      }
     }
     return this.customerList.filter(option => option.toLowerCase().includes(filterValue));
   }
@@ -181,6 +201,7 @@ displayString : any = "asmita";
           "id": id
         }
 
+        
         this.autoCompleteArray.push(getObject);
 
       }
@@ -259,6 +280,9 @@ displayString : any = "asmita";
       send_date['finalAmount'] = this.userModel['totalamount'];
       send_date['amountPaid'] = this.userModel['payment']
       send_date['date'] = this.userModel['date'];
+      send_date['driverName'] = this.userModel['dname']
+      send_date['vehicleNumber'] = this.userModel['vehiclenumber'];
+      send_date['createdBy'] = this.userObject;
       if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined ) {      
         send_date['message'] = "Credited with  " + this.userModel['payment'];
       }else{

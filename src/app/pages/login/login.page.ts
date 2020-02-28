@@ -16,7 +16,7 @@ export class LoginPage implements OnInit {
   loginModel: any = {}
   userModel: any = {};
   statusCheck: any;
-
+  userName : any;
   hide = true;
   message;
   loading;
@@ -49,9 +49,14 @@ export class LoginPage implements OnInit {
        {
       localStorage.setItem('userRole', MyResponse['result']['userRole']);
       this.userRole =  MyResponse['result']['userRole'];
+      this.userName = MyResponse['result']['name'];
       localStorage.setItem('login', 'yes');
       this.events.publish('Event-SideMenu')
 
+      localStorage.setItem('userName',MyResponse['result']['name']);
+      localStorage.setItem('userId',MyResponse['result']['id']);
+      localStorage.setItem('userMobileNumber',MyResponse['result']['mobile']);
+      
       if (this.userRole == '0') {
         this.router.navigate(['/dataentrycredit']);
       }
