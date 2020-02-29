@@ -1,5 +1,5 @@
-<ion-header >
-  <ion-toolbar  class="new-background-color">
+<ion-header>
+  <ion-toolbar class="new-background-color">
 
     <ion-row>
       <ion-col size="2">
@@ -17,20 +17,21 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <button class="centerImg" style="font-size :16px; margin-top:12%" [ngClass]="(customerIndex % 2 == 0) ? 'odd' : 'even' ">{{firstName | uppercase}}</button>
+  <button class="centerImg" style="font-size :20px; margin-top:12%"
+    [ngClass]="(customerIndex % 2 == 0) ? 'odd' : 'even' ">{{firstName | uppercase}}</button>
 
   <div fxLayout="column" fxLayoutAlign="center center">
     <!-- <button class="centerImg" style="font-size :16px" [ngClass]="(customerIndex % 2 == 0) ? 'odd' : 'even' ">{{firstName | uppercase}}</button> -->
-     <ion-item>
+    <ion-item>
       <ion-label style="margin-top:3%; ">
         {{customerName | titlecase}}
       </ion-label>
-     </ion-item>
+    </ion-item>
   </div>
-  
-  <ion-item style="margin-left:-15px; margin-top:-10px" >
+
+  <ion-item style="margin-left:-15px; margin-top:-10px">
     <div style="margin-top:-10px" fxLayout="row" fxLayoutAlign="center center">
-    
+
     </div>
 
   </ion-item>
@@ -117,31 +118,34 @@
       </tr>
     </table>
   </div> -->
-<div fxlayout="row" fxLayoutAlign="center center" style="width:90%">
-  <label>Vehicle Detail</label>
-  <div fxLayout="column" fxLayoutAlign="center center" style="width:90%">
-    <ion-row style="border: 1px solid grey; width:100%">
-      <ion-col size="6" style="border-right: 1px solid grey;" >
-        <b>Driver Name</b>
-      </ion-col>
-      <ion-col size="6" >
-        <b>Vehicle Number</b>
-      </ion-col>
-    </ion-row>
+  <div   style="width:100%">
+    <div fxlayout="column" fxLayoutAlign="center center">
+      <!-- <label>Vehicle Detail</label> -->
+      <div fxLayout="column" fxLayoutAlign="center center" style="width:90%">
+        <ion-row style="border: 1px solid grey; width:100%">
+          <ion-col size="6" style="border-right: 1px solid grey;">
+            <b>Driver Name</b>
+          </ion-col>
+          <ion-col size="6">
+            <b>Vehicle Number</b>
+          </ion-col>
+        </ion-row>
 
-    <ion-row *ngFor="let x of vehicleDetail" style="border: 1px solid grey; width:  100%;" >
-      <ion-col size="6" style="border-right: 1px solid grey;" >
-        <label >{{ x.driverName }}</label>
-      </ion-col >
-      <ion-col size="6" >
-       <label >
-        {{ x.number }}
-       </label> 
-      </ion-col>
-    </ion-row>
+        <ion-row *ngFor="let x of vehicleDetail" style="border: 1px solid grey; width:  100%;">
+          <ion-col size="6" style="border-right: 1px solid grey;">
+            <label>{{ x.driverName }}</label>
+          </ion-col>
+          <ion-col size="6">
+            <label>
+              {{ x.vehicleNumber }}
+            </label>
+          </ion-col>
+        </ion-row>
+      </div>
+
+    </div>
   </div>
 
-</div>
 
   <div class="editCss" style="margin-top:20%" (click)="editDetails()">
     <ion-icon name="create" style="width:20px; height:18px; color : #ffffff;">

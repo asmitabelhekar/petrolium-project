@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,OnChanges,ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastController, AlertController, LoadingController, Events } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
@@ -10,8 +10,9 @@ import { LoaderserviceService } from 'src/app/service/loader/loaderservice.servi
   templateUrl: './addcustomer.page.html',
   styleUrls: ['./addcustomer.page.scss'],
 })
-export class AddcustomerPage implements OnInit {
+export class AddcustomerPage implements OnInit,OnChanges {
 
+  checkFlagForUpdate: any= 1;
   loading: any;
   userModel: any = {}
   savetext: any;
@@ -29,6 +30,7 @@ export class AddcustomerPage implements OnInit {
     public loader: LoaderserviceService,
     public apiCall: ApicallService,
     public alertController: AlertController,
+    public cd : ChangeDetectorRef,
     public events: Events,
     public route: ActivatedRoute) { }
 
@@ -62,6 +64,13 @@ export class AddcustomerPage implements OnInit {
     else if (this.checkStatus == "update") {
       this.savetext = "Update Customer";
     }
+  }
+
+  ngOnChanges(){
+
+    console.log(this.vehicleDetailArray);
+    this.cd.detectChanges();
+
   }
 
 
@@ -202,17 +211,29 @@ export class AddcustomerPage implements OnInit {
         alert("please fill vehicle number")
       }
       else {
+
         let objjj = {
           "driverName": this.userModel['dname'],
-          "displaydata ": this.userModel['numberv']
+          "vehicleNumber": this.userModel['numberv']
         };
+
+        if(this.checkFlagForUpdate == 1){
+          this.vehicleDetailArray.push(objjj);
+
+          this.checkFlagForUpdate = 1;
+        }else{
+          let getIndex = localStorage.getItem('arrayIndex');
+          this.vehicleDetailArray[getIndex] = {driverName: this.userModel['dname'], vehicleNumber: this.userModel['numberv']}
+          this.checkFlagForUpdate = 1;
+        }
+       
         this.displayVehicleRecord = 0;
-        this.vehicleDetailArray.push(objjj);
 
+       
       }
-
     }
   }
+
 
   removeRecord(index) {
     console.log("before remove array:" + this.vehicleDetailArray);
@@ -231,10 +252,13 @@ export class AddcustomerPage implements OnInit {
   }
 
   updateRecord(index, data) {
+    this.checkFlagForUpdate = 0;
+    localStorage.setItem("arrayIndex",index);
     this.getData = JSON.stringify(data);
     this.userModel['dname'] = data.driverName;
-    this.userModel['numberv'] = data.displaydata;
+    this.userModel['numberv'] = data.vehicleNumber;
     let name = this.userModel['dname'];
+
     // this.vehicleDetailArray = this.replaceAt(this.vehicleDetailArray, index, data.driverName);
 
     // alert("disaplay data:" +this.getData['driverName']);

@@ -22,7 +22,7 @@
       <mat-form-field style="width:90%">
         <input type="text" placeholder="Customer Name" aria-label="Number" matInput [(ngModel)]="userModel.customername"
           [formControl]="myControl" [matAutocomplete]="auto">
-        <mat-autocomplete #auto="matAutocomplete">
+        <mat-autocomplete #auto="matAutocomplete" (optionSelected)='getPosts($event.option.value)'>
           <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
             {{option}}
           </mat-option>
@@ -35,6 +35,16 @@
     </div>
 
     <div *ngIf="checkDriverDiv == 0 ">
+
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-form-field style="width:90%">
+          <mat-label>Vehicle Number</mat-label>
+          <select matNativeControl required #organization (change)="selectVehicleDetail(organization.value)">
+            <option *ngFor="let type of vehicleNumber" [value]="type.driverName"> {{type.displaydata}}</option>
+          </select>
+        </mat-form-field>
+      </div>
+
       <div fxLayout="row" fxLayoutAlign="center center">
         <mat-form-field style="width:90%">
           <input matInput class="form-control " name="dname" required [(ngModel)]="userModel.dname" #dname="ngModel"
@@ -48,21 +58,14 @@
           </mat-error> -->
         </mat-form-field>
       </div>
-  
-  
-  
-      <div fxLayout="row" fxLayoutAlign="center center" >
-        <mat-form-field style="width:90%">
-          <mat-label>Vehicle Number</mat-label>
-          <select matNativeControl required>
-            <option *ngFor="let type of vehicleNumber" [value]="type.vihiclenumber"> {{type.vihiclenumber}}</option>
-          </select>
-        </mat-form-field>
-      </div>
-  
+
+
+
+    
+
     </div>
 
- 
+
 
     <!-- <div fxLayout="row" fxLayoutAlign="center center">
       <mat-form-field style="width:90%">

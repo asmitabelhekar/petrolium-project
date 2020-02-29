@@ -191,11 +191,11 @@
         <ion-row >
           <mat-form-field style="width:95%; margin-right:5%">
             <input matInput class="form-control " name="numberv" required [(ngModel)]="userModel.numberv" #numberv="ngModel"
-              pattern="[a-zA-z   ]+$" placeholder="Vehicle Number" />
+              pattern="[a-zA-z0-9-.   ]+$" placeholder="Vehicle Number" />
             <mat-error>
               <div class="form-group">
                 <div *ngIf="numberv.invalid && (numberv.dirty || numberv.touched)">
-                  Driver Name Is Requird
+                  Vehicle Number Is Requird
                 </div>
               </div>
             </mat-error>
@@ -239,7 +239,7 @@
           </ion-col >
           <ion-col size="4" style="border-right: 1px solid grey;" >
            <label class="cl_table_content_css">
-            {{item.displaydata}}
+            {{item.vehicleNumber}}
            </label> 
           </ion-col>
 

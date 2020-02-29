@@ -18,7 +18,7 @@ import { LoaderserviceService } from 'src/app/service/loader/loaderservice.servi
 export class DataentrycreditPage implements OnInit {
 
 
-  checkArray = [ 'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R']
+  item = [ 1,2,3,4,5,6,7]
  str = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20";
  temp = new Array();
 displayString : any = "asmita";
@@ -101,13 +101,11 @@ displayString : any = "asmita";
       "id" : this.userId,
       "mobile" : this.userMobile
     }
-  //   this.temp = this.str.split(",");
-  //   for (let a in this.temp ) {
-  //     this.temp[a] = parseInt(this.temp[a]); // Explicitly include base as per Álvaro's comment
-  // }
-  
-
-  console.log("display array:"+this.checkArray);
+    const arr = [1,2,3,4,5];
+    const newArray = arr.map(i => i*10);
+    
+    alert("new Array:"+ newArray);
+  // console.log("display array:"+this.checkArray);
     this.petrolPrice = localStorage.getItem('petrolPrice');
     this.dieselPrice = localStorage.getItem('dieselPrice');
     this.getPetrolAmount();
@@ -225,6 +223,18 @@ displayString : any = "asmita";
 
   }
 
+  selectVehicleDetail(name) {
+   this.userModel['dname'] = name;
+}
+  getPosts(value){
+    for (let i = 0; i < this.getCusstomers.length; i++) {
+      let fullName = this.getCusstomers[i]['firstName'] + " " + this.getCusstomers[i]['lastName'];
+     if(fullName == value){
+       this.vehicleNumber = this.getCusstomers[i]['vehicles'];
+       this.userModel['dname'] = this.vehicleNumber[0]['driverName'];
+     }
+    }
+  }
   goBackword() {
     this.location.back();
   }
