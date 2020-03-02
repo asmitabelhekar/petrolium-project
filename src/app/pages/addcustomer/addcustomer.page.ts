@@ -1,4 +1,4 @@
-import { Component, OnInit,OnChanges,ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnChanges, ChangeDetectorRef } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { ToastController, AlertController, LoadingController, Events } from '@ionic/angular';
 import { environment } from 'src/environments/environment';
@@ -10,9 +10,9 @@ import { LoaderserviceService } from 'src/app/service/loader/loaderservice.servi
   templateUrl: './addcustomer.page.html',
   styleUrls: ['./addcustomer.page.scss'],
 })
-export class AddcustomerPage implements OnInit,OnChanges {
+export class AddcustomerPage implements OnInit, OnChanges {
 
-  checkFlagForUpdate: any= 1;
+  checkFlagForUpdate: any = 1;
   loading: any;
   userModel: any = {}
   savetext: any;
@@ -30,7 +30,7 @@ export class AddcustomerPage implements OnInit,OnChanges {
     public loader: LoaderserviceService,
     public apiCall: ApicallService,
     public alertController: AlertController,
-    public cd : ChangeDetectorRef,
+    public cd: ChangeDetectorRef,
     public events: Events,
     public route: ActivatedRoute) { }
 
@@ -43,7 +43,7 @@ export class AddcustomerPage implements OnInit,OnChanges {
     this.userModel['email'] = displayArrayValues.email;
     this.userModel['note'] = displayArrayValues.note;
     this.vehicleDetailArray = displayArrayValues.vehicles;
-    if(this.vehicleDetailArray.length > 0){
+    if (this.vehicleDetailArray.length > 0) {
       this.displayVehicleRecord = 0;
     }
     this.customerId = displayArrayValues.customerId;
@@ -66,7 +66,7 @@ export class AddcustomerPage implements OnInit,OnChanges {
     }
   }
 
-  ngOnChanges(){
+  ngOnChanges() {
 
     console.log(this.vehicleDetailArray);
     this.cd.detectChanges();
@@ -86,15 +86,15 @@ export class AddcustomerPage implements OnInit,OnChanges {
 
   async addCustomerData() {
     this.loader.presentLoading();
-    if(this.vehicleDetailArray.length > 0){
+    if (this.vehicleDetailArray.length > 0) {
       let send_date = {};
       this.mobieNumber = this.userModel['mobile'];
-  
+
       send_date['firstName'] = this.userModel['fname'];
       send_date['lastName'] = this.userModel['lname'];
       send_date['mobile'] = this.mobieNumber.toString();
       send_date['address'] = this.userModel['address'];
-      
+
       send_date['vehicles'] = this.vehicleDetailArray;
       if (this.userModel['note'] != "") {
         send_date['note'] = this.userModel['note'];
@@ -103,33 +103,33 @@ export class AddcustomerPage implements OnInit,OnChanges {
         send_date['email'] = this.userModel['email'];
       }
       send_date['isActive'] = 1;
-  
+
       if (this.checkStatus == "add") {
-  
+
         this.url = environment.base_url + "customers"
-  
+
         this.apiCall.postWAu(this.url, send_date).subscribe(MyResponse => {
           console.log("MyResponse ", MyResponse);
           this.events.publish('Event-AddCustomer')
           this.router.navigate(['/home']);
-  
+
           let msg = MyResponse['message'];
           this.presentToast(msg);
           this.loader.stopLoading();
         }, error => {
           this.presentToast("Something went wrong");
           console.log(error.error.message);
-  
+
         })
       } else if (this.checkStatus == "update") {
         this.loader.presentLoading();
         this.url = environment.base_url + "customers/" + this.customerId;
-  
+
         this.apiCall.put(this.url, send_date).subscribe(MyResponse => {
           console.log("MyResponse ", MyResponse);
           this.events.publish('Event-AddCustomer')
           this.router.navigate(['/home']);
-  
+
           let msg = MyResponse['message'];
           this.presentToast(msg);
           this.loader.stopLoading();
@@ -137,17 +137,17 @@ export class AddcustomerPage implements OnInit,OnChanges {
           this.loader.stopLoading();
           this.presentToast("Something went wrong");
           console.log(error.error.message);
-  
+
         })
       } else {
-  
+
       }
-  
+
     }
-    else{
+    else {
       this.presentToast("Please add vehicle details.");
     }
- 
+
 
   }
 
@@ -217,57 +217,107 @@ export class AddcustomerPage implements OnInit,OnChanges {
           "vehicleNumber": this.userModel['numberv']
         };
 
-        if(this.checkFlagForUpdate == 1){
+        if (this.checkFlagForUpdate == 1) {
           this.vehicleDetailArray.push(objjj);
 
           this.checkFlagForUpdate = 1;
-        }else{
+        } else {
           let getIndex = localStorage.getItem('arrayIndex');
-          this.vehicleDetailArray[getIndex] = {driverName: this.userModel['dname'], vehicleNumber: this.userModel['numberv']}
+          this.vehicleDetailArray[getIndex] = { driverName: this.userModel['dname'], vehicleNumber: this.userModel['numberv'] }
           this.checkFlagForUpdate = 1;
         }
-       
+
         this.displayVehicleRecord = 0;
 
-       
+
       }
     }
   }
 
 
-  removeRecord(index) {
-    console.log("before remove array:" + this.vehicleDetailArray);
+  async removeRecord(index) {
 
-    for (var i = 0; i < this.vehicleDetailArray.length; i++) {
-      if (i == index) {
-        this.vehicleDetailArray.splice(i, 1);
-      }
-    }
-    if (this.vehicleDetailArray.length > 0) {
-      this.displayVehicleRecord = 0;
-    } else {
-      this.displayVehicleRecord = 1;
-    }
-    console.log("after remove array:" + this.vehicleDetailArray);
+    const alert = await this.alertController.create({
+      message: 'Do you want to remove record?',
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            alert.dismiss();
+          }
+        }, {
+          text: 'OK',
+          handler: () => {
+            for (var i = 0; i < this.vehicleDetailArray.length; i++) {
+              if (i == index) {
+                this.vehicleDetailArray.splice(i, 1);
+              }
+            }
+            if (this.vehicleDetailArray.length > 0) {
+              this.displayVehicleRecord = 0;
+            } else {
+              this.displayVehicleRecord = 1;
+            }
+            console.log("after remove array:" + this.vehicleDetailArray);
+          }
+        }]
+    });
+
+    await alert.present();
+
   }
 
-  updateRecord(index, data) {
-    this.checkFlagForUpdate = 0;
-    localStorage.setItem("arrayIndex",index);
-    this.getData = JSON.stringify(data);
-    this.userModel['dname'] = data.driverName;
-    this.userModel['numberv'] = data.vehicleNumber;
-    let name = this.userModel['dname'];
+  async updateRecord(index, data) {
+    const alert = await this.alertController.create({
+      message: 'Do you want to update record?',
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            alert.dismiss();
+          }
+        }, {
+          text: 'OK',
+          handler: () => {
+            this.checkFlagForUpdate = 0;
+            localStorage.setItem("arrayIndex", index);
+            this.getData = JSON.stringify(data);
+            this.userModel['dname'] = data.driverName;
+            this.userModel['numberv'] = data.vehicleNumber;
+            let name = this.userModel['dname'];
+          }
+        }]
+    });
 
-    // this.vehicleDetailArray = this.replaceAt(this.vehicleDetailArray, index, data.driverName);
+    await alert.present();
 
-    // alert("disaplay data:" +this.getData['driverName']);
   }
-   
-   replaceAt(array, index, value) {
-    const ret = array.slice(0);
-    ret[index] = value;
-    return ret;
+
+  async displayArrayOperationAlert(msg) {
+    const alert = await this.alertController.create({
+      message: msg,
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            alert.dismiss();
+          }
+        }, {
+          text: 'OK',
+          handler: () => {
+            let checkOperationStatus = localStorage.getItem('clickAction');
+            if (checkOperationStatus == '0') {
+
+            } else if (checkOperationStatus == '1') {
+
+            } else {
+
+            }
+          }
+        }]
+    });
+
+    await alert.present();
   }
-  
+
 }

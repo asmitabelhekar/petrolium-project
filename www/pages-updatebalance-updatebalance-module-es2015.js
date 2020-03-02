@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header class=\"new-background-color\">\n\n  <ion-toolbar class=\"new-background-color\">\n    <ion-row>\n      <ion-col size=\"2\">\n        <button ion-button class=\"cl-back-button\" (click)=\"goBackword()\" style=\"color:white;margin:7px\"></button>\n      </ion-col>\n      <ion-col size=\"10\" class=\"TitleHeader TitleText\">\n        <ion-label style=\"color:white\">{{customerName | titlecase}}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:5%\">\n    <h5>{{paymentNames}}</h5>\n  </div>\n\n\n\n  <div fxLayout=\"column\" fxLayoutAlign=\"center\" style=\"margin-top:2%\">\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Choose a date</mat-label>\n        <input matInput #input=\"ngModel\" [(ngModel)]=\"userModel.date\" [min]=\"minDate\" [max]=\"today\"\n          [matDatepicker]=\"picker\" placeholder=\"Choose a date\" [disabled]=\"true\">\n        <mat-datepicker-toggle matSuffix [for]=\"picker\" [disabled]=\"true\"></mat-datepicker-toggle>\n        <mat-datepicker #picker (selectedChanged)=\"onDate($event)\"></mat-datepicker>\n      </mat-form-field>\n    </div>\n\n\n\n    <div *ngIf=\"paymentMethod == 'Credit' \" style=\"width: 100%;\">\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"space-around center\" style=\"width:96%;margin-left:2%; margin-right:2%\">\n        <div *ngFor=\"let item of buttonsArray;let i = index \" style=\"width:44%\">\n          <button mat-button style=\"width:100%\" [ngClass]=\"(checkFuelType  == i) ? 'oddBackground' : 'evenBackground' \"\n            (click)=\"fuelType(item.indexFuel)\">{{item.fuelType}}</button>\n        </div>\n      </div>\n\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%; margin-top:10px\">\n          <mat-label>In Litures</mat-label>\n          <input matInput type=\"number\" name=\"inlitures\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.inlitures\"\n            #inlitures=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Per Liture</mat-label>\n          <input matInput type=\"number\" name=\"perliture\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.perliture\"\n            #perliture=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Total Amount</mat-label>\n          <input matInput type=\"number\" name=\"totalamount\" [(ngModel)]=\"userModel.totalamount\" #totalamount=\"ngModel\"\n            class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%\">\n        <mat-label *ngIf=\"paymentMethod == 'Credit' \">Amount Paid</mat-label>\n        <mat-label *ngIf=\"paymentMethod == 'Payment' \">Add {{paymentMethod}}</mat-label>\n        <input matInput type=\"number\" name=\"payment\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.payment\"\n          #payment=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" *ngIf=\"displayBalnace == '1' \">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Balance</mat-label>\n        <input matInput type=\"number\" name=\"balance\" [(ngModel)]=\"userModel.balance\" #balance=\"ngModel\"\n          class=\"form-control\" align=\"center\" pattern=\"[0-9.-]+$\">\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%;\">\n        <mat-label>Note</mat-label>\n        <textarea matInput class=\"form-control \" name=\"note\" [(ngModel)]=\"userModel.note\" #note=\"ngModel\"\n          pattern=\"[a-zA-z.  ]+$\" placeholder=\"Note\"></textarea>\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" *ngIf=\"paymentMethod == 'Credit' \"\n      style=\"margin-top:3%;margin-bottom:20px\">\n      <!-- <button mat-raised-button\n        [disabled]=\"payment.invalid  || inlitures.invalid || perliture.invalid || totalamount.invalid\"\n        class=\"submitButton\">Submit</button> -->\n      <button mat-raised-button [disabled]=\"payment.invalid \" class=\"submitButton\" (click)=\"creditAmount()\">Credit</button>\n    </div>\n\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:5%\" *ngIf=\"paymentMethod == 'Payment' \">\n      <button mat-raised-button [disabled]=\"payment.invalid \" class=\"submitButton\" (click)=\"debitAmount()\">Debit</button>\n    </div>\n\n\n  </div>\n\n</ion-content>"
+module.exports = "<ion-header class=\"new-background-color\">\n\n  <ion-toolbar class=\"new-background-color\">\n    <ion-row>\n      <ion-col size=\"2\">\n        <button ion-button class=\"cl-back-button\" (click)=\"goBackword()\" style=\"color:white;margin:7px\"></button>\n      </ion-col>\n      <ion-col size=\"10\" class=\"TitleHeader TitleText\">\n        <ion-label style=\"color:white\">{{customerName | titlecase}}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:5%\">\n    <h5>{{paymentNames}}</h5>\n  </div>\n\n\n\n  <div fxLayout=\"column\" fxLayoutAlign=\"center\" style=\"margin-top:2%\">\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Choose a date</mat-label>\n        <input matInput #input=\"ngModel\" [(ngModel)]=\"userModel.date\" [min]=\"minDate\" [max]=\"today\"\n          [matDatepicker]=\"picker\" placeholder=\"Choose a date\" [disabled]=\"true\">\n        <mat-datepicker-toggle matSuffix [for]=\"picker\" [disabled]=\"true\"></mat-datepicker-toggle>\n        <mat-datepicker #picker (selectedChanged)=\"onDate($event)\"></mat-datepicker>\n      </mat-form-field>\n    </div>\n\n\n\n    <div *ngIf=\"paymentMethod == 'Credit' \" style=\"width: 100%;\">\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Vehicle Number</mat-label>\n          <select matNativeControl required #drivername [(ngModel)]=\"userModel.vehiclenumber\"\n            (change)=\"selectVehicleDetail(drivername.value)\">\n            <option *ngFor=\"let type of customerVehicles\" [value]=\"type.driverName\"> {{type.vehicleNumber}}</option>\n          </select>\n        </mat-form-field>\n      </div>\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <input matInput class=\"form-control \" name=\"dname\" required [(ngModel)]=\"userModel.dname\" #dname=\"ngModel\"\n            pattern=\"[a-zA-z   ]+$\" placeholder=\"Driver Name\" />\n        </mat-form-field>\n      </div>\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"space-around center\" style=\"width:96%;margin-left:2%; margin-right:2%\">\n        <div *ngFor=\"let item of buttonsArray;let i = index \" style=\"width:44%\">\n          <button mat-button style=\"width:100%\" [ngClass]=\"(checkFuelType  == i) ? 'oddBackground' : 'evenBackground' \"\n            (click)=\"fuelType(item.indexFuel)\">{{item.fuelType}}</button>\n        </div>\n      </div>\n\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%; margin-top:10px\">\n          <mat-label>In Litures</mat-label>\n          <input matInput type=\"number\" name=\"inlitures\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.inlitures\"\n            #inlitures=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Per Liture</mat-label>\n          <input matInput type=\"number\" name=\"perliture\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.perliture\"\n            #perliture=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Total Amount</mat-label>\n          <input matInput type=\"number\" name=\"totalamount\" [(ngModel)]=\"userModel.totalamount\" #totalamount=\"ngModel\"\n            class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n    </div>\n\n<div *ngIf=\"paymentMethod == 'Payment' \">\n\n  <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n    <mat-form-field style=\"width:90%\">\n      <mat-label>Debit Type</mat-label>\n      <select matNativeControl required #debittype (change)=\"selectDebitDetail(debittype.value)\" [(ngModel)]=\"userModel.paymentType\">\n        <option *ngFor=\"let type of debitType\" [value]=\"type.type\"> {{type.type}}</option>\n      </select>\n    </mat-form-field>\n  </div>\n\n\n  <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"width:100%;\">\n    <mat-form-field style=\"width:90%\">\n      <mat-label>Debit Detail</mat-label>\n          <input matInput type=\"text\" name=\"paymentDetails\" [(ngModel)]=\"userModel.paymentDetails\"\n            #paymentDetails=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[a-zA-Z.  -]+$\">\n    </mat-form-field>\n  </div>\n\n\n</div>\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%\">\n        <mat-label *ngIf=\"paymentMethod == 'Credit' \">Amount Paid</mat-label>\n        <mat-label *ngIf=\"paymentMethod == 'Payment' \">Add {{paymentMethod}}</mat-label>\n        <input matInput type=\"number\" name=\"payment\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.payment\"\n          #payment=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" *ngIf=\"displayBalnace == '1' \">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Balance</mat-label>\n        <input matInput type=\"number\" name=\"balance\" [(ngModel)]=\"userModel.balance\" #balance=\"ngModel\"\n          class=\"form-control\" align=\"center\" pattern=\"[0-9.-]+$\">\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%;\">\n        <mat-label>Note</mat-label>\n        <textarea matInput class=\"form-control \" name=\"note\" [(ngModel)]=\"userModel.note\" #note=\"ngModel\"\n          pattern=\"[a-zA-z.  ]+$\" placeholder=\"Note\"></textarea>\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" *ngIf=\"paymentMethod == 'Credit' \"\n      style=\"margin-top:3%;margin-bottom:20px\">\n      <!-- <button mat-raised-button\n        [disabled]=\"payment.invalid  || inlitures.invalid || perliture.invalid || totalamount.invalid\"\n        class=\"submitButton\">Submit</button> -->\n      <button mat-raised-button [disabled]=\"payment.invalid \" class=\"submitButton\" (click)=\"creditAmount()\">Credit</button>\n    </div>\n\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:5%\" *ngIf=\"paymentMethod == 'Payment' \">\n      <button mat-raised-button [disabled]=\"payment.invalid \" class=\"submitButton\" (click)=\"debitAmount()\">Debit</button>\n    </div>\n\n\n  </div>\n\n</ion-content>"
 
 /***/ }),
 
@@ -148,12 +148,13 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let UpdatebalancePage = class UpdatebalancePage {
-    constructor(activatedRoute, router, location, events, loader, apiCall, toastcontroller, dateAdapter) {
+    constructor(activatedRoute, router, location, events, loader, alertController, apiCall, toastcontroller, dateAdapter) {
         this.activatedRoute = activatedRoute;
         this.router = router;
         this.location = location;
         this.events = events;
         this.loader = loader;
+        this.alertController = alertController;
         this.apiCall = apiCall;
         this.toastcontroller = toastcontroller;
         this.dateAdapter = dateAdapter;
@@ -175,6 +176,12 @@ let UpdatebalancePage = class UpdatebalancePage {
                 "type": "1"
             }
         ];
+        this.debitType = [
+            { "type": "Select debit type" },
+            { "type": "Cash" },
+            { "type": "Card" },
+            { "type": "Cheque" },
+        ];
         this.dateAdapter.setLocale("en-GB");
     }
     ngOnInit() {
@@ -189,6 +196,7 @@ let UpdatebalancePage = class UpdatebalancePage {
         this.getPaymentDetail = JSON.parse(this.activatedRoute.snapshot.params['balanceObject']);
         this.customerMobile = this.getPaymentDetail.customerMobile;
         this.customerName = this.getPaymentDetail.customerName;
+        this.customerVehicles = this.getPaymentDetail.customerVehicles;
         if (this.customerName != "") {
             let names = this.customerName.split(" ");
             this.fname = names[0];
@@ -206,6 +214,9 @@ let UpdatebalancePage = class UpdatebalancePage {
         }
         else {
         }
+    }
+    selectVehicleDetail(name) {
+        this.userModel['dname'] = name;
     }
     _filter(value) {
         const filterValue = value.toLowerCase();
@@ -248,75 +259,92 @@ let UpdatebalancePage = class UpdatebalancePage {
         }
     }
     creditAmount() {
-        this.loader.presentLoading();
-        if (this.userModel['type'] == 2) {
-            this.presentToast("Please select fuel type.");
+        if (this.userModel['dname'] == "" || this.userModel['dname'] == null || this.userModel['dname'] == undefined) {
+            this.displayAlert("Please choose vehicle number and driver name.");
         }
         else {
-            let send_date = {};
-            send_date['type'] = this.userModel['type'];
-            send_date['amountInLitre'] = this.userModel['inlitures'];
-            send_date['pricePerLitre'] = this.userModel['perliture'];
-            send_date['finalAmount'] = this.userModel['totalamount'];
-            send_date['amountPaid'] = this.userModel['payment'];
-            send_date['date'] = this.userModel['date'];
-            if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined) {
-                send_date['message'] = "Credited with  " + this.userModel['payment'];
+            this.loader.presentLoading();
+            if (this.userModel['type'] == 2) {
+                this.presentToast("Please select fuel type.");
             }
             else {
-                send_date['message'] = this.userModel['note'];
+                let send_date = {};
+                send_date['type'] = this.userModel['type'];
+                send_date['amountInLitre'] = this.userModel['inlitures'];
+                send_date['pricePerLitre'] = this.userModel['perliture'];
+                send_date['finalAmount'] = this.userModel['totalamount'];
+                send_date['amountPaid'] = this.userModel['payment'];
+                send_date['date'] = this.userModel['date'];
+                if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined) {
+                    send_date['message'] = "Credited with  " + this.userModel['payment'];
+                }
+                else {
+                    send_date['message'] = this.userModel['note'];
+                }
+                let url = src_environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].base_url + "customers/" + this.customerId + "/purchase";
+                this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
+                    let msg = MyResponse['message'];
+                    this.presentToast(msg);
+                    this.events.publish('Event-UpdateBalance');
+                    let detailData = {
+                        "id": this.customerId,
+                        "name": this.fname,
+                        "lname": this.lname,
+                        "mobile": this.customerMobile
+                    };
+                    this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }]);
+                    this.loader.stopLoading();
+                }, error => {
+                    this.loader.stopLoading();
+                    this.presentToast("Something went wrong");
+                    console.log(error.error.message);
+                });
             }
-            let url = src_environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].base_url + "customers/" + this.customerId + "/purchase";
-            this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
-                let msg = MyResponse['message'];
-                this.presentToast(msg);
-                this.events.publish('Event-UpdateBalance');
-                let detailData = {
-                    "id": this.customerId,
-                    "name": this.fname,
-                    "lname": this.lname,
-                    "mobile": this.customerMobile
-                };
-                this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }]);
-                this.loader.stopLoading();
-            }, error => {
-                this.loader.stopLoading();
-                this.presentToast("Something went wrong");
-                console.log(error.error.message);
-            });
+            this.loader.stopLoading();
         }
-        this.loader.stopLoading();
     }
     debitAmount() {
-        this.loader.presentLoading();
-        let send_date = {};
-        send_date['date'] = this.userModel['date'];
-        send_date['amount'] = this.userModel['payment'] * -1;
-        if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined) {
-            send_date['message'] = "Debited with  " + this.userModel['payment'];
+        if (this.userModel['paymentType'] == "" || this.userModel['paymentType'] == null || this.userModel['paymentType'] == undefined) {
+            this.displayAlert("Plese select debit type.");
         }
         else {
-            send_date['message'] = this.userModel['note'];
+            if (this.userModel['paymentDetails'] == "" || this.userModel['paymentDetails'] == null || this.userModel['paymentDetails'] == undefined) {
+                this.displayAlert("Plese select debit details.");
+            }
+            else {
+                this.loader.presentLoading();
+                let send_date = {};
+                send_date['date'] = this.userModel['date'];
+                send_date['amount'] = this.userModel['payment'] * -1;
+                send_date['paymentType'] = this.userModel['paymentType'];
+                send_date['paymentDetails'] = this.userModel['paymentDetails'];
+                if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined) {
+                    send_date['message'] = "Debited with  " + this.userModel['payment'];
+                }
+                else {
+                    send_date['message'] = this.userModel['note'];
+                }
+                // send_date['message'] = this.userModel['note']
+                let url = src_environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].base_url + "customers/" + this.customerId + "/passbook";
+                this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
+                    let msg = MyResponse['message'];
+                    this.presentToast(msg);
+                    this.events.publish('Event-UpdateBalance');
+                    let detailData = {
+                        "id": this.customerId,
+                        "name": this.fname,
+                        "lname": this.lname,
+                        "mobile": this.customerMobile
+                    };
+                    this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }]);
+                    this.loader.stopLoading();
+                }, error => {
+                    this.loader.stopLoading();
+                    this.presentToast("Something went wrong");
+                    console.log(error.error.message);
+                });
+            }
         }
-        // send_date['message'] = this.userModel['note']
-        let url = src_environments_environment__WEBPACK_IMPORTED_MODULE_8__["environment"].base_url + "customers/" + this.customerId + "/passbook";
-        this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
-            let msg = MyResponse['message'];
-            this.presentToast(msg);
-            this.events.publish('Event-UpdateBalance');
-            let detailData = {
-                "id": this.customerId,
-                "name": this.fname,
-                "lname": this.lname,
-                "mobile": this.customerMobile
-            };
-            this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }]);
-            this.loader.stopLoading();
-        }, error => {
-            this.loader.stopLoading();
-            this.presentToast("Something went wrong");
-            console.log(error.error.message);
-        });
     }
     presentToast(message) {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
@@ -327,6 +355,28 @@ let UpdatebalancePage = class UpdatebalancePage {
             toast.present();
         });
     }
+    displayAlert(msg) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function* () {
+            const alert = yield this.alertController.create({
+                message: msg,
+                buttons: [
+                    {
+                        text: 'Cancel',
+                        handler: () => {
+                            alert.dismiss();
+                        }
+                    }, {
+                        text: 'OK',
+                        handler: () => {
+                            alert.dismiss();
+                            // this.router.navigate(['/home'])
+                        }
+                    }
+                ]
+            });
+            yield alert.present();
+        });
+    }
 };
 UpdatebalancePage.ctorParameters = () => [
     { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] },
@@ -334,6 +384,7 @@ UpdatebalancePage.ctorParameters = () => [
     { type: _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__["Events"] },
     { type: src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_11__["LoaderserviceService"] },
+    { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__["AlertController"] },
     { type: src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_9__["ApicallService"] },
     { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_10__["ToastController"] },
     { type: _angular_material__WEBPACK_IMPORTED_MODULE_4__["DateAdapter"] }
@@ -349,6 +400,7 @@ UpdatebalancePage = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         _angular_common__WEBPACK_IMPORTED_MODULE_3__["Location"],
         _ionic_angular__WEBPACK_IMPORTED_MODULE_10__["Events"],
         src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_11__["LoaderserviceService"],
+        _ionic_angular__WEBPACK_IMPORTED_MODULE_10__["AlertController"],
         src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_9__["ApicallService"],
         _ionic_angular__WEBPACK_IMPORTED_MODULE_10__["ToastController"],
         _angular_material__WEBPACK_IMPORTED_MODULE_4__["DateAdapter"]])

@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header class=\"new-background-color\">\n  <ion-toolbar class=\"new-background-color\">\n    <ion-buttons slot=\"start\" style=\"color:white\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title style=\"color:white\">\n      Credit\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <div fxLayout=\"column\" fxLayoutAlign=\"center\" style=\"margin-top:5%\">\n\n    <!-- <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <input type=\"text\" [(ngModel)]=\"getSearchKey\" (input)=\"getInput(getSearchKey)\" placeholder=\"Search\" style=\"width:96%;margin-right:2%;\"/>\n\n    </div> -->\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%\">\n        <input type=\"text\"\n               placeholder=\"Customer Name\"\n               aria-label=\"Number\"\n               matInput\n               [(ngModel)]=\"userModel.customername\"\n               [formControl]=\"myControl\"\n               [matAutocomplete]=\"auto\">\n        <mat-autocomplete #auto=\"matAutocomplete\">\n          <mat-option *ngFor=\"let option of filteredOptions | async\" [value]=\"option\">\n            {{option}}\n          </mat-option>\n        \n          <mat-option  [value]=\"option\" *ngIf=\"recordNotPresent == 1\"  (click)=\"addCustomer()\">\n            Add Customer\n           </mat-option>\n        </mat-autocomplete>\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Choose a date</mat-label>\n        <input matInput #input=\"ngModel\" [(ngModel)]=\"userModel.date\" [min]=\"minDate\" [max]=\"today\"\n          [matDatepicker]=\"picker\" placeholder=\"Choose a date\" [disabled]=\"true\">\n        <!-- <input matInput [matDatepicker]=\"picker\" [(ngModel)]=\"userModel.date\" [max]=\"maxDate\"> -->\n        <mat-datepicker-toggle matSuffix [for]=\"picker\" [disabled]=\"true\"></mat-datepicker-toggle>\n        <mat-datepicker #picker (selectedChanged)=\"onDate($event)\"></mat-datepicker>\n      </mat-form-field>\n    </div>\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"space-around center\" style=\"width:96%;margin-left:2%; margin-right:2%\">\n      <div *ngFor=\"let item of buttonsArray;let i = index \" style=\"width:44%\">\n        <button mat-button style=\"width:100%\" [ngClass]=\"(checkFuelType  == i) ? 'oddBackground' : 'evenBackground' \"\n          (click)=\"fuelType(item.indexFuel)\">{{item.fuelType}}</button>\n      </div>\n    </div>\n\n    <div style=\"width: 100%;\">\n\n      <!-- <ion-row style=\"width:80%\" fxLayout=\"row\" fxLayoutAlign=\"center center\" align=\"center\">\n        <ion-col  *ngFor=\"let item of buttonsArray;let i = index \">\n          <button mat-button style=\"width:100%\" [ngClass]=\"(checkFuelType  == i) ? 'oddBackground' : 'evenBackground' \"\n            (click)=\"fuelType(item.indexFuel)\">{{item.fuelType}}</button>\n        </ion-col>\n      </ion-row> -->\n\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%; margin-top:10px\">\n          <mat-label>In Litures</mat-label>\n          <input matInput type=\"number\" name=\"inlitures\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.inlitures\"\n            #inlitures=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Per Liture</mat-label>\n          <input matInput type=\"number\" name=\"perliture\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.perliture\"\n            #perliture=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Total Amount</mat-label>\n          <input matInput type=\"number\" name=\"totalamount\" [(ngModel)]=\"userModel.totalamount\" #totalamount=\"ngModel\"\n            class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"width:100%;\">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Amount Paid</mat-label>\n            <input matInput type=\"number\" name=\"payment\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.payment\"\n              #payment=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" *ngIf=\"displayBalnace == '1' \">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Balance</mat-label>\n        <input matInput type=\"number\" name=\"balance\" [(ngModel)]=\"userModel.balance\" #balance=\"ngModel\"\n          class=\"form-control\" align=\"center\" pattern=\"[0-9.-]+$\">\n      </mat-form-field>\n    </div>\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%;\">\n        <mat-label>Note</mat-label>\n        <textarea matInput class=\"form-control \" name=\"note\" [(ngModel)]=\"userModel.note\" #note=\"ngModel\"\n          pattern=\"[a-zA-z.  ]+$\" placeholder=\"Note\"></textarea>\n      </mat-form-field>\n    </div>\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:5%;margin-bottom:20px\">\n      <button mat-raised-button [disabled]=\"payment.invalid \" class=\"submitButton\"\n        (click)=\"creditsubmit()\">Credit</button>\n    </div>\n  </div>\n\n\n</ion-content>"
+module.exports = "<ion-header class=\"new-background-color\">\n  <ion-toolbar class=\"new-background-color\">\n    <ion-buttons slot=\"start\" style=\"color:white\">\n      <ion-menu-button></ion-menu-button>\n    </ion-buttons>\n    <ion-title style=\"color:white\">\n      Credit\n    </ion-title>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n\n  <div fxLayout=\"column\" fxLayoutAlign=\"center\" style=\"margin-top:5%\">\n\n    <!-- <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <input type=\"text\" [(ngModel)]=\"getSearchKey\" (input)=\"getInput(getSearchKey)\" placeholder=\"Search\" style=\"width:96%;margin-right:2%;\"/>\n\n    </div> -->\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%\">\n        <input type=\"text\" placeholder=\"Customer Name\" aria-label=\"Number\" matInput [(ngModel)]=\"userModel.customername\"\n          [formControl]=\"myControl\" [matAutocomplete]=\"auto\">\n        <mat-autocomplete #auto=\"matAutocomplete\" (optionSelected)='getPosts($event.option.value)'>\n          <mat-option *ngFor=\"let option of filteredOptions | async\" [value]=\"option\">\n            {{option}}\n          </mat-option>\n\n          <mat-option [value]=\"option\" *ngIf=\"recordNotPresent == 1\" (click)=\"addCustomer()\">\n            Add Customer\n          </mat-option>\n        </mat-autocomplete>\n      </mat-form-field>\n    </div>\n\n    <div *ngIf=\"checkDriverDiv == 0 \">\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Vehicle Number</mat-label>\n          <select matNativeControl required #drivername [(ngModel)]=\"userModel.vehiclenumber\"\n            (change)=\"selectVehicleDetail(drivername.value)\">\n            <option *ngFor=\"let type of vehicleNumber\" [value]=\"type.driverName\"> {{type.vehicleNumber}}</option>\n          </select>\n        </mat-form-field>\n      </div>\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <input matInput class=\"form-control \" name=\"dname\" required [(ngModel)]=\"userModel.dname\" #dname=\"ngModel\"\n            pattern=\"[a-zA-z   ]+$\" placeholder=\"Driver Name\" />\n        </mat-form-field>\n      </div>\n    </div>\n\n\n\n    <!-- <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%\">\n        <input matInput class=\"form-control \" name=\"sname\" required [(ngModel)]=\"userModel.sname\" #sname=\"ngModel\"\n          pattern=\"[a-zA-z   ]+$\" placeholder=\"Staff Name\" />\n      </mat-form-field>\n    </div> -->\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Choose a date</mat-label>\n        <input matInput #input=\"ngModel\" [(ngModel)]=\"userModel.date\" [min]=\"minDate\" [max]=\"today\"\n          [matDatepicker]=\"picker\" placeholder=\"Choose a date\" [disabled]=\"true\">\n        <!-- <input matInput [matDatepicker]=\"picker\" [(ngModel)]=\"userModel.date\" [max]=\"maxDate\"> -->\n        <mat-datepicker-toggle matSuffix [for]=\"picker\" [disabled]=\"true\"></mat-datepicker-toggle>\n        <mat-datepicker #picker (selectedChanged)=\"onDate($event)\"></mat-datepicker>\n      </mat-form-field>\n    </div>\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"space-around center\" style=\"width:96%;margin-left:2%; margin-right:2%\">\n      <div *ngFor=\"let item of buttonsArray;let i = index \" style=\"width:44%\">\n        <button mat-button style=\"width:100%\" [ngClass]=\"(checkFuelType  == i) ? 'oddBackground' : 'evenBackground' \"\n          (click)=\"fuelType(item.indexFuel)\">{{item.fuelType}}</button>\n      </div>\n    </div>\n\n    <div style=\"width: 100%;\">\n\n      <!-- <ion-row style=\"width:80%\" fxLayout=\"row\" fxLayoutAlign=\"center center\" align=\"center\">\n        <ion-col  *ngFor=\"let item of buttonsArray;let i = index \">\n          <button mat-button style=\"width:100%\" [ngClass]=\"(checkFuelType  == i) ? 'oddBackground' : 'evenBackground' \"\n            (click)=\"fuelType(item.indexFuel)\">{{item.fuelType}}</button>\n        </ion-col>\n      </ion-row> -->\n\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%; margin-top:10px\">\n          <mat-label>In Litures</mat-label>\n          <input matInput type=\"number\" name=\"inlitures\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.inlitures\"\n            #inlitures=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n\n\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Per Liture</mat-label>\n          <input matInput type=\"number\" name=\"perliture\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.perliture\"\n            #perliture=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Total Amount</mat-label>\n          <input matInput type=\"number\" name=\"totalamount\" [(ngModel)]=\"userModel.totalamount\" #totalamount=\"ngModel\"\n            class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"width:100%;\">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Amount Paid</mat-label>\n        <input matInput type=\"number\" name=\"payment\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.payment\"\n          #payment=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" *ngIf=\"displayBalnace == '1' \">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Balance</mat-label>\n        <input matInput type=\"number\" name=\"balance\" [(ngModel)]=\"userModel.balance\" #balance=\"ngModel\"\n          class=\"form-control\" align=\"center\" pattern=\"[0-9.-]+$\">\n      </mat-form-field>\n    </div>\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%;\">\n        <mat-label>Note</mat-label>\n        <textarea matInput class=\"form-control \" name=\"note\" [(ngModel)]=\"userModel.note\" #note=\"ngModel\"\n          pattern=\"[a-zA-z.  ]+$\" placeholder=\"Note\"></textarea>\n      </mat-form-field>\n    </div>\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:5%;margin-bottom:20px\">\n      <button mat-raised-button [disabled]=\"payment.invalid \" class=\"submitButton\"\n        (click)=\"creditsubmit()\">Credit</button>\n    </div>\n  </div>\n\n\n</ion-content>"
 
 /***/ }),
 
@@ -157,6 +157,10 @@ let DataentrycreditPage = class DataentrycreditPage {
         this.loader = loader;
         this.dateAdapter = dateAdapter;
         this.menu = menu;
+        this.item = [1, 2, 3, 4, 5, 6, 7];
+        this.str = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20";
+        this.temp = new Array();
+        this.displayString = "asmita";
         this.myControl = new _angular_forms__WEBPACK_IMPORTED_MODULE_6__["FormControl"]();
         this.userModel = {};
         this.displayBalnace = 0;
@@ -164,6 +168,8 @@ let DataentrycreditPage = class DataentrycreditPage {
         this.autoCompleteArray = [];
         this.customerList = [];
         this.recordNotPresent = 0;
+        this.userObject = {};
+        this.checkDriverDiv = 1;
         this.buttonsArray = [
             {
                 "fuelType": "Petrol",
@@ -176,10 +182,32 @@ let DataentrycreditPage = class DataentrycreditPage {
                 "type": "1"
             }
         ];
+        this.food = [
+            { value: 'steak-0', viewValue: 'Steak' },
+            { value: 'pizza-1', viewValue: 'Pizza' },
+            { value: 'tacos-2', viewValue: 'Tacos' }
+        ];
+        this.vehicleNumber = [
+            { "vihiclenumber": "Select vehicle number" },
+            { "vihiclenumber": "MH67GH4567" },
+            { "vihiclenumber": "MH67GH4566" },
+            { "vihiclenumber": "MH67GH4565" },
+            { "vihiclenumber": "MH67GH4564" },
+            { "vihiclenumber": "MH67GH4563" },
+            { "vihiclenumber": "MH67GH4562" },
+        ];
         this.menu.enable(true);
         this.dateAdapter.setLocale("en-GB");
     }
     ngOnInit() {
+        this.userName = localStorage.getItem('userName');
+        this.userId = localStorage.getItem('userId');
+        this.userMobile = localStorage.getItem('userMobileNumber');
+        this.userObject = {
+            "name": this.userName,
+            "id": this.userId,
+            "mobile": this.userMobile
+        };
         this.petrolPrice = localStorage.getItem('petrolPrice');
         this.dieselPrice = localStorage.getItem('dieselPrice');
         this.getPetrolAmount();
@@ -189,6 +217,12 @@ let DataentrycreditPage = class DataentrycreditPage {
         this.userModel['type'] = 0;
         this.filteredOptions = this.myControl.valueChanges
             .pipe(Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["startWith"])(''), Object(rxjs_operators__WEBPACK_IMPORTED_MODULE_7__["map"])(value => this._filter(value)));
+        if (this.userModel['customerName'] == "" || this.userModel['customerName'] == null || this.userModel['customerName'] == undefined) {
+            this.checkDriverDiv = 1;
+        }
+        else {
+            this.checkDriverDiv = 0;
+        }
         this.userModel['date'] = new Date().toJSON().split('T')[0];
         this.today = new Date().toJSON().split('T')[0];
         let loginStatus = localStorage.getItem("loginStatus");
@@ -197,6 +231,15 @@ let DataentrycreditPage = class DataentrycreditPage {
         const filterValue = value.toLowerCase();
         if (this.customerList.filter(option => option.toLowerCase().includes(filterValue)) == undefined || this.customerList.filter(option => option.toLowerCase().includes(filterValue)) == "" || this.customerList.filter(option => option.toLowerCase().includes(filterValue)) == null) {
             this.recordNotPresent = 1;
+            this.checkDriverDiv = 1;
+        }
+        else {
+            this.checkDriverDiv = 0;
+            for (let i = 0; i < this.getCusstomers.length; i++) {
+                let fullName = this.getCusstomers[i]['firstName'] + " " + this.getCusstomers[i]['lastName'];
+                if (fullName == this.userModel['customername']) {
+                }
+            }
         }
         return this.customerList.filter(option => option.toLowerCase().includes(filterValue));
     }
@@ -259,6 +302,18 @@ let DataentrycreditPage = class DataentrycreditPage {
             this.displayBalnace = 1;
         }
     }
+    selectVehicleDetail(name) {
+        this.userModel['dname'] = name;
+    }
+    getPosts(value) {
+        for (let i = 0; i < this.getCusstomers.length; i++) {
+            let fullName = this.getCusstomers[i]['firstName'] + " " + this.getCusstomers[i]['lastName'];
+            if (fullName == value) {
+                this.vehicleNumber = this.getCusstomers[i]['vehicles'];
+                this.userModel['dname'] = this.vehicleNumber[0]['driverName'];
+            }
+        }
+    }
     goBackword() {
         this.location.back();
     }
@@ -308,6 +363,9 @@ let DataentrycreditPage = class DataentrycreditPage {
             send_date['finalAmount'] = this.userModel['totalamount'];
             send_date['amountPaid'] = this.userModel['payment'];
             send_date['date'] = this.userModel['date'];
+            send_date['driverName'] = this.userModel['dname'];
+            send_date['vehicleNumber'] = this.userModel['vehiclenumber'];
+            send_date['createdBy'] = this.userObject;
             if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined) {
                 send_date['message'] = "Credited with  " + this.userModel['payment'];
             }

@@ -7,7 +7,7 @@ import { FormControl } from '@angular/forms';
 import { map, startWith } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { ApicallService } from 'src/app/service/apicall/apicall.service';
-import { ToastController, Events } from '@ionic/angular';
+import { ToastController, Events, AlertController } from '@ionic/angular';
 import { LoaderserviceService } from 'src/app/service/loader/loaderservice.service';
 
 @Component({
@@ -16,10 +16,11 @@ import { LoaderserviceService } from 'src/app/service/loader/loaderservice.servi
   styleUrls: ['./updatebalance.page.scss'],
 })
 export class UpdatebalancePage implements OnInit {
-  customerList: string[] = ['asmita', 'smita', 'asmi', 'sejal', 'pranil', 'dddd', 'ffff', 'ggggggg', 'hhhhh', 'jjjjjj'];
-
+  // customerList: string[] = ['asmita', 'smita', 'asmi', 'sejal', 'pranil', 'dddd', 'ffff', 'ggggggg', 'hhhhh', 'jjjjjj'];
+  customerList :any;
   showDateNoteDiv: any = 1;
   customerName: any;
+  customerVehicles: any;
   customerMobile: any;
   payment: any;
   isValidInput: boolean;
@@ -49,11 +50,26 @@ export class UpdatebalancePage implements OnInit {
       "indexFuel": "1",
       "type": "1"
     }];
+
+  debitType = [
+    { "type": "Select debit type" },
+    { "type": "Cash" },
+    { "type": "Card" },
+    { "type": "Cheque" },
+  ];
+  userObject: any = {};
+  userName: any;
+  userId: any;
+  userMobile: any;
+
+
+
   constructor(public activatedRoute: ActivatedRoute,
     public router: Router,
     public location: Location,
     public events: Events,
     public loader: LoaderserviceService,
+    public alertController: AlertController,
     public apiCall: ApicallService,
     public toastcontroller: ToastController,
     public dateAdapter: DateAdapter<Date>) {
@@ -61,6 +77,16 @@ export class UpdatebalancePage implements OnInit {
   }
 
   ngOnInit() {
+
+    this.userName = localStorage.getItem('userName');
+    this.userId = localStorage.getItem('userId');
+    this.userMobile = localStorage.getItem('userMobileNumber');
+
+    this.userObject = {
+      "name": this.userName,
+      "id": this.userId,
+      "mobile": this.userMobile
+    }
     this.userModel['type'] = 0;
 
     this.petrolPrice = localStorage.getItem('petrolPrice');
@@ -78,6 +104,8 @@ export class UpdatebalancePage implements OnInit {
     this.getPaymentDetail = JSON.parse(this.activatedRoute.snapshot.params['balanceObject']);
     this.customerMobile = this.getPaymentDetail.customerMobile;
     this.customerName = this.getPaymentDetail.customerName;
+    this.customerVehicles = this.getPaymentDetail.customerVehicles;
+
 
     if (this.customerName != "") {
       let names = this.customerName.split(" ");
@@ -97,6 +125,15 @@ export class UpdatebalancePage implements OnInit {
     }
 
 
+  }
+
+  selectVehicleDetail(vehiclenumber) {
+    this.userModel['vehiclenumber'] = vehiclenumber;
+    for(let i = 0; i < this.customerVehicles.length ; i++){
+      if(this.customerVehicles[i]['vehicleNumber'] == vehiclenumber){
+        this.userModel['dname'] = this.customerVehicles[i]['driverName'];
+      }
+    }
   }
 
   private _filter(value: string): string[] {
@@ -150,85 +187,107 @@ export class UpdatebalancePage implements OnInit {
   }
 
   creditAmount() {
-    this.loader.presentLoading();
-    if (this.userModel['type'] == 2) {
-      this.presentToast("Please select fuel type.");
+    if (this.userModel['dname'] == "" || this.userModel['dname'] == null || this.userModel['dname'] == undefined) {
+      this.displayAlert("Please choose vehicle number and driver name.");
     } else {
-      let send_date = {};
-      send_date['type'] = this.userModel['type'];
-      send_date['amountInLitre'] = this.userModel['inlitures'];
-      send_date['pricePerLitre'] = this.userModel['perliture']
-      send_date['finalAmount'] = this.userModel['totalamount'];
-      send_date['amountPaid'] = this.userModel['payment']
-      send_date['date'] = this.userModel['date'];
-      if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined) {
-        send_date['message'] = "Credited with  " + this.userModel['payment'];
+      this.loader.presentLoading();
+      if (this.userModel['type'] == 2) {
+        this.presentToast("Please select fuel type.");
       } else {
-        send_date['message'] = this.userModel['note']
+        let send_date = {};
+        send_date['type'] = this.userModel['type'];
+        send_date['amountInLitre'] = this.userModel['inlitures'];
+        send_date['pricePerLitre'] = this.userModel['perliture']
+        send_date['finalAmount'] = this.userModel['totalamount'];
+        send_date['amountPaid'] = this.userModel['payment']
+        send_date['date'] = this.userModel['date'];
+        send_date['driverName'] = this.userModel['dname']
+        send_date['vehicleNumber'] = this.userModel['vehiclenumber'];
+        send_date['createdBy'] = this.userObject;
+        if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined) {
+          send_date['message'] = "Credited with  " + this.userModel['payment'];
+        } else {
+          send_date['message'] = this.userModel['note']
 
-      }
-
-
-      let url = environment.base_url + "customers/" + this.customerId + "/purchase";
-      this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
-        let msg = MyResponse['message'];
-        this.presentToast(msg);
-        this.events.publish('Event-UpdateBalance');
-        let detailData =
-        {
-          "id": this.customerId,
-          "name": this.fname,
-          "lname": this.lname,
-          "mobile": this.customerMobile
         }
 
-        this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }])
-        this.loader.stopLoading();
-      }, error => {
-        this.loader.stopLoading();
-        this.presentToast("Something went wrong");
-        console.log(error.error.message);
-      })
+
+        let url = environment.base_url + "customers/" + this.customerId + "/purchase";
+        this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
+          let msg = MyResponse['message'];
+          this.presentToast(msg);
+          this.events.publish('Event-UpdateBalance');
+          let detailData =
+          {
+            "id": this.customerId,
+            "name": this.fname,
+            "lname": this.lname,
+            "mobile": this.customerMobile
+          }
+
+          this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }])
+          this.loader.stopLoading();
+        }, error => {
+          this.loader.stopLoading();
+          this.presentToast("Something went wrong");
+          console.log(error.error.message);
+        })
+      }
+      this.loader.stopLoading();
+
     }
-    this.loader.stopLoading();
 
   }
 
   debitAmount() {
-    this.loader.presentLoading();
-    let send_date = {};
-
-    send_date['date'] = this.userModel['date'];
-    send_date['amount'] = this.userModel['payment'] * -1;
-
-    if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined) {
-
-      send_date['message'] = "Debited with  " + this.userModel['payment'];
+    if (this.userModel['paymentType'] == "" || this.userModel['paymentType'] == null || this.userModel['paymentType'] == undefined) {
+      this.displayAlert("Plese select debit type.")
     } else {
-      send_date['message'] = this.userModel['note'];
-    }
-    // send_date['message'] = this.userModel['note']
-    let url = environment.base_url + "customers/" + this.customerId + "/passbook"
-    this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
-      let msg = MyResponse['message'];
-      this.presentToast(msg);
-      this.events.publish('Event-UpdateBalance');
-      let detailData =
-      {
-        "id": this.customerId,
-        "name": this.fname,
-        "lname": this.lname,
-        "mobile": this.customerMobile
+
+      if (this.userModel['paymentDetails'] == "" || this.userModel['paymentDetails'] == null || this.userModel['paymentDetails'] == undefined) {
+        this.displayAlert("Plese select debit details.")
+      } else {
+
+        this.loader.presentLoading();
+        let send_date = {};
+
+        send_date['date'] = this.userModel['date'];
+        send_date['amount'] = this.userModel['payment'] * -1;
+        send_date['paymentType'] = this.userModel['paymentType'];
+        send_date['paymentDetails'] = this.userModel['paymentDetails'];
+
+
+        if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined) {
+
+          send_date['message'] = "Debited with  " + this.userModel['payment'];
+        } else {
+          send_date['message'] = this.userModel['note'];
+        }
+        // send_date['message'] = this.userModel['note']
+        let url = environment.base_url + "customers/" + this.customerId + "/passbook"
+        this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
+          let msg = MyResponse['message'];
+          this.presentToast(msg);
+          this.events.publish('Event-UpdateBalance');
+          let detailData =
+          {
+            "id": this.customerId,
+            "name": this.fname,
+            "lname": this.lname,
+            "mobile": this.customerMobile
+          }
+
+          this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }])
+          this.loader.stopLoading();
+        }, error => {
+          this.loader.stopLoading();
+
+          this.presentToast("Something went wrong");
+          console.log(error.error.message);
+        })
       }
+    }
 
-      this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }])
-      this.loader.stopLoading();
-    }, error => {
-      this.loader.stopLoading();
-
-      this.presentToast("Something went wrong");
-      console.log(error.error.message);
-    })
   }
 
   async presentToast(message) {
@@ -238,4 +297,28 @@ export class UpdatebalancePage implements OnInit {
     });
     toast.present();
   }
+
+  async displayAlert(msg) {
+    const alert = await this.alertController.create({
+      message: msg,
+      buttons: [
+        {
+          text: 'Cancel',
+          handler: () => {
+            alert.dismiss();
+          }
+        }, {
+          text: 'OK',
+          handler: () => {
+            alert.dismiss();
+            // this.router.navigate(['/home'])
+          }
+        }]
+    });
+
+    await alert.present();
+  }
+
+
+
 }

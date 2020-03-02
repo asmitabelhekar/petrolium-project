@@ -134,7 +134,8 @@ var HomePage = /** @class */ (function () {
             "address": "",
             "email": "",
             "checkstatus": this.checkRecordStatus,
-            "note": ""
+            "note": "",
+            "vehicles": []
         };
         this.router.navigate(['/addcustomer', { detailCustomerdata: JSON.stringify(detailCustomerdata) }]);
     };
@@ -143,15 +144,13 @@ var HomePage = /** @class */ (function () {
             "id": data.id,
             "name": data.firstName,
             "lname": data.lastName,
-            "mobile": data.mobile
+            "mobile": data.mobile,
+            "vehicles": data.vehicles
         };
         this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }]);
     };
     HomePage.prototype.getCustomerList = function (url) {
-        // this.loader.presentLoading();
         var _this = this;
-        // let url = environment.base_url + "customers";
-        // this.url = environment.base_url + "customers?" + "search=" + this.keyvalue ;
         console.log("url :" + url);
         this.apiCall.get(url).subscribe(function (MyResponse) {
             _this.getCusstomers = MyResponse['result']['list'];

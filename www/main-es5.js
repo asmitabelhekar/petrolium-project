@@ -544,6 +544,10 @@ var routes = [
     {
         path: 'showtankerlist',
         loadChildren: function () { return __webpack_require__.e(/*! import() | pages-showtankerlist-showtankerlist-module */ "pages-showtankerlist-showtankerlist-module").then(__webpack_require__.bind(null, /*! ./pages/showtankerlist/showtankerlist.module */ "./src/app/pages/showtankerlist/showtankerlist.module.ts")).then(function (m) { return m.ShowtankerlistPageModule; }); }
+    },
+    {
+        path: 'tankersellsubmit',
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-tankersellsubmit-tankersellsubmit-module */ "pages-tankersellsubmit-tankersellsubmit-module").then(__webpack_require__.bind(null, /*! ./pages/tankersellsubmit/tankersellsubmit.module */ "./src/app/pages/tankersellsubmit/tankersellsubmit.module.ts")).then(function (m) { return m.TankersellsubmitPageModule; }); }
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -719,6 +723,26 @@ var AppComponent = /** @class */ (function () {
                 }
             ];
         }
+        else if (this.userRole == 3) {
+            this.appPages = [
+                {
+                    title: 'Tanker Sell',
+                    url: '/tankersellsubmit',
+                },
+                {
+                    title: 'Credit',
+                    url: '/dataentrycredit',
+                },
+                {
+                    title: 'Opening',
+                    url: '/dataentryopening',
+                },
+                {
+                    title: 'Log Out',
+                    url: '/login',
+                }
+            ];
+        }
         else {
             this.appPages = [
                 {
@@ -799,6 +823,10 @@ var AppComponent = /** @class */ (function () {
             }
             else if (this.userRole == 2) {
                 this.router.navigate(['/home']);
+                return;
+            }
+            else if (this.userRole == 3) {
+                this.router.navigate(['/tankersellsubmit']);
                 return;
             }
             else {
@@ -898,8 +926,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
 /* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
 /* harmony import */ var _angular_material_button__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @angular/material/button */ "./node_modules/@angular/material/esm5/button.es5.js");
-/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+/* harmony import */ var _angular_material_select__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @angular/material/select */ "./node_modules/@angular/material/esm5/select.es5.js");
+/* harmony import */ var _angular_forms__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @angular/forms */ "./node_modules/@angular/forms/fesm5/forms.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
 
 
 
@@ -927,12 +957,7 @@ var AppModule = /** @class */ (function () {
                 _ionic_angular__WEBPACK_IMPORTED_MODULE_4__["IonicModule"].forRoot(),
                 _app_routing_module__WEBPACK_IMPORTED_MODULE_8__["AppRoutingModule"],
                 _angular_flex_layout__WEBPACK_IMPORTED_MODULE_9__["FlexLayoutModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatFormFieldModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatIconModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatNativeDateModule"],
-                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_10__["BrowserAnimationsModule"],
-                _angular_flex_layout__WEBPACK_IMPORTED_MODULE_9__["FlexLayoutModule"],
-                _angular_material_button__WEBPACK_IMPORTED_MODULE_12__["MatButtonModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatFormFieldModule"],
                 _angular_material_button__WEBPACK_IMPORTED_MODULE_12__["MatButtonModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatCardModule"],
@@ -942,12 +967,13 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatInputModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatCardModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatMenuModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_13__["FormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_14__["FormsModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatDialogModule"],
-                _angular_common_http__WEBPACK_IMPORTED_MODULE_14__["HttpClientModule"],
-                _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatSelectModule"],
+                _angular_common_http__WEBPACK_IMPORTED_MODULE_15__["HttpClientModule"],
+                _angular_material_select__WEBPACK_IMPORTED_MODULE_13__["MatSelectModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatAutocompleteModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_13__["ReactiveFormsModule"],
+                _angular_forms__WEBPACK_IMPORTED_MODULE_14__["ReactiveFormsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatOptionModule"]
             ],
             providers: [
                 _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_6__["StatusBar"],

@@ -39,8 +39,9 @@
       <div fxLayout="row" fxLayoutAlign="center center">
         <mat-form-field style="width:90%">
           <mat-label>Vehicle Number</mat-label>
-          <select matNativeControl required #organization (change)="selectVehicleDetail(organization.value)">
-            <option *ngFor="let type of vehicleNumber" [value]="type.driverName"> {{type.displaydata}}</option>
+          <select matNativeControl required #drivername [(ngModel)]="userModel.vehiclenumber"
+            (change)="selectVehicleDetail(drivername.value)">
+            <option *ngFor="let type of vehicleNumber" [value]="type.vehicleNumber"> {{type.vehicleNumber}}</option>
           </select>
         </mat-form-field>
       </div>
@@ -49,20 +50,8 @@
         <mat-form-field style="width:90%">
           <input matInput class="form-control " name="dname" required [(ngModel)]="userModel.dname" #dname="ngModel"
             pattern="[a-zA-z   ]+$" placeholder="Driver Name" />
-          <!-- <mat-error>
-            <div class="form-group">
-              <div *ngIf="dname.invalid && (dname.dirty || dname.touched)">
-                Driver Name Is Requird
-              </div>
-            </div>
-          </mat-error> -->
         </mat-form-field>
       </div>
-
-
-
-    
-
     </div>
 
 

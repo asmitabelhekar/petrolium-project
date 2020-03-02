@@ -21,7 +21,6 @@
     [ngClass]="(customerIndex % 2 == 0) ? 'odd' : 'even' ">{{firstName | uppercase}}</button>
 
   <div fxLayout="column" fxLayoutAlign="center center">
-    <!-- <button class="centerImg" style="font-size :16px" [ngClass]="(customerIndex % 2 == 0) ? 'odd' : 'even' ">{{firstName | uppercase}}</button> -->
     <ion-item>
       <ion-label style="margin-top:3%; ">
         {{customerName | titlecase}}
@@ -41,12 +40,12 @@
       <ion-col size="6" align="center" (click)="makeCall()" fxLayout="column" fxLayoutAlign="center center">
         <ion-icon name="call" style="width:30px; height:30px; color : #2e2d2d; margin-top: 10px">
         </ion-icon>
-        <ion-label style="color:#2e2d2d">Call</ion-label>
+        <ion-label style="color:#2e2d2d" class="cl_font_size_label">Call</ion-label>
       </ion-col>
       <ion-col size="6" align="center" (click)="sendMessage()" fxLayout="column" fxLayoutAlign="center center">
         <ion-icon name="text" style="width:30px; height:30px;color : #2e2d2d; margin-top: 10px">
         </ion-icon>
-        <ion-label style="color:#2e2d2d">Text</ion-label>
+        <ion-label style="color:#2e2d2d" class="cl_font_size_label">Text</ion-label>
       </ion-col>
     </ion-row>
   </ion-item>
@@ -60,9 +59,9 @@
       <ion-item>
         <ion-row style="width:100%">
 
-          <ion-label *ngIf="customerMobile != 'NA' ">+91</ion-label>
+          <ion-label class="cl_font_size_label" *ngIf="customerMobile != 'NA' ">+91</ion-label>
           <ion-label style="width:5px"></ion-label>
-          <ion-label>{{customerMobile}}</ion-label>
+          <ion-label class="cl_font_size_label">{{customerMobile}}</ion-label>
 
         </ion-row>
 
@@ -90,7 +89,7 @@
     </ion-col>
     <ion-col size="10">
       <ion-item>
-        <ion-label class="ion-text-wrap">{{customerAddress}}</ion-label>
+        <ion-label class="ion-text-wrap" class="cl_font_size_label">{{customerAddress}}</ion-label>
       </ion-item>
     </ion-col>
   </ion-row>
@@ -103,7 +102,7 @@
     </ion-col>
     <ion-col size="10">
       <ion-item>
-        <ion-label class="ion-text-wrap">{{customerNote}}</ion-label>
+        <ion-label class="ion-text-wrap cl_font_size_label">{{customerNote}}</ion-label>
       </ion-item>
     </ion-col>
   </ion-row>
@@ -118,25 +117,26 @@
       </tr>
     </table>
   </div> -->
-  <div   style="width:100%">
-    <div fxlayout="column" fxLayoutAlign="center center">
-      <!-- <label>Vehicle Detail</label> -->
+  <div   style="width:100%; margin-top:-15px">
+    <label style="font-size : 17px;margin-bottom:8px " fxLayoutAlign="center center">Vehicle Detail</label>
+
+    <div fxlayout="column" fxLayoutAlign="center center" style="margin-bottom:20%">
       <div fxLayout="column" fxLayoutAlign="center center" style="width:90%">
         <ion-row style="border: 1px solid grey; width:100%">
           <ion-col size="6" style="border-right: 1px solid grey;">
-            <b>Driver Name</b>
+            <label fxLayoutAlign="center center" class="cl_font_size_label"><b>Driver Name</b></label>
           </ion-col>
           <ion-col size="6">
-            <b>Vehicle Number</b>
+            <label fxLayoutAlign="center center" class="cl_font_size_label">  <b>Vehicle Number</b></label>
           </ion-col>
         </ion-row>
 
-        <ion-row *ngFor="let x of vehicleDetail" style="border: 1px solid grey; width:  100%;">
+        <ion-row *ngFor="let x of vehicleDetail" style="border-right: 1px solid grey;border-left: 1px solid grey;border-bottom: 1px solid grey; width:  100%;">
           <ion-col size="6" style="border-right: 1px solid grey;">
-            <label>{{ x.driverName }}</label>
+            <label fxLayoutAlign="center center" class="cl_font_size_label">{{ x.driverName }}</label>
           </ion-col>
           <ion-col size="6">
-            <label>
+            <label fxLayoutAlign="center center" class="cl_font_size_label">
               {{ x.vehicleNumber }}
             </label>
           </ion-col>

@@ -177,7 +177,9 @@ export class ShowbalancerecordPage implements OnInit {
   getNewRecords: any = [];
   customerNumber: any;
   getPlusValue : any;
+  getVehiclesList : any;
   showRecordsData: any;
+
   constructor(public router: Router,
     public activatedRoute: ActivatedRoute,
     public toastController: ToastController,
@@ -196,6 +198,7 @@ export class ShowbalancerecordPage implements OnInit {
     this.customerId = this.detailArray['id']
     this.customerName = this.detailArray['name'] + " " + this.detailArray['lname'];
     this.customerNumber = this.detailArray['mobile'];
+    this.getVehiclesList = this.detailArray['vehicles'];
     this.getBalanceRecord();
     this.getHistoryArray = this.balanceRecord.history;
     this.displayList = this.getHistoryArray['list'];
@@ -238,8 +241,8 @@ export class ShowbalancerecordPage implements OnInit {
       customerName: this.customerName,
       amountState: value,
       customerId: this.customerId,
-      customerMobile: this.customerNumber
-
+      customerMobile: this.customerNumber,
+      customerVehicles : this.getVehiclesList
     }
     this.router.navigate(['/updatebalance', { balanceObject: JSON.stringify(balanceObject) }]);
 

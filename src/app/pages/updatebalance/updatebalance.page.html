@@ -35,6 +35,22 @@
 
     <div *ngIf="paymentMethod == 'Credit' " style="width: 100%;">
 
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-form-field style="width:90%">
+          <mat-label>Vehicle Number</mat-label>
+          <select matNativeControl required #drivername [(ngModel)]="userModel.vehiclenumber"
+            (change)="selectVehicleDetail(drivername.value)">
+            <option *ngFor="let type of customerVehicles" [value]="type.vehicleNumber"> {{type.vehicleNumber}}</option>
+          </select>
+        </mat-form-field>
+      </div>
+
+      <div fxLayout="row" fxLayoutAlign="center center">
+        <mat-form-field style="width:90%">
+          <input matInput class="form-control " name="dname" required [(ngModel)]="userModel.dname" #dname="ngModel"
+            pattern="[a-zA-z   ]+$" placeholder="Driver Name" />
+        </mat-form-field>
+      </div>
 
       <div fxLayout="row" fxLayoutAlign="space-around center" style="width:96%;margin-left:2%; margin-right:2%">
         <div *ngFor="let item of buttonsArray;let i = index " style="width:44%">
@@ -72,7 +88,28 @@
       </div>
     </div>
 
+<div *ngIf="paymentMethod == 'Payment' ">
 
+  <div fxLayout="row" fxLayoutAlign="center center">
+    <mat-form-field style="width:90%">
+      <mat-label>Debit Type</mat-label>
+      <select matNativeControl required #debittype (change)="selectDebitDetail(debittype.value)" [(ngModel)]="userModel.paymentType">
+        <option *ngFor="let type of debitType" [value]="type.type"> {{type.type}}</option>
+      </select>
+    </mat-form-field>
+  </div>
+
+
+  <div fxLayout="row" fxLayoutAlign="center center" style="width:100%;">
+    <mat-form-field style="width:90%">
+      <mat-label>Debit Detail</mat-label>
+          <input matInput type="text" name="paymentDetails" [(ngModel)]="userModel.paymentDetails"
+            #paymentDetails="ngModel" class="form-control" align="center" required pattern="[a-zA-Z.  -]+$">
+    </mat-form-field>
+  </div>
+
+
+</div>
     <div fxLayout="row" fxLayoutAlign="center center">
       <mat-form-field style="width:90%">
         <mat-label *ngIf="paymentMethod == 'Credit' ">Amount Paid</mat-label>

@@ -18,10 +18,10 @@ import { LoaderserviceService } from 'src/app/service/loader/loaderservice.servi
 export class DataentrycreditPage implements OnInit {
 
 
-  item = [ 1,2,3,4,5,6,7]
- str = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20";
- temp = new Array();
-displayString : any = "asmita";
+  item = [1, 2, 3, 4, 5, 6, 7]
+  str = "1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20";
+  temp = new Array();
+  displayString: any = "asmita";
   myControl = new FormControl();
   filteredOptions: Observable<string[]>;
   serchKey: any;
@@ -37,16 +37,16 @@ displayString : any = "asmita";
   autoCompleteArray: any = [];
   customerList: any = [];
   url: any;
-  userName : any;
-  userId : any;
-  userMobile : any;
+  userName: any;
+  userId: any;
+  userMobile: any;
   petrolPrice: any;
   dieselPrice: any;
   checkRecordStatus: any;
   recordNotPresent = 0;
   type: any;
   getData: any;
-  userObject : any = {};
+  userObject: any = {};
   checkDriverDiv: any = 1;
   buttonsArray = [
     {
@@ -60,23 +60,23 @@ displayString : any = "asmita";
       "type": "1"
     }];
 
-    food = [
-      {value: 'steak-0', viewValue: 'Steak'},
-      {value: 'pizza-1', viewValue: 'Pizza'},
-      {value: 'tacos-2', viewValue: 'Tacos'}
-    ];
+  food = [
+    { value: 'steak-0', viewValue: 'Steak' },
+    { value: 'pizza-1', viewValue: 'Pizza' },
+    { value: 'tacos-2', viewValue: 'Tacos' }
+  ];
 
-    vehicleNumber = [
-      {"vihiclenumber" : "Select vehicle number"},
-      {"vihiclenumber" : "MH67GH4567"},
-      {"vihiclenumber" : "MH67GH4566"},
-      {"vihiclenumber" : "MH67GH4565"},
-      {"vihiclenumber" : "MH67GH4564"},
-      {"vihiclenumber" : "MH67GH4563"},
-      {"vihiclenumber" : "MH67GH4562"},
+  vehicleNumber = [
+    { "vihiclenumber": "Select vehicle number" },
+    { "vihiclenumber": "MH67GH4567" },
+    { "vihiclenumber": "MH67GH4566" },
+    { "vihiclenumber": "MH67GH4565" },
+    { "vihiclenumber": "MH67GH4564" },
+    { "vihiclenumber": "MH67GH4563" },
+    { "vihiclenumber": "MH67GH4562" },
 
-      
-    ];
+
+  ];
 
   constructor(public activatedRoute: ActivatedRoute,
     public router: Router,
@@ -85,33 +85,29 @@ displayString : any = "asmita";
     public apiCall: ApicallService,
     public loader: LoaderserviceService,
     public dateAdapter: DateAdapter<Date>,
-    public menu: MenuController)
-     {
+    public menu: MenuController) {
     this.menu.enable(true);
     this.dateAdapter.setLocale("en-GB");
   }
 
   ngOnInit() {
+   
     this.userName = localStorage.getItem('userName');
     this.userId = localStorage.getItem('userId');
     this.userMobile = localStorage.getItem('userMobileNumber');
 
     this.userObject = {
-      "name" : this.userName,
-      "id" : this.userId,
-      "mobile" : this.userMobile
+      "name": this.userName,
+      "id": this.userId,
+      "mobile": this.userMobile
     }
-    const arr = [1,2,3,4,5];
-    const newArray = arr.map(i => i*10);
-    
-    alert("new Array:"+ newArray);
-  // console.log("display array:"+this.checkArray);
+
     this.petrolPrice = localStorage.getItem('petrolPrice');
     this.dieselPrice = localStorage.getItem('dieselPrice');
     this.getPetrolAmount();
     this.getDieselAmount();
     this.userModel['perliture'] = this.userModel['petrolamount'];
-    
+
     this.getCustomerList();
     this.userModel['type'] = 0;
     this.filteredOptions = this.myControl.valueChanges
@@ -119,12 +115,12 @@ displayString : any = "asmita";
         map(value => this._filter(value))
       );
 
-      if(this.userModel['customerName'] == "" || this.userModel['customerName'] == null || this.userModel['customerName'] == undefined){
-        this.checkDriverDiv = 1;
-      }else{
-        this.checkDriverDiv = 0;
+    if (this.userModel['customerName'] == "" || this.userModel['customerName'] == null || this.userModel['customerName'] == undefined) {
+      this.checkDriverDiv = 1;
+    } else {
+      this.checkDriverDiv = 0;
 
-      }
+    }
 
     this.userModel['date'] = new Date().toJSON().split('T')[0];
     this.today = new Date().toJSON().split('T')[0];
@@ -137,15 +133,15 @@ displayString : any = "asmita";
     if (this.customerList.filter(option => option.toLowerCase().includes(filterValue)) == undefined || this.customerList.filter(option => option.toLowerCase().includes(filterValue)) == "" || this.customerList.filter(option => option.toLowerCase().includes(filterValue)) == null) {
       this.recordNotPresent = 1;
       this.checkDriverDiv = 1;
-    }else{
+    } else {
 
       this.checkDriverDiv = 0;
       for (let i = 0; i < this.getCusstomers.length; i++) {
         let fullName = this.getCusstomers[i]['firstName'] + " " + this.getCusstomers[i]['lastName'];
-        if(fullName == this.userModel['customername']){
+        if (fullName == this.userModel['customername']) {
 
         }
-       
+
       }
     }
     return this.customerList.filter(option => option.toLowerCase().includes(filterValue));
@@ -186,7 +182,7 @@ displayString : any = "asmita";
   }
   getCustomerList() {
 
-    let url = environment.base_url + "customers?"+ "size=" + 1000;
+    let url = environment.base_url + "customers?" + "size=" + 1000;
     console.log("url :" + url);
     this.apiCall.get(url).subscribe(MyResponse => {
       this.getCusstomers = MyResponse['result']['list'];
@@ -199,7 +195,7 @@ displayString : any = "asmita";
           "id": id
         }
 
-        
+
         this.autoCompleteArray.push(getObject);
 
       }
@@ -223,16 +219,23 @@ displayString : any = "asmita";
 
   }
 
-  selectVehicleDetail(name) {
-   this.userModel['dname'] = name;
-}
-  getPosts(value){
+ 
+  selectVehicleDetail(vehiclenumber) {
+    this.userModel['vehiclenumber'] = vehiclenumber;
+    for(let i = 0; i < this.vehicleNumber.length ; i++){
+      if(this.vehicleNumber[i]['vehicleNumber'] == vehiclenumber){
+        this.userModel['dname'] = this.vehicleNumber[i]['driverName'];
+      }
+    }
+  }
+  getPosts(value) {
     for (let i = 0; i < this.getCusstomers.length; i++) {
       let fullName = this.getCusstomers[i]['firstName'] + " " + this.getCusstomers[i]['lastName'];
-     if(fullName == value){
-       this.vehicleNumber = this.getCusstomers[i]['vehicles'];
-       this.userModel['dname'] = this.vehicleNumber[0]['driverName'];
-     }
+      if (fullName == value) {
+        this.vehicleNumber = this.getCusstomers[i]['vehicles'];
+
+        this.userModel['dname'] = this.vehicleNumber[0]['driverName'];
+      }
     }
   }
   goBackword() {
@@ -251,10 +254,10 @@ displayString : any = "asmita";
     if (fuelType == 0) {
 
       this.userModel['type'] = 0;
-      this.userModel['perliture'] =this.userModel['petrolamount'];
+      this.userModel['perliture'] = this.userModel['petrolamount'];
     } else {
       this.userModel['type'] = 1;
-      this.userModel['perliture'] =this.userModel['dieselamount'] ;
+      this.userModel['perliture'] = this.userModel['dieselamount'];
     }
   }
 
@@ -269,10 +272,10 @@ displayString : any = "asmita";
 
   creditsubmit() {
     this.loader.presentLoading();
-    if(this.userModel['type'] == 2){
+    if (this.userModel['type'] == 2) {
       this.presentToast("Please select fuel type.");
     }
-    else{
+    else {
       for (let j = 0; j < this.autoCompleteArray.length; j++) {
         if (this.userModel['customername'] == this.autoCompleteArray[j]['name']) {
           this.userModel['id'] = this.autoCompleteArray[j]['id'];
@@ -283,7 +286,7 @@ displayString : any = "asmita";
         return;
       }
       let send_date = {};
-  
+
       send_date['type'] = this.userModel['type'];
       send_date['amountInLitre'] = this.userModel['inlitures'];
       send_date['pricePerLitre'] = this.userModel['perliture']
@@ -293,18 +296,18 @@ displayString : any = "asmita";
       send_date['driverName'] = this.userModel['dname']
       send_date['vehicleNumber'] = this.userModel['vehiclenumber'];
       send_date['createdBy'] = this.userObject;
-      if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined ) {      
+      if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined) {
         send_date['message'] = "Credited with  " + this.userModel['payment'];
-      }else{
+      } else {
         send_date['message'] = this.userModel['note']
-     
+
       }
-  
-  
+
+
       this.url = environment.base_url + "customers/" + this.userModel['id'] + "/purchase"
-  
+
       this.apiCall.postWAu(this.url, send_date).subscribe(MyResponse => {
-  
+
         let msg = MyResponse['message'];
         this.presentToast(msg);
         let userRole = localStorage.getItem('userRole');
@@ -318,10 +321,10 @@ displayString : any = "asmita";
         this.loader.stopLoading();
       }, error => {
         this.loader.stopLoading();
-       
+
         this.presentToast("Something went wrong");
         console.log(error.error.message);
-  
+
       })
     }
     this.loader.stopLoading();
@@ -333,19 +336,19 @@ displayString : any = "asmita";
     let geturl = environment.base_url + "price"
     this.apiCall.get(geturl).subscribe(MyResponse => {
       this.getData = MyResponse['result']['list'];
-      for(let k=0; k< this.getData.length; k++){
-          
-          if(this.getData[k]['type'] == 1){
-            this.userModel['dieselamount'] = this.getData[k]['price'];
-            localStorage.setItem("dieselPrice",this.getData[k]['price']);
-          console.log("diesel price:"+this.getData[k]['price']);
+      for (let k = 0; k < this.getData.length; k++) {
 
-            return;
-          }
-        
+        if (this.getData[k]['type'] == 1) {
+          this.userModel['dieselamount'] = this.getData[k]['price'];
+          localStorage.setItem("dieselPrice", this.getData[k]['price']);
+          console.log("diesel price:" + this.getData[k]['price']);
+
+          return;
+        }
+
 
       }
-     
+
       this.loader.stopLoading();
     },
       error => {
@@ -359,17 +362,17 @@ displayString : any = "asmita";
     let geturl = environment.base_url + "price"
     this.apiCall.get(geturl).subscribe(MyResponse => {
       this.getData = MyResponse['result']['list'];
-      for(let k=0; k< this.getData.length; k++){
-          if(this.getData[k]['type'] == 0){
-            this.userModel['petrolamount'] = this.getData[k]['price'];
-            this.userModel['perliture'] = this.getData[k]['price'];
-            localStorage.setItem("petrolPrice",this.getData[k]['price']);
-          console.log("petrol price:"+this.getData[k]['price']);
-            return;
-          }
-          
+      for (let k = 0; k < this.getData.length; k++) {
+        if (this.getData[k]['type'] == 0) {
+          this.userModel['petrolamount'] = this.getData[k]['price'];
+          this.userModel['perliture'] = this.getData[k]['price'];
+          localStorage.setItem("petrolPrice", this.getData[k]['price']);
+          console.log("petrol price:" + this.getData[k]['price']);
+          return;
+        }
+
       }
-     
+
       this.loader.stopLoading();
     },
       error => {

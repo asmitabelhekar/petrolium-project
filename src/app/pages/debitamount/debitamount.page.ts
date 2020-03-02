@@ -30,10 +30,10 @@ export class DebitamountPage implements OnInit {
   recordNotPresent = 0;
 
   debitType = [
-    {"type" : "Select debit type"},
-    {"type" : "Cash"},
-    {"type" : "Card"},
-    {"type" : "Cheque"}, 
+    { "type": "Select debit type" },
+    { "type": "Cash" },
+    { "type": "Card" },
+    { "type": "Cheque" },
   ];
 
 
@@ -136,14 +136,16 @@ export class DebitamountPage implements OnInit {
 
     send_date['date'] = this.userModel['date'];
     send_date['amount'] = this.userModel['payment'] * -1;
+    send_date['paymentType'] = this.userModel['paymentType'];
+    send_date['paymentDetails'] = this.userModel['paymentDetails'];
 
 
-    if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined ) {
-          
+    if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined) {
+
       send_date['message'] = "Debited with  " + this.userModel['payment'];
-    }else{
+    } else {
       send_date['message'] = this.userModel['note']
-   
+
     }
 
 
@@ -172,4 +174,10 @@ export class DebitamountPage implements OnInit {
     });
     toast.present();
   }
+
+
+  selectDebitDetail() {
+
+  }
+
 }

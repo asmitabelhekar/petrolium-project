@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "\n<ion-header class=\"new-background-color\">\n  <ion-toolbar class=\"new-background-color\">\n\n    <ion-row>\n      <ion-col size=\"2\">\n        <ion-icon name=\"close\" style=\"width:30px; height:30px; margin:10px ;color : #ffffff\" (click)=\"goBackword()\">\n        </ion-icon>\n        <!-- <checkRecordStatus ion-button class=\"BackButton\" (click)=\"goBackword()\" style=\"margin:10px\"></button> -->\n      </ion-col>\n      <ion-col size=\"10\">\n        <ion-label class=\"TitleHeader TitleText\" style=\"font-size: 17px;\">\n          Add Customer\n        </ion-label>\n      </ion-col>\n     \n    </ion-row>\n\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <form #userForm=\"ngForm\">\n    <!-- <button style=\"width:55px; height: 55px; background-color: #bfc0c9;font-size:20px\" class=\"centerImg\">+</button> -->\n    <ion-row style=\"width:100%;margin-top:5%\">\n      <ion-col size=\"2\">\n        <ion-icon name=\"person\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n        </ion-icon>\n      </ion-col>\n      <ion-col size=\"10\">\n        <ion-row >\n          <mat-form-field style=\"width:95%; margin-right:5%\">\n            <input matInput class=\"form-control \" name=\"fname\" required [(ngModel)]=\"userModel.fname\" #fname=\"ngModel\"\n              pattern=\"[a-zA-z   ]+$\" placeholder=\"First Name\" />\n            <mat-error>\n              <div class=\"form-group\">\n                <div *ngIf=\"fname.invalid && (fname.dirty || fname.touched)\">\n                  First Name Is Requird\n                </div>\n              </div>\n            </mat-error>\n\n          </mat-form-field>\n        </ion-row>\n      \n\n      </ion-col>\n    </ion-row>\n\n    <ion-row style=\"margin-top:-10px\">\n      <ion-col size=\"2\">\n        <!-- <ion-icon name=\"person\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n        </ion-icon> -->\n      </ion-col>\n      <ion-col size=\"10\">\n        <ion-row >\n        <mat-form-field style=\"width:95%; margin-right:5%\">\n          <input matInput class=\"form-control \" name=\"lname\" required [(ngModel)]=\"userModel.lname\" #lname=\"ngModel\"\n            pattern=\"[a-zA-z]+$\" placeholder=\"Last Name\" />\n          <mat-error>\n            <div class=\"form-group\">\n              <div *ngIf=\"lname.invalid && (lname.dirty || lname.touched)\">\n                Last Name Is Requird\n              </div>\n            </div>\n          </mat-error>\n  \n        </mat-form-field>\n        </ion-row>\n      </ion-col>\n      \n    </ion-row>\n\n\n<ion-row style=\"margin-top:-10px\">\n  <ion-col size=\"2\">\n    <ion-icon name=\"call\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n    </ion-icon>\n  </ion-col>\n  <ion-col size=\"10\">\n    <ion-row >\n    <mat-form-field style=\"width:95%; margin-right:5%\">\n\n      <input matInput class=\"form-control \" name=\"mobile\" type=\"tel\" minlength=\"10\" maxlength=\"10\" id=\"mobile\"\n       required [(ngModel)]=\"userModel.mobile\" #mobile=\"ngModel\"\n        pattern=\"[0-9]+$\" placeholder=\"Mobile\" />\n\n      <mat-error>\n        <div class=\"form-group\">\n          <div *ngIf=\"mobile.invalid && (mobile.dirty || mobile.touched)\">\n            Mobile Number Is Requird\n          </div>\n          \n        </div>\n      </mat-error>\n\n    </mat-form-field>\n    </ion-row>\n  </ion-col>\n</ion-row>\n    \n<ion-row style=\"margin-top:-10px\">\n  <ion-col size=\"2\">\n    <ion-icon name=\"mail\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n    </ion-icon>\n  </ion-col>\n\n  <ion-col size=\"10\">\n    <ion-row >\n    <mat-form-field style=\"width:95%; margin-right:5%\">\n      <input matInput class=\"form-control \" name=\"email\" [(ngModel)]=\"userModel.email\" #email=\"ngModel\"\n        pattern=\"[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\" placeholder=\"Email\" />\n      <mat-error>\n        <div class=\"form-group\">\n          <div *ngIf=\"email.invalid && (email.dirty || email.touched)\">\n            Email Is Requird\n          </div>\n        </div>\n      </mat-error>\n\n    </mat-form-field>\n    </ion-row>\n  </ion-col>\n</ion-row>\n\n   \n\n    <ion-row style=\"margin-top:-10px\">\n      <ion-col size=\"2\">\n        <ion-icon name=\"home\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n        </ion-icon>\n      </ion-col>\n      <ion-col size=\"10\">\n        <ion-row >\n        <mat-form-field style=\"width:95%; margin-right:5%\">\n          <textarea matInput class=\"form-control \" name=\"address\"  [(ngModel)]=\"userModel.address\" #address=\"ngModel\"\n            pattern=\"[a-zA-z  .]+$\" placeholder=\"Address\" ></textarea>\n        </mat-form-field>\n        </ion-row>\n      </ion-col>\n    </ion-row>\n\n    <ion-row style=\"margin-top:-10px\">\n      <ion-col size=\"2\">\n        <ion-icon name=\"document\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n        </ion-icon>\n      </ion-col>\n    \n      <ion-col size=\"10\">\n        <ion-row >\n        <mat-form-field style=\"width:95%; margin-right:5%\">\n          <textarea matInput class=\"form-control \" name=\"note\" [(ngModel)]=\"userModel.note\" #note=\"ngModel\"\n            pattern=\"[a-zA-z  .]+$\" placeholder=\"Note\" ></textarea>\n        \n        </mat-form-field>\n        </ion-row>\n      </ion-col>\n    </ion-row>\n\n   \n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:15px\">\n      <button mat-raised-button\n        [disabled]=\"mobile.invalid || address.invalid || fname.invalid || lname.invalid \"\n        class=\"submitButton\" (click)=\"addCustomerData()\">Save</button>\n\n    </div>\n  </form>\n\n\n</ion-content>\n"
+module.exports = "\n<ion-header class=\"new-background-color\">\n  <ion-toolbar class=\"new-background-color\">\n\n    <ion-row>\n      <ion-col size=\"2\">\n        <ion-icon name=\"close\" style=\"width:30px; height:30px; margin:10px ;color : #ffffff\" (click)=\"goBackword()\">\n        </ion-icon>\n        <!-- <checkRecordStatus ion-button class=\"BackButton\" (click)=\"goBackword()\" style=\"margin:10px\"></button> -->\n      </ion-col>\n      <ion-col size=\"10\">\n        <ion-label class=\"TitleHeader TitleText\" style=\"font-size: 17px;\">\n          Add Customer\n        </ion-label>\n      </ion-col>\n     \n    </ion-row>\n\n  </ion-toolbar>\n</ion-header>\n<ion-content>\n\n  <form #userForm=\"ngForm\" style=\"width:100%\">\n    <!-- <button style=\"width:55px; height: 55px; background-color: #bfc0c9;font-size:20px\" class=\"centerImg\">+</button> -->\n    <ion-row style=\"width:100%;margin-top:5%\">\n      <ion-col size=\"2\">\n        <ion-icon name=\"person\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n        </ion-icon>\n      </ion-col>\n      <ion-col size=\"10\">\n        <ion-row >\n          <mat-form-field style=\"width:95%; margin-right:5%\">\n            <input matInput class=\"form-control \" name=\"fname\" required [(ngModel)]=\"userModel.fname\" #fname=\"ngModel\"\n              pattern=\"[a-zA-z   ]+$\" placeholder=\"First Name\" />\n            <mat-error>\n              <div class=\"form-group\">\n                <div *ngIf=\"fname.invalid && (fname.dirty || fname.touched)\">\n                  First Name Is Requird\n                </div>\n              </div>\n            </mat-error>\n\n          </mat-form-field>\n        </ion-row>\n      \n\n      </ion-col>\n    </ion-row>\n\n    <ion-row style=\"margin-top:-10px\">\n      <ion-col size=\"2\">\n        <!-- <ion-icon name=\"person\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n        </ion-icon> -->\n      </ion-col>\n      <ion-col size=\"10\">\n        <ion-row >\n        <mat-form-field style=\"width:95%; margin-right:5%\">\n          <input matInput class=\"form-control \" name=\"lname\" required [(ngModel)]=\"userModel.lname\" #lname=\"ngModel\"\n            pattern=\"[a-zA-z]+$\" placeholder=\"Last Name\" />\n          <mat-error>\n            <div class=\"form-group\">\n              <div *ngIf=\"lname.invalid && (lname.dirty || lname.touched)\">\n                Last Name Is Requird\n              </div>\n            </div>\n          </mat-error>\n  \n        </mat-form-field>\n        </ion-row>\n      </ion-col>\n      \n    </ion-row>\n\n\n<ion-row style=\"margin-top:-10px\">\n  <ion-col size=\"2\">\n    <ion-icon name=\"call\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n    </ion-icon>\n  </ion-col>\n  <ion-col size=\"10\">\n    <ion-row >\n    <mat-form-field style=\"width:95%; margin-right:5%\">\n\n      <input matInput class=\"form-control \" name=\"mobile\" type=\"tel\" minlength=\"10\" maxlength=\"10\" id=\"mobile\"\n       required [(ngModel)]=\"userModel.mobile\" #mobile=\"ngModel\"\n        pattern=\"[0-9]+$\" placeholder=\"Mobile\" />\n\n      <mat-error>\n        <div class=\"form-group\">\n          <div *ngIf=\"mobile.invalid && (mobile.dirty || mobile.touched)\">\n            Mobile Number Is Requird\n          </div>\n          \n        </div>\n      </mat-error>\n\n    </mat-form-field>\n    </ion-row>\n  </ion-col>\n</ion-row>\n    \n<ion-row style=\"margin-top:-10px\">\n  <ion-col size=\"2\">\n    <ion-icon name=\"mail\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n    </ion-icon>\n  </ion-col>\n\n  <ion-col size=\"10\">\n    <ion-row >\n    <mat-form-field style=\"width:95%; margin-right:5%\">\n      <input matInput class=\"form-control \" name=\"email\" [(ngModel)]=\"userModel.email\" #email=\"ngModel\"\n        pattern=\"[A-Za-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$\" placeholder=\"Email\" />\n      <mat-error>\n        <div class=\"form-group\">\n          <div *ngIf=\"email.invalid && (email.dirty || email.touched)\">\n            Email Is Requird\n          </div>\n        </div>\n      </mat-error>\n\n    </mat-form-field>\n    </ion-row>\n  </ion-col>\n</ion-row>\n\n   \n\n    <ion-row style=\"margin-top:-10px\">\n      <ion-col size=\"2\">\n        <ion-icon name=\"home\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n        </ion-icon>\n      </ion-col>\n      <ion-col size=\"10\">\n        <ion-row >\n        <mat-form-field style=\"width:95%; margin-right:5%\">\n          <textarea matInput class=\"form-control \" name=\"address\"  [(ngModel)]=\"userModel.address\" #address=\"ngModel\"\n            pattern=\"[a-zA-z  ,-_.]+$\" placeholder=\"Address\" ></textarea>\n        </mat-form-field>\n        </ion-row>\n      </ion-col>\n    </ion-row>\n\n    <ion-row style=\"margin-top:-10px\">\n      <ion-col size=\"2\">\n        <ion-icon name=\"document\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n        </ion-icon>\n      </ion-col>\n    \n      <ion-col size=\"10\">\n        <ion-row >\n        <mat-form-field style=\"width:95%; margin-right:5%\">\n          <textarea matInput class=\"form-control \" name=\"note\" [(ngModel)]=\"userModel.note\" #note=\"ngModel\"\n            pattern=\"[a-zA-z  ,-.]+$\" placeholder=\"Note\" ></textarea>\n        \n        </mat-form-field>\n        </ion-row>\n      </ion-col>\n    </ion-row>\n\n    <ion-row style=\"margin-top:-10px\">\n      <ion-col size=\"2\">\n        <ion-icon name=\"person\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n        </ion-icon>\n      </ion-col>\n      <ion-col size=\"10\">\n        <ion-row >\n          <mat-form-field style=\"width:95%; margin-right:5%\">\n            <input matInput class=\"form-control \" name=\"dname\" required [(ngModel)]=\"userModel.dname\" #dname=\"ngModel\"\n              pattern=\"[a-zA-z .,  ]+$\" placeholder=\"Driver Name\" />\n            <mat-error>\n              <div class=\"form-group\">\n                <div *ngIf=\"dname.invalid && (dname.dirty || dname.touched)\">\n                  Driver Name Is Requird\n                </div>\n              </div>\n            </mat-error>\n\n          </mat-form-field>\n        </ion-row>\n      \n      </ion-col>\n    </ion-row>\n\n    <ion-row style=\"margin-top:-10px\">\n      <ion-col size=\"2\">\n        <ion-icon name=\"car\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\">\n        </ion-icon>\n      </ion-col>\n      <ion-col size=\"8\">\n        <ion-row >\n          <mat-form-field style=\"width:95%; margin-right:5%\">\n            <input matInput class=\"form-control \" name=\"numberv\" required [(ngModel)]=\"userModel.numberv\" #numberv=\"ngModel\"\n              pattern=\"[a-zA-z0-9-.   ]+$\" placeholder=\"Vehicle Number\" />\n            <mat-error>\n              <div class=\"form-group\">\n                <div *ngIf=\"numberv.invalid && (numberv.dirty || numberv.touched)\">\n                  Vehicle Number Is Requird\n                </div>\n              </div>\n            </mat-error>\n\n          </mat-form-field>\n        </ion-row>\n      \n\n        \n        \n        \n      </ion-col>\n      <ion-col size=\"2\">\n        <ion-icon name=\"add-circle\" style=\"width:25px; height:25px; color : #93959e; margin: 20px\" (click)=\"addVehicle()\">\n        </ion-icon>\n      </ion-col>\n    </ion-row>\n\n    <div fxlayout=\"row\" fxLayoutAlign=\"center center\">\n      <div fxLayout=\"column\" fxLayoutAlign=\"center center\" *ngIf=\"displayVehicleRecord == 0\" style=\"width:85%\">\n      <label style=\"font-size: 17px;\">Vehicle Detail</label>\n\n        <ion-row style=\"border: 1px solid grey; width:100%; margin-top:10px\">\n          <ion-col size=\"4\" style=\"border-right: 1px solid grey;\" >\n           <label fxLayoutAlign=\"center center\" class=\"cl_table_title_css\"> <b >Driver Name</b></label>\n          </ion-col>\n          <ion-col size=\"4\" style=\"border-right: 1px solid grey;\" >\n           <label fxLayoutAlign=\"center center\" class=\"cl_table_title_css\">  <b>Vehicle Number</b> </label>\n          </ion-col>\n          <ion-col size=\"2\" style=\"border-right: 1px solid grey;\" >\n            <label fxLayoutAlign=\"center center\" class=\"cl_table_title_css\"> <b>Update</b></label>\n          </ion-col>\n          <ion-col size=\"2\" >\n            <label fxLayoutAlign=\"center center\" class=\"cl_table_title_css\"> <b>Delete</b></label>\n          </ion-col>\n        </ion-row>\n    \n        <ion-row *ngFor=\"let item of vehicleDetailArray; let i = index;\" style=\"border-bottom: 1px solid grey;border-right: 1px solid grey;border-left: 1px solid grey; width:  100%;\" >\n          <ion-col size=\"4\" style=\"border-right: 1px solid grey;\" >\n            <label fxLayoutAlign=\"center center\" class=\"cl_table_content_css\">{{item.driverName }}</label>\n          </ion-col >\n          <ion-col size=\"4\" style=\"border-right: 1px solid grey;\" >\n           <label  fxLayoutAlign=\"center center\" class=\"cl_table_content_css\">\n            {{item.vehicleNumber}}\n           </label> \n          </ion-col>\n\n          <ion-col size=\"2\" fxLayoutAlign=\"center center\" style=\"border-right: 1px solid grey;\" >\n          <ion-icon fxLayoutAlign=\"center center\" name=\"create\" style=\"width: 20px; height: 20px;\" (click)=\"updateRecord(i,item)\"></ion-icon>\n           </ion-col>\n\n           <ion-col size=\"2\" fxLayoutAlign=\"center center\"  style=\"border-right: 1px solid grey;\" >\n            <ion-icon fxLayoutAlign=\"center center\" name=\"close\" style=\"width: 20px; height: 20px;\" (click)=\"removeRecord(i)\"></ion-icon>\n           </ion-col>\n        </ion-row>\n      </div>\n    \n    </div>\n\n   \n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:15px; margin-bottom: 20px\">\n      <button mat-raised-button\n        [disabled]=\"mobile.invalid || address.invalid || fname.invalid || lname.invalid \"\n        class=\"submitButton\" (click)=\"addCustomerData()\">Save</button>\n\n    </div>\n  </form>\n\n\n</ion-content>\n"
 
 /***/ }),
 
@@ -112,7 +112,7 @@ var AddcustomerPageModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".registration-main {\n  margin-top: 5%;\n  width: 100%;\n  border: 1px solid red;\n}\n\nmat-card {\n  min-width: 80%;\n}\n\n.submitButton {\n  height: 48px;\n  width: 30%;\n  margin-left: 15%;\n  margin-right: 15%;\n  border-radius: 25px;\n  background-color: #2e2d2d;\n  color: #FFFFFF;\n  font-family: \"Roboto\", sans-serif;\n  font-size: 15px;\n}\n\n.TitleHeader {\n  width: 100%;\n  height: 50px;\n  display: -webkit-inline-box;\n  display: inline-flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n\n.TitleText {\n  display: -webkit-inline-box;\n  display: inline-flex;\n  text-align: left;\n  font-size: 19px;\n  width: 81%;\n  color: #ffffff;\n  -webkit-box-align: center;\n          align-items: center;\n}\n\n.new-background-color {\n  --background: #494747;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2RoYW5hbmpheXJhdXQvcGV0cm9saXVtLXByb2plY3Qvc3JjL2FwcC9wYWdlcy9hZGRjdXN0b21lci9hZGRjdXN0b21lci5wYWdlLnNjc3MiLCJzcmMvYXBwL3BhZ2VzL2FkZGN1c3RvbWVyL2FkZGN1c3RvbWVyLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGNBQUE7RUFDQSxXQUFBO0VBQ0EscUJBQUE7QUNDSjs7QURDSTtFQUNBLGNBQUE7QUNFSjs7QURDSTtFQUVJLFlBQUE7RUFDQSxVQUFBO0VBQ0MsZ0JBQUE7RUFDRCxpQkFBQTtFQUNBLG1CQUFBO0VBQ0EseUJBQUE7RUFDQSxjQUFBO0VBQ0EsaUNBQUE7RUFDQSxlQUFBO0FDQ1I7O0FESUk7RUFDSSxXQUFBO0VBRUEsWUFBQTtFQUNBLDJCQUFBO0VBQUEsb0JBQUE7RUFDQSx5QkFBQTtVQUFBLG1CQUFBO0FDRlI7O0FES0k7RUFDSSwyQkFBQTtFQUFBLG9CQUFBO0VBQ0EsZ0JBQUE7RUFDQSxlQUFBO0VBQ0EsVUFBQTtFQUNBLGNBQUE7RUFFQSx5QkFBQTtVQUFBLG1CQUFBO0FDSFI7O0FET0E7RUFDSSxxQkFBQTtBQ0pKIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvYWRkY3VzdG9tZXIvYWRkY3VzdG9tZXIucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnJlZ2lzdHJhdGlvbi1tYWlue1xuICAgIG1hcmdpbi10b3A6IDUlO1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIHJlZDtcbiAgICB9XG4gICAgbWF0LWNhcmR7XG4gICAgbWluLXdpZHRoOiA4MCU7XG4gICAgfVxuICAgIFxuICAgIC5zdWJtaXRCdXR0b257XG4gICBcbiAgICAgICAgaGVpZ2h0OiA0OHB4O1x0XG4gICAgICAgIHdpZHRoOiAzMCU7IFxuICAgICAgICAgbWFyZ2luLWxlZnQ6IDE1JTsgXG4gICAgICAgIG1hcmdpbi1yaWdodDogMTUlO1xuICAgICAgICBib3JkZXItcmFkaXVzOiAyNXB4O1x0XG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6ICMyZTJkMmQ7XG4gICAgICAgIGNvbG9yOiAjRkZGRkZGO1x0XG4gICAgICAgIGZvbnQtZmFtaWx5OiAnUm9ib3RvJyxzYW5zLXNlcmlmO1x0XG4gICAgICAgIGZvbnQtc2l6ZTogMTVweDtcdFxuICAgICAgICAvLyBwb3NpdGlvbjogZml4ZWQ7XG4gICAgICAgIC8vIGJvdHRvbTogMTBweDtcbiAgICAgICAgLy8gcmlnaHQ6IDEwcHg7XG4gICAgfVxuICAgIC5UaXRsZUhlYWRlcntcbiAgICAgICAgd2lkdGg6IDEwMCU7XG4gICAgICAgIC8vIHBhZGRpbmc6IDAgMTBweCAwIDEwcHg7XG4gICAgICAgIGhlaWdodDogNTBweDtcbiAgICAgICAgZGlzcGxheTogaW5saW5lLWZsZXg7XG4gICAgICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgICAgIC8vIGJhY2tncm91bmQtY29sb3I6IGJsdWU7XG4gICAgfVxuICAgIC5UaXRsZVRleHR7XG4gICAgICAgIGRpc3BsYXk6IGlubGluZS1mbGV4O1xuICAgICAgICB0ZXh0LWFsaWduOmxlZnQ7XG4gICAgICAgIGZvbnQtc2l6ZTogMTlweDtcbiAgICAgICAgd2lkdGg6IDgxJTtcbiAgICAgICAgY29sb3I6ICNmZmZmZmY7XG4gICAgICAgIC8vIGZvbnQtd2VpZ2h0OiA3MDA7XG4gICAgICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgfVxuICAgIFxuXG4ubmV3LWJhY2tncm91bmQtY29sb3J7XG4gICAgLS1iYWNrZ3JvdW5kOiAjNDk0NzQ3O1xuICB9IiwiLnJlZ2lzdHJhdGlvbi1tYWluIHtcbiAgbWFyZ2luLXRvcDogNSU7XG4gIHdpZHRoOiAxMDAlO1xuICBib3JkZXI6IDFweCBzb2xpZCByZWQ7XG59XG5cbm1hdC1jYXJkIHtcbiAgbWluLXdpZHRoOiA4MCU7XG59XG5cbi5zdWJtaXRCdXR0b24ge1xuICBoZWlnaHQ6IDQ4cHg7XG4gIHdpZHRoOiAzMCU7XG4gIG1hcmdpbi1sZWZ0OiAxNSU7XG4gIG1hcmdpbi1yaWdodDogMTUlO1xuICBib3JkZXItcmFkaXVzOiAyNXB4O1xuICBiYWNrZ3JvdW5kLWNvbG9yOiAjMmUyZDJkO1xuICBjb2xvcjogI0ZGRkZGRjtcbiAgZm9udC1mYW1pbHk6IFwiUm9ib3RvXCIsIHNhbnMtc2VyaWY7XG4gIGZvbnQtc2l6ZTogMTVweDtcbn1cblxuLlRpdGxlSGVhZGVyIHtcbiAgd2lkdGg6IDEwMCU7XG4gIGhlaWdodDogNTBweDtcbiAgZGlzcGxheTogaW5saW5lLWZsZXg7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG5cbi5UaXRsZVRleHQge1xuICBkaXNwbGF5OiBpbmxpbmUtZmxleDtcbiAgdGV4dC1hbGlnbjogbGVmdDtcbiAgZm9udC1zaXplOiAxOXB4O1xuICB3aWR0aDogODElO1xuICBjb2xvcjogI2ZmZmZmZjtcbiAgYWxpZ24taXRlbXM6IGNlbnRlcjtcbn1cblxuLm5ldy1iYWNrZ3JvdW5kLWNvbG9yIHtcbiAgLS1iYWNrZ3JvdW5kOiAjNDk0NzQ3O1xufSJdfQ== */"
+module.exports = ".registration-main {\n  margin-top: 5%;\n  width: 100%;\n  border: 1px solid red;\n}\n\nmat-card {\n  min-width: 80%;\n}\n\n.submitButton {\n  height: 48px;\n  width: 30%;\n  margin-left: 15%;\n  margin-right: 15%;\n  border-radius: 25px;\n  background-color: #2e2d2d;\n  color: #FFFFFF;\n  font-family: \"Roboto\", sans-serif;\n  font-size: 15px;\n}\n\n.TitleHeader {\n  width: 100%;\n  height: 50px;\n  display: -webkit-inline-box;\n  display: inline-flex;\n  -webkit-box-align: center;\n          align-items: center;\n}\n\n.TitleText {\n  display: -webkit-inline-box;\n  display: inline-flex;\n  text-align: left;\n  font-size: 19px;\n  width: 81%;\n  color: #ffffff;\n  -webkit-box-align: center;\n          align-items: center;\n}\n\n.new-background-color {\n  --background: #494747;\n}\n\n.cl_table_title_css {\n  font-size: 13px;\n}\n\n.cl_table_content_css {\n  font-size: 12px;\n}\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2RoYW5hbmpheXJhdXQvcGV0cm9saXVtLXByb2plY3Qvc3JjL2FwcC9wYWdlcy9hZGRjdXN0b21lci9hZGRjdXN0b21lci5wYWdlLnNjc3MiLCJzcmMvYXBwL3BhZ2VzL2FkZGN1c3RvbWVyL2FkZGN1c3RvbWVyLnBhZ2Uuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLGNBQUE7RUFDQSxXQUFBO0VBQ0EscUJBQUE7QUNDSjs7QURDSTtFQUNBLGNBQUE7QUNFSjs7QURDSTtFQUVJLFlBQUE7RUFDQSxVQUFBO0VBQ0MsZ0JBQUE7RUFDRCxpQkFBQTtFQUNBLG1CQUFBO0VBQ0EseUJBQUE7RUFDQSxjQUFBO0VBQ0EsaUNBQUE7RUFDQSxlQUFBO0FDQ1I7O0FESUk7RUFDSSxXQUFBO0VBRUEsWUFBQTtFQUNBLDJCQUFBO0VBQUEsb0JBQUE7RUFDQSx5QkFBQTtVQUFBLG1CQUFBO0FDRlI7O0FES0k7RUFDSSwyQkFBQTtFQUFBLG9CQUFBO0VBQ0EsZ0JBQUE7RUFDQSxlQUFBO0VBQ0EsVUFBQTtFQUNBLGNBQUE7RUFFQSx5QkFBQTtVQUFBLG1CQUFBO0FDSFI7O0FET0E7RUFDSSxxQkFBQTtBQ0pKOztBRE9FO0VBQ0ksZUFBQTtBQ0pOOztBRE9FO0VBQ0ksZUFBQTtBQ0pOIiwiZmlsZSI6InNyYy9hcHAvcGFnZXMvYWRkY3VzdG9tZXIvYWRkY3VzdG9tZXIucGFnZS5zY3NzIiwic291cmNlc0NvbnRlbnQiOlsiLnJlZ2lzdHJhdGlvbi1tYWlue1xuICAgIG1hcmdpbi10b3A6IDUlO1xuICAgIHdpZHRoOiAxMDAlO1xuICAgIGJvcmRlcjogMXB4IHNvbGlkIHJlZDtcbiAgICB9XG4gICAgbWF0LWNhcmR7XG4gICAgbWluLXdpZHRoOiA4MCU7XG4gICAgfVxuICAgIFxuICAgIC5zdWJtaXRCdXR0b257XG4gICBcbiAgICAgICAgaGVpZ2h0OiA0OHB4O1x0XG4gICAgICAgIHdpZHRoOiAzMCU7IFxuICAgICAgICAgbWFyZ2luLWxlZnQ6IDE1JTsgXG4gICAgICAgIG1hcmdpbi1yaWdodDogMTUlO1xuICAgICAgICBib3JkZXItcmFkaXVzOiAyNXB4O1x0XG4gICAgICAgIGJhY2tncm91bmQtY29sb3I6ICMyZTJkMmQ7XG4gICAgICAgIGNvbG9yOiAjRkZGRkZGO1x0XG4gICAgICAgIGZvbnQtZmFtaWx5OiAnUm9ib3RvJyxzYW5zLXNlcmlmO1x0XG4gICAgICAgIGZvbnQtc2l6ZTogMTVweDtcdFxuICAgICAgICAvLyBwb3NpdGlvbjogZml4ZWQ7XG4gICAgICAgIC8vIGJvdHRvbTogMTBweDtcbiAgICAgICAgLy8gcmlnaHQ6IDEwcHg7XG4gICAgfVxuICAgIC5UaXRsZUhlYWRlcntcbiAgICAgICAgd2lkdGg6IDEwMCU7XG4gICAgICAgIC8vIHBhZGRpbmc6IDAgMTBweCAwIDEwcHg7XG4gICAgICAgIGhlaWdodDogNTBweDtcbiAgICAgICAgZGlzcGxheTogaW5saW5lLWZsZXg7XG4gICAgICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgICAgIC8vIGJhY2tncm91bmQtY29sb3I6IGJsdWU7XG4gICAgfVxuICAgIC5UaXRsZVRleHR7XG4gICAgICAgIGRpc3BsYXk6IGlubGluZS1mbGV4O1xuICAgICAgICB0ZXh0LWFsaWduOmxlZnQ7XG4gICAgICAgIGZvbnQtc2l6ZTogMTlweDtcbiAgICAgICAgd2lkdGg6IDgxJTtcbiAgICAgICAgY29sb3I6ICNmZmZmZmY7XG4gICAgICAgIC8vIGZvbnQtd2VpZ2h0OiA3MDA7XG4gICAgICAgIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG4gICAgfVxuICAgIFxuXG4ubmV3LWJhY2tncm91bmQtY29sb3J7XG4gICAgLS1iYWNrZ3JvdW5kOiAjNDk0NzQ3O1xuICB9XG5cbiAgLmNsX3RhYmxlX3RpdGxlX2Nzc3tcbiAgICAgIGZvbnQtc2l6ZTogMTNweDtcbiAgfVxuXG4gIC5jbF90YWJsZV9jb250ZW50X2Nzc3tcbiAgICAgIGZvbnQtc2l6ZTogMTJweDtcbiAgfSIsIi5yZWdpc3RyYXRpb24tbWFpbiB7XG4gIG1hcmdpbi10b3A6IDUlO1xuICB3aWR0aDogMTAwJTtcbiAgYm9yZGVyOiAxcHggc29saWQgcmVkO1xufVxuXG5tYXQtY2FyZCB7XG4gIG1pbi13aWR0aDogODAlO1xufVxuXG4uc3VibWl0QnV0dG9uIHtcbiAgaGVpZ2h0OiA0OHB4O1xuICB3aWR0aDogMzAlO1xuICBtYXJnaW4tbGVmdDogMTUlO1xuICBtYXJnaW4tcmlnaHQ6IDE1JTtcbiAgYm9yZGVyLXJhZGl1czogMjVweDtcbiAgYmFja2dyb3VuZC1jb2xvcjogIzJlMmQyZDtcbiAgY29sb3I6ICNGRkZGRkY7XG4gIGZvbnQtZmFtaWx5OiBcIlJvYm90b1wiLCBzYW5zLXNlcmlmO1xuICBmb250LXNpemU6IDE1cHg7XG59XG5cbi5UaXRsZUhlYWRlciB7XG4gIHdpZHRoOiAxMDAlO1xuICBoZWlnaHQ6IDUwcHg7XG4gIGRpc3BsYXk6IGlubGluZS1mbGV4O1xuICBhbGlnbi1pdGVtczogY2VudGVyO1xufVxuXG4uVGl0bGVUZXh0IHtcbiAgZGlzcGxheTogaW5saW5lLWZsZXg7XG4gIHRleHQtYWxpZ246IGxlZnQ7XG4gIGZvbnQtc2l6ZTogMTlweDtcbiAgd2lkdGg6IDgxJTtcbiAgY29sb3I6ICNmZmZmZmY7XG4gIGFsaWduLWl0ZW1zOiBjZW50ZXI7XG59XG5cbi5uZXctYmFja2dyb3VuZC1jb2xvciB7XG4gIC0tYmFja2dyb3VuZDogIzQ5NDc0Nztcbn1cblxuLmNsX3RhYmxlX3RpdGxlX2NzcyB7XG4gIGZvbnQtc2l6ZTogMTNweDtcbn1cblxuLmNsX3RhYmxlX2NvbnRlbnRfY3NzIHtcbiAgZm9udC1zaXplOiAxMnB4O1xufSJdfQ== */"
 
 /***/ }),
 
@@ -141,15 +141,18 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AddcustomerPage = /** @class */ (function () {
-    function AddcustomerPage(router, toast, loader, apiCall, alertController, events, route) {
+    function AddcustomerPage(router, toast, loader, apiCall, alertController, cd, events, route) {
         this.router = router;
         this.toast = toast;
         this.loader = loader;
         this.apiCall = apiCall;
         this.alertController = alertController;
+        this.cd = cd;
         this.events = events;
         this.route = route;
+        this.checkFlagForUpdate = 1;
         this.userModel = {};
+        this.displayVehicleRecord = 1;
     }
     AddcustomerPage.prototype.ngOnInit = function () {
         this.recordstatus = this.route.snapshot.params['detailCustomerdata'];
@@ -159,6 +162,10 @@ var AddcustomerPage = /** @class */ (function () {
         this.userModel['address'] = displayArrayValues.address;
         this.userModel['email'] = displayArrayValues.email;
         this.userModel['note'] = displayArrayValues.note;
+        this.vehicleDetailArray = displayArrayValues.vehicles;
+        if (this.vehicleDetailArray.length > 0) {
+            this.displayVehicleRecord = 0;
+        }
         this.customerId = displayArrayValues.customerId;
         var fullname = displayArrayValues.fname;
         if (fullname != "") {
@@ -173,6 +180,10 @@ var AddcustomerPage = /** @class */ (function () {
         else if (this.checkStatus == "update") {
             this.savetext = "Update Customer";
         }
+    };
+    AddcustomerPage.prototype.ngOnChanges = function () {
+        console.log(this.vehicleDetailArray);
+        this.cd.detectChanges();
     };
     AddcustomerPage.prototype.goBackword = function () {
         if (this.checkStatus == "add") {
@@ -191,50 +202,56 @@ var AddcustomerPage = /** @class */ (function () {
             var _this = this;
             return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
                 this.loader.presentLoading();
-                send_date = {};
-                this.mobieNumber = this.userModel['mobile'];
-                send_date['firstName'] = this.userModel['fname'];
-                send_date['lastName'] = this.userModel['lname'];
-                send_date['mobile'] = this.mobieNumber.toString();
-                send_date['address'] = this.userModel['address'];
-                if (this.userModel['note'] != "") {
-                    send_date['note'] = this.userModel['note'];
-                }
-                if (this.userModel['email'] != "") {
-                    send_date['email'] = this.userModel['email'];
-                }
-                send_date['isActive'] = 1;
-                if (this.checkStatus == "add") {
-                    this.url = src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].base_url + "customers";
-                    this.apiCall.postWAu(this.url, send_date).subscribe(function (MyResponse) {
-                        console.log("MyResponse ", MyResponse);
-                        _this.events.publish('Event-AddCustomer');
-                        _this.router.navigate(['/home']);
-                        var msg = MyResponse['message'];
-                        _this.presentToast(msg);
-                        _this.loader.stopLoading();
-                    }, function (error) {
-                        _this.presentToast("Something went wrong");
-                        console.log(error.error.message);
-                    });
-                }
-                else if (this.checkStatus == "update") {
-                    this.loader.presentLoading();
-                    this.url = src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].base_url + "customers/" + this.customerId;
-                    this.apiCall.put(this.url, send_date).subscribe(function (MyResponse) {
-                        console.log("MyResponse ", MyResponse);
-                        _this.events.publish('Event-AddCustomer');
-                        _this.router.navigate(['/home']);
-                        var msg = MyResponse['message'];
-                        _this.presentToast(msg);
-                        _this.loader.stopLoading();
-                    }, function (error) {
-                        _this.loader.stopLoading();
-                        _this.presentToast("Something went wrong");
-                        console.log(error.error.message);
-                    });
+                if (this.vehicleDetailArray.length > 0) {
+                    send_date = {};
+                    this.mobieNumber = this.userModel['mobile'];
+                    send_date['firstName'] = this.userModel['fname'];
+                    send_date['lastName'] = this.userModel['lname'];
+                    send_date['mobile'] = this.mobieNumber.toString();
+                    send_date['address'] = this.userModel['address'];
+                    send_date['vehicles'] = this.vehicleDetailArray;
+                    if (this.userModel['note'] != "") {
+                        send_date['note'] = this.userModel['note'];
+                    }
+                    if (this.userModel['email'] != "") {
+                        send_date['email'] = this.userModel['email'];
+                    }
+                    send_date['isActive'] = 1;
+                    if (this.checkStatus == "add") {
+                        this.url = src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].base_url + "customers";
+                        this.apiCall.postWAu(this.url, send_date).subscribe(function (MyResponse) {
+                            console.log("MyResponse ", MyResponse);
+                            _this.events.publish('Event-AddCustomer');
+                            _this.router.navigate(['/home']);
+                            var msg = MyResponse['message'];
+                            _this.presentToast(msg);
+                            _this.loader.stopLoading();
+                        }, function (error) {
+                            _this.presentToast("Something went wrong");
+                            console.log(error.error.message);
+                        });
+                    }
+                    else if (this.checkStatus == "update") {
+                        this.loader.presentLoading();
+                        this.url = src_environments_environment__WEBPACK_IMPORTED_MODULE_4__["environment"].base_url + "customers/" + this.customerId;
+                        this.apiCall.put(this.url, send_date).subscribe(function (MyResponse) {
+                            console.log("MyResponse ", MyResponse);
+                            _this.events.publish('Event-AddCustomer');
+                            _this.router.navigate(['/home']);
+                            var msg = MyResponse['message'];
+                            _this.presentToast(msg);
+                            _this.loader.stopLoading();
+                        }, function (error) {
+                            _this.loader.stopLoading();
+                            _this.presentToast("Something went wrong");
+                            console.log(error.error.message);
+                        });
+                    }
+                    else {
+                    }
                 }
                 else {
+                    this.presentToast("Please add vehicle details.");
                 }
                 return [2 /*return*/];
             });
@@ -323,12 +340,156 @@ var AddcustomerPage = /** @class */ (function () {
             });
         });
     };
+    AddcustomerPage.prototype.addVehicle = function () {
+        if (this.userModel['dname'] == "" || this.userModel['dname'] == null || this.userModel['dname'] == undefined) {
+            alert("please fill driver name.");
+        }
+        else {
+            if (this.userModel['numberv'] == "" || this.userModel['numberv'] == null || this.userModel['numberv'] == undefined) {
+                alert("please fill vehicle number");
+            }
+            else {
+                var objjj = {
+                    "driverName": this.userModel['dname'],
+                    "vehicleNumber": this.userModel['numberv']
+                };
+                if (this.checkFlagForUpdate == 1) {
+                    this.vehicleDetailArray.push(objjj);
+                    this.checkFlagForUpdate = 1;
+                }
+                else {
+                    var getIndex = localStorage.getItem('arrayIndex');
+                    this.vehicleDetailArray[getIndex] = { driverName: this.userModel['dname'], vehicleNumber: this.userModel['numberv'] };
+                    this.checkFlagForUpdate = 1;
+                }
+                this.displayVehicleRecord = 0;
+            }
+        }
+    };
+    AddcustomerPage.prototype.removeRecord = function (index) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            message: 'Do you want to remove record?',
+                            buttons: [
+                                {
+                                    text: 'Cancel',
+                                    handler: function () {
+                                        alert.dismiss();
+                                    }
+                                }, {
+                                    text: 'OK',
+                                    handler: function () {
+                                        for (var i = 0; i < _this.vehicleDetailArray.length; i++) {
+                                            if (i == index) {
+                                                _this.vehicleDetailArray.splice(i, 1);
+                                            }
+                                        }
+                                        if (_this.vehicleDetailArray.length > 0) {
+                                            _this.displayVehicleRecord = 0;
+                                        }
+                                        else {
+                                            _this.displayVehicleRecord = 1;
+                                        }
+                                        console.log("after remove array:" + _this.vehicleDetailArray);
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddcustomerPage.prototype.updateRecord = function (index, data) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            var _this = this;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            message: 'Do you want to update record?',
+                            buttons: [
+                                {
+                                    text: 'Cancel',
+                                    handler: function () {
+                                        alert.dismiss();
+                                    }
+                                }, {
+                                    text: 'OK',
+                                    handler: function () {
+                                        _this.checkFlagForUpdate = 0;
+                                        localStorage.setItem("arrayIndex", index);
+                                        _this.getData = JSON.stringify(data);
+                                        _this.userModel['dname'] = data.driverName;
+                                        _this.userModel['numberv'] = data.vehicleNumber;
+                                        var name = _this.userModel['dname'];
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    AddcustomerPage.prototype.displayArrayOperationAlert = function (msg) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var alert;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.alertController.create({
+                            message: msg,
+                            buttons: [
+                                {
+                                    text: 'Cancel',
+                                    handler: function () {
+                                        alert.dismiss();
+                                    }
+                                }, {
+                                    text: 'OK',
+                                    handler: function () {
+                                        var checkOperationStatus = localStorage.getItem('clickAction');
+                                        if (checkOperationStatus == '0') {
+                                        }
+                                        else if (checkOperationStatus == '1') {
+                                        }
+                                        else {
+                                        }
+                                    }
+                                }
+                            ]
+                        })];
+                    case 1:
+                        alert = _a.sent();
+                        return [4 /*yield*/, alert.present()];
+                    case 2:
+                        _a.sent();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
     AddcustomerPage.ctorParameters = function () { return [
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["Router"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"] },
         { type: src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_6__["LoaderserviceService"] },
         { type: src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_5__["ApicallService"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"] },
+        { type: _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Events"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"] }
     ]; };
@@ -343,6 +504,7 @@ var AddcustomerPage = /** @class */ (function () {
             src_app_service_loader_loaderservice_service__WEBPACK_IMPORTED_MODULE_6__["LoaderserviceService"],
             src_app_service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_5__["ApicallService"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["AlertController"],
+            _angular_core__WEBPACK_IMPORTED_MODULE_1__["ChangeDetectorRef"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["Events"],
             _angular_router__WEBPACK_IMPORTED_MODULE_2__["ActivatedRoute"]])
     ], AddcustomerPage);

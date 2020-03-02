@@ -312,6 +312,7 @@ let ShowbalancerecordPage = class ShowbalancerecordPage {
         this.customerId = this.detailArray['id'];
         this.customerName = this.detailArray['name'] + " " + this.detailArray['lname'];
         this.customerNumber = this.detailArray['mobile'];
+        this.getVehiclesList = this.detailArray['vehicles'];
         this.getBalanceRecord();
         this.getHistoryArray = this.balanceRecord.history;
         this.displayList = this.getHistoryArray['list'];
@@ -349,7 +350,8 @@ let ShowbalancerecordPage = class ShowbalancerecordPage {
             customerName: this.customerName,
             amountState: value,
             customerId: this.customerId,
-            customerMobile: this.customerNumber
+            customerMobile: this.customerNumber,
+            customerVehicles: this.getVehiclesList
         };
         this.router.navigate(['/updatebalance', { balanceObject: JSON.stringify(balanceObject) }]);
     }

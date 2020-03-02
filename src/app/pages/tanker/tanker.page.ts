@@ -72,6 +72,7 @@ export class TankerPage implements OnInit {
       send_date['type'] = this.tankerModel['type'];
       send_date['amount'] = this.tankerModel['tankerbalance'];
       send_date['date'] = this.tankerModel['date'];
+      send_date['quantity'] = this.tankerModel['quantity'];
       if(this.tankerModel['type'] == 0){
         send_date['perLitrePrice'] = this.petrolPrice;
       }else{
