@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ApicallService } from 'src/app/service/apicall/apicall.service';
 import { environment } from 'src/environments/environment';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-userprofile',
@@ -16,18 +16,32 @@ export class UserprofilePage implements OnInit {
   userMobile: any;
   userEmail: any;
   userRole: any;
+  userId: any;
+  logoutStatus: any;
 
   constructor(public apiCall: ApicallService,
-    public router : Router) { }
+    public router : Router,
+    public activatedRoute : ActivatedRoute) { }
 
   ngOnInit()
    {
-    this.getProfileDetail();
+    this.userId = (this.activatedRoute.snapshot.params['userId']);
+    if(this.userId == undefined || this.userId == "" || this.userId == null){
+      let userId = localStorage.getItem('userId');
+      alert("localstorage:"+userId);
+      this.getProfileDetail(userId);
+      this.logoutStatus = 0;
+    }else{
+      alert("particular user:"+this.userId);
+      this.getProfileDetail(this.userId);
+      this.logoutStatus =1;
+    }
+    alert("check:"+this.userId);
+   
   }
 
-  getProfileDetail() {
-    let userId = localStorage.getItem('userId');
-    let url = environment.base_url + "users/" + userId;
+  getProfileDetail(id) {
+    let url = environment.base_url + "users/" + id;
     console.log("url :" + url);
     this.apiCall.get(url).subscribe(MyResponse => {
       this.getUserDetail = (MyResponse['result']);

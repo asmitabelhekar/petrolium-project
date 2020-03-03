@@ -1,9 +1,45 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>userslist</ion-title>
+<ion-header class="new-background-color">
+  <ion-toolbar class="new-background-color">
+    <ion-buttons slot="start" style="color:white">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title style="color:white">
+      Users
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content>
+<ion-content style="width:100%">
+
+  <div fxLayoutAlign="center center">
+    <ion-row style="width:95%; border : 1px solid rgb(117, 115, 115); border-radius: 15px; margin:15px">
+      <ion-col size="1">
+        <ion-icon name="search" style="width:20px; height: 20px;margin-top:5px"></ion-icon>  
+        </ion-col>
+      <ion-col size="11" >
+        <input type="text" [(ngModel)]="getSearchKey" (input)="OnInput(getSearchKey)" placeholder="Search" style="width:96%;margin-right:2%;"/>
+      </ion-col>
+    </ion-row>
+  </div>
+
+ 
+  
+<div style="margin-top:10px; " *ngIf="showNoRecordsFound == 1">
+  <div *ngFor="let daata of getCusstomers; index as i" >
+    <ion-item (click)="getUserDetail(daata.id)" style="margin-left:-20px">
+      <div style="margin-left:30px">
+       
+    <button style="width:35px; height: 35px; border-radius: 50%;margin-right: 15px ; color: #ffffff" [ngClass]="(i % 2 == 0) ? 'odd' : 'even' ">{{daata.name.charAt(0) | uppercase}}</button>
+      </div>
+      {{daata.name | titlecase}}  
+    </ion-item>
+  </div>
+</div>
+ <div *ngIf="showNoRecordsFound == 0" fxLayout="row" fxLayoutAlign="center center" style="margin-top: 25%;">
+   <h3>No records found</h3>
+ </div>
+<div>
+  <button (click)="addCustomer()" align="center" style="position:fixed; width:60px;height:60px;right:30px; bottom:20px; background-color: #2e2d2d;border-radius: 50%;"><ion-icon style="width:30px; height: 30px;color:white" name="add"></ion-icon></button>
+</div>
 
 </ion-content>

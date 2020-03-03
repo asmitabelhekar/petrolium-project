@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { MenuController, Events, ToastController, LoadingController } from '@ionic/angular';
 import { Router } from '@angular/router';
-import * as pdfmake from 'pdfmake/build/pdfmake';
-import * as pdfFonts from 'pdfmake/build/vfs_fonts';
 import { ApicallService } from 'src/app/service/apicall/apicall.service';
 import { environment } from 'src/environments/environment';
 import { LoaderserviceService } from 'src/app/service/loader/loaderservice.service';
@@ -16,7 +14,6 @@ export class HomePage {
 
   userModel : any = {};
   getSearchKey: any;
-  // keyvalue = "Arti";
   checkRecordStatus: any;
   getData: any;
   showNoRecordsFound: any;

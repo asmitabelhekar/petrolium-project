@@ -81,7 +81,7 @@ export class AddusersPage implements OnInit {
         }, {
           text: 'OK',
           handler: () => {
-            // this.router.navigate(['/home'])
+            this.router.navigate(['/userslist'])
           }
         }]
     });

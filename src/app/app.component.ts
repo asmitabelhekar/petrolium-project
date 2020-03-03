@@ -143,7 +143,7 @@ export class AppComponent {
         },
         {
           title: 'Users',
-          url: '/addusers',
+          url: '/userslist',
 
         }
         ,
