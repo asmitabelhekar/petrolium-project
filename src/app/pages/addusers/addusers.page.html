@@ -1,0 +1,148 @@
+<ion-header class="new-background-color">
+  <ion-toolbar class="new-background-color">
+
+    <ion-row>
+      <ion-col size="2">
+        <ion-icon name="close" style="width:30px; height:30px; margin:10px ;color : #ffffff" (click)="goBackword()">
+        </ion-icon>
+      </ion-col>
+      <ion-col size="10">
+        <ion-label class="TitleHeader TitleText" style="font-size: 17px;">
+          Add User
+        </ion-label>
+      </ion-col>
+
+    </ion-row>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+
+  <ion-row style="margin-top:5%;width:100%">
+    <ion-col size="2">
+      <ion-icon name="person" style="width:25px; height:25px; color : #93959e; margin: 20px">
+      </ion-icon>
+    </ion-col>
+    <ion-col size="10">
+      <ion-row>
+        <mat-form-field style="width:95%; margin-right:5%">
+          <mat-label>User Role</mat-label>
+          <select matNativeControl required #userrole [(ngModel)]="userModel.userRole"
+            (change)="selectUserRoleDetail(userrole.value)">
+            <option *ngFor="let type of userRoles" [value]="type.roleId"> {{type.role}}</option>
+          </select>
+        </mat-form-field>
+      </ion-row>
+    </ion-col>
+  </ion-row>
+
+  <!-- <form #userForm="ngForm" style="width:100%"> -->
+    <ion-row style="width:100%;margin-top:-15px">
+      <ion-col size="2">
+        <ion-icon name="person" style="width:25px; height:25px; color : #93959e; margin: 20px">
+        </ion-icon>
+      </ion-col>
+      <ion-col size="10">
+        <ion-row>
+          <mat-form-field style="width:95%; margin-right:5%">
+            <input matInput class="form-control " name="fname" required [(ngModel)]="userModel.fname" #fname="ngModel"
+              pattern="[a-zA-z   ]+$" placeholder="First Name" />
+            <mat-error>
+              <div class="form-group">
+                <div *ngIf="fname.invalid && (fname.dirty || fname.touched)">
+                  First Name Is Requird
+                </div>
+              </div>
+            </mat-error>
+
+          </mat-form-field>
+        </ion-row>
+
+
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top:-10px">
+      <ion-col size="2">
+      </ion-col>
+      <ion-col size="10">
+        <ion-row>
+          <mat-form-field style="width:95%; margin-right:5%">
+            <input matInput class="form-control " name="lname" required [(ngModel)]="userModel.lname" #lname="ngModel"
+              pattern="[a-zA-z]+$" placeholder="Last Name" />
+            <mat-error>
+              <div class="form-group">
+                <div *ngIf="lname.invalid && (lname.dirty || lname.touched)">
+                  Last Name Is Requird
+                </div>
+              </div>
+            </mat-error>
+
+          </mat-form-field>
+        </ion-row>
+      </ion-col>
+
+    </ion-row>
+
+  
+
+
+    <ion-row style="margin-top:-10px">
+      <ion-col size="2">
+        <ion-icon name="call" style="width:25px; height:25px; color : #93959e; margin: 20px">
+        </ion-icon>
+      </ion-col>
+      <ion-col size="10">
+        <ion-row>
+          <mat-form-field style="width:95%; margin-right:5%">
+
+            <input matInput class="form-control " name="mobile" type="tel" minlength="10" maxlength="10" id="mobile"
+              required [(ngModel)]="userModel.mobile" #mobile="ngModel" pattern="[0-9]+$" placeholder="Mobile" />
+
+            <mat-error>
+              <div class="form-group">
+                <div *ngIf="mobile.invalid && (mobile.dirty || mobile.touched)">
+                  Mobile Number Is Requird
+                </div>
+
+              </div>
+            </mat-error>
+
+          </mat-form-field>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+    <ion-row style="margin-top:-10px">
+      <ion-col size="2">
+        <ion-icon name="mail" style="width:25px; height:25px; color : #93959e; margin: 20px">
+        </ion-icon>
+      </ion-col>
+
+      <ion-col size="10">
+        <ion-row>
+          <mat-form-field style="width:95%; margin-right:5%">
+            <input matInput class="form-control " name="email" [(ngModel)]="userModel.email" #email="ngModel"
+              pattern="[A-Za-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$" placeholder="Email" />
+            <mat-error>
+              <div class="form-group">
+                <div *ngIf="email.invalid && (email.dirty || email.touched)">
+                  Email Is Requird
+                </div>
+              </div>
+            </mat-error>
+
+          </mat-form-field>
+        </ion-row>
+      </ion-col>
+    </ion-row>
+
+
+
+    <div fxLayout="row" fxLayoutAlign="center center" style="margin-top:15px; margin-bottom: 20px">
+      <button mat-raised-button [disabled]="mobile.invalid || fname.invalid || lname.invalid "
+        class="submitButton" (click)="addCustomerData()">Save</button>
+
+    </div>
+    <!-- </form> -->
+</ion-content>

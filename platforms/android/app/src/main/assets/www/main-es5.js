@@ -548,6 +548,14 @@ var routes = [
     {
         path: 'tankersellsubmit',
         loadChildren: function () { return __webpack_require__.e(/*! import() | pages-tankersellsubmit-tankersellsubmit-module */ "pages-tankersellsubmit-tankersellsubmit-module").then(__webpack_require__.bind(null, /*! ./pages/tankersellsubmit/tankersellsubmit.module */ "./src/app/pages/tankersellsubmit/tankersellsubmit.module.ts")).then(function (m) { return m.TankersellsubmitPageModule; }); }
+    },
+    {
+        path: 'addusers',
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-addusers-addusers-module */ "pages-addusers-addusers-module").then(__webpack_require__.bind(null, /*! ./pages/addusers/addusers.module */ "./src/app/pages/addusers/addusers.module.ts")).then(function (m) { return m.AddusersPageModule; }); }
+    },
+    {
+        path: 'userprofile',
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-userprofile-userprofile-module */ "pages-userprofile-userprofile-module").then(__webpack_require__.bind(null, /*! ./pages/userprofile/userprofile.module */ "./src/app/pages/userprofile/userprofile.module.ts")).then(function (m) { return m.UserprofilePageModule; }); }
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -595,6 +603,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @ionic-native/splash-screen/ngx */ "./node_modules/@ionic-native/splash-screen/ngx/index.js");
 /* harmony import */ var _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @ionic-native/status-bar/ngx */ "./node_modules/@ionic-native/status-bar/ngx/index.js");
 /* harmony import */ var _angular_router__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @angular/router */ "./node_modules/@angular/router/fesm5/router.js");
+/* harmony import */ var src_environments_environment__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! src/environments/environment */ "./src/environments/environment.ts");
+/* harmony import */ var _service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./service/apicall/apicall.service */ "./src/app/service/apicall/apicall.service.ts");
+
+
 
 
 
@@ -602,35 +614,46 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent(platform, splashScreen, statusBar, router, events, alertCtrl) {
+    function AppComponent(platform, splashScreen, statusBar, router, events, apiCall, alertCtrl) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
         this.router = router;
         this.events = events;
+        this.apiCall = apiCall;
         this.alertCtrl = alertCtrl;
         this.userRole = 0;
         this.initializeApp();
     }
     AppComponent.prototype.initializeApp = function () {
-        var _this = this;
         this.userRole = localStorage.getItem('userRole');
-        this.login();
-        this.loginSession();
-        this.platform.ready().then(function () {
-            _this.statusBar.styleDefault();
-            _this.splashScreen.hide();
-        });
-        this.events.subscribe('Event-SideMenu', function () {
-            _this.userRole = localStorage.getItem('userRole');
+        this.userId = localStorage.getItem('userId');
+        this.checkUserStatus(this.userId);
+    };
+    AppComponent.prototype.checkUserStatus = function (id) {
+        var _this = this;
+        var url = src_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].base_url + "users/" + id;
+        console.log("url :" + url);
+        this.apiCall.get(url).subscribe(function (MyResponse) {
             _this.login();
             _this.loginSession();
-        });
-        this.platform.backButton.subscribe(function () {
-            if (_this.router.url === '/home' || _this.router.url === '/dataentrycredit') {
-                _this.presentAlert();
-                return;
-            }
+            _this.platform.ready().then(function () {
+                _this.statusBar.styleDefault();
+                _this.splashScreen.hide();
+            });
+            _this.events.subscribe('Event-SideMenu', function () {
+                _this.userRole = localStorage.getItem('userRole');
+                _this.login();
+                _this.loginSession();
+            });
+            _this.platform.backButton.subscribe(function () {
+                if (_this.router.url === '/home' || _this.router.url === '/dataentrycredit') {
+                    _this.presentAlert();
+                    return;
+                }
+            });
+        }, function (error) {
+            alert("profile is inActive.");
         });
     };
     AppComponent.prototype.login = function () {
@@ -656,6 +679,10 @@ var AppComponent = /** @class */ (function () {
                 {
                     title: 'Customer',
                     url: '/home',
+                },
+                {
+                    title: 'Profile',
+                    url: '/userprofile',
                 },
                 {
                     title: 'Credit',
@@ -694,6 +721,14 @@ var AppComponent = /** @class */ (function () {
                     url: '/home',
                 },
                 {
+                    title: 'Users',
+                    url: '/addusers',
+                },
+                {
+                    title: 'Profile',
+                    url: '/userprofile',
+                },
+                {
                     title: 'Credit',
                     url: '/dataentrycredit',
                 },
@@ -730,6 +765,10 @@ var AppComponent = /** @class */ (function () {
                     url: '/tankersellsubmit',
                 },
                 {
+                    title: 'Profile',
+                    url: '/userprofile',
+                },
+                {
                     title: 'Credit',
                     url: '/dataentrycredit',
                 },
@@ -748,6 +787,10 @@ var AppComponent = /** @class */ (function () {
                 {
                     title: 'Customer',
                     url: '/home',
+                },
+                {
+                    title: 'Profile',
+                    url: '/userprofile',
                 },
                 {
                     title: 'Credit',
@@ -881,6 +924,7 @@ var AppComponent = /** @class */ (function () {
         { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"] },
+        { type: _service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__["ApicallService"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] }
     ]; };
     AppComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
@@ -894,6 +938,7 @@ var AppComponent = /** @class */ (function () {
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"],
             _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"],
+            _service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__["ApicallService"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]])
     ], AppComponent);
     return AppComponent;
@@ -967,9 +1012,11 @@ var AppModule = /** @class */ (function () {
                 _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatInputModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatCardModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatMenuModule"],
-                _angular_forms__WEBPACK_IMPORTED_MODULE_14__["FormsModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatDialogModule"],
                 _angular_common_http__WEBPACK_IMPORTED_MODULE_15__["HttpClientModule"],
+                // FormGroup,
+                // FormControl,
+                _angular_forms__WEBPACK_IMPORTED_MODULE_14__["FormsModule"],
                 _angular_material_select__WEBPACK_IMPORTED_MODULE_13__["MatSelectModule"],
                 _angular_material__WEBPACK_IMPORTED_MODULE_11__["MatAutocompleteModule"],
                 _angular_forms__WEBPACK_IMPORTED_MODULE_14__["ReactiveFormsModule"],
@@ -986,6 +1033,69 @@ var AppModule = /** @class */ (function () {
         })
     ], AppModule);
     return AppModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/service/apicall/apicall.service.ts":
+/*!****************************************************!*\
+  !*** ./src/app/service/apicall/apicall.service.ts ***!
+  \****************************************************/
+/*! exports provided: ApicallService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApicallService", function() { return ApicallService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
+
+
+
+var ApicallService = /** @class */ (function () {
+    function ApicallService(http) {
+        this.http = http;
+    }
+    ApicallService.prototype.postWAu = function (url, data) {
+        var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+                'Content-Type': 'application/json',
+            })
+        };
+        console.log(url);
+        return this.http.post(url, data, httpOptions);
+    };
+    ApicallService.prototype.get = function (url) {
+        var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+                'Content-Type': 'application/json',
+            })
+        };
+        console.log(url);
+        return this.http.get(url, httpOptions);
+    };
+    ApicallService.prototype.put = function (url, data) {
+        console.log(url);
+        var httpOptions = {
+            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
+                'Content-Type': 'application/json',
+            })
+        };
+        return this.http.put(url, data, httpOptions);
+    };
+    ApicallService.ctorParameters = function () { return [
+        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
+    ]; };
+    ApicallService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
+    ], ApicallService);
+    return ApicallService;
 }());
 
 

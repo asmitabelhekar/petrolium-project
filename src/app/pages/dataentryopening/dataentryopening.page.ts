@@ -6,6 +6,7 @@ import { environment } from 'src/environments/environment';
 import { ApicallService } from 'src/app/service/apicall/apicall.service';
 import { Router } from '@angular/router';
 import { LoaderserviceService } from 'src/app/service/loader/loaderservice.service';
+import { FormGroup, FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-dataentryopening',
@@ -14,6 +15,7 @@ import { LoaderserviceService } from 'src/app/service/loader/loaderservice.servi
 })
 export class DataentryopeningPage implements OnInit {
 
+  // openingForm : FormsModule;
   today: any;
   checkFuelType: any = 0;
   previousOpeningBalance : any;

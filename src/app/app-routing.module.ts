@@ -74,6 +74,18 @@ const routes: Routes = [
   {
     path: 'tankersellsubmit',
     loadChildren: () => import('./pages/tankersellsubmit/tankersellsubmit.module').then( m => m.TankersellsubmitPageModule)
+  },
+  {
+    path: 'addusers',
+    loadChildren: () => import('./pages/addusers/addusers.module').then( m => m.AddusersPageModule)
+  },
+  {
+    path: 'userprofile',
+    loadChildren: () => import('./pages/userprofile/userprofile.module').then( m => m.UserprofilePageModule)
+  },
+  {
+    path: 'userslist',
+    loadChildren: () => import('./pages/userslist/userslist.module').then( m => m.UserslistPageModule)
   }
 ];
 

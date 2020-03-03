@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header class=\"new-background-color\">\n\n  <ion-toolbar class=\"new-background-color\">\n    <ion-row>\n      <ion-col size=\"2\">\n        <button ion-button class=\"cl-back-button\" (click)=\"goBackword()\" style=\"color:white;margin:7px\"></button>\n      </ion-col>\n      <ion-col size=\"10\" class=\"TitleHeader TitleText\">\n        <ion-label style=\"color:white\">{{customerName | titlecase}}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:5%\">\n    <h5>{{paymentNames}}</h5>\n  </div>\n\n\n\n  <div fxLayout=\"column\" fxLayoutAlign=\"center\" style=\"margin-top:2%\">\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Choose a date</mat-label>\n        <input matInput #input=\"ngModel\" [(ngModel)]=\"userModel.date\" [min]=\"minDate\" [max]=\"today\"\n          [matDatepicker]=\"picker\" placeholder=\"Choose a date\" [disabled]=\"true\">\n        <mat-datepicker-toggle matSuffix [for]=\"picker\" [disabled]=\"true\"></mat-datepicker-toggle>\n        <mat-datepicker #picker (selectedChanged)=\"onDate($event)\"></mat-datepicker>\n      </mat-form-field>\n    </div>\n\n\n\n    <div *ngIf=\"paymentMethod == 'Credit' \" style=\"width: 100%;\">\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Vehicle Number</mat-label>\n          <select matNativeControl required #drivername [(ngModel)]=\"userModel.vehiclenumber\"\n            (change)=\"selectVehicleDetail(drivername.value)\">\n            <option *ngFor=\"let type of customerVehicles\" [value]=\"type.driverName\"> {{type.vehicleNumber}}</option>\n          </select>\n        </mat-form-field>\n      </div>\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <input matInput class=\"form-control \" name=\"dname\" required [(ngModel)]=\"userModel.dname\" #dname=\"ngModel\"\n            pattern=\"[a-zA-z   ]+$\" placeholder=\"Driver Name\" />\n        </mat-form-field>\n      </div>\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"space-around center\" style=\"width:96%;margin-left:2%; margin-right:2%\">\n        <div *ngFor=\"let item of buttonsArray;let i = index \" style=\"width:44%\">\n          <button mat-button style=\"width:100%\" [ngClass]=\"(checkFuelType  == i) ? 'oddBackground' : 'evenBackground' \"\n            (click)=\"fuelType(item.indexFuel)\">{{item.fuelType}}</button>\n        </div>\n      </div>\n\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%; margin-top:10px\">\n          <mat-label>In Litures</mat-label>\n          <input matInput type=\"number\" name=\"inlitures\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.inlitures\"\n            #inlitures=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Per Liture</mat-label>\n          <input matInput type=\"number\" name=\"perliture\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.perliture\"\n            #perliture=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Total Amount</mat-label>\n          <input matInput type=\"number\" name=\"totalamount\" [(ngModel)]=\"userModel.totalamount\" #totalamount=\"ngModel\"\n            class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n    </div>\n\n<div *ngIf=\"paymentMethod == 'Payment' \">\n\n  <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n    <mat-form-field style=\"width:90%\">\n      <mat-label>Debit Type</mat-label>\n      <select matNativeControl required #debittype (change)=\"selectDebitDetail(debittype.value)\" [(ngModel)]=\"userModel.paymentType\">\n        <option *ngFor=\"let type of debitType\" [value]=\"type.type\"> {{type.type}}</option>\n      </select>\n    </mat-form-field>\n  </div>\n\n\n  <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"width:100%;\">\n    <mat-form-field style=\"width:90%\">\n      <mat-label>Debit Detail</mat-label>\n          <input matInput type=\"text\" name=\"paymentDetails\" [(ngModel)]=\"userModel.paymentDetails\"\n            #paymentDetails=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[a-zA-Z.  -]+$\">\n    </mat-form-field>\n  </div>\n\n\n</div>\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%\">\n        <mat-label *ngIf=\"paymentMethod == 'Credit' \">Amount Paid</mat-label>\n        <mat-label *ngIf=\"paymentMethod == 'Payment' \">Add {{paymentMethod}}</mat-label>\n        <input matInput type=\"number\" name=\"payment\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.payment\"\n          #payment=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" *ngIf=\"displayBalnace == '1' \">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Balance</mat-label>\n        <input matInput type=\"number\" name=\"balance\" [(ngModel)]=\"userModel.balance\" #balance=\"ngModel\"\n          class=\"form-control\" align=\"center\" pattern=\"[0-9.-]+$\">\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%;\">\n        <mat-label>Note</mat-label>\n        <textarea matInput class=\"form-control \" name=\"note\" [(ngModel)]=\"userModel.note\" #note=\"ngModel\"\n          pattern=\"[a-zA-z.  ]+$\" placeholder=\"Note\"></textarea>\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" *ngIf=\"paymentMethod == 'Credit' \"\n      style=\"margin-top:3%;margin-bottom:20px\">\n      <!-- <button mat-raised-button\n        [disabled]=\"payment.invalid  || inlitures.invalid || perliture.invalid || totalamount.invalid\"\n        class=\"submitButton\">Submit</button> -->\n      <button mat-raised-button [disabled]=\"payment.invalid \" class=\"submitButton\" (click)=\"creditAmount()\">Credit</button>\n    </div>\n\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:5%\" *ngIf=\"paymentMethod == 'Payment' \">\n      <button mat-raised-button [disabled]=\"payment.invalid \" class=\"submitButton\" (click)=\"debitAmount()\">Debit</button>\n    </div>\n\n\n  </div>\n\n</ion-content>"
+module.exports = "<ion-header class=\"new-background-color\">\n\n  <ion-toolbar class=\"new-background-color\">\n    <ion-row>\n      <ion-col size=\"2\">\n        <button ion-button class=\"cl-back-button\" (click)=\"goBackword()\" style=\"color:white;margin:7px\"></button>\n      </ion-col>\n      <ion-col size=\"10\" class=\"TitleHeader TitleText\">\n        <ion-label style=\"color:white\">{{customerName | titlecase}}</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-toolbar>\n</ion-header>\n\n<ion-content>\n  <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:5%\">\n    <h5>{{paymentNames}}</h5>\n  </div>\n\n\n\n  <div fxLayout=\"column\" fxLayoutAlign=\"center\" style=\"margin-top:2%\">\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Choose a date</mat-label>\n        <input matInput #input=\"ngModel\" [(ngModel)]=\"userModel.date\" [min]=\"minDate\" [max]=\"today\"\n          [matDatepicker]=\"picker\" placeholder=\"Choose a date\" [disabled]=\"true\">\n        <mat-datepicker-toggle matSuffix [for]=\"picker\" [disabled]=\"true\"></mat-datepicker-toggle>\n        <mat-datepicker #picker (selectedChanged)=\"onDate($event)\"></mat-datepicker>\n      </mat-form-field>\n    </div>\n\n\n\n    <div *ngIf=\"paymentMethod == 'Credit' \" style=\"width: 100%;\">\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Vehicle Number</mat-label>\n          <select matNativeControl required #drivername [(ngModel)]=\"userModel.vehiclenumber\"\n            (change)=\"selectVehicleDetail(drivername.value)\">\n            <option *ngFor=\"let type of customerVehicles\" [value]=\"type.vehicleNumber\"> {{type.vehicleNumber}}</option>\n          </select>\n        </mat-form-field>\n      </div>\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <input matInput class=\"form-control \" name=\"dname\" required [(ngModel)]=\"userModel.dname\" #dname=\"ngModel\"\n            pattern=\"[a-zA-z   ]+$\" placeholder=\"Driver Name\" />\n        </mat-form-field>\n      </div>\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"space-around center\" style=\"width:96%;margin-left:2%; margin-right:2%\">\n        <div *ngFor=\"let item of buttonsArray;let i = index \" style=\"width:44%\">\n          <button mat-button style=\"width:100%\" [ngClass]=\"(checkFuelType  == i) ? 'oddBackground' : 'evenBackground' \"\n            (click)=\"fuelType(item.indexFuel)\">{{item.fuelType}}</button>\n        </div>\n      </div>\n\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%; margin-top:10px\">\n          <mat-label>In Litures</mat-label>\n          <input matInput type=\"number\" name=\"inlitures\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.inlitures\"\n            #inlitures=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Per Liture</mat-label>\n          <input matInput type=\"number\" name=\"perliture\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.perliture\"\n            #perliture=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n\n\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <mat-form-field style=\"width:90%\">\n          <mat-label>Total Amount</mat-label>\n          <input matInput type=\"number\" name=\"totalamount\" [(ngModel)]=\"userModel.totalamount\" #totalamount=\"ngModel\"\n            class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n        </mat-form-field>\n      </div>\n    </div>\n\n<div *ngIf=\"paymentMethod == 'Payment' \">\n\n  <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n    <mat-form-field style=\"width:90%\">\n      <mat-label>Debit Type</mat-label>\n      <select matNativeControl required #debittype (change)=\"selectDebitDetail(debittype.value)\" [(ngModel)]=\"userModel.paymentType\">\n        <option *ngFor=\"let type of debitType\" [value]=\"type.type\"> {{type.type}}</option>\n      </select>\n    </mat-form-field>\n  </div>\n\n\n  <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"width:100%;\">\n    <mat-form-field style=\"width:90%\">\n      <mat-label>Debit Detail</mat-label>\n          <input matInput type=\"text\" name=\"paymentDetails\" [(ngModel)]=\"userModel.paymentDetails\"\n            #paymentDetails=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[a-zA-Z.  -]+$\">\n    </mat-form-field>\n  </div>\n\n\n</div>\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%\">\n        <mat-label *ngIf=\"paymentMethod == 'Credit' \">Amount Paid</mat-label>\n        <mat-label *ngIf=\"paymentMethod == 'Payment' \">Add {{paymentMethod}}</mat-label>\n        <input matInput type=\"number\" name=\"payment\" (input)=\"OnInput($event)\" [(ngModel)]=\"userModel.payment\"\n          #payment=\"ngModel\" class=\"form-control\" align=\"center\" required pattern=\"[0-9.-]+$\">\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" *ngIf=\"displayBalnace == '1' \">\n      <mat-form-field style=\"width:90%\">\n        <mat-label>Balance</mat-label>\n        <input matInput type=\"number\" name=\"balance\" [(ngModel)]=\"userModel.balance\" #balance=\"ngModel\"\n          class=\"form-control\" align=\"center\" pattern=\"[0-9.-]+$\">\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n      <mat-form-field style=\"width:90%;\">\n        <mat-label>Note</mat-label>\n        <textarea matInput class=\"form-control \" name=\"note\" [(ngModel)]=\"userModel.note\" #note=\"ngModel\"\n          pattern=\"[a-zA-z.  ]+$\" placeholder=\"Note\"></textarea>\n      </mat-form-field>\n    </div>\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" *ngIf=\"paymentMethod == 'Credit' \"\n      style=\"margin-top:3%;margin-bottom:20px\">\n      <!-- <button mat-raised-button\n        [disabled]=\"payment.invalid  || inlitures.invalid || perliture.invalid || totalamount.invalid\"\n        class=\"submitButton\">Submit</button> -->\n      <button mat-raised-button [disabled]=\"payment.invalid \" class=\"submitButton\" (click)=\"creditAmount()\">Credit</button>\n    </div>\n\n\n\n    <div fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top:5%\" *ngIf=\"paymentMethod == 'Payment' \">\n      <button mat-raised-button [disabled]=\"payment.invalid \" class=\"submitButton\" (click)=\"debitAmount()\">Debit</button>\n    </div>\n\n\n  </div>\n\n</ion-content>"
 
 /***/ }),
 
@@ -164,7 +164,6 @@ var UpdatebalancePage = /** @class */ (function () {
         this.apiCall = apiCall;
         this.toastcontroller = toastcontroller;
         this.dateAdapter = dateAdapter;
-        this.customerList = ['asmita', 'smita', 'asmi', 'sejal', 'pranil', 'dddd', 'ffff', 'ggggggg', 'hhhhh', 'jjjjjj'];
         this.showDateNoteDiv = 1;
         this.userModel = {};
         this.displayBalnace = 0;
@@ -188,10 +187,19 @@ var UpdatebalancePage = /** @class */ (function () {
             { "type": "Card" },
             { "type": "Cheque" },
         ];
+        this.userObject = {};
         this.dateAdapter.setLocale("en-GB");
     }
     UpdatebalancePage.prototype.ngOnInit = function () {
         var _this = this;
+        this.userName = localStorage.getItem('userName');
+        this.userId = localStorage.getItem('userId');
+        this.userMobile = localStorage.getItem('userMobileNumber');
+        this.userObject = {
+            "name": this.userName,
+            "id": this.userId,
+            "mobile": this.userMobile
+        };
         this.userModel['type'] = 0;
         this.petrolPrice = localStorage.getItem('petrolPrice');
         this.dieselPrice = localStorage.getItem('dieselPrice');
@@ -222,8 +230,13 @@ var UpdatebalancePage = /** @class */ (function () {
         else {
         }
     };
-    UpdatebalancePage.prototype.selectVehicleDetail = function (name) {
-        this.userModel['dname'] = name;
+    UpdatebalancePage.prototype.selectVehicleDetail = function (vehiclenumber) {
+        this.userModel['vehiclenumber'] = vehiclenumber;
+        for (var i = 0; i < this.customerVehicles.length; i++) {
+            if (this.customerVehicles[i]['vehicleNumber'] == vehiclenumber) {
+                this.userModel['dname'] = this.customerVehicles[i]['driverName'];
+            }
+        }
     };
     UpdatebalancePage.prototype._filter = function (value) {
         var filterValue = value.toLowerCase();
@@ -283,6 +296,9 @@ var UpdatebalancePage = /** @class */ (function () {
                 send_date['finalAmount'] = this.userModel['totalamount'];
                 send_date['amountPaid'] = this.userModel['payment'];
                 send_date['date'] = this.userModel['date'];
+                send_date['driverName'] = this.userModel['dname'];
+                send_date['vehicleNumber'] = this.userModel['vehiclenumber'];
+                send_date['createdBy'] = this.userObject;
                 if (this.userModel['note'] == "" || this.userModel['note'] == null || this.userModel['note'] == undefined) {
                     send_date['message'] = "Credited with  " + this.userModel['payment'];
                 }
@@ -432,69 +448,6 @@ var UpdatebalancePage = /** @class */ (function () {
             _angular_material__WEBPACK_IMPORTED_MODULE_4__["DateAdapter"]])
     ], UpdatebalancePage);
     return UpdatebalancePage;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/service/apicall/apicall.service.ts":
-/*!****************************************************!*\
-  !*** ./src/app/service/apicall/apicall.service.ts ***!
-  \****************************************************/
-/*! exports provided: ApicallService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApicallService", function() { return ApicallService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-
-
-
-var ApicallService = /** @class */ (function () {
-    function ApicallService(http) {
-        this.http = http;
-    }
-    ApicallService.prototype.postWAu = function (url, data) {
-        var httpOptions = {
-            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
-                'Content-Type': 'application/json',
-            })
-        };
-        console.log(url);
-        return this.http.post(url, data, httpOptions);
-    };
-    ApicallService.prototype.get = function (url) {
-        var httpOptions = {
-            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
-                'Content-Type': 'application/json',
-            })
-        };
-        console.log(url);
-        return this.http.get(url, httpOptions);
-    };
-    ApicallService.prototype.put = function (url, data) {
-        console.log(url);
-        var httpOptions = {
-            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
-                'Content-Type': 'application/json',
-            })
-        };
-        return this.http.put(url, data, httpOptions);
-    };
-    ApicallService.ctorParameters = function () { return [
-        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
-    ]; };
-    ApicallService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
-    ], ApicallService);
-    return ApicallService;
 }());
 
 

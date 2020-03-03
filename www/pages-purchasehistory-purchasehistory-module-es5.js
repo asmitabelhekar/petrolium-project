@@ -7,7 +7,7 @@
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<ion-header class=\"new-background-color\">\n\n  <ion-toolbar class=\"new-background-color\">\n    <ion-row>\n      <ion-col size=\"2\">\n        <button ion-button class=\"cl-back-button\" (click)=\"goBackword()\" style=\"color:white;margin:7px\"></button>\n      </ion-col>\n      <ion-col size=\"10\" class=\"TitleHeader TitleText\">\n        <ion-label style=\"color:white\">Purchase History</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content>\n\n  <div *ngIf=\"showPurchaseRecord == 1\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\n\n    <div *ngFor=\"let item of getPurchaseHistory\" style=\"width:100%; border-radius: 10px;\">\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <label fxLayoutAlign=\"center center\"\n          style=\"font-size: 10px;color: white; background-color: rgb(182, 180, 180);padding:5px;width:22%; border-radius: 15px;margin-top:10px\">{{item.date}}</label>\n      </div>\n\n      <ion-card *ngFor=\"let history of item.list\" style=\"border-radius: 10px;\">\n        <ion-row style=\"margin-left: 5px;\">\n          <ion-col size=\"6\">\n            <label class=\"cl_title_css\">Fuel Type:</label>\n          </ion-col>\n          <ion-col size=\"6\">\n            <label class=\"cl_label_css\" *ngIf=\"history.type == '0' \">Petrol</label>\n            <label class=\"cl_label_css\" *ngIf=\"history.type == '1' \">Diesel</label>\n          </ion-col>\n        </ion-row>\n\n        <ion-row style=\"margin-left: 5px;\">\n          <ion-col size=\"6\">\n            <label class=\"cl_title_css\">In Litures : </label>\n          </ion-col>\n          <ion-col size=\"6\">\n            <label class=\"cl_label_css\">{{history.amountInLitre}} Ltr</label>\n          </ion-col>\n        </ion-row>\n\n        <!-- <ion-row style=\"margin-left: 5px;\">\n          <ion-col size=\"6\">\n            <label class=\"cl_title_css\">Total Amount : </label>\n          </ion-col>\n          <ion-col size=\"6\">\n            <label class=\"cl_label_css\">{{history.finalAmount}}</label>\n          </ion-col>\n        </ion-row>\n\n        <ion-row style=\"margin-left: 5px;\">\n          <ion-col size=\"6\">\n            <label class=\"cl_title_css\">Paid Amount : </label>\n          </ion-col>\n          <ion-col size=\"6\">\n            <label class=\"cl_label_css\">{{history.amountPaid}}</label>\n          </ion-col>\n        </ion-row> -->\n\n\n        <ion-row style=\"margin-left: 5px;\">\n          <ion-col size=\"6\">\n            <label class=\"cl_title_css\">Credited Amount : </label>\n          </ion-col>\n          <ion-col size=\"6\">\n            <label class=\"cl_label_css\">₹ {{history.finalAmount - history.amountPaid }}</label>\n          </ion-col>\n        </ion-row>\n      </ion-card>\n\n\n\n    </div>\n\n  </div>\n\n  <div *ngIf=\"showPurchaseRecord == 0\" fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top: 25%;\">\n    <h3>No records found</h3>\n  </div>\n</ion-content>"
+module.exports = "<ion-header class=\"new-background-color\">\n\n  <ion-toolbar class=\"new-background-color\">\n    <ion-row>\n      <ion-col size=\"2\">\n        <button ion-button class=\"cl-back-button\" (click)=\"goBackword()\" style=\"color:white;margin:7px\"></button>\n      </ion-col>\n      <ion-col size=\"10\" class=\"TitleHeader TitleText\">\n        <ion-label style=\"color:white\">Purchase History</ion-label>\n      </ion-col>\n    </ion-row>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content>\n\n  <div *ngIf=\"showPurchaseRecord == 1\" fxLayout=\"column\" fxLayoutAlign=\"center center\">\n\n    <div *ngFor=\"let item of getPurchaseHistory\" style=\"width:100%; border-radius: 10px;\">\n      <div fxLayout=\"row\" fxLayoutAlign=\"center center\">\n        <label fxLayoutAlign=\"center center\"\n          style=\"font-size: 10px;color: white; background-color: rgb(182, 180, 180);padding:5px;width:22%; border-radius: 15px;margin-top:10px\">{{item.date}}</label>\n      </div>\n\n      <ion-card *ngFor=\"let history of item.list\" style=\"border-radius: 10px;\">\n        <ion-row style=\"margin-left: 5px;\">\n          <ion-col size=\"6\">\n            <label class=\"cl_title_css\">Fuel Type:</label>\n          </ion-col>\n          <ion-col size=\"6\">\n            <label class=\"cl_label_css\" *ngIf=\"history.type == '0' \">Petrol</label>\n            <label class=\"cl_label_css\" *ngIf=\"history.type == '1' \">Diesel</label>\n          </ion-col>\n        </ion-row>\n\n        <ion-row style=\"margin-left: 5px;\">\n          <ion-col size=\"6\">\n            <label class=\"cl_title_css\">In Litures : </label>\n          </ion-col>\n          <ion-col size=\"6\">\n            <label class=\"cl_label_css\">{{history.pricePerLitre}} Ltr</label>\n          </ion-col>\n        </ion-row>\n\n        <!-- <ion-row style=\"margin-left: 5px;\">\n          <ion-col size=\"6\">\n            <label class=\"cl_title_css\">Total Amount : </label>\n          </ion-col>\n          <ion-col size=\"6\">\n            <label class=\"cl_label_css\">{{history.finalAmount}}</label>\n          </ion-col>\n        </ion-row>\n\n        <ion-row style=\"margin-left: 5px;\">\n          <ion-col size=\"6\">\n            <label class=\"cl_title_css\">Paid Amount : </label>\n          </ion-col>\n          <ion-col size=\"6\">\n            <label class=\"cl_label_css\">{{history.amountPaid}}</label>\n          </ion-col>\n        </ion-row> -->\n\n\n        <ion-row style=\"margin-left: 5px;\">\n          <ion-col size=\"6\">\n            <label class=\"cl_title_css\">Credited Amount : </label>\n          </ion-col>\n          <ion-col size=\"6\">\n            <label class=\"cl_label_css\">₹ {{history.finalAmount - history.amountPaid }}</label>\n          </ion-col>\n        </ion-row>\n      </ion-card>\n\n\n\n    </div>\n\n  </div>\n\n  <div *ngIf=\"showPurchaseRecord == 0\" fxLayout=\"row\" fxLayoutAlign=\"center center\" style=\"margin-top: 25%;\">\n    <h3>No records found</h3>\n  </div>\n</ion-content>"
 
 /***/ }),
 
@@ -211,69 +211,6 @@ var PurchasehistoryPage = /** @class */ (function () {
             _ionic_angular__WEBPACK_IMPORTED_MODULE_5__["ToastController"]])
     ], PurchasehistoryPage);
     return PurchasehistoryPage;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/service/apicall/apicall.service.ts":
-/*!****************************************************!*\
-  !*** ./src/app/service/apicall/apicall.service.ts ***!
-  \****************************************************/
-/*! exports provided: ApicallService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApicallService", function() { return ApicallService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-
-
-
-var ApicallService = /** @class */ (function () {
-    function ApicallService(http) {
-        this.http = http;
-    }
-    ApicallService.prototype.postWAu = function (url, data) {
-        var httpOptions = {
-            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
-                'Content-Type': 'application/json',
-            })
-        };
-        console.log(url);
-        return this.http.post(url, data, httpOptions);
-    };
-    ApicallService.prototype.get = function (url) {
-        var httpOptions = {
-            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
-                'Content-Type': 'application/json',
-            })
-        };
-        console.log(url);
-        return this.http.get(url, httpOptions);
-    };
-    ApicallService.prototype.put = function (url, data) {
-        console.log(url);
-        var httpOptions = {
-            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
-                'Content-Type': 'application/json',
-            })
-        };
-        return this.http.put(url, data, httpOptions);
-    };
-    ApicallService.ctorParameters = function () { return [
-        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
-    ]; };
-    ApicallService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
-    ], ApicallService);
-    return ApicallService;
 }());
 
 

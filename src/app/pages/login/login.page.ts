@@ -16,7 +16,7 @@ export class LoginPage implements OnInit {
   loginModel: any = {}
   userModel: any = {};
   statusCheck: any;
-  userName : any;
+  userName: any;
   hide = true;
   message;
   loading;
@@ -27,8 +27,8 @@ export class LoginPage implements OnInit {
     public menuController: MenuController,
     public preloader: LoaderserviceService,
     public apiCall: ApicallService,
-    public events : Events,
-    public loader : LoaderserviceService,
+    public events: Events,
+    public loader: LoaderserviceService,
     public toastcontroller: ToastController) { }
 
 
@@ -45,43 +45,52 @@ export class LoginPage implements OnInit {
     send_date['password'] = this.loginModel['password'];
 
     let url = environment.base_url + "users/login"
-    this.apiCall.postWAu(url, send_date).subscribe(MyResponse =>
-       {
+    this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
       localStorage.setItem('userRole', MyResponse['result']['userRole']);
-      this.userRole =  MyResponse['result']['userRole'];
-      this.userName = MyResponse['result']['name'];
-      localStorage.setItem('login', 'yes');
-      this.events.publish('Event-SideMenu')
+      let checkActive = MyResponse['result']['isActive'];
+      if (checkActive == '1') {
+        this.userRole = MyResponse['result']['userRole'];
+        this.userName = MyResponse['result']['name'];
+        localStorage.setItem('login', 'yes');
+        this.events.publish('Event-SideMenu')
 
-      localStorage.setItem('userName',MyResponse['result']['name']);
-      localStorage.setItem('userId',MyResponse['result']['id']);
-      localStorage.setItem('userMobileNumber',MyResponse['result']['mobile']);
-      
-      if (this.userRole == '0') {
-        this.router.navigate(['/dataentrycredit']);
+        localStorage.setItem('userName', MyResponse['result']['name']);
+        localStorage.setItem('userId', MyResponse['result']['id']);
+        localStorage.setItem('userMobileNumber', MyResponse['result']['mobile']);
+
+        if (this.userRole == '0') {
+          this.router.navigate(['/dataentrycredit']);
+        }
+        else if (this.userRole == '1') {
+          this.router.navigate(['/home']);
+        } else if (this.userRole == '2') {
+          this.router.navigate(['/home']);
+        } else if (this.userRole == '3') {
+          this.router.navigate(['/tankersellsubmit']);
+        }
+        else {
+          this.router.navigate(['/home']);
+        }
+        let msg = MyResponse['message'];
+        this.presentToast("Login Successfully");
+      } else {
+        alert("check user inactive");
       }
-      else if (this.userRole == '1') {
-        this.router.navigate(['/home']);
-      }else if (this.userRole == '2') {
-        this.router.navigate(['/home']);
-      }else if (this.userRole == '3') {
-        this.router.navigate(['/tankersellsubmit']);
-      }
-      else {
-        this.router.navigate(['/home']);
-      }
-      let msg = MyResponse['message'];
-      this.presentToast("Login Successfully");
+
       this.loader.stopLoading();
 
-    }, 
-    error => {
-
-      this.loader.stopLoading();
-      this.presentToast("Please try again");
-      console.log(error.error.message);
-      
-    })
+    },
+      error => {
+        if (error.error.message == "Profile is Inactive") {
+          this.loader.stopLoading();
+          this.presentToast("Profile is Inactive");
+          console.log(error.error.message);
+        } else {
+          this.loader.stopLoading();
+          this.presentToast("Please try again");
+          console.log(error.error.message);
+        }
+      })
 
 
     this.statusCheck = localStorage.getItem('loginStatus');

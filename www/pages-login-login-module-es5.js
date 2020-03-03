@@ -162,35 +162,48 @@ var LoginPage = /** @class */ (function () {
         var url = src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].base_url + "users/login";
         this.apiCall.postWAu(url, send_date).subscribe(function (MyResponse) {
             localStorage.setItem('userRole', MyResponse['result']['userRole']);
-            _this.userRole = MyResponse['result']['userRole'];
-            _this.userName = MyResponse['result']['name'];
-            localStorage.setItem('login', 'yes');
-            _this.events.publish('Event-SideMenu');
-            localStorage.setItem('userName', MyResponse['result']['name']);
-            localStorage.setItem('userId', MyResponse['result']['id']);
-            localStorage.setItem('userMobileNumber', MyResponse['result']['mobile']);
-            if (_this.userRole == '0') {
-                _this.router.navigate(['/dataentrycredit']);
-            }
-            else if (_this.userRole == '1') {
-                _this.router.navigate(['/home']);
-            }
-            else if (_this.userRole == '2') {
-                _this.router.navigate(['/home']);
-            }
-            else if (_this.userRole == '3') {
-                _this.router.navigate(['/tankersellsubmit']);
+            var checkActive = MyResponse['result']['isActive'];
+            if (checkActive == '1') {
+                _this.userRole = MyResponse['result']['userRole'];
+                _this.userName = MyResponse['result']['name'];
+                localStorage.setItem('login', 'yes');
+                _this.events.publish('Event-SideMenu');
+                localStorage.setItem('userName', MyResponse['result']['name']);
+                localStorage.setItem('userId', MyResponse['result']['id']);
+                localStorage.setItem('userMobileNumber', MyResponse['result']['mobile']);
+                if (_this.userRole == '0') {
+                    _this.router.navigate(['/dataentrycredit']);
+                }
+                else if (_this.userRole == '1') {
+                    _this.router.navigate(['/home']);
+                }
+                else if (_this.userRole == '2') {
+                    _this.router.navigate(['/home']);
+                }
+                else if (_this.userRole == '3') {
+                    _this.router.navigate(['/tankersellsubmit']);
+                }
+                else {
+                    _this.router.navigate(['/home']);
+                }
+                var msg = MyResponse['message'];
+                _this.presentToast("Login Successfully");
             }
             else {
-                _this.router.navigate(['/home']);
+                alert("check user inactive");
             }
-            var msg = MyResponse['message'];
-            _this.presentToast("Login Successfully");
             _this.loader.stopLoading();
         }, function (error) {
-            _this.loader.stopLoading();
-            _this.presentToast("Please try again");
-            console.log(error.error.message);
+            if (error.error.message == "Profile is Inactive") {
+                _this.loader.stopLoading();
+                _this.presentToast("Profile is Inactive");
+                console.log(error.error.message);
+            }
+            else {
+                _this.loader.stopLoading();
+                _this.presentToast("Please try again");
+                console.log(error.error.message);
+            }
         });
         this.statusCheck = localStorage.getItem('loginStatus');
     };
@@ -244,69 +257,6 @@ var LoginPage = /** @class */ (function () {
             _ionic_angular__WEBPACK_IMPORTED_MODULE_3__["ToastController"]])
     ], LoginPage);
     return LoginPage;
-}());
-
-
-
-/***/ }),
-
-/***/ "./src/app/service/apicall/apicall.service.ts":
-/*!****************************************************!*\
-  !*** ./src/app/service/apicall/apicall.service.ts ***!
-  \****************************************************/
-/*! exports provided: ApicallService */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "ApicallService", function() { return ApicallService; });
-/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
-/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _angular_common_http__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common/http */ "./node_modules/@angular/common/fesm5/http.js");
-
-
-
-var ApicallService = /** @class */ (function () {
-    function ApicallService(http) {
-        this.http = http;
-    }
-    ApicallService.prototype.postWAu = function (url, data) {
-        var httpOptions = {
-            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
-                'Content-Type': 'application/json',
-            })
-        };
-        console.log(url);
-        return this.http.post(url, data, httpOptions);
-    };
-    ApicallService.prototype.get = function (url) {
-        var httpOptions = {
-            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
-                'Content-Type': 'application/json',
-            })
-        };
-        console.log(url);
-        return this.http.get(url, httpOptions);
-    };
-    ApicallService.prototype.put = function (url, data) {
-        console.log(url);
-        var httpOptions = {
-            headers: new _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpHeaders"]({
-                'Content-Type': 'application/json',
-            })
-        };
-        return this.http.put(url, data, httpOptions);
-    };
-    ApicallService.ctorParameters = function () { return [
-        { type: _angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"] }
-    ]; };
-    ApicallService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
-        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
-            providedIn: 'root'
-        }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [_angular_common_http__WEBPACK_IMPORTED_MODULE_2__["HttpClient"]])
-    ], ApicallService);
-    return ApicallService;
 }());
 
 
