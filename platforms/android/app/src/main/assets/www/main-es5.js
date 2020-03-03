@@ -556,6 +556,14 @@ var routes = [
     {
         path: 'userprofile',
         loadChildren: function () { return __webpack_require__.e(/*! import() | pages-userprofile-userprofile-module */ "pages-userprofile-userprofile-module").then(__webpack_require__.bind(null, /*! ./pages/userprofile/userprofile.module */ "./src/app/pages/userprofile/userprofile.module.ts")).then(function (m) { return m.UserprofilePageModule; }); }
+    },
+    {
+        path: 'userslist',
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-userslist-userslist-module */ "pages-userslist-userslist-module").then(__webpack_require__.bind(null, /*! ./pages/userslist/userslist.module */ "./src/app/pages/userslist/userslist.module.ts")).then(function (m) { return m.UserslistPageModule; }); }
+    },
+    {
+        path: 'userdetail',
+        loadChildren: function () { return __webpack_require__.e(/*! import() | pages-userdetail-userdetail-module */ "pages-userdetail-userdetail-module").then(__webpack_require__.bind(null, /*! ./pages/userdetail/userdetail.module */ "./src/app/pages/userdetail/userdetail.module.ts")).then(function (m) { return m.UserdetailPageModule; }); }
     }
 ];
 var AppRoutingModule = /** @class */ (function () {
@@ -614,11 +622,12 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var AppComponent = /** @class */ (function () {
-    function AppComponent(platform, splashScreen, statusBar, router, events, apiCall, alertCtrl) {
+    function AppComponent(platform, splashScreen, statusBar, router, toast, events, apiCall, alertCtrl) {
         this.platform = platform;
         this.splashScreen = splashScreen;
         this.statusBar = statusBar;
         this.router = router;
+        this.toast = toast;
         this.events = events;
         this.apiCall = apiCall;
         this.alertCtrl = alertCtrl;
@@ -626,34 +635,64 @@ var AppComponent = /** @class */ (function () {
         this.initializeApp();
     }
     AppComponent.prototype.initializeApp = function () {
+        var _this = this;
         this.userRole = localStorage.getItem('userRole');
         this.userId = localStorage.getItem('userId');
-        this.checkUserStatus(this.userId);
+        this.login();
+        this.loginSession();
+        this.platform.ready().then(function () {
+            _this.statusBar.styleDefault();
+            _this.splashScreen.hide();
+        });
+        this.events.subscribe('Event-SideMenu', function () {
+            _this.userRole = localStorage.getItem('userRole');
+            _this.login();
+            _this.loginSession();
+        });
+        this.platform.backButton.subscribe(function () {
+            if (_this.router.url === '/home' || _this.router.url === '/dataentrycredit') {
+                _this.presentAlert();
+                return;
+            }
+        });
     };
     AppComponent.prototype.checkUserStatus = function (id) {
         var _this = this;
         var url = src_environments_environment__WEBPACK_IMPORTED_MODULE_6__["environment"].base_url + "users/" + id;
         console.log("url :" + url);
         this.apiCall.get(url).subscribe(function (MyResponse) {
+            _this.userRole = localStorage.getItem('userRole');
             _this.login();
-            _this.loginSession();
-            _this.platform.ready().then(function () {
-                _this.statusBar.styleDefault();
-                _this.splashScreen.hide();
-            });
-            _this.events.subscribe('Event-SideMenu', function () {
+            var loginSession = localStorage.getItem('login');
+            if (loginSession == 'yes') {
                 _this.userRole = localStorage.getItem('userRole');
-                _this.login();
-                _this.loginSession();
-            });
-            _this.platform.backButton.subscribe(function () {
-                if (_this.router.url === '/home' || _this.router.url === '/dataentrycredit') {
-                    _this.presentAlert();
+                if (_this.userRole == 0) {
+                    _this.router.navigate(['/dataentrycredit']);
                     return;
                 }
-            });
+                else if (_this.userRole == 1) {
+                    _this.router.navigate(['/home']);
+                    return;
+                }
+                else if (_this.userRole == 2) {
+                    _this.router.navigate(['/home']);
+                    return;
+                }
+                else if (_this.userRole == 3) {
+                    _this.router.navigate(['/tankersellsubmit']);
+                    return;
+                }
+                else {
+                    _this.router.navigate(['/home']);
+                    return;
+                }
+            }
+            else {
+                _this.router.navigate(['/login']);
+            }
         }, function (error) {
-            alert("profile is inActive.");
+            _this.presentToast("Your profile is InActive.");
+            // alert("profile is inActive.");
         });
     };
     AppComponent.prototype.login = function () {
@@ -722,7 +761,7 @@ var AppComponent = /** @class */ (function () {
                 },
                 {
                     title: 'Users',
-                    url: '/addusers',
+                    url: '/userslist',
                 },
                 {
                     title: 'Profile',
@@ -836,6 +875,45 @@ var AppComponent = /** @class */ (function () {
         else {
         }
     };
+    AppComponent.prototype.presentToast = function (message) {
+        return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
+            var toast;
+            return tslib__WEBPACK_IMPORTED_MODULE_0__["__generator"](this, function (_a) {
+                switch (_a.label) {
+                    case 0: return [4 /*yield*/, this.toast.create({
+                            message: message,
+                            duration: 4000
+                        })];
+                    case 1:
+                        toast = _a.sent();
+                        toast.present();
+                        return [2 /*return*/];
+                }
+            });
+        });
+    };
+    // async displayAlert() {
+    //   const alert = await this.alertController.create({
+    //     message: 'Are you sure want to log out?',
+    //     buttons: [
+    //       {
+    //         text: 'Cancel',
+    //         handler: () => {
+    //           alert.dismiss();
+    //         }
+    //       }, {
+    //         text: 'OK',
+    //         handler: () => {
+    //           localStorage.removeItem("userRole");
+    //           localStorage.removeItem('userId');
+    //           localStorage.clear();
+    //           localStorage.setItem('login', 'no');
+    //           this.router.navigate(['/login']);
+    //         }
+    //       }]
+    //   });
+    //   await alert.present();
+    // }
     AppComponent.prototype.checkOpeningClosing = function (data) {
         var detailData = {
             "name": data.name,
@@ -851,35 +929,7 @@ var AppComponent = /** @class */ (function () {
         this.router.navigate(['showbalancerecord', { detailData: JSON.stringify(detailData) }]);
     };
     AppComponent.prototype.loginSession = function () {
-        this.userRole = localStorage.getItem('userRole');
-        this.login();
-        var loginSession = localStorage.getItem('login');
-        if (loginSession == 'yes') {
-            this.userRole = localStorage.getItem('userRole');
-            if (this.userRole == 0) {
-                this.router.navigate(['/dataentrycredit']);
-                return;
-            }
-            else if (this.userRole == 1) {
-                this.router.navigate(['/home']);
-                return;
-            }
-            else if (this.userRole == 2) {
-                this.router.navigate(['/home']);
-                return;
-            }
-            else if (this.userRole == 3) {
-                this.router.navigate(['/tankersellsubmit']);
-                return;
-            }
-            else {
-                this.router.navigate(['/home']);
-                return;
-            }
-        }
-        else {
-            this.router.navigate(['/login']);
-        }
+        this.checkUserStatus(this.userId);
     };
     AppComponent.prototype.presentAlert = function () {
         return tslib__WEBPACK_IMPORTED_MODULE_0__["__awaiter"](this, void 0, void 0, function () {
@@ -923,6 +973,7 @@ var AppComponent = /** @class */ (function () {
         { type: _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"] },
         { type: _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"] },
         { type: _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"] },
+        { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"] },
         { type: _service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__["ApicallService"] },
         { type: _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"] }
@@ -937,6 +988,7 @@ var AppComponent = /** @class */ (function () {
             _ionic_native_splash_screen_ngx__WEBPACK_IMPORTED_MODULE_3__["SplashScreen"],
             _ionic_native_status_bar_ngx__WEBPACK_IMPORTED_MODULE_4__["StatusBar"],
             _angular_router__WEBPACK_IMPORTED_MODULE_5__["Router"],
+            _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["ToastController"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["Events"],
             _service_apicall_apicall_service__WEBPACK_IMPORTED_MODULE_7__["ApicallService"],
             _ionic_angular__WEBPACK_IMPORTED_MODULE_2__["AlertController"]])

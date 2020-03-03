@@ -16,7 +16,6 @@ export class PetroldieselamountPage implements OnInit {
   checkStatusDiesel : any;
   getData: any;
   url = "http://www.mocky.io/v2/5e4fc0663000009000226b53";
-// url = "http://www.mocky.io/v2/5e4fc5ef3000005100226b7f";
   constructor(
     public toasController: ToastController,
     public loader: LoaderserviceService,
@@ -136,7 +135,9 @@ export class PetroldieselamountPage implements OnInit {
       let url = environment.base_url + "price";
       this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
         let msg = MyResponse['message'];
-        localStorage.setItem("petrolPrice",this.userModel['petrolamount']);
+        let petrolamount = this.userModel['petrolamount'];
+
+        localStorage.setItem("petrolPrice",petrolamount);
         this.presentToast(msg);
         this.loader.stopLoading();
       }, error => {
@@ -151,7 +152,8 @@ export class PetroldieselamountPage implements OnInit {
       this.apiCall.put(url, send_date).subscribe(MyResponse => {
         let msg = MyResponse['message'];
         this.presentToast(msg);
-        localStorage.setItem("petrolPrice",this.userModel['petrolamount']);
+        let petrolamount = this.userModel['petrolamount'];
+        localStorage.setItem("petrolPrice",petrolamount);
         this.loader.stopLoading();
       }, error => {
         this.loader.stopLoading();

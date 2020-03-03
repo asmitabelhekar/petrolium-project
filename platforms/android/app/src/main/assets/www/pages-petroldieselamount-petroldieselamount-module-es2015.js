@@ -131,7 +131,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 let PetroldieselamountPage = class PetroldieselamountPage {
-    // url = "http://www.mocky.io/v2/5e4fc5ef3000005100226b7f";
     constructor(toasController, loader, apiCall) {
         this.toasController = toasController;
         this.loader = loader;
@@ -241,7 +240,8 @@ let PetroldieselamountPage = class PetroldieselamountPage {
             let url = src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].base_url + "price";
             this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
                 let msg = MyResponse['message'];
-                localStorage.setItem("petrolPrice", this.userModel['petrolamount']);
+                let petrolamount = this.userModel['petrolamount'];
+                localStorage.setItem("petrolPrice", petrolamount);
                 this.presentToast(msg);
                 this.loader.stopLoading();
             }, error => {
@@ -255,7 +255,8 @@ let PetroldieselamountPage = class PetroldieselamountPage {
             this.apiCall.put(url, send_date).subscribe(MyResponse => {
                 let msg = MyResponse['message'];
                 this.presentToast(msg);
-                localStorage.setItem("petrolPrice", this.userModel['petrolamount']);
+                let petrolamount = this.userModel['petrolamount'];
+                localStorage.setItem("petrolPrice", petrolamount);
                 this.loader.stopLoading();
             }, error => {
                 this.loader.stopLoading();

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-import { Platform, Events, AlertController } from '@ionic/angular';
+import { Platform, Events, AlertController, ToastController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { Router } from '@angular/router';
@@ -24,6 +24,7 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     public router: Router,
+    public toast : ToastController,
     public events: Events,
     public apiCall: ApicallService,
     public alertCtrl: AlertController
@@ -34,7 +35,25 @@ export class AppComponent {
   initializeApp() {
     this.userRole = localStorage.getItem('userRole');
     this.userId = localStorage.getItem('userId');
-    this.checkUserStatus(this.userId);
+    this.login();
+    this.loginSession();
+    this.platform.ready().then(() => {
+      this.statusBar.styleDefault();
+      this.splashScreen.hide();
+    });
+
+    this.events.subscribe('Event-SideMenu', () => {
+      this.userRole = localStorage.getItem('userRole');
+      this.login();
+      this.loginSession();
+    });
+
+    this.platform.backButton.subscribe(() => {
+      if (this.router.url === '/home' || this.router.url === '/dataentrycredit') {
+        this.presentAlert()
+        return
+      }
+    });
   }
 
 
@@ -42,29 +61,38 @@ export class AppComponent {
     let url = environment.base_url + "users/" + id;
     console.log("url :" + url);
     this.apiCall.get(url).subscribe(MyResponse => {
+      
+      this.userRole = localStorage.getItem('userRole');
       this.login();
-      this.loginSession();
-      this.platform.ready().then(() => {
-        this.statusBar.styleDefault();
-        this.splashScreen.hide();
-      });
-
-      this.events.subscribe('Event-SideMenu', () => {
+      let loginSession = localStorage.getItem('login');
+      if (loginSession == 'yes') {
         this.userRole = localStorage.getItem('userRole');
-        this.login();
-        this.loginSession();
-      });
-
-      this.platform.backButton.subscribe(() => {
-        if (this.router.url === '/home' || this.router.url === '/dataentrycredit') {
-          this.presentAlert()
-          return
+        if (this.userRole == 0) {
+          this.router.navigate(['/dataentrycredit']);
+          return;
         }
-      });
-
+        else if (this.userRole == 1) {
+          this.router.navigate(['/home']);
+          return;
+        } else if (this.userRole == 2) {
+          this.router.navigate(['/home']);
+          return;
+        } else if (this.userRole == 3) {
+          this.router.navigate(['/tankersellsubmit']);
+          return;
+        }
+        else {
+          this.router.navigate(['/home']);
+          return;
+        }
+      }
+      else {
+        this.router.navigate(['/login']);
+      }
     },
       error => {
-        alert("profile is inActive.");
+        this.presentToast("Your profile is InActive.");
+        // alert("profile is inActive.");
       })
   }
 
@@ -277,9 +305,40 @@ export class AppComponent {
     } else if (page === 'Opening/Closing') {
       this.checkOpeningClosing(this.data);
     } else {
-
     }
   }
+
+  async presentToast(message) {
+    const toast = await this.toast.create({
+      message: message,
+      duration: 4000
+    });
+    toast.present();
+  }
+
+  // async displayAlert() {
+  //   const alert = await this.alertController.create({
+  //     message: 'Are you sure want to log out?',
+  //     buttons: [
+  //       {
+  //         text: 'Cancel',
+  //         handler: () => {
+  //           alert.dismiss();
+  //         }
+  //       }, {
+  //         text: 'OK',
+  //         handler: () => {
+  //           localStorage.removeItem("userRole");
+  //           localStorage.removeItem('userId');
+  //           localStorage.clear();
+  //           localStorage.setItem('login', 'no');
+  //           this.router.navigate(['/login']);
+  //         }
+  //       }]
+  //   });
+
+  //   await alert.present();
+  // }
 
   checkOpeningClosing(data) {
 
@@ -302,34 +361,9 @@ export class AppComponent {
 
 
   loginSession() {
-    this.userRole = localStorage.getItem('userRole');
-    this.login();
-    let loginSession = localStorage.getItem('login');
-    if (loginSession == 'yes') {
-      this.userRole = localStorage.getItem('userRole');
-      if (this.userRole == 0) {
 
-        this.router.navigate(['/dataentrycredit']);
-        return;
-      }
-      else if (this.userRole == 1) {
-        this.router.navigate(['/home']);
-        return;
-      } else if (this.userRole == 2) {
-        this.router.navigate(['/home']);
-        return;
-      } else if (this.userRole == 3) {
-        this.router.navigate(['/tankersellsubmit']);
-        return;
-      }
-      else {
-        this.router.navigate(['/home']);
-        return;
-      }
-    }
-    else {
-      this.router.navigate(['/login']);
-    }
+    this.checkUserStatus(this.userId);
+   
   }
 
 

@@ -137,7 +137,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var PetroldieselamountPage = /** @class */ (function () {
-    // url = "http://www.mocky.io/v2/5e4fc5ef3000005100226b7f";
     function PetroldieselamountPage(toasController, loader, apiCall) {
         this.toasController = toasController;
         this.loader = loader;
@@ -258,7 +257,8 @@ var PetroldieselamountPage = /** @class */ (function () {
             var url = src_environments_environment__WEBPACK_IMPORTED_MODULE_5__["environment"].base_url + "price";
             this.apiCall.postWAu(url, send_date).subscribe(function (MyResponse) {
                 var msg = MyResponse['message'];
-                localStorage.setItem("petrolPrice", _this.userModel['petrolamount']);
+                var petrolamount = _this.userModel['petrolamount'];
+                localStorage.setItem("petrolPrice", petrolamount);
                 _this.presentToast(msg);
                 _this.loader.stopLoading();
             }, function (error) {
@@ -272,7 +272,8 @@ var PetroldieselamountPage = /** @class */ (function () {
             this.apiCall.put(url, send_date).subscribe(function (MyResponse) {
                 var msg = MyResponse['message'];
                 _this.presentToast(msg);
-                localStorage.setItem("petrolPrice", _this.userModel['petrolamount']);
+                var petrolamount = _this.userModel['petrolamount'];
+                localStorage.setItem("petrolPrice", petrolamount);
                 _this.loader.stopLoading();
             }, function (error) {
                 _this.loader.stopLoading();

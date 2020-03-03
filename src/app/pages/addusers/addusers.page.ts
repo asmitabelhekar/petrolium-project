@@ -1,7 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { AlertController } from '@ionic/angular';
-import { Router } from '@angular/router';
+import { AlertController, Events, ToastController } from '@ionic/angular';
+import { Router, ActivatedRoute } from '@angular/router';
 import { FormControl } from '@angular/forms';
+import { LoaderserviceService } from 'src/app/service/loader/loaderservice.service';
+import { environment } from 'src/environments/environment';
+import { ApicallService } from 'src/app/service/apicall/apicall.service';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-addusers',
@@ -10,26 +14,59 @@ import { FormControl } from '@angular/forms';
 })
 export class AddusersPage implements OnInit {
 
-  userModel : any = {};
+  userModel: any = {};
   checkStatus: any;
+  recordstatus: any;
   myControl = new FormControl();
-  userRoles : any = [
+  mobieNumber: String;
+  url: any;
+  passwordStatus: any;
+  userId: any;
+  pageTitle: any;
+  userRoles: any = [
     {
-    "role" : "Data Entry",
-    "roleId" : '0'
-  },{
-    "role" : "Manager",
-    "roleId" : '1'
-  },{
-    "role" : "Admin",
-    "roleId" : '2'
-  }
-];
+      "role": "Data Entry",
+      "roleId": '0'
+    }, {
+      "role": "Manager",
+      "roleId": '1'
+    }, {
+      "role": "Admin",
+      "roleId": '2'
+    }
+  ];
 
-  constructor(public alertController : AlertController,
-    public router : Router) { }
+  constructor(public alertController: AlertController,
+    public router: Router,
+    public apiCall: ApicallService,
+    public events: Events,
+    public location: Location,
+    public route: ActivatedRoute,
+    public toast: ToastController,
+    public loader: LoaderserviceService) { }
 
   ngOnInit() {
+
+    this.recordstatus = (this.route.snapshot.params['detailUserData']);
+    console.log("detailUserData" + this.recordstatus);
+    let displayArrayValues = JSON.parse(this.recordstatus);
+    this.checkStatus = displayArrayValues.checkstatus;
+    if (this.checkStatus == "add") {
+      this.passwordStatus = 0;
+      this.pageTitle = "Add User";
+      this.userModel['password'] = displayArrayValues.password;
+    } else {
+      this.pageTitle = "Update User";
+      this.passwordStatus = 1;
+    }
+    this.userModel['mobile'] = displayArrayValues.mobile;
+    this.userModel['address'] = displayArrayValues.address;
+    this.userModel['email'] = displayArrayValues.email;
+    this.userModel['fname'] = displayArrayValues.fname;
+    this.userModel['lname'] = displayArrayValues.lname;
+    this.userModel['userRole'] = displayArrayValues.userrole;
+    this.userModel['userId'] = displayArrayValues.userid;
+
   }
 
   goBackword() {
@@ -42,9 +79,9 @@ export class AddusersPage implements OnInit {
     }
   }
 
-  selectUserRoleDetail(userId){
+  selectUserRoleDetail(userId) {
     this.userModel['userRole'] = userId;
-  alert(this.userModel['userRole']);
+    // alert(this.userModel['userRole']);
   }
 
   async displayCloseAlert() {
@@ -60,7 +97,7 @@ export class AddusersPage implements OnInit {
         }, {
           text: 'OK',
           handler: () => {
-            // this.router.navigate(['customerdetil', { customerId: this.customerId }])
+            this.location.back();
           }
         }]
     });
@@ -87,5 +124,91 @@ export class AddusersPage implements OnInit {
     });
 
     await alert.present();
+  }
+
+  addUserData() {
+    this.loader.presentLoading();
+    let send_date = {};
+    this.mobieNumber = this.userModel['mobile'];
+    let fullName = this.userModel['fname'] + " " + this.userModel['lname'];
+    send_date['name'] = fullName;
+    send_date['email'] = this.userModel['email'];
+    send_date['mobile'] = this.mobieNumber.toString();
+    send_date['userRole'] = this.userModel['userRole'];
+    send_date['isActive'] = 1;
+
+    if (this.checkStatus == "add") {
+      send_date['password'] = this.userModel['password'];
+      this.url = environment.base_url + "users"
+
+      this.apiCall.postWAu(this.url, send_date).subscribe(MyResponse => {
+        console.log("MyResponse ", MyResponse);
+
+        let checkUser = localStorage.getItem('userRole');
+        if (checkUser == '0') {
+          this.events.publish('Event-UpdateProfile')
+          this.router.navigate(['/userprofile']);
+        } else if (checkUser == '1') {
+          this.events.publish('Event-UpdateProfile')
+        this.router.navigate(['/userprofile']);
+        }
+        else if (checkUser == '2') {
+            this.events.publish('Event-AddUser')
+        this.router.navigate(['/userslist']);
+        } else {
+            this.events.publish('Event-AddUser')
+        this.router.navigate(['/userslist']);
+        }
+
+        let msg = MyResponse['message'];
+        this.presentToast(msg);
+        this.loader.stopLoading();
+      }, error => {
+        this.presentToast("Something went wrong");
+        console.log(error.error.message);
+
+      })
+    } else if (this.checkStatus == "update") {
+      this.loader.presentLoading();
+      this.url = environment.base_url + "users/" + this.userModel['userId'];
+
+      this.apiCall.put(this.url, send_date).subscribe(MyResponse => {
+        console.log("MyResponse ", MyResponse);
+        let checkUser = localStorage.getItem('userRole');
+        if (checkUser == '0') {
+          this.events.publish('Event-UpdateProfile')
+          this.router.navigate(['/userprofile']);
+        } else if (checkUser == '1') {
+          this.events.publish('Event-UpdateProfile')
+        this.router.navigate(['/userprofile']);
+        }
+        else if (checkUser == '2') {
+            this.events.publish('Event-AddUser')
+        this.router.navigate(['/userslist']);
+        } else {
+            this.events.publish('Event-AddUser')
+        this.router.navigate(['/userslist']);
+        }
+        let msg = MyResponse['message'];
+        this.presentToast(msg);
+        this.loader.stopLoading();
+      }, error => {
+        this.loader.stopLoading();
+        this.presentToast("Something went wrong");
+        console.log(error.error.message);
+
+      })
+    } else {
+
+    }
+
+  }
+
+  async presentToast(message) {
+    const toast = await this.toast.create({
+      message: message,
+      duration: 4000
+    });
+    toast.present();
   }
 }

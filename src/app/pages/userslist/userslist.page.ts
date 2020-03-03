@@ -89,15 +89,17 @@ export class UserslistPage implements OnInit {
   addCustomer() {
     this.checkUserStatus = "add";
 
-    let detailCustomerdata = {
+    let detailUserData = {
       "fname": "",
       "lname": "",
       "mobile": "",
       "email": "",
       "userrole": undefined,
       "checkstatus": this.checkUserStatus,
+      "password" : "",
+      "userid" : ""
     }
-    this.router.navigate(['/addusers', { detailCustomerdata: JSON.stringify(detailCustomerdata) }]);
+    this.router.navigate(['/addusers', { detailUserData: JSON.stringify(detailUserData) }]);
   }
 
   getUserDetail(data) {

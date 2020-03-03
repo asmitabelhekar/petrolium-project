@@ -137,11 +137,33 @@
       </ion-col>
     </ion-row>
 
+    <ion-row style="margin-top:-10px" *ngIf="passwordStatus == '0' ">
+      <ion-col size="2">
+        <ion-icon name="lock" style="width:25px; height:25px; color : #93959e; margin: 20px">
+        </ion-icon>
+      </ion-col>
+      <ion-col size="10">
+        <ion-row>
+          <mat-form-field style="width:95%; margin-right:5%">
+            <input matInput class="form-control " name="password" required [(ngModel)]="userModel.password" #password="ngModel"
+              pattern="[a-zA-z]+$" placeholder="Password" />
+            <mat-error>
+              <div class="form-group">
+                <div *ngIf="password.invalid && (password.dirty || password.touched)">
+                  Password Is Requird
+                </div>
+              </div>
+            </mat-error>
 
+          </mat-form-field>
+        </ion-row>
+      </ion-col>
+
+    </ion-row>
 
     <div fxLayout="row" fxLayoutAlign="center center" style="margin-top:15px; margin-bottom: 20px">
       <button mat-raised-button [disabled]="mobile.invalid || fname.invalid || lname.invalid "
-        class="submitButton" (click)="addCustomerData()">Save</button>
+        class="submitButton" (click)="addUserData()">Save</button>
 
     </div>
     <!-- </form> -->

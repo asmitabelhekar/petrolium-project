@@ -84,7 +84,7 @@ export class AddcustomerPage implements OnInit, OnChanges {
     }
   }
 
-  async addCustomerData() {
+   addCustomerData() {
     this.loader.presentLoading();
     if (this.vehicleDetailArray.length > 0) {
       let send_date = {};

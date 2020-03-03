@@ -7,11 +7,13 @@ import { IonicModule } from '@ionic/angular';
 import { UserslistPageRoutingModule } from './userslist-routing.module';
 
 import { UserslistPage } from './userslist.page';
+import { FlexLayoutModule } from '@angular/flex-layout';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
+    FlexLayoutModule,
     IonicModule,
     UserslistPageRoutingModule
   ],

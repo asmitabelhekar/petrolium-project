@@ -91,7 +91,7 @@ export class DataentrycreditPage implements OnInit {
   }
 
   ngOnInit() {
-   
+
     this.userName = localStorage.getItem('userName');
     this.userId = localStorage.getItem('userId');
     this.userMobile = localStorage.getItem('userMobileNumber');
@@ -219,11 +219,11 @@ export class DataentrycreditPage implements OnInit {
 
   }
 
- 
+
   selectVehicleDetail(vehiclenumber) {
     this.userModel['vehiclenumber'] = vehiclenumber;
-    for(let i = 0; i < this.vehicleNumber.length ; i++){
-      if(this.vehicleNumber[i]['vehicleNumber'] == vehiclenumber){
+    for (let i = 0; i < this.vehicleNumber.length; i++) {
+      if (this.vehicleNumber[i]['vehicleNumber'] == vehiclenumber) {
         this.userModel['dname'] = this.vehicleNumber[i]['driverName'];
       }
     }

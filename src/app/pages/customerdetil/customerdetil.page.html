@@ -17,7 +17,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <button class="centerImg" style="font-size :20px; margin-top:12%"
+  <button class="centerImg" style="font-size :20px; margin-top:10%"
     [ngClass]="(customerIndex % 2 == 0) ? 'odd' : 'even' ">{{firstName | uppercase}}</button>
 
   <div fxLayout="column" fxLayoutAlign="center center">
@@ -39,12 +39,12 @@
 
     <ion-row style="height:90px; width: 100%" align="center" fxLayout="row" fxLayoutAlign="space-around center">
       <ion-col size="6" align="center" (click)="makeCall()" fxLayout="column" fxLayoutAlign="center center">
-        <ion-icon name="call" style="width:30px; height:30px; color : #2e2d2d; margin-top: 10px">
+        <ion-icon name="call" style="width:30px; height:30px; color : #2e2d2d;">
         </ion-icon>
         <ion-label style="color:#2e2d2d" class="cl_font_size_label">Call</ion-label>
       </ion-col>
       <ion-col size="6" align="center" (click)="sendMessage()" fxLayout="column" fxLayoutAlign="center center">
-        <ion-icon name="text" style="width:30px; height:30px;color : #2e2d2d; margin-top: 10px">
+        <ion-icon name="text" style="width:30px; height:30px;color : #2e2d2d; ">
         </ion-icon>
         <ion-label style="color:#2e2d2d" class="cl_font_size_label">Text</ion-label>
       </ion-col>
