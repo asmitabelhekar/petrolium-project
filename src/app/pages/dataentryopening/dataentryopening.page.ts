@@ -81,6 +81,11 @@ export class DataentryopeningPage implements OnInit {
         this.apiCall.postWAu(url, send_date).subscribe(MyResponse => {
           let msg = MyResponse['message'];
           this.presentToast(msg);
+          if(this.openingModel['type'] == 0){
+            localStorage.setItem('petrolPrice',this.openingModel['openingbalance']);
+          }else{
+            localStorage.setItem('dieselPrice',this.openingModel['openingbalance']);
+          }
           // this.router.navigate(['/dataentrycredit']);
           this.loader.stopLoading();
         }, error => {
@@ -95,6 +100,11 @@ export class DataentryopeningPage implements OnInit {
         this.apiCall.put(url, send_date).subscribe(MyResponse => {
           let msg = MyResponse['message'];
           this.presentToast(msg);
+          if(this.openingModel['type'] == 0){
+            localStorage.setItem('petrolPrice',this.openingModel['openingbalance']);
+          }else{
+            localStorage.setItem('dieselPrice',this.openingModel['openingbalance']);
+          }
           // this.router.navigate(['/dataentrycredit']);
           this.loader.stopLoading();
         }, error => {

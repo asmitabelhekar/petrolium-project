@@ -691,7 +691,7 @@ var AppComponent = /** @class */ (function () {
                 _this.router.navigate(['/login']);
             }
         }, function (error) {
-            _this.presentToast("Your profile is InActive.");
+            // this.presentToast("Your profile is InActive.");
             // alert("profile is inActive.");
         });
     };
@@ -704,7 +704,7 @@ var AppComponent = /** @class */ (function () {
                     url: '/dataentrycredit',
                 },
                 {
-                    title: 'Opening',
+                    title: 'Petrol/Diesel Rate',
                     url: '/dataentryopening',
                 },
                 {
@@ -732,13 +732,13 @@ var AppComponent = /** @class */ (function () {
                     url: '/debitamount',
                 },
                 {
-                    title: 'Opening',
+                    title: 'Petrol/Diesel Rate',
                     url: '/dataentryopening',
                 },
-                {
-                    title: 'Petrol/Diesel',
-                    url: '/petroldieselamount',
-                },
+                // {
+                //   title: 'Petrol/Diesel',
+                //   url: '/petroldieselamount',
+                // },
                 {
                     title: 'Tanker List',
                     url: '/showtankerlist',
@@ -776,17 +776,17 @@ var AppComponent = /** @class */ (function () {
                     url: '/debitamount',
                 },
                 {
-                    title: 'Opening',
+                    title: 'Petrol/Diesel Rate',
                     url: '/dataentryopening',
                 },
                 {
                     title: 'Reports',
                     url: '/reports',
                 },
-                {
-                    title: 'Petrol/Diesel',
-                    url: '/petroldieselamount',
-                },
+                // {
+                //   title: 'Petrol/Diesel',
+                //   url: '/petroldieselamount',
+                // },
                 {
                     title: 'Tanker',
                     url: '/tanker',
@@ -812,7 +812,7 @@ var AppComponent = /** @class */ (function () {
                     url: '/dataentrycredit',
                 },
                 {
-                    title: 'Opening',
+                    title: 'Petrol/Diesel Rate',
                     url: '/dataentryopening',
                 },
                 {
@@ -840,17 +840,17 @@ var AppComponent = /** @class */ (function () {
                     url: '/debitamount',
                 },
                 {
-                    title: 'Opening',
+                    title: 'Petrol/Diesel Rate',
                     url: '/dataentryopening',
                 },
                 {
                     title: 'Reports',
                     url: '/reports',
                 },
-                {
-                    title: 'Petrol/Diesel',
-                    url: '/petroldieselamount',
-                },
+                // {
+                //   title: 'Petrol/Diesel',
+                //   url: '/petroldieselamount',
+                // },
                 {
                     title: 'Tanker',
                     url: '/tanker',

@@ -217,8 +217,14 @@ var DataentrycreditPage = /** @class */ (function () {
         };
         this.petrolPrice = localStorage.getItem('petrolPrice');
         this.dieselPrice = localStorage.getItem('dieselPrice');
-        this.getPetrolAmount();
-        this.getDieselAmount();
+        if (this.petrolPrice != null || this.petrolPrice != undefined || this.petrolPrice != "") {
+            this.userModel['petrolamount'] = this.petrolPrice;
+            this.userModel['dieselamount'] = this.dieselPrice;
+        }
+        else {
+            this.getPetrolAmount();
+            this.getDieselAmount();
+        }
         this.userModel['perliture'] = this.userModel['petrolamount'];
         this.getCustomerList();
         this.userModel['type'] = 0;

@@ -16,13 +16,13 @@ export class AddusersPage implements OnInit {
 
   userModel: any = {};
   checkStatus: any;
-  recordstatus: any;
+  recordStatus: any;
   myControl = new FormControl();
   mobieNumber: String;
   url: any;
   passwordStatus: any;
   userId: any;
-  pageTitle: any;
+  pageTitle: any = "Add User";
   userRoles: any = [
     {
       "role": "Data Entry",
@@ -47,16 +47,16 @@ export class AddusersPage implements OnInit {
 
   ngOnInit() {
 
-    this.recordstatus = (this.route.snapshot.params['detailUserData']);
-    console.log("detailUserData" + this.recordstatus);
-    let displayArrayValues = JSON.parse(this.recordstatus);
+    this.recordStatus = (this.route.snapshot.params['detailUserData']);
+    console.log("detailUserData" + this.recordStatus);
+    let displayArrayValues = JSON.parse(this.recordStatus);
     this.checkStatus = displayArrayValues.checkstatus;
     if (this.checkStatus == "add") {
       this.passwordStatus = 0;
       this.pageTitle = "Add User";
       this.userModel['password'] = displayArrayValues.password;
     } else {
-      this.pageTitle = "Update User";
+      this.pageTitle = "Update Profile";
       this.passwordStatus = 1;
     }
     this.userModel['mobile'] = displayArrayValues.mobile;

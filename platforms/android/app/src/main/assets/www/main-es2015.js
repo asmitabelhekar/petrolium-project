@@ -680,7 +680,7 @@ let AppComponent = class AppComponent {
                 this.router.navigate(['/login']);
             }
         }, error => {
-            this.presentToast("Your profile is InActive.");
+            // this.presentToast("Your profile is InActive.");
             // alert("profile is inActive.");
         });
     }
@@ -693,7 +693,7 @@ let AppComponent = class AppComponent {
                     url: '/dataentrycredit',
                 },
                 {
-                    title: 'Opening',
+                    title: 'Petrol/Diesel Rate',
                     url: '/dataentryopening',
                 },
                 {
@@ -721,13 +721,13 @@ let AppComponent = class AppComponent {
                     url: '/debitamount',
                 },
                 {
-                    title: 'Opening',
+                    title: 'Petrol/Diesel Rate',
                     url: '/dataentryopening',
                 },
-                {
-                    title: 'Petrol/Diesel',
-                    url: '/petroldieselamount',
-                },
+                // {
+                //   title: 'Petrol/Diesel',
+                //   url: '/petroldieselamount',
+                // },
                 {
                     title: 'Tanker List',
                     url: '/showtankerlist',
@@ -765,17 +765,17 @@ let AppComponent = class AppComponent {
                     url: '/debitamount',
                 },
                 {
-                    title: 'Opening',
+                    title: 'Petrol/Diesel Rate',
                     url: '/dataentryopening',
                 },
                 {
                     title: 'Reports',
                     url: '/reports',
                 },
-                {
-                    title: 'Petrol/Diesel',
-                    url: '/petroldieselamount',
-                },
+                // {
+                //   title: 'Petrol/Diesel',
+                //   url: '/petroldieselamount',
+                // },
                 {
                     title: 'Tanker',
                     url: '/tanker',
@@ -801,7 +801,7 @@ let AppComponent = class AppComponent {
                     url: '/dataentrycredit',
                 },
                 {
-                    title: 'Opening',
+                    title: 'Petrol/Diesel Rate',
                     url: '/dataentryopening',
                 },
                 {
@@ -829,17 +829,17 @@ let AppComponent = class AppComponent {
                     url: '/debitamount',
                 },
                 {
-                    title: 'Opening',
+                    title: 'Petrol/Diesel Rate',
                     url: '/dataentryopening',
                 },
                 {
                     title: 'Reports',
                     url: '/reports',
                 },
-                {
-                    title: 'Petrol/Diesel',
-                    url: '/petroldieselamount',
-                },
+                // {
+                //   title: 'Petrol/Diesel',
+                //   url: '/petroldieselamount',
+                // },
                 {
                     title: 'Tanker',
                     url: '/tanker',

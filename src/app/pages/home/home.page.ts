@@ -21,6 +21,7 @@ export class HomePage {
   autocomplete: any;
   getCusstomers: any = [];
   url = environment.base_url + "customers?" + "size=" + 1000;
+  
 
 
   constructor(

@@ -201,6 +201,12 @@ var DataentryopeningPage = /** @class */ (function () {
                 this.apiCall.postWAu(url, send_date).subscribe(function (MyResponse) {
                     var msg = MyResponse['message'];
                     _this.presentToast(msg);
+                    if (_this.openingModel['type'] == 0) {
+                        localStorage.setItem('petrolPrice', _this.openingModel['openingbalance']);
+                    }
+                    else {
+                        localStorage.setItem('dieselPrice', _this.openingModel['openingbalance']);
+                    }
                     // this.router.navigate(['/dataentrycredit']);
                     _this.loader.stopLoading();
                 }, function (error) {
@@ -214,6 +220,12 @@ var DataentryopeningPage = /** @class */ (function () {
                 this.apiCall.put(url, send_date).subscribe(function (MyResponse) {
                     var msg = MyResponse['message'];
                     _this.presentToast(msg);
+                    if (_this.openingModel['type'] == 0) {
+                        localStorage.setItem('petrolPrice', _this.openingModel['openingbalance']);
+                    }
+                    else {
+                        localStorage.setItem('dieselPrice', _this.openingModel['openingbalance']);
+                    }
                     // this.router.navigate(['/dataentrycredit']);
                     _this.loader.stopLoading();
                 }, function (error) {

@@ -108,7 +108,8 @@ export class UserprofilePage implements OnInit {
       "userrole": this.userRole,
       "checkstatus": this.checkRecordStatus,
       "password": this.userPassword,
-      "userid": this.userId
+      "userid": this.userId,
+      
 
     }
     this.router.navigate(['/addusers', { detailUserData: JSON.stringify(detailUserData) }]);

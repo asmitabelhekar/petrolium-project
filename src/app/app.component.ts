@@ -91,7 +91,7 @@ export class AppComponent {
       }
     },
       error => {
-        this.presentToast("Your profile is InActive.");
+        // this.presentToast("Your profile is InActive.");
         // alert("profile is inActive.");
       })
   }
@@ -107,7 +107,7 @@ export class AppComponent {
 
         },
         {
-          title: 'Opening',
+          title: 'Petrol/Diesel Rate',
           url: '/dataentryopening',
 
         },
@@ -137,15 +137,15 @@ export class AppComponent {
 
         },
         {
-          title: 'Opening',
+          title: 'Petrol/Diesel Rate',
           url: '/dataentryopening',
 
         },
-        {
-          title: 'Petrol/Diesel',
-          url: '/petroldieselamount',
+        // {
+        //   title: 'Petrol/Diesel',
+        //   url: '/petroldieselamount',
 
-        },
+        // },
         {
           title: 'Tanker List',
           url: '/showtankerlist',
@@ -191,7 +191,7 @@ export class AppComponent {
 
         },
         {
-          title: 'Opening',
+          title: 'Petrol/Diesel Rate',
           url: '/dataentryopening',
 
         },
@@ -200,11 +200,11 @@ export class AppComponent {
           url: '/reports',
 
         },
-        {
-          title: 'Petrol/Diesel',
-          url: '/petroldieselamount',
+        // {
+        //   title: 'Petrol/Diesel',
+        //   url: '/petroldieselamount',
 
-        },
+        // },
         {
           title: 'Tanker',
           url: '/tanker',
@@ -234,7 +234,7 @@ export class AppComponent {
 
         },
         {
-          title: 'Opening',
+          title: 'Petrol/Diesel Rate',
           url: '/dataentryopening',
 
         },
@@ -267,7 +267,7 @@ export class AppComponent {
 
         },
         {
-          title: 'Opening',
+          title: 'Petrol/Diesel Rate',
           url: '/dataentryopening',
 
         },
@@ -276,11 +276,11 @@ export class AppComponent {
           url: '/reports',
 
         },
-        {
-          title: 'Petrol/Diesel',
-          url: '/petroldieselamount',
+        // {
+        //   title: 'Petrol/Diesel',
+        //   url: '/petroldieselamount',
 
-        },
+        // },
         {
           title: 'Tanker',
           url: '/tanker',
