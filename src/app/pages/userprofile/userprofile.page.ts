@@ -131,4 +131,15 @@ export class UserprofilePage implements OnInit {
     }
     // this.location.back();
   }
+
+  deleteUser(){
+
+    let url = environment.base_url + "users/" + this.userId;
+    console.log("url :" + url);
+    this.apiCall.delete(url).subscribe(MyResponse => {
+     
+    },
+      error => {
+      })
+  }
 }

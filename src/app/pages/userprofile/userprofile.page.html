@@ -6,8 +6,11 @@
         <img src="../../../assets/back_white.png" style="width:25px; height: 25px; margin: 7px" (click)="goBackword()"/>
         <!-- <button ion-button class="cl-back-button" (click)="goBackword()"></button> -->
       </ion-col>
-      <ion-col size="10" class="TitleHeader TitleText">
+      <ion-col size="9" class="TitleHeader TitleText">
         <ion-label style="color:white">User Profile</ion-label>
+      </ion-col>
+        <ion-col *ngIf="logoutStatus == '1' " size="2" style="position: fixed; right: 1px;" (click)="deleteUser()">
+       <ion-icon  style="color:white; margin-top:10px;width:20px;height:20px" name="trash"></ion-icon>
       </ion-col>
     </ion-row>
   </ion-toolbar>
