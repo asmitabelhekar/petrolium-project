@@ -3,7 +3,7 @@ import { ApicallService } from 'src/app/service/apicall/apicall.service';
 import { environment } from 'src/environments/environment';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-import { Events, AlertController } from '@ionic/angular';
+import { Events, AlertController, ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-userprofile',
@@ -29,6 +29,7 @@ export class UserprofilePage implements OnInit {
     public alertController: AlertController,
     public events: Events,
     public location: Location,
+    public toast : ToastController,
     public activatedRoute: ActivatedRoute) { }
 
   ngOnInit() {
@@ -137,9 +138,20 @@ export class UserprofilePage implements OnInit {
     let url = environment.base_url + "users/" + this.userId;
     console.log("url :" + url);
     this.apiCall.delete(url).subscribe(MyResponse => {
-     
+      this.presentToast("Something went wrong");
+      this.events.publish('Event-AddUser')
+      this.router.navigate(['/userslist']);
     },
       error => {
       })
   }
+
+  async presentToast(message) {
+    const toast = await this.toast.create({
+      message: message,
+      duration: 4000
+    });
+    toast.present();
+  }
+
 }

@@ -43,6 +43,8 @@ export class UserslistPage implements OnInit {
     this.events.subscribe('Event-AddUser', () => {
       this.getUserList(this.url);
     });
+
+    
   }
 
   OnInput(event: any) {
